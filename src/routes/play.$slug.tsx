@@ -1,12 +1,12 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
-import { allGames } from "@/data/cards";
+import { getGame } from "@/games";
 
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
   loader: ({ params }) => {
-    const game = allGames.find((g) => g.slug === params.slug);
+    const game = getGame(params.slug);
     if (!game) throw notFound();
     return { game };
   },
@@ -51,6 +51,7 @@ const colorMap: Record<string, string> = {
 function PlayPage() {
   const { game } = Route.useLoaderData();
   const Icon = game.icon;
+  const GameComponent = game.Component;
 
   return (
     <div className="min-h-screen bg-background">
@@ -80,13 +81,8 @@ function PlayPage() {
           {game.description}
         </p>
 
-        <div className="mt-12 rounded-3xl border-2 border-dashed border-foreground bg-card p-10 text-center sm:p-16">
-          <p className="font-display text-2xl font-extrabold">
-            The game lives here.
-          </p>
-          <p className="mt-2 text-sm text-muted-foreground">
-            This is your dedicated route — drop the playable game into this page next.
-          </p>
+        <div className="mt-12">
+          <GameComponent />
         </div>
       </main>
     </div>
