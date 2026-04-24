@@ -1,0 +1,94 @@
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ArrowLeft } from "lucide-react";
+import { SiteNav } from "@/components/SiteNav";
+import { allGames } from "@/data/cards";
+
+export const Route = createFileRoute("/play/$slug")({
+  component: PlayPage,
+  loader: ({ params }) => {
+    const game = allGames.find((g) => g.slug === params.slug);
+    if (!game) throw notFound();
+    return { game };
+  },
+  head: ({ loaderData }) => ({
+    meta: loaderData
+      ? [
+          { title: `${loaderData.game.title} — playpile` },
+          { name: "description", content: loaderData.game.description },
+        ]
+      : [],
+  }),
+  notFoundComponent: () => (
+    <div className="min-h-screen bg-background">
+      <SiteNav showTabs={false} />
+      <div className="mx-auto max-w-2xl px-6 py-24 text-center">
+        <h1 className="font-display text-5xl font-black">Game not found</h1>
+        <p className="mt-4 text-muted-foreground">
+          That game doesn't exist yet. Try one from the home page.
+        </p>
+        <Link
+          to="/"
+          className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card-yellow px-5 py-2 font-semibold transition-transform hover:-translate-y-0.5"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back home
+        </Link>
+      </div>
+    </div>
+  ),
+});
+
+const colorMap: Record<string, string> = {
+  pink: "bg-card-pink",
+  yellow: "bg-card-yellow",
+  mint: "bg-card-mint",
+  sky: "bg-card-sky",
+  lilac: "bg-card-lilac",
+  peach: "bg-card-peach",
+  lime: "bg-card-lime",
+  coral: "bg-card-coral",
+};
+
+function PlayPage() {
+  const { game } = Route.useLoaderData();
+  const Icon = game.icon;
+
+  return (
+    <div className="min-h-screen bg-background">
+      <SiteNav showTabs={false} />
+      <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" /> Back to all games
+        </Link>
+
+        <div className="mt-8 flex items-center gap-5">
+          <div
+            className={`flex h-20 w-20 items-center justify-center rounded-3xl border-2 border-foreground ${colorMap[game.color]}`}
+          >
+            <Icon className="h-10 w-10" strokeWidth={2.25} />
+          </div>
+          <div>
+            <h1 className="font-display text-5xl font-black capitalize leading-none sm:text-6xl">
+              {game.title}
+            </h1>
+          </div>
+        </div>
+
+        <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+          {game.description}
+        </p>
+
+        <div className="mt-12 rounded-3xl border-2 border-dashed border-foreground bg-card p-10 text-center sm:p-16">
+          <p className="font-display text-2xl font-extrabold">
+            The game lives here.
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            This is your dedicated route — drop the playable game into this page next.
+          </p>
+        </div>
+      </main>
+    </div>
+  );
+}

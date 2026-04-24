@@ -9,55 +9,48 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ClassicsRouteImport } from './routes/classics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PlaySlugRouteImport } from './routes/play.$slug'
 
-const ClassicsRoute = ClassicsRouteImport.update({
-  id: '/classics',
-  path: '/classics',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlaySlugRoute = PlaySlugRouteImport.update({
+  id: '/play/$slug',
+  path: '/play/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/classics': typeof ClassicsRoute
+  '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/classics': typeof ClassicsRoute
+  '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/classics': typeof ClassicsRoute
+  '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/classics'
+  fullPaths: '/' | '/play/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/classics'
-  id: '__root__' | '/' | '/classics'
+  to: '/' | '/play/$slug'
+  id: '__root__' | '/' | '/play/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ClassicsRoute: typeof ClassicsRoute
+  PlaySlugRoute: typeof PlaySlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/classics': {
-      id: '/classics'
-      path: '/classics'
-      fullPath: '/classics'
-      preLoaderRoute: typeof ClassicsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -65,12 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/play/$slug': {
+      id: '/play/$slug'
+      path: '/play/$slug'
+      fullPath: '/play/$slug'
+      preLoaderRoute: typeof PlaySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ClassicsRoute: ClassicsRoute,
+  PlaySlugRoute: PlaySlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
