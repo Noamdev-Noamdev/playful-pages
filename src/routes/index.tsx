@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav, type Tab } from "@/components/SiteNav";
 import { PlayCard } from "@/components/PlayCard";
-import { originals, classics } from "@/data/cards";
+import { originals, classics } from "@/games";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -60,7 +60,14 @@ function Index() {
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {items.map((item) => (
-            <PlayCard key={item.slug} {...item} />
+            <PlayCard
+              key={item.slug}
+              icon={item.icon}
+              title={item.title}
+              description={item.description}
+              color={item.color}
+              slug={item.slug}
+            />
           ))}
         </div>
 
