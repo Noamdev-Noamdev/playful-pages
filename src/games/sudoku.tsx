@@ -207,31 +207,19 @@ function SudokuGame() {
     return () => window.removeEventListener("keydown", onKey);
   }, [selected, inputNumber]);
 
-  // Check for win condition after grid updates
+  // Check for win condition after grid updates.
+  // Compare against solution directly (don't depend on `errors` state which lags by 1 render).
   useEffect(() => {
-    if (won) return; // Already won
-    if (errors.size > 0) return; // Has errors
+    if (won) return;
+    if (solution[0][0] === null) return; // not initialized yet
 
-    // Check if grid is complete
-    let isComplete = true;
     for (let r = 0; r < 9; r++) {
       for (let c = 0; c < 9; c++) {
-        if (userGrid[r][c] === null) {
-          isComplete = false;
-          break;
-        }
-        if (userGrid[r][c] !== solution[r][c]) {
-          isComplete = false;
-          break;
-        }
+        if (userGrid[r][c] !== solution[r][c]) return;
       }
-      if (!isComplete) break;
     }
-
-    if (isComplete) {
-      setWon(true);
-    }
-  }, [userGrid, errors, solution, won]);
+    setWon(true);
+  }, [userGrid, solution, won]);
 
   // ── Cell styling ──────────────────────────────────────────────────────────
 
