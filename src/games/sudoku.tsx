@@ -2,6 +2,7 @@ import { Hash } from "lucide-react";
 import type { Game } from "./types";
 import { useState, useCallback, useEffect } from "react";
 import { WinOverlay } from "./_WinOverlay";
+import { DevComplete } from "./_DevComplete";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -207,31 +208,19 @@ function SudokuGame() {
     return () => window.removeEventListener("keydown", onKey);
   }, [selected, inputNumber]);
 
-  // Check for win condition after grid updates
+  // Check for win condition after grid updates.
+  // Compare against solution directly (don't depend on `errors` state which lags by 1 render).
   useEffect(() => {
-    if (won) return; // Already won
-    if (errors.size > 0) return; // Has errors
+    if (won) return;
+    if (solution[0][0] === null) return; // not initialized yet
 
-    // Check if grid is complete
-    let isComplete = true;
     for (let r = 0; r < 9; r++) {
       for (let c = 0; c < 9; c++) {
-        if (userGrid[r][c] === null) {
-          isComplete = false;
-          break;
-        }
-        if (userGrid[r][c] !== solution[r][c]) {
-          isComplete = false;
-          break;
-        }
+        if (userGrid[r][c] !== solution[r][c]) return;
       }
-      if (!isComplete) break;
     }
-
-    if (isComplete) {
-      setWon(true);
-    }
-  }, [userGrid, errors, solution, won]);
+    setWon(true);
+  }, [userGrid, solution, won]);
 
   // ── Cell styling ──────────────────────────────────────────────────────────
 
@@ -383,13 +372,17 @@ function SudokuGame() {
       </div>
 
       {/* New game */}
-      <button
-        onClick={startGame}
-        className="px-6 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 active:bg-sky-700
-          text-white font-semibold text-sm transition-colors shadow-md shadow-sky-200"
-      >
-        New Game
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={startGame}
+          className="px-6 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 active:bg-sky-700
+            text-white font-semibold text-sm transition-colors shadow-md shadow-sky-200"
+        >
+          New Game
+        </button>
+        {/* DEV: comment out the next line to remove the dev complete button */}
+        <DevComplete onComplete={() => setUserGrid(deepCopy(solution))} />
+      </div>
 
       <p className="text-xs text-slate-400">
         {"Click a cell · type 1–9 · arrows to move · "}
