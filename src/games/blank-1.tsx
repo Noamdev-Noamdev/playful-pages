@@ -1,15 +1,15 @@
-import { Sparkles } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 import type { Game } from "./types";
-import { ComingSoon } from "./_ComingSoon";
+import { RankGame } from "./blank-1/RankGame";
 
-const Blank1: Game = {
+const RankAnything: Game = {
   slug: "blank-1",
-  title: "blank",
-  description: "Coming soon — a brand new original experiment.",
-  icon: Sparkles,
+  title: "Rank Anything",
+  description: "Drag five things into order. You know more than you think.",
+  icon: ArrowUpDown,
   color: "pink",
   category: "originals",
-  Component: () => <ComingSoon name="blank-1" />,
+  Component: RankGame,
 };
 
-export default Blank1;
+export default RankAnything;

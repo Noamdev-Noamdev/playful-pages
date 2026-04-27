@@ -3,18 +3,9 @@ import { useEffect, useState } from "react";
 // ─── Confetti ─────────────────────────────────────────────────────────────────
 
 const COLORS = [
-  "#38bdf8",
-  "#34d399",
-  "#fb923c",
-  "#a78bfa",
-  "#f472b6",
-  "#facc15",
-  "#f87171",
-  "#60a5fa",
-  "#4ade80",
-  "#c084fc",
-  "#fdba74",
-  "#67e8f9",
+  "#38bdf8", "#34d399", "#fb923c", "#a78bfa",
+  "#f472b6", "#facc15", "#f87171", "#60a5fa",
+  "#4ade80", "#c084fc", "#fdba74", "#67e8f9",
 ];
 
 interface Piece {
@@ -68,10 +59,7 @@ export function WinOverlay({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!show) {
-      setVisible(false);
-      return;
-    }
+    if (!show) { setVisible(false); return; }
     const t = setTimeout(() => setVisible(true), 40);
     return () => clearTimeout(t);
   }, [show]);
@@ -120,21 +108,19 @@ export function WinOverlay({
       {pieces.map((p) => (
         <div
           key={p.id}
-          style={
-            {
-              position: "fixed",
-              left: `${p.left}%`,
-              top: -30,
-              width: p.circle ? p.w : p.w,
-              height: p.circle ? p.w : p.h,
-              borderRadius: p.circle ? "50%" : 2,
-              background: p.color,
-              "--rx": `${p.rx}px`,
-              animation: `_wc_fall ${p.duration}s ${p.delay}s ease-in infinite`,
-              willChange: "transform, opacity",
-              pointerEvents: "none",
-            } as React.CSSProperties
-          }
+          style={{
+            position: "fixed",
+            left: `${p.left}%`,
+            top: -30,
+            width: p.circle ? p.w : p.w,
+            height: p.circle ? p.w : p.h,
+            borderRadius: p.circle ? "50%" : 2,
+            background: p.color,
+            "--rx": `${p.rx}px`,
+            animation: `_wc_fall ${p.duration}s ${p.delay}s ease-in infinite`,
+            willChange: "transform, opacity",
+            pointerEvents: "none",
+          } as React.CSSProperties}
         />
       ))}
 
@@ -181,7 +167,9 @@ export function WinOverlay({
         </h2>
 
         {/* Sub */}
-        <p style={{ color: "#64748b", fontSize: "0.9rem", marginBottom: "1.85rem" }}>{sub}</p>
+        <p style={{ color: "#64748b", fontSize: "0.9rem", marginBottom: "1.85rem" }}>
+          {sub}
+        </p>
 
         {/* Button */}
         <button
