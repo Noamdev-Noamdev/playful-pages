@@ -1,15 +1,15 @@
-import { Sparkles } from "lucide-react";
+import { FlaskConical } from "lucide-react";
 import type { Game } from "./types";
-import { ComingSoon } from "./_ComingSoon";
+import { AlchemyGame } from "./blank-2/AlchemyGame";
 
-const Blank2: Game = {
+const BuildYourOwn: Game = {
   slug: "blank-2",
-  title: "blank",
-  description: "Coming soon — a brand new original experiment.",
-  icon: Sparkles,
+  title: "Build Your Own",
+  description: "Combine elements to discover the universe. Start with fire.",
+  icon: FlaskConical,
   color: "yellow",
   category: "originals",
-  Component: () => <ComingSoon name="blank-2" />,
+  Component: AlchemyGame,
 };
 
-export default Blank2;
+export default BuildYourOwn;
