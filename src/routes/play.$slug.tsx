@@ -8,13 +8,17 @@ export const Route = createFileRoute("/play/$slug")({
   loader: ({ params }) => {
     const game = getGame(params.slug);
     if (!game) throw notFound();
-    return { game };
+    return {
+      slug: game.slug,
+      title: game.title,
+      description: game.description,
+    };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.game.title} — playpile` },
-          { name: "description", content: loaderData.game.description },
+          { title: `${loaderData.title} — playpile` },
+          { name: "description", content: loaderData.description },
         ]
       : [],
   }),
@@ -49,7 +53,11 @@ const colorMap: Record<string, string> = {
 };
 
 function PlayPage() {
-  const { game } = Route.useLoaderData();
+  const { slug } = Route.useLoaderData();
+  const game = getGame(slug);
+
+  if (!game) return null; // should not happen because of loader
+
   const Icon = game.icon;
   const GameComponent = game.Component;
 
@@ -77,9 +85,7 @@ function PlayPage() {
           </div>
         </div>
 
-        <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-          {game.description}
-        </p>
+        <p className="mt-6 max-w-xl text-lg text-muted-foreground">{game.description}</p>
 
         <div className="mt-12">
           <GameComponent />

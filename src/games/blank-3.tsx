@@ -1,15 +1,15 @@
-import { Sparkles } from "lucide-react";
+import { Scaling } from "lucide-react";
 import type { Game } from "./types";
-import { ComingSoon } from "./_ComingSoon";
+import { ScaleGame } from "./blank-3/ScaleGame";
 
-const Blank3: Game = {
+const HowBigIsIt: Game = {
   slug: "blank-3",
-  title: "blank",
-  description: "Coming soon — a brand new original experiment.",
-  icon: Sparkles,
+  title: "How Big Is It Really?",
+  description: "Guess the scale. The universe is stranger than you think.",
+  icon: Scaling,
   color: "mint",
   category: "originals",
-  Component: () => <ComingSoon name="blank-3" />,
+  Component: ScaleGame,
 };
 
-export default Blank3;
+export default HowBigIsIt;
