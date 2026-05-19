@@ -67,6 +67,7 @@ function Index() {
               description={item.description}
               color={item.color}
               slug={item.slug}
+              underConstruction={item.underConstruction}
             />
           ))}
         </div>
