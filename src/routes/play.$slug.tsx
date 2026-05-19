@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { getGame } from "@/games";
+import { UnderConstruction } from "@/games/_UnderConstruction";
 
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
