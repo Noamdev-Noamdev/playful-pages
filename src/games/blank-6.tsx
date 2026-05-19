@@ -10,6 +10,8 @@ const Blank6: Game = {
   color: "peach",
   category: "originals",
   Component: () => <ComingSoon name="blank-6" />,
+  // Toggle this line to put the game under construction:
+  underConstruction: true,
 };
 
 export default Blank6;
