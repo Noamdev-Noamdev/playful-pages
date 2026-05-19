@@ -1,0 +1,15 @@
+{
+  "id": 20260519,
+  "prompt": "Rank from coldest to hottest",
+  "promptEmoji": "🌡️",
+  "shareLabel": "by temperature",
+  "metric": "Average temperature (°C)",
+  "difficulty": "medium",
+  "items": [
+    { "name": "Antarctica (winter)", "emoji": "🧊", "value": -60, "fact": "−60 °C avg" },
+    { "name": "Siberia (winter)",    "emoji": "❄️", "value": -25, "fact": "−25 °C avg" },
+    { "name": "London (summer)",     "emoji": "☁️", "value": 19,  "fact": "~19 °C avg" },
+    { "name": "Sahara Desert",       "emoji": "🏜️", "value": 38,  "fact": "~38 °C avg" },
+    { "name": "Surface of Venus",    "emoji": "🪐", "value": 465, "fact": "465 °C" }
+  ]
+}

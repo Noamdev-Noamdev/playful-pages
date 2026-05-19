@@ -1,95 +1,136 @@
-# Easy "Add a New Game" System
+# Daily Levels System
 
-Right now, adding a game means editing `src/data/cards.ts` AND editing the shared `play.$slug.tsx` placeholder. Let's restructure so each game lives in **one self-contained file** that holds both its metadata (icon, title, description, color, category) and its actual playable React component. The card grid and the play page will read from a single registry — no other files need to change when you add a game.
+Goal: every original game gets a **new level every day**, sourced from a JSON archive on disk. Adding a level = dropping a new JSON file into a folder. No code changes needed.
 
-## What you'll get
+This mirrors how Inkwell Games does it: each puzzle is a small data file, and the site picks "today's" file based on the current date.
 
-To add a new game, you'll do exactly this:
+---
 
-1. Create one file: `src/games/my-game.tsx`
-2. Add one line to `src/games/index.ts` to register it
-
-That's it. The card on the home page, the route at `/play/my-game`, the page title, and the playable game itself — all wired up automatically.
-
-## Folder structure
+## Folder layout
 
 ```text
 src/
-  games/
-    index.ts              ← the registry (one line per game)
-    types.ts              ← shared Game type
-    sudoku.tsx            ← one file = metadata + playable component
-    tectonic.tsx
-    kakuro.tsx
-    futoshiki.tsx
-    blank-1.tsx           ← placeholder originals
-    ...
+  levels/
+    index.ts                  ← generic loader + date helpers
+    types.ts                  ← shared LevelMeta type
+    rank-anything/            ← one folder per game (matches the game slug)
+      2026-05-19.json
+      2026-05-20.json
+      2026-05-21.json
+    alchemy/
+      2026-05-19.json
+      ...
+    scale/
+      2026-05-19.json
 ```
 
-## What each game file looks like
+Rules:
+- Folder name = game `slug` (e.g. `blank-1` or, better, a renamed slug like `rank-anything`).
+- Filename = `YYYY-MM-DD.json`. That date is when the level goes live.
+- The JSON shape is **per-game** (Rank Anything has items+values, Alchemy has a target chain, etc.) — each game owns its own schema.
 
-Every game file exports a default object with metadata + a `Component`:
+---
 
-```tsx
-// src/games/sudoku.tsx
-import { Hash } from "lucide-react";
-import type { Game } from "./types";
+## How the loader works (one file, all games)
 
-const Sudoku: Game = {
-  slug: "sudoku",
-  title: "Sudoku",
-  description: "Nine squares, nine numbers, nine ways to lose track of time.",
-  icon: Hash,
-  color: "sky",
-  category: "classics",
-  Component: () => {
-    // ← the actual playable game lives here
-    return <div>Sudoku board goes here</div>;
-  },
-};
-
-export default Sudoku;
-```
-
-## The registry (one line per game)
+`src/levels/index.ts` uses Vite's `import.meta.glob` to eagerly import every JSON under `src/levels/<slug>/*.json` at build time. No manual registry, no per-file imports.
 
 ```ts
-// src/games/index.ts
-import Sudoku from "./sudoku";
-import Tectonic from "./tectonic";
-// ...add new imports here
-import type { Game } from "./types";
+// src/levels/index.ts
+const modules = import.meta.glob("./*/*.json", { eager: true, import: "default" });
 
-export const games: Game[] = [Sudoku, Tectonic /*, NewGame */];
+// Build: { "rank-anything": [{date, data}, ...], "alchemy": [...] }
+// sorted by date ascending.
 
-export const originals = games.filter((g) => g.category === "originals");
-export const classics  = games.filter((g) => g.category === "classics");
-export const getGame = (slug: string) => games.find((g) => g.slug === slug);
+export function getDailyLevel<T = unknown>(slug: string, today = new Date()): {
+  date: string;        // YYYY-MM-DD actually used
+  dayNumber: number;   // 1-indexed position in the archive
+  data: T;
+} | null
 ```
 
-## How the existing pages use it
+Selection logic:
+1. Look up the archive for `slug`.
+2. Pick the **latest level whose date ≤ today**. That's "today's puzzle".
+3. If no dated level is ≤ today (archive starts in the future or empty), fall back to a deterministic pick: `archive[hash(today) % archive.length]` so the game still works.
+4. Return `null` if the folder doesn't exist — game can fall back to its built-in random pool.
 
-- **`src/routes/index.tsx`** — instead of importing from `data/cards`, it imports `originals` and `classics` from `src/games`. The card grid stays exactly as it is.
-- **`src/routes/play.$slug.tsx`** — looks up the game with `getGame(slug)` and renders `<game.Component />` in place of the current "The game lives here" placeholder. The header (icon, title, description, back link) stays.
-- **`src/data/cards.ts`** — deleted. All game info now lives in `src/games/`.
+Bonus helper: `getLevelByDate(slug, "2026-05-19")` for an archive/calendar view later.
 
-## Migration of current games
+---
 
-I'll create files for the 4 classics + 7 blank originals using the existing icons/colors/descriptions, each with a simple "Coming soon" placeholder component. The site looks identical, but the architecture is ready for real games.
+## Per-game integration (tiny change)
 
-## Adding the actual game code later
+Each game decides its own JSON shape and reads it via the loader. Example for Rank Anything — the `puzzles.ts` pool stays as a fallback, but on mount we try the daily level first:
 
-When you want to build, say, real Sudoku:
-1. Open `src/games/sudoku.tsx`
-2. Replace the placeholder `Component` with your Sudoku board logic (it's just a normal React component — use hooks, Tailwind, anything)
-3. Save. Done.
+```ts
+// src/games/blank-1/RankGame.tsx
+import { getDailyLevel } from "@/levels";
+import type { Puzzle } from "./types";
 
-If a game grows large, you can split helpers into a sibling folder (`src/games/sudoku/`) and import them — but the entry stays one file with one default export.
+const daily = getDailyLevel<Puzzle>("rank-anything");
+const initialPuzzle = daily?.data ?? getRandomPuzzle();
+```
+
+The JSON file is literally the same shape as one entry in `puzzles.ts`:
+
+```json
+// src/levels/rank-anything/2026-05-19.json
+{
+  "id": 20260519,
+  "prompt": "Rank from coldest to hottest",
+  "promptEmoji": "🌡️",
+  "shareLabel": "by temperature",
+  "metric": "Average temperature (°C)",
+  "difficulty": "medium",
+  "items": [
+    { "name": "Antarctica", "emoji": "🧊", "value": -60, "fact": "−60 °C" },
+    ...
+  ]
+}
+```
+
+Other games do the same with their own schema (Alchemy → target chain JSON, Scale → comparison JSON, etc.).
+
+---
+
+## "Today" + share text
+
+- Show today's date and a day counter in each game header: `"Daily #42 · May 19"` — comes from `dayNumber` and `date` returned by the loader.
+- The share text already exists in Rank Anything; we append `Daily #42` so results are comparable between players who all played the same puzzle.
+- Date is computed in the user's local timezone (`new Date()`), which matches what Inkwell does. Easy to switch to UTC later if needed.
+
+---
+
+## Adding a new daily level (the whole workflow)
+
+1. Create `src/levels/<game-slug>/<YYYY-MM-DD>.json`.
+2. Paste the puzzle data.
+3. Save. Done — it auto-appears on that date.
+
+No code edits, no registry updates, no rebuild config.
+
+---
 
 ## Technical notes
 
-- `Game` type lives in `src/games/types.ts` and re-exports the existing `CardColor` from `PlayCard.tsx` so colors stay tied to the design system.
-- `category: "originals" | "classics"` replaces the two separate arrays — adding a game just means setting the category, no need to add it to two places.
-- The play route's loader becomes `getGame(params.slug)` and throws `notFound()` if missing (same behavior as today).
-- For heavy games later, we can swap the static imports in `games/index.ts` for `React.lazy()` per game without touching any other file. Not needed yet.
-- No build config changes, no new dependencies.
+- `import.meta.glob("./*/*.json", { eager: true })` bundles every JSON at build time. Switch to `{ eager: false }` + dynamic import later if the archive gets huge.
+- Date parsing: filenames are parsed with a strict `YYYY-MM-DD` regex. Bad filenames are skipped with a `console.warn` so a typo doesn't crash the build.
+- Type safety: `getDailyLevel<T>` is generic; each game passes its own type. Optionally, we add a Zod schema per game and validate the JSON on load so a malformed file fails loudly.
+- Caching: results are memoized per `(slug, dateKey)` so re-renders don't re-scan.
+- Fallback to the existing `puzzles.ts` pool means partial migration is fine — you can seed only some days and the game stays playable.
+- Testing a future puzzle: pass an explicit date to `getDailyLevel(slug, new Date("2026-06-01"))` (we'll expose a tiny `?date=` query-param hook in dev only).
+- This is purely client-side and static — no backend, no Lovable Cloud needed.
+
+---
+
+## What gets built
+
+1. `src/levels/index.ts` — loader, date helpers, `getDailyLevel`, `getLevelByDate`.
+2. `src/levels/types.ts` — `LevelEntry<T>` shared type.
+3. `src/levels/README.md` — one-page guide: "drop a JSON named YYYY-MM-DD.json into `src/levels/<slug>/`".
+4. Seed one example file per existing original (so the system is visibly working): `src/levels/rank-anything/<today>.json` etc.
+5. Update `src/games/blank-1/RankGame.tsx` (and similar tiny touches for the other 2 built originals) to prefer the daily level when present.
+6. Header badge component `DailyBadge` showing `Daily #N · <date>` — drop-in for any game.
+
+After this, the only thing you do day-to-day is **add JSON files**.

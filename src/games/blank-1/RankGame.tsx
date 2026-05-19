@@ -2,6 +2,11 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { WinOverlay } from "../_WinOverlay";
 import { getRandomPuzzle } from "./puzzles";
 import type { Puzzle, PuzzleItem } from "./types";
+import { getDailyLevel } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+
+const DAILY_SLUG = "rank-anything";
+const dailyLevel = getDailyLevel<Puzzle>(DAILY_SLUG);
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -72,7 +77,7 @@ interface DragState {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function RankGame() {
-  const [puzzle,  setPuzzle]  = useState<Puzzle>(() => getRandomPuzzle());
+  const [puzzle,  setPuzzle]  = useState<Puzzle>(() => dailyLevel?.data ?? getRandomPuzzle());
   const [items,   setItems]   = useState<RankedItem[]>(() => buildItems(puzzle));
   const [phase,   setPhase]   = useState<Phase>("playing");
   const [reveal,  setReveal]  = useState<RevealState>({ index: -1, results: [] });
@@ -205,7 +210,12 @@ export function RankGame() {
       />
 
       {/* Prompt */}
-      <div className="text-center space-y-1">
+      <div className="text-center space-y-2">
+        {dailyLevel && (
+          <div className="flex justify-center">
+            <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+          </div>
+        )}
         <h2 className="text-2xl font-extrabold tracking-tight text-foreground flex items-center justify-center gap-2">
           <span>{puzzle.promptEmoji}</span>
           <span>{puzzle.prompt}</span>
