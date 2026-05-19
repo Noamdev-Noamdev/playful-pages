@@ -1,0 +1,15 @@
+{
+  "id": 20260520,
+  "prompt": "Rank from shortest to tallest",
+  "promptEmoji": "📏",
+  "shareLabel": "by height",
+  "metric": "Height (metres)",
+  "difficulty": "easy",
+  "items": [
+    { "name": "House cat",          "emoji": "🐱", "value": 0.25, "fact": "~25 cm" },
+    { "name": "Basketball player",  "emoji": "🏀", "value": 2.1,  "fact": "~2.1 m" },
+    { "name": "Giraffe",            "emoji": "🦒", "value": 5.5,  "fact": "~5.5 m" },
+    { "name": "Golden Gate Bridge", "emoji": "🌉", "value": 227,  "fact": "227 m tall" },
+    { "name": "Eiffel Tower",       "emoji": "🗼", "value": 330,  "fact": "330 m" }
+  ]
+}
