@@ -240,9 +240,9 @@ function FutoshikiGame() {
       const [r, c] = selected;
       if (e.key >= "1" && e.key <= "5") { e.preventDefault(); inputNumber(parseInt(e.key)); }
       else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
-      else if (e.key === "ArrowUp"    && r > 0) { e.preventDefault(); setSelected([r - 1, c]); }
-      else if (e.key === "ArrowDown"  && r < N - 1) { e.preventDefault(); setSelected([r + 1, c]); }
-      else if (e.key === "ArrowLeft"  && c > 0) { e.preventDefault(); setSelected([r, c - 1]); }
+      else if (e.key === "ArrowUp" && r > 0) { e.preventDefault(); setSelected([r - 1, c]); }
+      else if (e.key === "ArrowDown" && r < N - 1) { e.preventDefault(); setSelected([r + 1, c]); }
+      else if (e.key === "ArrowLeft" && c > 0) { e.preventDefault(); setSelected([r, c - 1]); }
       else if (e.key === "ArrowRight" && c < N - 1) { e.preventDefault(); setSelected([r, c + 1]); }
     };
     window.addEventListener("keydown", onKey);
@@ -254,7 +254,7 @@ function FutoshikiGame() {
   }, [errors]);
 
   const CELL = 52;
-  const GAP  = 20;
+  const GAP = 20;
 
   // Build 9×9 positions: cells at even indices, gaps at odd
   const gridItems: React.ReactElement[] = [];
@@ -269,11 +269,11 @@ function FutoshikiGame() {
         const r = gi / 2, c = gj / 2;
         const val = userGrid[r][c];
         const isGiven = puzzle[r][c] !== null;
-        const isSel   = selected?.[0] === r && selected?.[1] === c;
-        const isErr   = errors.has(`${r},${c}`);
+        const isSel = selected?.[0] === r && selected?.[1] === c;
+        const isErr = errors.has(`${r},${c}`);
 
         let bg = "#ffffff";
-        if (isSel)     bg = "#e9d5ff"; // lilac-200
+        if (isSel) bg = "#e9d5ff"; // lilac-200
         else if (isErr) bg = "#fee2e2"; // red-100
 
         gridItems.push(
@@ -356,7 +356,7 @@ function FutoshikiGame() {
       <div style={{
         display: "grid",
         gridTemplateColumns: `repeat(5, ${CELL}px ${GAP}px) ${CELL}px`,
-        gridTemplateRows:    `repeat(5, ${CELL}px ${GAP}px) ${CELL}px`,
+        gridTemplateRows: `repeat(5, ${CELL}px ${GAP}px) ${CELL}px`,
         gap: 0,
       }}>
         {gridItems}
@@ -400,6 +400,7 @@ const Futoshiki: Game = {
   color: "lilac",
   category: "classics",
   Component: FutoshikiGame,
+  underConstruction: true,
 };
 
 export default Futoshiki;

@@ -5,8 +5,7 @@ export function ComingSoon({ name }: { name: string }) {
         {name} — coming soon
       </p>
       <p className="mt-2 text-sm text-muted-foreground">
-        Replace this game's <code className="font-mono">Component</code> in{" "}
-        <code className="font-mono">src/games/{name}.tsx</code> to build it out.
+        Coming soon!
       </p>
     </div>
   );

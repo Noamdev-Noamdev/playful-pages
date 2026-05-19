@@ -10,6 +10,7 @@ const OneDecision: Game = {
   color: "peach",
   category: "originals",
   Component: DecisionGame,
+  underConstruction: true,
 };
 
 export default OneDecision;

@@ -4,7 +4,7 @@ import { ComingSoon } from "./_ComingSoon";
 
 const Blank7: Game = {
   slug: "blank-7",
-  title: "blank",
+  title: "Mix & Morph",
   description: "Coming soon — a brand new original experiment.",
   icon: Sparkles,
   color: "lime",
