@@ -28,9 +28,38 @@ interface PlayCardProps {
   description: string;
   color: CardColor;
   slug: string;
+  underConstruction?: boolean;
 }
 
-export function PlayCard({ icon: Icon, title, description, color, slug }: PlayCardProps) {
+export function PlayCard({
+  icon: Icon,
+  title,
+  description,
+  color,
+  slug,
+  underConstruction,
+}: PlayCardProps) {
+  if (underConstruction) {
+    return (
+      <div className="group relative block rounded-3xl border-2 border-dashed border-foreground bg-card p-5 opacity-60 sm:p-6">
+        <div
+          className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-foreground ${colorMap[color]}`}
+        >
+          <Icon className="h-8 w-8 text-foreground" strokeWidth={2.25} />
+        </div>
+        <h3 className="font-display text-2xl font-extrabold leading-tight text-foreground capitalize">
+          {title}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          {description}
+        </p>
+        <span className="absolute right-4 top-4 rounded-full border-2 border-foreground bg-muted px-2 py-0.5 text-xs font-bold uppercase tracking-wider">
+          Under Construction
+        </span>
+      </div>
+    );
+  }
+
   return (
     <Link
       to="/play/$slug"
