@@ -2,6 +2,11 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { WinOverlay } from "../_WinOverlay";
 import { getRandomPuzzle } from "./puzzles";
 import type { Puzzle, PuzzleItem } from "./types";
+import { getDailyLevel } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+
+const DAILY_SLUG = "rank-anything";
+const dailyLevel = getDailyLevel<Puzzle>(DAILY_SLUG);
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
