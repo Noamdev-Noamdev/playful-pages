@@ -1,15 +1,15 @@
-import { Sparkles } from "lucide-react";
+import { Zap } from "lucide-react";
 import type { Game } from "./types";
-import { ComingSoon } from "./_ComingSoon";
+import { RealityCheck } from "./blank-5/RealityCheck";
 
-const Blank5: Game = {
+const RealityCheckGame: Game = {
   slug: "blank-5",
-  title: "blank",
-  description: "Coming soon — a brand new original experiment.",
-  icon: Sparkles,
+  title: "Reality Check",
+  description: "True or false? Your instincts are about to be humbled.",
+  icon: Zap,
   color: "lilac",
   category: "originals",
-  Component: () => <ComingSoon name="blank-5" />,
+  Component: RealityCheck,
 };
 
-export default Blank5;
+export default RealityCheckGame;

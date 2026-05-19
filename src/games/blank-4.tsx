@@ -1,15 +1,15 @@
-import { Sparkles } from "lucide-react";
+import { CalendarClock } from "lucide-react";
 import type { Game } from "./types";
-import { ComingSoon } from "./_ComingSoon";
+import { TimelineGame } from "./blank-4/TimelineGame";
 
-const Blank4: Game = {
+const TimelineBuilder: Game = {
   slug: "blank-4",
-  title: "blank",
-  description: "Coming soon — a brand new original experiment.",
-  icon: Sparkles,
+  title: "Timeline Builder",
+  description: "Place these events in order. History is trickier than you think.",
+  icon: CalendarClock,
   color: "sky",
   category: "originals",
-  Component: () => <ComingSoon name="blank-4" />,
+  Component: TimelineGame,
 };
 
-export default Blank4;
+export default TimelineBuilder;

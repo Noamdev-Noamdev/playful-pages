@@ -1,15 +1,15 @@
-import { Sparkles } from "lucide-react";
+import { GitBranch } from "lucide-react";
 import type { Game } from "./types";
-import { ComingSoon } from "./_ComingSoon";
+import { DecisionGame } from "./blank-6/DecisionGame";
 
-const Blank6: Game = {
+const OneDecision: Game = {
   slug: "blank-6",
-  title: "blank",
-  description: "Coming soon — a brand new original experiment.",
-  icon: Sparkles,
+  title: "One Decision",
+  description: "One choice. Watch your world unfold — and wonder what if.",
+  icon: GitBranch,
   color: "peach",
   category: "originals",
-  Component: () => <ComingSoon name="blank-6" />,
+  Component: DecisionGame,
 };
 
-export default Blank6;
+export default OneDecision;
