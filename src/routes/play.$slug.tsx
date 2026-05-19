@@ -89,7 +89,11 @@ function PlayPage() {
         <p className="mt-6 max-w-xl text-lg text-muted-foreground">{game.description}</p>
 
         <div className="mt-12">
-          <GameComponent />
+          {game.underConstruction ? (
+            <UnderConstruction name={game.title} />
+          ) : (
+            <GameComponent />
+          )}
         </div>
       </main>
     </div>
