@@ -112,7 +112,7 @@ function generatePuzzle(): { puzzle: FGrid; solution: FGrid; ineqs: FIneq[] } {
     // 3. Orient each chosen pair according to the solution
     const sol = solution;
     const ineqs: FIneq[] = chosen.map(([r1, c1, r2, c2]) => {
-      return sol[r1][c1] < sol[r2][c2]
+      return sol[r1][c1]! < sol[r2][c2]!
         ? { r1, c1, r2, c2 }
         : { r1: r2, c1: c2, r2: r1, c2: c1 };
     });
@@ -120,7 +120,7 @@ function generatePuzzle(): { puzzle: FGrid; solution: FGrid; ineqs: FIneq[] } {
     // 4. Verify the solution still satisfies all constraints
     let valid = true;
     for (const { r1, c1, r2, c2 } of ineqs)
-      if (sol[r1][c1] >= sol[r2][c2]) { valid = false; break; }
+      if (sol[r1][c1]! >= sol[r2][c2]!) { valid = false; break; }
     if (!valid) continue;
 
     // 5. Remove cells while maintaining uniqueness
