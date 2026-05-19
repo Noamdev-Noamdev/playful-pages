@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { getGame } from "@/games";
+import { UnderConstruction } from "@/games/_UnderConstruction";
 
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
@@ -88,7 +89,11 @@ function PlayPage() {
         <p className="mt-6 max-w-xl text-lg text-muted-foreground">{game.description}</p>
 
         <div className="mt-12">
-          <GameComponent />
+          {game.underConstruction ? (
+            <UnderConstruction name={game.title} />
+          ) : (
+            <GameComponent />
+          )}
         </div>
       </main>
     </div>

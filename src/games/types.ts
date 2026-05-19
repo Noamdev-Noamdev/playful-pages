@@ -12,4 +12,6 @@ export interface Game {
   color: CardColor;
   category: GameCategory;
   Component: ComponentType;
+  /** Set to true to hide the game behind an "Under Construction" screen */
+  underConstruction?: boolean;
 }
