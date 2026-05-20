@@ -122,4 +122,16 @@ export function getArchiveSize(slug: string): number {
   return archives[slug]?.length ?? 0;
 }
 
+/** All authored dates for a game, sorted ascending. Each entry is `{ date, dayNumber }`. */
+export function getArchiveDates(slug: string): Array<{ date: string; dayNumber: number }> {
+  const archive = archives[slug];
+  if (!archive) return [];
+  return archive.map((e, i) => ({ date: e.date, dayNumber: i + 1 }));
+}
+
+/** All game slugs that have at least one authored level. */
+export function listArchiveSlugs(): string[] {
+  return Object.keys(archives).filter((s) => archives[s].length > 0);
+}
+
 export type { LevelEntry } from "./types";
