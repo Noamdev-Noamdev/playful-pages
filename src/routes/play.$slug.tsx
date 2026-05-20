@@ -6,6 +6,11 @@ import { UnderConstruction } from "@/games/_UnderConstruction";
 
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
+  validateSearch: (search: Record<string, unknown>): { date?: string } => ({
+    date: typeof search.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(search.date)
+      ? search.date
+      : undefined,
+  }),
   loader: ({ params }) => {
     const game = getGame(params.slug);
     if (!game) throw notFound();
