@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CalendarDays } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { getGame } from "@/games";
 import { UnderConstruction } from "@/games/_UnderConstruction";
@@ -78,20 +78,42 @@ function PlayPage() {
           <ArrowLeft className="h-4 w-4" /> Back to all games
         </Link>
 
-        <div className="mt-8 flex items-center gap-5">
-          <div
-            className={`flex h-20 w-20 items-center justify-center rounded-3xl border-2 border-foreground ${colorMap[game.color]}`}
-          >
-            <Icon className="h-10 w-10" strokeWidth={2.25} />
+        <div className="mt-8 flex items-start justify-between gap-4">
+          <div className="flex items-center gap-5">
+            <div
+              className={`flex h-20 w-20 items-center justify-center rounded-3xl border-2 border-foreground ${colorMap[game.color]}`}
+            >
+              <Icon className="h-10 w-10" strokeWidth={2.25} />
+            </div>
+            <div>
+              <h1 className="font-display text-5xl font-black capitalize leading-none sm:text-6xl">
+                {game.title}
+              </h1>
+            </div>
           </div>
-          <div>
-            <h1 className="font-display text-5xl font-black capitalize leading-none sm:text-6xl">
-              {game.title}
-            </h1>
-          </div>
+
+          {game.dailySlug && (
+            <Link
+              to="/archive/$slug"
+              params={{ slug: game.slug }}
+              className="hidden shrink-0 items-center gap-2 self-center rounded-full border-2 border-foreground bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 sm:inline-flex"
+            >
+              <CalendarDays className="h-4 w-4" /> Archive
+            </Link>
+          )}
         </div>
 
         <p className="mt-6 max-w-xl text-lg text-muted-foreground">{game.description}</p>
+
+        {game.dailySlug && (
+          <Link
+            to="/archive/$slug"
+            params={{ slug: game.slug }}
+            className="mt-4 inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 sm:hidden"
+          >
+            <CalendarDays className="h-4 w-4" /> Archive
+          </Link>
+        )}
 
         <div className="mt-12">
           {game.underConstruction ? (
