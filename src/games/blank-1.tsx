@@ -10,6 +10,7 @@ const RankAnything: Game = {
   color: "pink",
   category: "originals",
   Component: RankGame,
+  dailySlug: "rank-anything",
 };
 
 export default RankAnything;
