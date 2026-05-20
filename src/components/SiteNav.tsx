@@ -28,13 +28,6 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
           playpile
         </Link>
 
-        <Link
-          to="/archive"
-          className="rounded-full border-2 border-foreground bg-card-lilac px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-transform hover:-translate-y-0.5"
-        >
-          Archive
-        </Link>
-
         {showTabs && (
           <nav className="flex items-center gap-1 rounded-full border-2 border-foreground bg-card p-1">
             {tabs.map((tab) => {
