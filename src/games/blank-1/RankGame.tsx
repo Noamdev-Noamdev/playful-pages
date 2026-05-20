@@ -1,12 +1,11 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import { WinOverlay } from "../_WinOverlay";
 import { getRandomPuzzle } from "./puzzles";
 import type { Puzzle, PuzzleItem } from "./types";
-import { getDailyLevel } from "@/levels";
+import { getDailyLevel, getLevelByDate } from "@/levels";
 import { DailyBadge } from "@/components/DailyBadge";
 
 const DAILY_SLUG = "rank-anything";
-const dailyLevel = getDailyLevel<Puzzle>(DAILY_SLUG);
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -77,6 +76,15 @@ interface DragState {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function RankGame() {
+  // Read ?date=YYYY-MM-DD from URL for archive playback; otherwise use today's daily.
+  const dailyLevel = useMemo(() => {
+    if (typeof window === "undefined") return getDailyLevel<Puzzle>(DAILY_SLUG);
+    const dateParam = new URLSearchParams(window.location.search).get("date");
+    return dateParam
+      ? getLevelByDate<Puzzle>(DAILY_SLUG, dateParam)
+      : getDailyLevel<Puzzle>(DAILY_SLUG);
+  }, []);
+
   const [puzzle,  setPuzzle]  = useState<Puzzle>(() => dailyLevel?.data ?? getRandomPuzzle());
   const [items,   setItems]   = useState<RankedItem[]>(() => buildItems(puzzle));
   const [phase,   setPhase]   = useState<Phase>("playing");
