@@ -76,6 +76,15 @@ interface DragState {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function RankGame() {
+  // Read ?date=YYYY-MM-DD from URL for archive playback; otherwise use today's daily.
+  const dailyLevel = useMemo(() => {
+    if (typeof window === "undefined") return getDailyLevel<Puzzle>(DAILY_SLUG);
+    const dateParam = new URLSearchParams(window.location.search).get("date");
+    return dateParam
+      ? getLevelByDate<Puzzle>(DAILY_SLUG, dateParam)
+      : getDailyLevel<Puzzle>(DAILY_SLUG);
+  }, []);
+
   const [puzzle,  setPuzzle]  = useState<Puzzle>(() => dailyLevel?.data ?? getRandomPuzzle());
   const [items,   setItems]   = useState<RankedItem[]>(() => buildItems(puzzle));
   const [phase,   setPhase]   = useState<Phase>("playing");
