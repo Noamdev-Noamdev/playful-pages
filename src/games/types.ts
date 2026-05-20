@@ -14,4 +14,6 @@ export interface Game {
   Component: ComponentType;
   /** Set to true to hide the game behind an "Under Construction" screen */
   underConstruction?: boolean;
+  /** Folder name under src/levels/ that holds this game's daily JSONs. Enables the archive view. */
+  dailySlug?: string;
 }
