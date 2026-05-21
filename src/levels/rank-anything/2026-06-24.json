@@ -1,0 +1,15 @@
+{
+  "id": 20260624,
+  "prompt": "Rank from shortest to longest pregnancy",
+  "promptEmoji": "🐣",
+  "shareLabel": "by gestation period",
+  "metric": "Gestation period (days)",
+  "difficulty": "medium",
+  "items": [
+    { "name": "Opossum",           "emoji": "🐀", "value": 13,  "fact": "13 days — shortest of any mammal" },
+    { "name": "Rabbit",            "emoji": "🐇", "value": 31,  "fact": "~31 days — hence 'breeding like rabbits'" },
+    { "name": "Lion",              "emoji": "🦁", "value": 110, "fact": "~110 days — cubs born blind and helpless" },
+    { "name": "Polar bear",        "emoji": "🐻‍❄️","value": 240, "fact": "~240 days — hibernates while pregnant" },
+    { "name": "African elephant",  "emoji": "🐘", "value": 660, "fact": "~660 days — longest of any land mammal" }
+  ]
+}

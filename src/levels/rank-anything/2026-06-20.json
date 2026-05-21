@@ -1,0 +1,15 @@
+{
+  "id": 20260620,
+  "prompt": "Rank from fewest to most individuals remaining in the wild",
+  "promptEmoji": "🦁",
+  "shareLabel": "by wild population",
+  "metric": "Estimated wild population",
+  "difficulty": "hard",
+  "items": [
+    { "name": "Amur leopard",     "emoji": "🐆", "value": 100,   "fact": "~100 left — world's rarest wild cat" },
+    { "name": "Javan rhino",      "emoji": "🦏", "value": 72,    "fact": "~72 left — only in one national park in Indonesia" },
+    { "name": "Mountain gorilla", "emoji": "🦍", "value": 1063,  "fact": "~1,063 — numbers are actually slowly growing" },
+    { "name": "Snow leopard",     "emoji": "🐱", "value": 4500,  "fact": "~4,500 across Central Asian mountains" },
+    { "name": "African wild dog", "emoji": "🐕", "value": 6600,  "fact": "~6,600 — most successful pack hunter in Africa" }
+  ]
+}

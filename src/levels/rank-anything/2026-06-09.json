@@ -1,0 +1,15 @@
+{
+  "id": 20260609,
+  "prompt": "Rank these tech companies from oldest to newest",
+  "promptEmoji": "💻",
+  "shareLabel": "by founding year",
+  "metric": "Year founded",
+  "difficulty": "medium",
+  "items": [
+    { "name": "Microsoft",  "emoji": "🪟", "value": 1975, "fact": "1975 — Bill Gates & Paul Allen in Albuquerque" },
+    { "name": "Apple",      "emoji": "🍎", "value": 1976, "fact": "1976 — Jobs, Wozniak & Wayne in a garage" },
+    { "name": "Amazon",     "emoji": "📦", "value": 1994, "fact": "1994 — started as an online bookstore" },
+    { "name": "Google",     "emoji": "🔍", "value": 1998, "fact": "1998 — named after the number googol" },
+    { "name": "ByteDance",  "emoji": "🎵", "value": 2012, "fact": "2012 — parent company of TikTok, founded in Beijing" }
+  ]
+}

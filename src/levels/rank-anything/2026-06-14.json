@@ -1,0 +1,15 @@
+{
+  "id": 20260614,
+  "prompt": "Rank from shortest to longest film",
+  "promptEmoji": "🎬",
+  "shareLabel": "by runtime",
+  "metric": "Runtime (minutes)",
+  "difficulty": "medium",
+  "items": [
+    { "name": "Toy Story",             "emoji": "🤠", "value": 81,  "fact": "81 min — the first fully CGI feature film" },
+    { "name": "The Dark Knight",       "emoji": "🦇", "value": 152, "fact": "152 min — Heath Ledger's defining performance" },
+    { "name": "Gone with the Wind",    "emoji": "🌬️", "value": 238, "fact": "238 min — still one of the highest-grossing films ever" },
+    { "name": "The Lord of the Rings: RotK", "emoji": "💍", "value": 251, "fact": "251 min extended cut — 11 Oscar wins" },
+    { "name": "Cleopatra (1963)",      "emoji": "👑", "value": 248, "fact": "248 min — nearly bankrupted 20th Century Fox" }
+  ]
+}

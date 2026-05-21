@@ -1,0 +1,15 @@
+{
+  "id": 20260621,
+  "prompt": "Rank from lowest to highest alcohol content",
+  "promptEmoji": "🍷",
+  "shareLabel": "by ABV",
+  "metric": "Alcohol by volume (%)",
+  "difficulty": "easy",
+  "items": [
+    { "name": "Kombucha",      "emoji": "🫙", "value": 0.5,  "fact": "~0.5% ABV — trace fermentation only" },
+    { "name": "Beer",          "emoji": "🍺", "value": 5,    "fact": "~5% ABV — standard lager or ale" },
+    { "name": "Wine",          "emoji": "🍷", "value": 13,   "fact": "~13% ABV — red wine average" },
+    { "name": "Gin / Vodka",   "emoji": "🍸", "value": 40,   "fact": "40% ABV — standard spirits" },
+    { "name": "Everclear",     "emoji": "💧", "value": 95,   "fact": "95% ABV — strongest commercially sold spirit" }
+  ]
+}

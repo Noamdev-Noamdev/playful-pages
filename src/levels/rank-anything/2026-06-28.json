@@ -1,0 +1,15 @@
+{
+  "id": 20260628,
+  "prompt": "Rank from fewest to most operating nuclear reactors",
+  "promptEmoji": "⚛️",
+  "shareLabel": "by reactor count",
+  "metric": "Operating nuclear reactors (approx. 2024)",
+  "difficulty": "hard",
+  "items": [
+    { "name": "United Kingdom","emoji": "🇬🇧", "value": 9,   "fact": "9 reactors — fleet being renewed after decades" },
+    { "name": "Russia",        "emoji": "🇷🇺", "value": 36,  "fact": "36 reactors — also world's top nuclear exporter" },
+    { "name": "China",         "emoji": "🇨🇳", "value": 55,  "fact": "55 reactors — building more than any other country" },
+    { "name": "France",        "emoji": "🇫🇷", "value": 57,  "fact": "57 reactors — 70%+ of electricity from nuclear" },
+    { "name": "United States", "emoji": "🇺🇸", "value": 93,  "fact": "93 reactors — the world's largest nuclear fleet" }
+  ]
+}

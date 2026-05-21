@@ -1,0 +1,15 @@
+{
+  "id": 20260630,
+  "prompt": "Rank from fewest to most monthly active users",
+  "promptEmoji": "📱",
+  "shareLabel": "by monthly active users",
+  "metric": "Monthly active users (billions, approx. 2024)",
+  "difficulty": "medium",
+  "items": [
+    { "name": "X (Twitter)",  "emoji": "🐦", "value": 0.6,  "fact": "~600 million MAU — down since rebrand" },
+    { "name": "Telegram",     "emoji": "✈️", "value": 0.9,  "fact": "~900 million MAU — fast-growing encrypted platform" },
+    { "name": "Instagram",    "emoji": "📷", "value": 2.0,  "fact": "~2 billion MAU — dominant for visual content" },
+    { "name": "WhatsApp",     "emoji": "💬", "value": 2.78, "fact": "~2.78 billion MAU — #1 messaging app globally" },
+    { "name": "Facebook",     "emoji": "👥", "value": 3.05, "fact": "~3.05 billion MAU — still the largest social platform" }
+  ]
+}

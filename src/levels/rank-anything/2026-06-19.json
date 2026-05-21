@@ -1,0 +1,15 @@
+{
+  "id": 20260619,
+  "prompt": "Rank from slowest to fastest human achievement",
+  "promptEmoji": "🏆",
+  "shareLabel": "by speed",
+  "metric": "Speed (km/h)",
+  "difficulty": "hard",
+  "items": [
+    { "name": "Usain Bolt 100m sprint", "emoji": "⚡", "value": 44.7,   "fact": "44.72 km/h — peak speed during 2009 world record" },
+    { "name": "Fastest production car", "emoji": "🏎️", "value": 490,    "fact": "~490 km/h — Bugatti Chiron Super Sport 300+" },
+    { "name": "Fastest commercial flight","emoji": "✈️","value": 2180,   "fact": "2,179 km/h — Concorde's cruising speed" },
+    { "name": "X-15 rocket plane",      "emoji": "🚀", "value": 7274,   "fact": "7,274 km/h — fastest winged aircraft ever" },
+    { "name": "Parker Solar Probe",     "emoji": "☀️", "value": 692000, "fact": "~692,000 km/h — fastest human-made object ever" }
+  ]
+}

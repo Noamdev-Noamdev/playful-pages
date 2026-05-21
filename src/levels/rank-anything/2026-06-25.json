@@ -1,0 +1,15 @@
+{
+  "id": 20260625,
+  "prompt": "Rank from fewest to most keys / frets / strings",
+  "promptEmoji": "🎼",
+  "shareLabel": "by playable notes",
+  "metric": "Number of distinct pitches available",
+  "difficulty": "hard",
+  "items": [
+    { "name": "Standard trumpet",   "emoji": "🎺", "value": 45,  "fact": "~45 notes — limited by 3 valves" },
+    { "name": "Violin",             "emoji": "🎻", "value": 56,  "fact": "~56 notes before harmonics — 4 open strings" },
+    { "name": "Classical guitar",   "emoji": "🎸", "value": 72,  "fact": "~72 notes — 6 strings × 12 frets" },
+    { "name": "Standard piano",     "emoji": "🎹", "value": 88,  "fact": "88 keys — the full chromatic range" },
+    { "name": "Pipe organ",         "emoji": "⛪", "value": 200, "fact": "200+ notes across multiple manuals & pedals" }
+  ]
+}

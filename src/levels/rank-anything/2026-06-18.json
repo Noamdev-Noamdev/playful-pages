@@ -1,0 +1,15 @@
+{
+  "id": 20260618,
+  "prompt": "Rank from lowest to highest pitch",
+  "promptEmoji": "🎵",
+  "shareLabel": "by frequency",
+  "metric": "Frequency (Hz)",
+  "difficulty": "hard",
+  "items": [
+    { "name": "Bass guitar lowest note", "emoji": "🎸", "value": 41,  "fact": "41 Hz — E1, the lowest standard bass note" },
+    { "name": "Middle C (piano)",        "emoji": "🎹", "value": 262, "fact": "261.6 Hz — the central reference note in music" },
+    { "name": "Concert A (tuning)",      "emoji": "🎻", "value": 440, "fact": "440 Hz — universal orchestral tuning note" },
+    { "name": "Highest piano note",      "emoji": "🎹", "value": 4186,"fact": "4,186 Hz — C8, top of a standard 88-key piano" },
+    { "name": "Human hearing upper limit","emoji": "👂", "value": 20000,"fact": "~20,000 Hz — you lose this range with age" }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "id": 20260612,
+  "prompt": "Rank these Nobel Prize categories from oldest to newest",
+  "promptEmoji": "🏅",
+  "shareLabel": "by first year awarded",
+  "metric": "Year first awarded",
+  "difficulty": "hard",
+  "items": [
+    { "name": "Physics",     "emoji": "⚛️", "value": 1901, "fact": "1901 — first winner: Wilhelm Röntgen for X-rays" },
+    { "name": "Chemistry",   "emoji": "🧪", "value": 1901, "fact": "1901 — first winner: Jacobus van 't Hoff" },
+    { "name": "Medicine",    "emoji": "💊", "value": 1901, "fact": "1901 — first winner: Emil von Behring" },
+    { "name": "Literature",  "emoji": "📚", "value": 1901, "fact": "1901 — first winner: Sully Prudhomme" },
+    { "name": "Economics",   "emoji": "📈", "value": 1969, "fact": "1969 — the newest category, added 68 years later" }
+  ]
+}

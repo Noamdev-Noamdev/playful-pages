@@ -1,0 +1,15 @@
+{
+  "id": 20260606,
+  "prompt": "Rank from slowest to fastest land speed",
+  "promptEmoji": "🏃",
+  "shareLabel": "by top speed",
+  "metric": "Top speed (km/h)",
+  "difficulty": "hard",
+  "items": [
+    { "name": "Elephant",           "emoji": "🐘", "value": 25,  "fact": "~25 km/h — but can charge faster" },
+    { "name": "Polar bear",         "emoji": "🐻‍❄️","value": 40,  "fact": "~40 km/h — over short distances" },
+    { "name": "Grizzly bear",       "emoji": "🐻", "value": 56,  "fact": "~56 km/h — faster than most horses" },
+    { "name": "Ostrich",            "emoji": "🦆", "value": 70,  "fact": "70 km/h — fastest two-legged animal" },
+    { "name": "Pronghorn antelope", "emoji": "🦌", "value": 98,  "fact": "~98 km/h — second fastest land animal" }
+  ]
+}

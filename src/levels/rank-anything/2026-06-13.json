@@ -1,0 +1,15 @@
+{
+  "id": 20260613,
+  "prompt": "Rank from weakest to strongest against the US Dollar",
+  "promptEmoji": "💵",
+  "shareLabel": "by exchange rate (units per $1)",
+  "metric": "Units of currency per 1 USD (lower = stronger)",
+  "difficulty": "hard",
+  "items": [
+    { "name": "Kuwaiti Dinar",   "emoji": "🇰🇼", "value": 0.31, "fact": "0.31 KWD per USD — world's strongest currency" },
+    { "name": "British Pound",   "emoji": "🇬🇧", "value": 0.79, "fact": "~0.79 GBP per USD" },
+    { "name": "Euro",            "emoji": "🇪🇺", "value": 0.92, "fact": "~0.92 EUR per USD" },
+    { "name": "Japanese Yen",    "emoji": "🇯🇵", "value": 155,  "fact": "~155 JPY per USD" },
+    { "name": "Indonesian Rupiah","emoji": "🇮🇩", "value": 16000,"fact": "~16,000 IDR per USD — one of the weakest" }
+  ]
+}

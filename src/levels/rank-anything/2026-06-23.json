@@ -1,0 +1,15 @@
+{
+  "id": 20260623,
+  "prompt": "Rank these skyscrapers from shortest to tallest",
+  "promptEmoji": "🏙️",
+  "shareLabel": "by height",
+  "metric": "Height (metres)",
+  "difficulty": "medium",
+  "items": [
+    { "name": "Empire State Building", "emoji": "🗽", "value": 443,  "fact": "443 m to tip — tallest in the world 1931–1970" },
+    { "name": "Taipei 101",            "emoji": "🇹🇼", "value": 508,  "fact": "508 m — world's tallest 2004–2010" },
+    { "name": "One World Trade Center","emoji": "🇺🇸", "value": 541,  "fact": "541 m — tallest building in the Western Hemisphere" },
+    { "name": "Shanghai Tower",        "emoji": "🇨🇳", "value": 632,  "fact": "632 m — second tallest in the world" },
+    { "name": "Burj Khalifa",          "emoji": "🇦🇪", "value": 828,  "fact": "828 m — world's tallest since 2010" }
+  ]
+}
