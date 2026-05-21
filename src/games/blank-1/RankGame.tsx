@@ -101,6 +101,20 @@ export function RankGame() {
   const itemsRef     = useRef(items);
   itemsRef.current   = items;
 
+  // Lock today's daily once finished (only when actually playing today, not an archive replay)
+  const isTodaysDaily = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    if (new URLSearchParams(window.location.search).get("date")) return false;
+    return dailyLevel?.date === formatDate(new Date());
+  }, [dailyLevel]);
+
+  useEffect(() => {
+    if (phase === "done" && isTodaysDaily) {
+      markDailyComplete(DAILY_SLUG);
+    }
+  }, [phase, isTodaysDaily]);
+
+
   // ── Reset ──────────────────────────────────────────────────────────────────
 
   const reset = useCallback((excludeId?: number) => {
