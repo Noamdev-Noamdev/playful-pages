@@ -64,12 +64,28 @@ const colorMap: Record<string, string> = {
 
 function PlayPage() {
   const { slug } = Route.useLoaderData();
+  const { date } = Route.useSearch();
   const game = getGame(slug);
+
+  // Daily lock: only applies when playing today's daily (no ?date param).
+  // Re-checked on focus so finishing a puzzle then returning shows the lock.
+  const [locked, setLocked] = useState<boolean>(() =>
+    !!game?.dailySlug && !date && hasCompletedToday(game.slug),
+  );
+  useEffect(() => {
+    if (!game?.dailySlug || date) return;
+    const check = () => setLocked(hasCompletedToday(game.slug));
+    check();
+    window.addEventListener("focus", check);
+    return () => window.removeEventListener("focus", check);
+  }, [game?.dailySlug, game?.slug, date]);
 
   if (!game) return null; // should not happen because of loader
 
   const Icon = game.icon;
   const GameComponent = game.Component;
+
+
 
   return (
     <div className="min-h-screen bg-background">
