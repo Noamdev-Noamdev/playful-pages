@@ -231,6 +231,7 @@ export function RankGame() {
         onPlayAgain={() => { setWon(false); reset(puzzle.id); }}
         message="Perfect score! 🎯"
         sub="Every item in exactly the right place."
+        archiveSlug={dailyLevel ? DAILY_SLUG : undefined}
       />
 
       {/* Prompt */}
