@@ -397,8 +397,8 @@ export function RankGame() {
             </div>
           </div>
 
-          {/* Play again — only when NOT today's daily (archive replay or fallback puzzle) */}
-          {!isTodaysDaily ? (
+          {/* Play again — only for non-daily fallback puzzles. Daily levels (today or archive) are one-and-done. */}
+          {!dailyLevel ? (
             <button
               onClick={() => reset(puzzle.id)}
               className="px-10 py-3 rounded-2xl bg-foreground text-background font-bold text-base
@@ -406,13 +406,21 @@ export function RankGame() {
             >
               Next puzzle →
             </button>
-          ) : (
+          ) : isTodaysDaily ? (
             <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center w-full">
               <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
               <p className="text-sm text-muted-foreground mt-1">
                 A new puzzle drops at midnight. Want more? Try the archive.
               </p>
             </div>
+          ) : (
+            <a
+              href={`/archive/${DAILY_SLUG}`}
+              className="px-10 py-3 rounded-2xl bg-foreground text-background font-bold text-base
+                hover:opacity-90 active:scale-95 transition-all shadow-md w-full text-center"
+            >
+              ← Back to archive
+            </a>
           )}
         </div>
       )}
