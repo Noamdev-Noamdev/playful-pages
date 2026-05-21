@@ -11,18 +11,18 @@ const DAILY_SLUG = "rank-anything";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const CARD_H      = 64;   // px — height of each card
-const CARD_GAP    = 10;   // px — gap between cards
+const CARD_H = 64;   // px — height of each card
+const CARD_GAP = 10;   // px — gap between cards
 const CARD_STRIDE = CARD_H + CARD_GAP;
-const REVEAL_MS   = 380;  // ms per card during reveal
-const CORRECT_MS  = 520;  // ms for correction slide animation
+const REVEAL_MS = 380;  // ms per card during reveal
+const CORRECT_MS = 520;  // ms for correction slide animation
 
 // ─── Difficulty badge ─────────────────────────────────────────────────────────
 
 const DIFF_STYLES: Record<string, string> = {
-  easy:   "bg-emerald-100 text-emerald-700 border-emerald-200",
+  easy: "bg-emerald-100 text-emerald-700 border-emerald-200",
   medium: "bg-amber-100   text-amber-700   border-amber-200",
-  hard:   "bg-red-100     text-red-700     border-red-200",
+  hard: "bg-red-100     text-red-700     border-red-200",
 };
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -69,10 +69,10 @@ function buildShareText(puzzle: Puzzle, results: ("correct" | "wrong" | null)[])
 // ─── DragState ────────────────────────────────────────────────────────────────
 
 interface DragState {
-  uid:        string;
-  startY:     number;   // pointer Y when drag began
-  currentY:   number;   // current pointer Y
-  originIdx:  number;   // index in list when drag started
+  uid: string;
+  startY: number;   // pointer Y when drag began
+  currentY: number;   // current pointer Y
+  originIdx: number;   // index in list when drag started
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -87,19 +87,19 @@ export function RankGame() {
       : getDailyLevel<Puzzle>(DAILY_SLUG);
   }, []);
 
-  const [puzzle,  setPuzzle]  = useState<Puzzle>(() => dailyLevel?.data ?? getRandomPuzzle());
-  const [items,   setItems]   = useState<RankedItem[]>(() => buildItems(puzzle));
-  const [phase,   setPhase]   = useState<Phase>("playing");
-  const [reveal,  setReveal]  = useState<RevealState>({ index: -1, results: [] });
+  const [puzzle, setPuzzle] = useState<Puzzle>(() => dailyLevel?.data ?? getRandomPuzzle());
+  const [items, setItems] = useState<RankedItem[]>(() => buildItems(puzzle));
+  const [phase, setPhase] = useState<Phase>("playing");
+  const [reveal, setReveal] = useState<RevealState>({ index: -1, results: [] });
   const [correctedOrder, setCorrectedOrder] = useState<RankedItem[]>([]);
-  const [score,   setScore]   = useState(0);
-  const [copied,  setCopied]  = useState(false);
-  const [won,     setWon]     = useState(false);
-  const [drag,    setDrag]    = useState<DragState | null>(null);
+  const [score, setScore] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const [won, setWon] = useState(false);
+  const [drag, setDrag] = useState<DragState | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const itemsRef     = useRef(items);
-  itemsRef.current   = items;
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
 
   // Lock today's daily once finished (only when actually playing today, not an archive replay)
   const isTodaysDaily = useMemo(() => {
@@ -146,8 +146,8 @@ export function RankGame() {
     setDrag((d) => d ? { ...d, currentY: newY } : null);
 
     // Reorder list based on drag position
-    const delta   = newY - drag.startY;
-    const newIdx  = Math.max(0, Math.min(
+    const delta = newY - drag.startY;
+    const newIdx = Math.max(0, Math.min(
       itemsRef.current.length - 1,
       drag.originIdx + Math.round(delta / CARD_STRIDE)
     ));
@@ -262,14 +262,14 @@ export function RankGame() {
         onPointerLeave={onPointerUp}
       >
         {items.map((item, visualIdx) => {
-          const isDragging  = drag?.uid === item.uid;
-          const result      = reveal.results[visualIdx] ?? null;
+          const isDragging = drag?.uid === item.uid;
+          const result = reveal.results[visualIdx] ?? null;
 
           // During correction phase: slide from current position to corrected position
-          const targetIdx   = correctedOrder.length > 0
+          const targetIdx = correctedOrder.length > 0
             ? (correctedIdxMap.get(item.uid) ?? visualIdx)
             : visualIdx;
-          const baseY       = targetIdx * CARD_STRIDE;
+          const baseY = targetIdx * CARD_STRIDE;
 
           // Drag offset: only on the dragged card, clamped to container
           let dragOffset = 0;
@@ -287,30 +287,30 @@ export function RankGame() {
           // Card background based on result
           let cardBg = "bg-card border-foreground";
           if (result === "correct") cardBg = "bg-emerald-50 border-emerald-400";
-          if (result === "wrong")   cardBg = "bg-red-50    border-red-400";
+          if (result === "wrong") cardBg = "bg-red-50    border-red-400";
 
           // Transition: smooth for correction slide, instant during drag
           const transition = isDragging
             ? "box-shadow 0.15s"
             : correctedOrder.length > 0
-            ? `transform ${CORRECT_MS}ms cubic-bezier(0.4,0,0.2,1), background-color 0.3s, border-color 0.3s`
-            : "transform 0.12s ease, background-color 0.3s, border-color 0.3s";
+              ? `transform ${CORRECT_MS}ms cubic-bezier(0.4,0,0.2,1), background-color 0.3s, border-color 0.3s`
+              : "transform 0.12s ease, background-color 0.3s, border-color 0.3s";
 
           return (
             <div
               key={item.uid}
               onPointerDown={(e) => onPointerDown(e, item.uid)}
               style={{
-                position:  "absolute",
-                left:      0,
-                right:     0,
-                top:       0,
-                height:    CARD_H,
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: 0,
+                height: CARD_H,
                 transform: `translateY(${baseY + dragOffset}px) scale(${isDragging ? 1.035 : 1})`,
                 transition,
-                zIndex:    isDragging ? 10 : 1,
+                zIndex: isDragging ? 10 : 1,
                 touchAction: "none",
-                cursor:    phase === "playing" ? (isDragging ? "grabbing" : "grab") : "default",
+                cursor: phase === "playing" ? (isDragging ? "grabbing" : "grab") : "default",
               }}
               className={`
                 border-2 rounded-2xl px-4 flex items-center gap-3 w-full
@@ -379,10 +379,10 @@ export function RankGame() {
               {score === puzzle.items.length
                 ? "🎯 Perfect — you nailed every one!"
                 : score >= puzzle.items.length - 1
-                ? "🔥 So close — nearly perfect!"
-                : score >= Math.ceil(puzzle.items.length / 2)
-                ? "👍 Decent intuition!"
-                : "🤔 Trickier than it looks, right?"}
+                  ? "🔥 So close — nearly perfect!"
+                  : score >= Math.ceil(puzzle.items.length / 2)
+                    ? "👍 Decent intuition!"
+                    : "🤔 Trickier than it looks, right?"}
             </p>
 
             {/* Share row */}
@@ -415,7 +415,7 @@ export function RankGame() {
             </div>
           ) : (
             <a
-              href={`/archive/${DAILY_SLUG}`}
+              href={`/archive/blank-1`}
               className="px-10 py-3 rounded-2xl bg-foreground text-background font-bold text-base
                 hover:opacity-90 active:scale-95 transition-all shadow-md w-full text-center"
             >
