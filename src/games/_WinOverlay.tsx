@@ -57,6 +57,7 @@ export function WinOverlay({
   onPlayAgain,
   message = "Puzzle Solved!",
   sub = "You cracked it — well done!",
+  archiveSlug,
 }: WinOverlayProps) {
   const [pieces] = useState(makePieces);
   const [visible, setVisible] = useState(false);
