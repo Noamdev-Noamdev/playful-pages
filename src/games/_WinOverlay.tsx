@@ -176,25 +176,49 @@ export function WinOverlay({
         </p>
 
         {/* Button */}
-        <button
-          className="_wc_btn"
-          onClick={onPlayAgain}
-          style={{
-            display: "inline-block",
-            background: "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)",
-            color: "white",
-            border: "none",
-            borderRadius: "0.9rem",
-            padding: "0.82rem 2.5rem",
-            fontSize: "1rem",
-            fontWeight: 700,
-            cursor: "pointer",
-            boxShadow: "0 6px 24px rgba(99,102,241,0.38)",
-            letterSpacing: "-0.01em",
-          }}
-        >
-          Play Again ✨
-        </button>
+        {archiveSlug ? (
+          <Link
+            to="/archive/$slug"
+            params={{ slug: archiveSlug }}
+            className="_wc_btn"
+            style={{
+              display: "inline-block",
+              background: "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)",
+              color: "white",
+              border: "none",
+              borderRadius: "0.9rem",
+              padding: "0.82rem 2.5rem",
+              fontSize: "1rem",
+              fontWeight: 700,
+              cursor: "pointer",
+              boxShadow: "0 6px 24px rgba(99,102,241,0.38)",
+              letterSpacing: "-0.01em",
+              textDecoration: "none",
+            }}
+          >
+            Go to archive →
+          </Link>
+        ) : (
+          <button
+            className="_wc_btn"
+            onClick={onPlayAgain}
+            style={{
+              display: "inline-block",
+              background: "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)",
+              color: "white",
+              border: "none",
+              borderRadius: "0.9rem",
+              padding: "0.82rem 2.5rem",
+              fontSize: "1rem",
+              fontWeight: 700,
+              cursor: "pointer",
+              boxShadow: "0 6px 24px rgba(99,102,241,0.38)",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Play Again ✨
+          </button>
+        )}
 
         <p style={{ fontSize: "0.72rem", color: "#94a3b8", marginTop: "1rem" }}>
           or click anywhere to dismiss
