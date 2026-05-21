@@ -1,8 +1,12 @@
+import { useState, useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { getGame } from "@/games";
 import { UnderConstruction } from "@/games/_UnderConstruction";
+import { DailyLocked } from "@/games/_DailyLocked";
+import { hasCompletedToday } from "@/lib/dailyLock";
+
 
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
