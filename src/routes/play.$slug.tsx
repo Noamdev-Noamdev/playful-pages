@@ -138,10 +138,13 @@ function PlayPage() {
         <div className="mt-12">
           {game.underConstruction ? (
             <UnderConstruction name={game.title} />
+          ) : locked ? (
+            <DailyLocked slug={game.slug} title={game.title} />
           ) : (
             <GameComponent />
           )}
         </div>
+
       </main>
     </div>
   );
