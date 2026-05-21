@@ -46,6 +46,8 @@ export interface WinOverlayProps {
   message?: string;
   /** Optional sub-message */
   sub?: string;
+  /** If set, replaces "Play Again" button with a link to the archive for this game slug */
+  archiveSlug?: string;
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
