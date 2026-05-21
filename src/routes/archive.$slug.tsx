@@ -203,7 +203,26 @@ function ArchiveForGame() {
                     );
                   }
 
-                  // No level (or future date): non-clickable
+                  // Future date with an authored level → show but lock it
+                  if (hasLevel && isFuture) {
+                    return (
+                      <div
+                        key={i}
+                        className={`${base} border-foreground ${accent} opacity-60`}
+                        aria-disabled
+                        title={`Unlocks ${cell.date}`}
+                      >
+                        <span className="font-display text-base font-black leading-none">
+                          {cell.dayOfMonth}
+                        </span>
+                        <span className="mt-0.5 text-[9px] font-bold uppercase tracking-wider opacity-70">
+                          🔒 #{cell.dayNumber}
+                        </span>
+                      </div>
+                    );
+                  }
+
+                  // No level at all (or today with no level): non-clickable
                   return (
                     <div
                       key={i}
@@ -224,6 +243,7 @@ function ArchiveForGame() {
                       )}
                     </div>
                   );
+
                 })}
               </div>
             </section>

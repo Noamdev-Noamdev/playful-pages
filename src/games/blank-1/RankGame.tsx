@@ -1,11 +1,13 @@
-import { useState, useRef, useCallback, useMemo } from "react";
+import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import { WinOverlay } from "../_WinOverlay";
 import { getRandomPuzzle } from "./puzzles";
 import type { Puzzle, PuzzleItem } from "./types";
-import { getDailyLevel, getLevelByDate } from "@/levels";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
 import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
 
 const DAILY_SLUG = "rank-anything";
+
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -98,6 +100,20 @@ export function RankGame() {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemsRef     = useRef(items);
   itemsRef.current   = items;
+
+  // Lock today's daily once finished (only when actually playing today, not an archive replay)
+  const isTodaysDaily = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    if (new URLSearchParams(window.location.search).get("date")) return false;
+    return dailyLevel?.date === formatDate(new Date());
+  }, [dailyLevel]);
+
+  useEffect(() => {
+    if (phase === "done" && isTodaysDaily) {
+      markDailyComplete(DAILY_SLUG);
+    }
+  }, [phase, isTodaysDaily]);
+
 
   // ── Reset ──────────────────────────────────────────────────────────────────
 
