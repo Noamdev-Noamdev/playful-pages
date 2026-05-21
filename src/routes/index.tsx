@@ -8,11 +8,11 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "playpile — original little games & timeless classics" },
+      { title: "Playpile" },
       {
         name: "description",
         content:
-          "A small pile of playful, original web experiments and the classic logic puzzles you already love.",
+          "A pile of playful, original web experiments and classic logic puzzles.",
       },
     ],
   }),
@@ -24,9 +24,9 @@ const content: Record<
 > = {
   originals: {
     eyebrow: "Originals",
-    title: "A pile of playful little things.",
+    title: "A pile of playful daily games.",
     subtitle:
-      "Hand-built experiments, toys, and tiny games. New ones appear when nobody's looking.",
+      "Hand-built tiny games. New ones appear when nobody's looking.",
     items: originals,
   },
   classics: {
