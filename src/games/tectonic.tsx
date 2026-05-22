@@ -53,7 +53,7 @@ function generateRegions(): RegionMap {
       if (map[r][c] !== -1) continue;
 
       // Find adjacent assigned region with smallest size
-      const dirs = [[-1,0],[1,0],[0,-1],[0,1]];
+      const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
       const adjRegions: number[] = [];
       for (const [dr, dc] of dirs) {
         const nr = r + dr, nc = c + dc;
@@ -189,8 +189,8 @@ function hasBorder(rmap: RegionMap, r: number, c: number, dir: "right" | "bottom
 
 const REGION_COLORS = [
   "bg-emerald-50", "bg-teal-50", "bg-cyan-50",
-  "bg-green-50",   "bg-sky-50",  "bg-lime-50",
-  "bg-emerald-100","bg-teal-100","bg-cyan-100",
+  "bg-green-50", "bg-sky-50", "bg-lime-50",
+  "bg-emerald-100", "bg-teal-100", "bg-cyan-100",
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -271,9 +271,9 @@ function TectonicGame() {
       const [r, c] = selected;
       if (e.key >= "1" && e.key <= "5") { e.preventDefault(); inputNumber(parseInt(e.key)); }
       else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
-      else if (e.key === "ArrowUp"    && r > 0) { e.preventDefault(); setSelected([r - 1, c]); }
-      else if (e.key === "ArrowDown"  && r < ROWS - 1) { e.preventDefault(); setSelected([r + 1, c]); }
-      else if (e.key === "ArrowLeft"  && c > 0) { e.preventDefault(); setSelected([r, c - 1]); }
+      else if (e.key === "ArrowUp" && r > 0) { e.preventDefault(); setSelected([r - 1, c]); }
+      else if (e.key === "ArrowDown" && r < ROWS - 1) { e.preventDefault(); setSelected([r + 1, c]); }
+      else if (e.key === "ArrowLeft" && c > 0) { e.preventDefault(); setSelected([r, c - 1]); }
       else if (e.key === "ArrowRight" && c < COLS - 1) { e.preventDefault(); setSelected([r, c + 1]); }
     };
     window.addEventListener("keydown", onKey);
@@ -296,20 +296,20 @@ function TectonicGame() {
         style={{ display: "grid", gridTemplateColumns: `repeat(${COLS}, ${CELL}px)`, gridTemplateRows: `repeat(${ROWS}, ${CELL}px)` }}>
         {Array.from({ length: ROWS }, (_, r) =>
           Array.from({ length: COLS }, (_, c) => {
-            const val     = userBoard[r][c];
+            const val = userBoard[r][c];
             const isGiven = puzzle[r][c] !== null;
-            const isErr   = errors.has(`${r},${c}`);
-            const isSel   = selected?.[0] === r && selected?.[1] === c;
+            const isErr = errors.has(`${r},${c}`);
+            const isSel = selected?.[0] === r && selected?.[1] === c;
             const regionId = rmap[r][c];
             const regionColor = REGION_COLORS[regionId % REGION_COLORS.length];
 
-            const borderR = hasBorder(rmap, r, c, "right")  ? "3px solid #475569" : "1px solid #cbd5e1";
+            const borderR = hasBorder(rmap, r, c, "right") ? "3px solid #475569" : "1px solid #cbd5e1";
             const borderB = hasBorder(rmap, r, c, "bottom") ? "3px solid #475569" : "1px solid #cbd5e1";
             const borderT = r === 0 ? "none" : "1px solid #cbd5e1";
             const borderL = c === 0 ? "none" : "1px solid #cbd5e1";
 
             let bg = regionColor;
-            if (isSel)     bg = "bg-emerald-300";
+            if (isSel) bg = "bg-emerald-300";
             else if (isErr) bg = "bg-red-100";
 
             return (
@@ -362,6 +362,7 @@ const Tectonic: Game = {
   color: "mint",
   category: "classics",
   Component: TectonicGame,
+  underConstruction: true,
 };
 
 export default Tectonic;
