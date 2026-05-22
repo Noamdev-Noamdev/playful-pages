@@ -1,0 +1,60 @@
+{
+  "id": 20260603,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times wider is Jupiter than Earth?",
+      "metric": "Diameter",
+      "itemA": { "name": "Earth", "emoji": "🌍" },
+      "itemB": { "name": "Jupiter", "emoji": "🪐" },
+      "ratio": 11.2,
+      "maxGuess": 35,
+      "difficulty": "medium",
+      "fact": "Earth is 12,742 km wide; Jupiter is 139,820 km — 11× wider. You could fit over 1,300 Earths inside Jupiter."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times wider is the Sun than Jupiter?",
+      "metric": "Diameter",
+      "itemA": { "name": "Jupiter", "emoji": "🪐" },
+      "itemB": { "name": "Sun", "emoji": "☀️" },
+      "ratio": 9.7,
+      "maxGuess": 30,
+      "difficulty": "medium",
+      "fact": "Jupiter is 139,820 km across; the Sun is 1,392,700 km — about 10× wider. Over 1,000 Jupiters could fit inside the Sun."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times larger is UY Scuti than our Sun?",
+      "metric": "Diameter",
+      "itemA": { "name": "Our Sun", "emoji": "☀️" },
+      "itemB": { "name": "UY Scuti (hypergiant)", "emoji": "🌟" },
+      "ratio": 1700,
+      "maxGuess": 5000,
+      "difficulty": "hard",
+      "fact": "UY Scuti's radius is ~1,700× the Sun's. If placed at our Sun's centre, its surface would extend past Jupiter's orbit."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times farther is Pluto than the Moon from Earth?",
+      "metric": "Distance from Earth",
+      "itemA": { "name": "Moon", "emoji": "🌕" },
+      "itemB": { "name": "Pluto (avg)", "emoji": "🔵" },
+      "ratio": 15600,
+      "maxGuess": 50000,
+      "difficulty": "hard",
+      "fact": "The Moon is ~384,400 km away; Pluto averages ~5.9 billion km — about 15,600× further. New Horizons took 9.5 years to get there."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times wider is the Moon than a human?",
+      "metric": "Width vs Height",
+      "itemA": { "name": "Human (height)", "emoji": "🧍" },
+      "itemB": { "name": "Moon (diameter)", "emoji": "🌕" },
+      "ratio": 2044,
+      "maxGuess": 6000,
+      "difficulty": "hard",
+      "fact": "A human is ~1.7 m tall; the Moon is 3,475 km wide — about 2,044× wider. You'd need to stack 2,044 people to span the Moon."
+    }
+  ]
+}

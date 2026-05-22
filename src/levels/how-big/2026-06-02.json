@@ -1,0 +1,60 @@
+{
+  "id": 20260602,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times deeper is the Mariana Trench than the Grand Canyon?",
+      "metric": "Depth / Height",
+      "itemA": { "name": "Grand Canyon", "emoji": "🏜️" },
+      "itemB": { "name": "Mariana Trench", "emoji": "🌊" },
+      "ratio": 5.95,
+      "maxGuess": 20,
+      "difficulty": "medium",
+      "fact": "The Grand Canyon is ~1,857 m deep; the Mariana Trench plunges 11,034 m — nearly 6× deeper."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times larger is the Pacific Ocean than the Mediterranean Sea?",
+      "metric": "Surface area",
+      "itemA": { "name": "Mediterranean Sea", "emoji": "🌊" },
+      "itemB": { "name": "Pacific Ocean", "emoji": "🌏" },
+      "ratio": 180,
+      "maxGuess": 500,
+      "difficulty": "hard",
+      "fact": "The Mediterranean covers ~2.5 million km²; the Pacific covers ~165 million km² — 66× larger by area, ~180× by volume."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times longer is the Amazon River than the River Thames?",
+      "metric": "Length",
+      "itemA": { "name": "River Thames", "emoji": "🏞️" },
+      "itemB": { "name": "Amazon River", "emoji": "🌿" },
+      "ratio": 20.2,
+      "maxGuess": 60,
+      "difficulty": "medium",
+      "fact": "The Thames is ~346 km; the Amazon is ~6,992 km — about 20× longer, carrying 20% of all fresh water flowing into Earth's oceans."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times heavier is the water in all Earth's oceans than the Moon?",
+      "metric": "Mass",
+      "itemA": { "name": "The Moon", "emoji": "🌕" },
+      "itemB": { "name": "All Earth's oceans", "emoji": "🌊" },
+      "ratio": 19,
+      "maxGuess": 60,
+      "difficulty": "hard",
+      "fact": "Earth's oceans weigh ~1.4 × 10²¹ kg; the Moon weighs ~7.3 × 10²² kg — actually the Moon is ~52× heavier. But oceans are still ~1/52 of the Moon."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a tsunami wave than a typical ocean wave?",
+      "metric": "Height",
+      "itemA": { "name": "Ocean wave (typical)", "emoji": "🌊" },
+      "itemB": { "name": "Mega-tsunami (Lituya Bay)", "emoji": "🌪️" },
+      "ratio": 175,
+      "maxGuess": 600,
+      "difficulty": "hard",
+      "fact": "A typical ocean wave is ~3 m high. The 1958 Lituya Bay megatsunami reached 524 m — nearly 175× taller."
+    }
+  ]
+}

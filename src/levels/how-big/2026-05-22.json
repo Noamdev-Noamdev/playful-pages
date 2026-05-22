@@ -1,0 +1,60 @@
+{
+  "id": 20260601,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a great white shark than a surfboard?",
+      "metric": "Length",
+      "itemA": { "name": "Surfboard", "emoji": "🏄" },
+      "itemB": { "name": "Great White Shark", "emoji": "🦈" },
+      "ratio": 2.75,
+      "maxGuess": 10,
+      "difficulty": "easy",
+      "fact": "A surfboard is ~2 m; a great white shark averages ~5.5 m. They are roughly the same length — surfers take note."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times taller is the Statue of Liberty than a double-decker bus?",
+      "metric": "Height",
+      "itemA": { "name": "Double-decker bus", "emoji": "🚌" },
+      "itemB": { "name": "Statue of Liberty", "emoji": "🗽" },
+      "ratio": 21,
+      "maxGuess": 60,
+      "difficulty": "easy",
+      "fact": "A London double-decker is ~4.4 m tall. The Statue of Liberty stands 93 m to the torch — 21× taller."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times heavier is a grand piano than a newborn baby?",
+      "metric": "Mass",
+      "itemA": { "name": "Newborn baby", "emoji": "👶" },
+      "itemB": { "name": "Grand piano", "emoji": "🎹" },
+      "ratio": 160,
+      "maxGuess": 500,
+      "difficulty": "medium",
+      "fact": "A newborn averages ~3 kg; a concert grand piano weighs ~480 kg — about 160× heavier."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times farther is the Sun than the Moon from Earth?",
+      "metric": "Distance from Earth",
+      "itemA": { "name": "Moon", "emoji": "🌕" },
+      "itemB": { "name": "Sun", "emoji": "☀️" },
+      "ratio": 390,
+      "maxGuess": 1200,
+      "difficulty": "medium",
+      "fact": "The Moon is ~384,400 km away; the Sun is ~150 million km — about 390× further. Yet they look the same size in the sky."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times wider is the Milky Way than our Solar System?",
+      "metric": "Diameter",
+      "itemA": { "name": "Solar System", "emoji": "🪐" },
+      "itemB": { "name": "Milky Way", "emoji": "🌌" },
+      "ratio": 1750,
+      "maxGuess": 6000,
+      "difficulty": "hard",
+      "fact": "Our solar system spans ~0.002 light-years (to Oort Cloud); the Milky Way is ~100,000 light-years — about 50 million× wider by strict boundary, ~1,750× by heliosphere."
+    }
+  ]
+}

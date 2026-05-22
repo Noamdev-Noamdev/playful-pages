@@ -1,0 +1,60 @@
+{
+  "id": 20260605,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is your small intestine than you are tall?",
+      "metric": "Length",
+      "itemA": { "name": "Human height", "emoji": "🧍" },
+      "itemB": { "name": "Small intestine", "emoji": "🫁" },
+      "ratio": 3.5,
+      "maxGuess": 12,
+      "difficulty": "easy",
+      "fact": "The average person is ~1.7 m tall; the small intestine is ~6 m long — about 3.5× your height, coiled inside your abdomen."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times more neurons does the brain have than stars in the Milky Way?",
+      "metric": "Count",
+      "itemA": { "name": "Milky Way stars", "emoji": "⭐" },
+      "itemB": { "name": "Brain neurons", "emoji": "🧠" },
+      "ratio": 0.3,
+      "maxGuess": 5,
+      "difficulty": "medium",
+      "fact": "The brain has ~86 billion neurons; the Milky Way has ~300 billion stars — the galaxy has about 3.5× more stars than your brain has neurons."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times wider is a human hair than a red blood cell?",
+      "metric": "Diameter",
+      "itemA": { "name": "Red blood cell", "emoji": "🔴" },
+      "itemB": { "name": "Human hair", "emoji": "🧵" },
+      "ratio": 10,
+      "maxGuess": 30,
+      "difficulty": "easy",
+      "fact": "A red blood cell is ~7 µm wide; a human hair is ~70 µm — 10× wider. Both are invisible to the naked eye."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times narrower is a DNA strand than a human hair?",
+      "metric": "Width",
+      "itemA": { "name": "DNA strand", "emoji": "🧬" },
+      "itemB": { "name": "Human hair", "emoji": "🧵" },
+      "ratio": 28000,
+      "maxGuess": 100000,
+      "difficulty": "hard",
+      "fact": "A DNA double helix is ~2.5 nanometres wide; a hair is ~70 micrometres — hair is 28,000× wider than your genetic blueprint."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times does your heart beat in a year compared to a day?",
+      "metric": "Count",
+      "itemA": { "name": "Heartbeats per day", "emoji": "🫀" },
+      "itemB": { "name": "Heartbeats per year", "emoji": "📅" },
+      "ratio": 365,
+      "maxGuess": 1000,
+      "difficulty": "easy",
+      "fact": "Your heart beats ~100,000 times per day — about 36.5 million times per year. In a lifetime, that's over 2.5 billion beats."
+    }
+  ]
+}

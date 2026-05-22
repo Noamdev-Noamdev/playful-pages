@@ -1,0 +1,60 @@
+{
+  "id": 20260604,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times faster is a cheetah than a human sprinter?",
+      "metric": "Top speed",
+      "itemA": { "name": "Human sprinter", "emoji": "🏃" },
+      "itemB": { "name": "Cheetah", "emoji": "🐆" },
+      "ratio": 2.5,
+      "maxGuess": 8,
+      "difficulty": "easy",
+      "fact": "Usain Bolt peaked at ~44.7 km/h; a cheetah reaches ~112 km/h — about 2.5× faster."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times faster does sound travel in water than in air?",
+      "metric": "Speed",
+      "itemA": { "name": "Sound in air", "emoji": "🌬️" },
+      "itemB": { "name": "Sound in water", "emoji": "🌊" },
+      "ratio": 4.3,
+      "maxGuess": 15,
+      "difficulty": "medium",
+      "fact": "Sound travels at 343 m/s in air and 1,480 m/s in water — 4.3× faster, because water molecules are packed closer together."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times faster does the ISS orbit than a rifle bullet?",
+      "metric": "Speed",
+      "itemA": { "name": "Rifle bullet", "emoji": "💥" },
+      "itemB": { "name": "ISS orbital speed", "emoji": "🛸" },
+      "ratio": 7.7,
+      "maxGuess": 25,
+      "difficulty": "hard",
+      "fact": "A rifle bullet travels ~3,600 km/h; the ISS orbits at ~27,600 km/h — nearly 8× faster. It circles Earth every 90 minutes."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times faster is the Parker Solar Probe than a commercial airplane?",
+      "metric": "Speed",
+      "itemA": { "name": "Commercial airplane", "emoji": "✈️" },
+      "itemB": { "name": "Parker Solar Probe", "emoji": "☀️" },
+      "ratio": 770,
+      "maxGuess": 2500,
+      "difficulty": "hard",
+      "fact": "A jetliner cruises at ~900 km/h. The Parker Solar Probe hits ~692,000 km/h near the Sun — 770× faster."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times faster does light travel than sound in air?",
+      "metric": "Speed",
+      "itemA": { "name": "Sound in air", "emoji": "🔊" },
+      "itemB": { "name": "Light", "emoji": "💡" },
+      "ratio": 874030,
+      "maxGuess": 3000000,
+      "difficulty": "hard",
+      "fact": "Sound travels at 343 m/s; light at 299,792,458 m/s — about 874,000× faster. That's why you see lightning before you hear thunder."
+    }
+  ]
+}
