@@ -1,6 +1,18 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { Link } from "@tanstack/react-router";
 import { pickRounds } from "./comparisons";
 import type { Comparison, Phase, RoundResult } from "./types";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
+
+const DAILY_SLUG = "how-big";
+
+interface DailyData {
+  id: number;
+  rounds: Comparison[];
+}
+
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
