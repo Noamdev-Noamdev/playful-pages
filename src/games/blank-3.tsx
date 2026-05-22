@@ -10,6 +10,7 @@ const HowBigIsIt: Game = {
   color: "mint",
   category: "originals",
   Component: ScaleGame,
+  dailySlug: "how-big",
 };
 
 export default HowBigIsIt;
