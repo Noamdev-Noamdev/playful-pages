@@ -84,23 +84,30 @@ const DIFF_STYLE: Record<string, string> = {
 
 export function ScaleGame() {
   // Read ?date=YYYY-MM-DD for archive playback; otherwise today's daily.
+  const dateParam = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("date");
+  }, []);
+
   const dailyLevel = useMemo(() => {
-    if (typeof window === "undefined") return getDailyLevel<DailyData>(DAILY_SLUG);
-    const dateParam = new URLSearchParams(window.location.search).get("date");
     return dateParam
       ? getLevelByDate<DailyData>(DAILY_SLUG, dateParam)
       : getDailyLevel<DailyData>(DAILY_SLUG);
-  }, []);
+  }, [dateParam]);
 
-  const isTodaysDaily = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    if (new URLSearchParams(window.location.search).get("date")) return false;
-    return dailyLevel?.date === formatDate(new Date());
-  }, [dailyLevel]);
+  // When there's no authored JSON for today, fall back to a deterministic
+  // date-seeded pick from the built-in pool so it's still a *fixed daily set*
+  // (same 5 comparisons all day) and the one-a-day lock applies.
+  const isArchivePlayback = !!dateParam;
+  const todayKey = formatDate(new Date());
+  const isTodaysDaily = !isArchivePlayback && (dailyLevel ? dailyLevel.date === todayKey : true);
 
-  const [rounds, setRounds] = useState<Comparison[]>(
-    () => dailyLevel?.data?.rounds ?? pickRounds(ROUNDS_PER_GAME)
-  );
+  const [rounds] = useState<Comparison[]>(() => {
+    if (dailyLevel?.data?.rounds) return dailyLevel.data.rounds;
+    // Seed: archive date if replaying, otherwise today.
+    const seedKey = (dateParam ?? todayKey).replaceAll("-", "");
+    return pickRounds(ROUNDS_PER_GAME, Number(seedKey));
+  });
   const [roundIdx,  setRoundIdx]  = useState(0);
   const [phase,     setPhase]     = useState<Phase>("playing");
   const [sliderVal, setSliderVal] = useState(100); // middle of 0–200
@@ -115,6 +122,7 @@ export function ScaleGame() {
       markDailyComplete(DAILY_SLUG);
     }
   }, [phase, isTodaysDaily]);
+
 
 
   // ── Derived ────────────────────────────────────────────────────────────────
@@ -171,16 +179,8 @@ export function ScaleGame() {
     setBRadius(BASE_RADIUS); // reset instantly (no transition during reset)
   }, [roundIdx]);
 
-  // ── Play again ─────────────────────────────────────────────────────────────
+  // Daily mode: no restart — one play per day, replays via archive.
 
-  const handleRestart = useCallback(() => {
-    setRounds(pickRounds(ROUNDS_PER_GAME)); // fresh random set every game
-    setRoundIdx(0);
-    setPhase("playing");
-    setSliderVal(100);
-    setBRadius(BASE_RADIUS);
-    setResults([]);
-  }, []);
 
   // ── DONE SCREEN ────────────────────────────────────────────────────────────
 
@@ -227,13 +227,7 @@ export function ScaleGame() {
           })}
         </div>
 
-        {!dailyLevel ? (
-          <button onClick={handleRestart}
-            className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base
-              hover:opacity-90 active:scale-95 transition-all shadow-md">
-            Play Again →
-          </button>
-        ) : isTodaysDaily ? (
+        {isTodaysDaily ? (
           <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center">
             <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
             <p className="text-sm text-muted-foreground mt-1">
