@@ -1,6 +1,18 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { Link } from "@tanstack/react-router";
 import { pickRounds } from "./comparisons";
 import type { Comparison, Phase, RoundResult } from "./types";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
+
+const DAILY_SLUG = "how-big";
+
+interface DailyData {
+  id: number;
+  rounds: Comparison[];
+}
+
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -71,7 +83,24 @@ const DIFF_STYLE: Record<string, string> = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function ScaleGame() {
-  const [rounds, setRounds] = useState<Comparison[]>(() => pickRounds(ROUNDS_PER_GAME));
+  // Read ?date=YYYY-MM-DD for archive playback; otherwise today's daily.
+  const dailyLevel = useMemo(() => {
+    if (typeof window === "undefined") return getDailyLevel<DailyData>(DAILY_SLUG);
+    const dateParam = new URLSearchParams(window.location.search).get("date");
+    return dateParam
+      ? getLevelByDate<DailyData>(DAILY_SLUG, dateParam)
+      : getDailyLevel<DailyData>(DAILY_SLUG);
+  }, []);
+
+  const isTodaysDaily = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    if (new URLSearchParams(window.location.search).get("date")) return false;
+    return dailyLevel?.date === formatDate(new Date());
+  }, [dailyLevel]);
+
+  const [rounds, setRounds] = useState<Comparison[]>(
+    () => dailyLevel?.data?.rounds ?? pickRounds(ROUNDS_PER_GAME)
+  );
   const [roundIdx,  setRoundIdx]  = useState(0);
   const [phase,     setPhase]     = useState<Phase>("playing");
   const [sliderVal, setSliderVal] = useState(100); // middle of 0–200
@@ -79,6 +108,14 @@ export function ScaleGame() {
   const [results,   setResults]   = useState<RoundResult[]>([]);
 
   const comp = rounds[roundIdx];
+
+  // Lock today's daily once finished
+  useEffect(() => {
+    if (phase === "done" && isTodaysDaily) {
+      markDailyComplete(DAILY_SLUG);
+    }
+  }, [phase, isTodaysDaily]);
+
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -190,14 +227,33 @@ export function ScaleGame() {
           })}
         </div>
 
-        <button onClick={handleRestart}
-          className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base
-            hover:opacity-90 active:scale-95 transition-all shadow-md">
-          Play Again →
-        </button>
+        {!dailyLevel ? (
+          <button onClick={handleRestart}
+            className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base
+              hover:opacity-90 active:scale-95 transition-all shadow-md">
+            Play Again →
+          </button>
+        ) : isTodaysDaily ? (
+          <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center">
+            <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              A new puzzle drops at midnight. Want more? Try the archive.
+            </p>
+          </div>
+        ) : (
+          <Link
+            to="/archive/$slug"
+            params={{ slug: "blank-3" }}
+            className="block w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base text-center
+              hover:opacity-90 active:scale-95 transition-all shadow-md"
+          >
+            ← Back to archive
+          </Link>
+        )}
       </div>
     );
   }
+
 
   // ── MAIN GAME SCREEN ───────────────────────────────────────────────────────
 
@@ -214,6 +270,14 @@ export function ScaleGame() {
                       height ${ANIM_MS}ms cubic-bezier(0.34, 1.2, 0.64, 1);
         }
       `}</style>
+
+      {dailyLevel && (
+        <div className="flex justify-center">
+          <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+        </div>
+      )}
+
+
 
       {/* Round counter + difficulty */}
       <div className="flex items-center justify-between">
