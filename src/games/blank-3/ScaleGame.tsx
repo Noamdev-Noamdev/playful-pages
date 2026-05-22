@@ -179,16 +179,8 @@ export function ScaleGame() {
     setBRadius(BASE_RADIUS); // reset instantly (no transition during reset)
   }, [roundIdx]);
 
-  // ── Play again ─────────────────────────────────────────────────────────────
+  // Daily mode: no restart — one play per day, replays via archive.
 
-  const handleRestart = useCallback(() => {
-    setRounds(pickRounds(ROUNDS_PER_GAME)); // fresh random set every game
-    setRoundIdx(0);
-    setPhase("playing");
-    setSliderVal(100);
-    setBRadius(BASE_RADIUS);
-    setResults([]);
-  }, []);
 
   // ── DONE SCREEN ────────────────────────────────────────────────────────────
 
