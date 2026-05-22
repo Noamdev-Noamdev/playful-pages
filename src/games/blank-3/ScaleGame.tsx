@@ -84,23 +84,30 @@ const DIFF_STYLE: Record<string, string> = {
 
 export function ScaleGame() {
   // Read ?date=YYYY-MM-DD for archive playback; otherwise today's daily.
+  const dateParam = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("date");
+  }, []);
+
   const dailyLevel = useMemo(() => {
-    if (typeof window === "undefined") return getDailyLevel<DailyData>(DAILY_SLUG);
-    const dateParam = new URLSearchParams(window.location.search).get("date");
     return dateParam
       ? getLevelByDate<DailyData>(DAILY_SLUG, dateParam)
       : getDailyLevel<DailyData>(DAILY_SLUG);
-  }, []);
+  }, [dateParam]);
 
-  const isTodaysDaily = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    if (new URLSearchParams(window.location.search).get("date")) return false;
-    return dailyLevel?.date === formatDate(new Date());
-  }, [dailyLevel]);
+  // When there's no authored JSON for today, fall back to a deterministic
+  // date-seeded pick from the built-in pool so it's still a *fixed daily set*
+  // (same 5 comparisons all day) and the one-a-day lock applies.
+  const isArchivePlayback = !!dateParam;
+  const todayKey = formatDate(new Date());
+  const isTodaysDaily = !isArchivePlayback && (dailyLevel ? dailyLevel.date === todayKey : true);
 
-  const [rounds, setRounds] = useState<Comparison[]>(
-    () => dailyLevel?.data?.rounds ?? pickRounds(ROUNDS_PER_GAME)
-  );
+  const [rounds] = useState<Comparison[]>(() => {
+    if (dailyLevel?.data?.rounds) return dailyLevel.data.rounds;
+    // Seed: archive date if replaying, otherwise today.
+    const seedKey = (dateParam ?? todayKey).replaceAll("-", "");
+    return pickRounds(ROUNDS_PER_GAME, Number(seedKey));
+  });
   const [roundIdx,  setRoundIdx]  = useState(0);
   const [phase,     setPhase]     = useState<Phase>("playing");
   const [sliderVal, setSliderVal] = useState(100); // middle of 0–200
@@ -115,6 +122,7 @@ export function ScaleGame() {
       markDailyComplete(DAILY_SLUG);
     }
   }, [phase, isTodaysDaily]);
+
 
 
   // ── Derived ────────────────────────────────────────────────────────────────
