@@ -83,7 +83,24 @@ const DIFF_STYLE: Record<string, string> = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function ScaleGame() {
-  const [rounds, setRounds] = useState<Comparison[]>(() => pickRounds(ROUNDS_PER_GAME));
+  // Read ?date=YYYY-MM-DD for archive playback; otherwise today's daily.
+  const dailyLevel = useMemo(() => {
+    if (typeof window === "undefined") return getDailyLevel<DailyData>(DAILY_SLUG);
+    const dateParam = new URLSearchParams(window.location.search).get("date");
+    return dateParam
+      ? getLevelByDate<DailyData>(DAILY_SLUG, dateParam)
+      : getDailyLevel<DailyData>(DAILY_SLUG);
+  }, []);
+
+  const isTodaysDaily = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    if (new URLSearchParams(window.location.search).get("date")) return false;
+    return dailyLevel?.date === formatDate(new Date());
+  }, [dailyLevel]);
+
+  const [rounds, setRounds] = useState<Comparison[]>(
+    () => dailyLevel?.data?.rounds ?? pickRounds(ROUNDS_PER_GAME)
+  );
   const [roundIdx,  setRoundIdx]  = useState(0);
   const [phase,     setPhase]     = useState<Phase>("playing");
   const [sliderVal, setSliderVal] = useState(100); // middle of 0–200
@@ -91,6 +108,14 @@ export function ScaleGame() {
   const [results,   setResults]   = useState<RoundResult[]>([]);
 
   const comp = rounds[roundIdx];
+
+  // Lock today's daily once finished
+  useEffect(() => {
+    if (phase === "done" && isTodaysDaily) {
+      markDailyComplete(DAILY_SLUG);
+    }
+  }, [phase, isTodaysDaily]);
+
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
