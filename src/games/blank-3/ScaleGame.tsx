@@ -271,6 +271,14 @@ export function ScaleGame() {
         }
       `}</style>
 
+      {dailyLevel && (
+        <div className="flex justify-center">
+          <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+        </div>
+      )}
+
+
+
       {/* Round counter + difficulty */}
       <div className="flex items-center justify-between">
         <div className="flex gap-1.5">
