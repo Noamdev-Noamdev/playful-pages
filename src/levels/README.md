@@ -24,7 +24,7 @@ src/levels/<game-slug>/<YYYY-MM-DD>.json
 ## 2. JSON structure
 
 The file contains a single JSON object. The shape mirrors **one entry from
-the game's built-in puzzle pool** (e.g. `src/games/blank-1/puzzles.ts`).
+the game's built-in puzzle pool** (e.g. `src/games/rank-anything/puzzles.ts`).
 
 ### Required at the loader level
 
@@ -33,7 +33,7 @@ defines its own TypeScript type and the file must match it.
 
 ### Example: `rank-anything`
 
-Matches `Puzzle` from `src/games/blank-1/types.ts`:
+Matches `Puzzle` from `src/games/rank-anything/types.ts`:
 
 ```json
 {
@@ -65,7 +65,7 @@ Matches `Puzzle` from `src/games/blank-1/types.ts`:
 
 ### For other games
 
-Open the game's `types.ts` (e.g. `src/games/blank-2/types.ts`) and copy
+Open the game's `types.ts` (e.g. `src/games/build-your-own/types.ts`) and copy
 the same shape. Whatever your game's `Puzzle` / `Level` interface looks
 like — that's exactly what the JSON has to look like.
 
@@ -124,7 +124,7 @@ const dailyLevel = useMemo(() => {
 }, []);
 ```
 
-That's the full integration. See `src/games/blank-1/RankGame.tsx` for a
+That's the full integration. See `src/games/rank-anything/RankGame.tsx` for a
 working example.
 
 ---

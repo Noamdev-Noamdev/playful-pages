@@ -1,9 +1,9 @@
 import { Scaling } from "lucide-react";
 import type { Game } from "./types";
-import { ScaleGame } from "./blank-3/ScaleGame";
+import { ScaleGame } from "./how-big/ScaleGame";
 
 const HowBigIsIt: Game = {
-  slug: "blank-3",
+  slug: "how-big",
   title: "How Big Is It Really?",
   description: "Guess the scale. The universe is stranger than you think.",
   icon: Scaling,

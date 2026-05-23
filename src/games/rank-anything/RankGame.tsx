@@ -416,7 +416,7 @@ export function RankGame() {
             </div>
           ) : (
             <a
-              href={`/archive/blank-1`}
+              href={`/archive/rank-anything`}
               className="px-10 py-3 rounded-2xl bg-foreground text-background font-bold text-base
                 hover:opacity-90 active:scale-95 transition-all shadow-md w-full text-center"
             >

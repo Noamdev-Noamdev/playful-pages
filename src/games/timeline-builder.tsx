@@ -1,9 +1,9 @@
 import { CalendarClock } from "lucide-react";
 import type { Game } from "./types";
-import { TimelineGame } from "./blank-4/TimelineGame";
+import { TimelineGame } from "./timeline-builder/TimelineGame";
 
 const TimelineBuilder: Game = {
-  slug: "blank-4",
+  slug: "timeline-builder",
   title: "Timeline Builder",
   description: "Place these events in order. History is trickier than you think.",
   icon: CalendarClock,
