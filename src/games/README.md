@@ -21,8 +21,8 @@ src/games/
   _ComingSoon.tsx   ← reusable "coming soon" placeholder
   _DevComplete.tsx  ← reusable dev shortcut button
   _WinOverlay.tsx   ← reusable win screen with confetti
-  blank-1.tsx       ← example game files
-  blank-2.tsx
+  rank-anything.tsx       ← example game files
+  build-your-own.tsx
   ...
 ```
 

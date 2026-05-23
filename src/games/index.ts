@@ -1,12 +1,12 @@
 import type { Game } from "./types";
 
-import Blank1 from "./blank-1";
-import Blank2 from "./blank-2";
-import Blank3 from "./blank-3";
-import Blank4 from "./blank-4";
-import Blank5 from "./blank-5";
-import Blank6 from "./blank-6";
-import Blank7 from "./blank-7";
+import RankAnything from "./rank-anything";
+import BuildYourOwn from "./build-your-own";
+import HowBig from "./how-big";
+import TimelineBuilder from "./timeline-builder";
+import RealityCheck from "./reality-check";
+import OneDecision from "./one-decision";
+import MixMorph from "./mix-morph";
 
 import Sudoku from "./sudoku";
 import Tectonic from "./tectonic";
@@ -15,13 +15,13 @@ import Futoshiki from "./futoshiki";
 
 // Register every game here — one line per game.
 export const games: Game[] = [
-  Blank1,
-  Blank2,
-  Blank3,
-  Blank4,
-  Blank5,
-  Blank6,
-  Blank7,
+  RankAnything,
+  BuildYourOwn,
+  HowBig,
+  TimelineBuilder,
+  RealityCheck,
+  OneDecision,
+  MixMorph,
   Sudoku,
   Tectonic,
   Kakuro,

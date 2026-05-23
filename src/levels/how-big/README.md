@@ -63,5 +63,5 @@ Each file is a single object with a unique `id` and a `rounds` array of
 
 ## Testing
 
-Visit `/play/blank-3?date=2026-05-19` to play any specific dated set
+Visit `/play/how-big?date=2026-05-19` to play any specific dated set
 without waiting for the calendar.

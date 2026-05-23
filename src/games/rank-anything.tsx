@@ -1,9 +1,9 @@
 import { ArrowUpDown } from "lucide-react";
 import type { Game } from "./types";
-import { RankGame } from "./blank-1/RankGame";
+import { RankGame } from "./rank-anything/RankGame";
 
 const RankAnything: Game = {
-  slug: "blank-1",
+  slug: "rank-anything",
   title: "Rank Anything",
   description: "Drag five things into order. You know more than you think.",
   icon: ArrowUpDown,

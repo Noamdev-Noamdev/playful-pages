@@ -237,7 +237,7 @@ export function ScaleGame() {
         ) : (
           <Link
             to="/archive/$slug"
-            params={{ slug: "blank-3" }}
+            params={{ slug: "how-big" }}
             className="block w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base text-center
               hover:opacity-90 active:scale-95 transition-all shadow-md"
           >
