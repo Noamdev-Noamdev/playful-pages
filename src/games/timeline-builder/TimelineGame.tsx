@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { Link } from "@tanstack/react-router";
 import {
     DndContext,
     DragOverlay,
@@ -11,8 +12,23 @@ import {
     type DragEndEvent,
     type DragStartEvent,
 } from "@dnd-kit/core";
-import { getRandomTimeline, sortedEvents } from "./timelines";
+import { TIMELINES, sortedEvents } from "./timelines";
 import type { Timeline, TimelineEvent, Phase, SlotResult } from "./types";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
+
+const DAILY_SLUG = "timeline-builder";
+
+/** Cheap deterministic hash → non-negative int (FNV-1a). */
+function hashKey(s: string): number {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+        h ^= s.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+}
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -212,7 +228,30 @@ function HoldingArea({ events, phase, compact }: { events: TimelineEvent[]; phas
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export function TimelineGame() {
-    const [timeline, setTimeline] = useState<Timeline>(() => getRandomTimeline());
+    // Read ?date=YYYY-MM-DD for archive playback; otherwise today's daily.
+    const dateParam = useMemo(() => {
+        if (typeof window === "undefined") return null;
+        return new URLSearchParams(window.location.search).get("date");
+    }, []);
+
+    const dailyLevel = useMemo(() => {
+        return dateParam
+            ? getLevelByDate<Timeline>(DAILY_SLUG, dateParam)
+            : getDailyLevel<Timeline>(DAILY_SLUG);
+    }, [dateParam]);
+
+    const todayKey = formatDate(new Date());
+    const isTodaysDaily = !dateParam;
+
+    // Pick today's timeline: authored JSON wins; otherwise deterministic
+    // date-seeded pick from the built-in pool so it's still a fixed daily.
+    const [timeline] = useState<Timeline>(() => {
+        if (dailyLevel?.data) return dailyLevel.data;
+        const seedKey = (dateParam ?? todayKey).replaceAll("-", "");
+        const idx = hashKey(seedKey) % TIMELINES.length;
+        return TIMELINES[idx];
+    });
+
     // ── KEY FIX: slots + holding in ONE atomic state object ──────────────────
     const [drag, setDrag] = useState<DragState>(() => initialDragState(timeline));
     const [phase, setPhase] = useState<Phase>("playing");
@@ -223,6 +262,14 @@ export function TimelineGame() {
     const [compact, setCompact] = useState(false);
 
     const { slots, holding } = drag;
+
+    // Lock today's daily once revealed
+    useEffect(() => {
+        if (phase === "revealed" && isTodaysDaily) {
+            markDailyComplete(DAILY_SLUG);
+        }
+    }, [phase, isTodaysDaily]);
+
 
     useEffect(() => {
         const check = () => setCompact(window.innerWidth < 640);
@@ -345,18 +392,8 @@ export function TimelineGame() {
         }, REVEAL_DELAY);
     }, [allPlaced, phase, slots, timeline]);
 
-    // ── Reset ──────────────────────────────────────────────────────────────────
+    // Daily mode: no restart — one play per day, replays via archive.
 
-    const handleReset = useCallback((excludeId?: string) => {
-        const next = getRandomTimeline(excludeId);
-        setTimeline(next);
-        setDrag(initialDragState(next));
-        setPhase("playing");
-        setResults([]);
-        setTotal(0);
-        setFadeOut(false);
-        setActiveId(null);
-    }, []);
 
     // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -376,6 +413,13 @@ export function TimelineGame() {
     return (
         <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd}>
             <div className="flex flex-col gap-4">
+
+                {dailyLevel && (
+                    <div className="flex justify-center">
+                        <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+                    </div>
+                )}
+
 
                 {/* Header */}
                 <div className="flex items-center justify-between">
@@ -509,13 +553,23 @@ export function TimelineGame() {
                 )}
 
                 {isRevealed && (
-                    <button
-                        onClick={() => handleReset(timeline.id)}
-                        className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base
-              hover:opacity-90 active:scale-95 transition-all shadow-md"
-                    >
-                        Next timeline →
-                    </button>
+                    isTodaysDaily ? (
+                        <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center">
+                            <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                A new puzzle drops at midnight. Want more? Try the archive.
+                            </p>
+                        </div>
+                    ) : (
+                        <Link
+                            to="/archive/$slug"
+                            params={{ slug: DAILY_SLUG }}
+                            className="block w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base text-center
+                hover:opacity-90 active:scale-95 transition-all shadow-md"
+                        >
+                            ← Back to archive
+                        </Link>
+                    )
                 )}
             </div>
 

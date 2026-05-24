@@ -10,6 +10,7 @@ const TimelineBuilder: Game = {
   color: "sky",
   category: "originals",
   Component: TimelineGame,
+  dailySlug: "timeline-builder",
 };
 
 export default TimelineBuilder;
