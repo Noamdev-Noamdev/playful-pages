@@ -414,6 +414,13 @@ export function TimelineGame() {
         <DndContext sensors={sensors} onDragStart={onDragStart} onDragEnd={onDragEnd}>
             <div className="flex flex-col gap-4">
 
+                {dailyLevel && (
+                    <div className="flex justify-center">
+                        <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+                    </div>
+                )}
+
+
                 {/* Header */}
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
