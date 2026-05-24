@@ -1,0 +1,60 @@
+{
+  "id": 20260612,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times wider is a grain of sand than a human hair?",
+      "metric": "Width",
+      "itemA": { "name": "Human hair", "emoji": "🧵" },
+      "itemB": { "name": "Grain of sand", "emoji": "🏖️" },
+      "ratio": 14,
+      "maxGuess": 45,
+      "difficulty": "easy",
+      "fact": "A human hair is ~70 µm wide; a grain of sand is ~1,000 µm (1 mm) — about 14× wider."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times larger is a human cell than a bacterium?",
+      "metric": "Size",
+      "itemA": { "name": "Bacterium", "emoji": "🦠" },
+      "itemB": { "name": "Human cell", "emoji": "🔬" },
+      "ratio": 10,
+      "maxGuess": 35,
+      "difficulty": "medium",
+      "fact": "A bacterium is ~1–2 µm; a typical human cell is ~10–20 µm — about 10× larger. But your body has roughly equal numbers of both."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times larger is a bacterium than a virus?",
+      "metric": "Size",
+      "itemA": { "name": "Virus (e.g. flu)", "emoji": "🦠" },
+      "itemB": { "name": "Bacterium", "emoji": "🔬" },
+      "ratio": 100,
+      "maxGuess": 300,
+      "difficulty": "medium",
+      "fact": "A flu virus is ~100 nanometres; a bacterium is ~1–10 micrometres — roughly 10–100× larger. Viruses can infect bacteria."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a human hair than a typical virus?",
+      "metric": "Width",
+      "itemA": { "name": "Virus (flu, ~100nm)", "emoji": "🦠" },
+      "itemB": { "name": "Human hair", "emoji": "🧵" },
+      "ratio": 700,
+      "maxGuess": 2500,
+      "difficulty": "hard",
+      "fact": "A flu virus is ~100 nanometres; a human hair is ~70,000 nanometres — 700× wider. A single hair could accommodate 700 flu viruses side by side."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times larger is an atom than the nucleus inside it?",
+      "metric": "Size",
+      "itemA": { "name": "Atomic nucleus", "emoji": "⚛️" },
+      "itemB": { "name": "Full atom", "emoji": "🔵" },
+      "ratio": 100000,
+      "maxGuess": 400000,
+      "difficulty": "hard",
+      "fact": "An atomic nucleus is ~1 femtometre; the full atom is ~100,000 femtometres — 100,000× larger. If the nucleus were a marble, the atom would be a football stadium."
+    }
+  ]
+}

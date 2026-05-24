@@ -1,0 +1,60 @@
+{
+  "id": 20260606,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times heavier is a polar bear than a house cat?",
+      "metric": "Mass",
+      "itemA": { "name": "House cat", "emoji": "🐱" },
+      "itemB": { "name": "Polar bear", "emoji": "🐻‍❄️" },
+      "ratio": 125,
+      "maxGuess": 400,
+      "difficulty": "easy",
+      "fact": "A house cat weighs ~4 kg; a male polar bear averages ~500 kg — 125× heavier. Polar bears are the world's largest land carnivore."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times longer is a blue whale than a bottlenose dolphin?",
+      "metric": "Length",
+      "itemA": { "name": "Bottlenose dolphin", "emoji": "🐬" },
+      "itemB": { "name": "Blue whale", "emoji": "🐋" },
+      "ratio": 9.7,
+      "maxGuess": 30,
+      "difficulty": "easy",
+      "fact": "A dolphin is ~3 m; a blue whale is ~29 m — nearly 10× longer. The blue whale is the largest animal ever to have lived on Earth."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times faster can a peregrine falcon dive than a cheetah can run?",
+      "metric": "Speed",
+      "itemA": { "name": "Cheetah (sprint)", "emoji": "🐆" },
+      "itemB": { "name": "Peregrine falcon (dive)", "emoji": "🦅" },
+      "ratio": 3.5,
+      "maxGuess": 12,
+      "difficulty": "medium",
+      "fact": "A cheetah tops ~112 km/h; a peregrine falcon dives at ~390 km/h — 3.5× faster. It's the fastest movement of any animal."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times heavier is an African elephant than a Labrador?",
+      "metric": "Mass",
+      "itemA": { "name": "Labrador", "emoji": "🐕" },
+      "itemB": { "name": "African elephant", "emoji": "🐘" },
+      "ratio": 187,
+      "maxGuess": 600,
+      "difficulty": "medium",
+      "fact": "A Labrador weighs ~32 kg; an African elephant ~6,000 kg — 187× heavier. Elephants are the largest land animals alive today."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is the lifespan of a Greenland shark than a house mouse?",
+      "metric": "Lifespan",
+      "itemA": { "name": "House mouse", "emoji": "🐭" },
+      "itemB": { "name": "Greenland shark", "emoji": "🦈" },
+      "ratio": 200,
+      "maxGuess": 600,
+      "difficulty": "hard",
+      "fact": "A house mouse lives ~2 years; a Greenland shark can live ~400 years — 200× longer. They reach sexual maturity at ~150 years old."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": 20260610,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times more caffeine is in a espresso than in green tea?",
+      "metric": "Caffeine content",
+      "itemA": { "name": "Green tea (cup)", "emoji": "🍵" },
+      "itemB": { "name": "Espresso shot", "emoji": "☕" },
+      "ratio": 2.25,
+      "maxGuess": 8,
+      "difficulty": "easy",
+      "fact": "Green tea has ~28 mg caffeine per cup; an espresso has ~63 mg per shot — about 2.25× more in a much smaller volume."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times more sugar does hard candy have than broccoli (per 100g)?",
+      "metric": "Sugar content",
+      "itemA": { "name": "Broccoli", "emoji": "🥦" },
+      "itemB": { "name": "Hard candy", "emoji": "🍭" },
+      "ratio": 51,
+      "maxGuess": 150,
+      "difficulty": "medium",
+      "fact": "Broccoli has ~1.7g sugar per 100g; hard candy has ~87g — 51× more. Broccoli is essentially sugar-free by comparison."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times more calories does butter have than cucumber (per 100g)?",
+      "metric": "Calories",
+      "itemA": { "name": "Cucumber", "emoji": "🥒" },
+      "itemB": { "name": "Butter", "emoji": "🧈" },
+      "ratio": 47.8,
+      "maxGuess": 150,
+      "difficulty": "medium",
+      "fact": "Cucumber has ~15 kcal per 100g; butter has ~717 kcal — nearly 48× more calorie-dense."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times stronger is Everclear than standard beer (by ABV)?",
+      "metric": "Alcohol content",
+      "itemA": { "name": "Standard beer (5%)", "emoji": "🍺" },
+      "itemB": { "name": "Everclear (95%)", "emoji": "💧" },
+      "ratio": 19,
+      "maxGuess": 60,
+      "difficulty": "medium",
+      "fact": "Beer is ~5% ABV; Everclear is 95% ABV — 19× stronger. It is literally stronger than most surgical spirits."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times heavier is a blue whale's heart than a human heart?",
+      "metric": "Mass",
+      "itemA": { "name": "Human heart", "emoji": "🫀" },
+      "itemB": { "name": "Blue whale heart", "emoji": "🐋" },
+      "ratio": 666,
+      "maxGuess": 2000,
+      "difficulty": "hard",
+      "fact": "A human heart weighs ~300g; a blue whale's heart weighs ~200 kg — about 666× heavier. It's the size of a small car."
+    }
+  ]
+}

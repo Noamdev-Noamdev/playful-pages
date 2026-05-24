@@ -1,0 +1,60 @@
+{
+  "id": 20260619,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times wider is a human eye than the pupil at full dilation?",
+      "metric": "Diameter",
+      "itemA": { "name": "Dilated pupil", "emoji": "👁️" },
+      "itemB": { "name": "Full eyeball", "emoji": "👁️" },
+      "ratio": 3.8,
+      "maxGuess": 12,
+      "difficulty": "easy",
+      "fact": "A fully dilated pupil is ~8 mm; the full eyeball is ~24 mm across — about 3× wider. The eyeball barely changes size from birth to adulthood."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times longer is a human nerve cell than a typical human cell?",
+      "metric": "Length",
+      "itemA": { "name": "Typical human cell (~20µm)", "emoji": "🔬" },
+      "itemB": { "name": "Longest nerve cell (up to 1m)", "emoji": "🧬" },
+      "ratio": 50000,
+      "maxGuess": 200000,
+      "difficulty": "hard",
+      "fact": "A typical human cell is ~20 micrometres; the sciatic nerve cell can be up to 1 metre long — 50,000× longer. A single cell stretching from your spine to your toe."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times smaller is a water molecule than a grain of table salt?",
+      "metric": "Size",
+      "itemA": { "name": "Water molecule", "emoji": "💧" },
+      "itemB": { "name": "Grain of table salt", "emoji": "🧂" },
+      "ratio": 2000000,
+      "maxGuess": 8000000,
+      "difficulty": "hard",
+      "fact": "A water molecule is ~0.28 nanometres; a grain of salt is ~0.5 mm — about 1.8 million× larger. A grain of salt contains ~10¹⁸ molecules."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times thicker is a human fingernail than a spider's silk thread?",
+      "metric": "Thickness",
+      "itemA": { "name": "Spider silk thread", "emoji": "🕷️" },
+      "itemB": { "name": "Human fingernail", "emoji": "💅" },
+      "ratio": 3000,
+      "maxGuess": 10000,
+      "difficulty": "hard",
+      "fact": "Spider silk is ~4 micrometres thick; a fingernail is ~0.5 mm (500 micrometres) — about 125× thicker. Yet silk is stronger than steel by weight."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times wider is a human hair than a strand of spider silk?",
+      "metric": "Width",
+      "itemA": { "name": "Spider silk strand", "emoji": "🕸️" },
+      "itemB": { "name": "Human hair", "emoji": "🧵" },
+      "ratio": 17.5,
+      "maxGuess": 55,
+      "difficulty": "medium",
+      "fact": "Spider silk is ~4 µm wide; human hair is ~70 µm — about 17.5× wider. Yet silk is 5× stronger than steel at the same weight."
+    }
+  ]
+}

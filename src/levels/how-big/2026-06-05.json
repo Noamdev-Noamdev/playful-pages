@@ -5,8 +5,14 @@
       "id": 1,
       "prompt": "How many times longer is your small intestine than you are tall?",
       "metric": "Length",
-      "itemA": { "name": "Human height", "emoji": "🧍" },
-      "itemB": { "name": "Small intestine", "emoji": "🫁" },
+      "itemA": {
+        "name": "Human height",
+        "emoji": "🧍"
+      },
+      "itemB": {
+        "name": "Small intestine",
+        "emoji": "🫁"
+      },
       "ratio": 3.5,
       "maxGuess": 12,
       "difficulty": "easy",
@@ -14,21 +20,33 @@
     },
     {
       "id": 2,
-      "prompt": "How many times more neurons does the brain have than stars in the Milky Way?",
+      "prompt": "How many times more stars are in the Milky Way than neurons in the human brain?",
       "metric": "Count",
-      "itemA": { "name": "Milky Way stars", "emoji": "⭐" },
-      "itemB": { "name": "Brain neurons", "emoji": "🧠" },
-      "ratio": 0.3,
-      "maxGuess": 5,
+      "itemA": {
+        "name": "Human brain neurons (~86 billion)",
+        "emoji": "🧠"
+      },
+      "itemB": {
+        "name": "Milky Way stars (~300 billion)",
+        "emoji": "⭐"
+      },
+      "ratio": 3.5,
+      "maxGuess": 12,
       "difficulty": "medium",
-      "fact": "The brain has ~86 billion neurons; the Milky Way has ~300 billion stars — the galaxy has about 3.5× more stars than your brain has neurons."
+      "fact": "The brain has ~86 billion neurons; the Milky Way has ~300 billion stars — 3.5× more stars than neurons. But your brain makes ~100 trillion synaptic connections."
     },
     {
       "id": 3,
       "prompt": "How many times wider is a human hair than a red blood cell?",
       "metric": "Diameter",
-      "itemA": { "name": "Red blood cell", "emoji": "🔴" },
-      "itemB": { "name": "Human hair", "emoji": "🧵" },
+      "itemA": {
+        "name": "Red blood cell",
+        "emoji": "🔴"
+      },
+      "itemB": {
+        "name": "Human hair",
+        "emoji": "🧵"
+      },
       "ratio": 10,
       "maxGuess": 30,
       "difficulty": "easy",
@@ -38,8 +56,14 @@
       "id": 4,
       "prompt": "How many times narrower is a DNA strand than a human hair?",
       "metric": "Width",
-      "itemA": { "name": "DNA strand", "emoji": "🧬" },
-      "itemB": { "name": "Human hair", "emoji": "🧵" },
+      "itemA": {
+        "name": "DNA strand",
+        "emoji": "🧬"
+      },
+      "itemB": {
+        "name": "Human hair",
+        "emoji": "🧵"
+      },
       "ratio": 28000,
       "maxGuess": 100000,
       "difficulty": "hard",
@@ -49,8 +73,14 @@
       "id": 5,
       "prompt": "How many times does your heart beat in a year compared to a day?",
       "metric": "Count",
-      "itemA": { "name": "Heartbeats per day", "emoji": "🫀" },
-      "itemB": { "name": "Heartbeats per year", "emoji": "📅" },
+      "itemA": {
+        "name": "Heartbeats per day",
+        "emoji": "🫀"
+      },
+      "itemB": {
+        "name": "Heartbeats per year",
+        "emoji": "📅"
+      },
       "ratio": 365,
       "maxGuess": 1000,
       "difficulty": "easy",

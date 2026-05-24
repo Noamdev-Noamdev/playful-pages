@@ -1,0 +1,60 @@
+{
+  "id": 20260621,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times heavier is a rain cloud than a jumbo jet?",
+      "metric": "Mass",
+      "itemA": { "name": "Boeing 747 (loaded)", "emoji": "✈️" },
+      "itemB": { "name": "Cumulus cloud", "emoji": "☁️" },
+      "ratio": 1.2,
+      "maxGuess": 6,
+      "difficulty": "hard",
+      "fact": "A loaded 747 weighs ~412 tonnes; a typical cumulus cloud holds ~500 tonnes of water droplets — slightly heavier than a jumbo jet, floating above your head."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times more water does the Amazon River discharge than the Thames per second?",
+      "metric": "Flow rate",
+      "itemA": { "name": "River Thames", "emoji": "🏞️" },
+      "itemB": { "name": "Amazon River", "emoji": "🌿" },
+      "ratio": 600,
+      "maxGuess": 2000,
+      "difficulty": "hard",
+      "fact": "The Thames discharges ~340 m³/s; the Amazon discharges ~209,000 m³/s — about 615× more water per second."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times faster do winds move in a Category 5 hurricane than a gentle breeze?",
+      "metric": "Wind speed",
+      "itemA": { "name": "Gentle breeze (10 km/h)", "emoji": "🌬️" },
+      "itemB": { "name": "Category 5 hurricane (252+ km/h)", "emoji": "🌀" },
+      "ratio": 25,
+      "maxGuess": 80,
+      "difficulty": "medium",
+      "fact": "A gentle breeze blows at ~10 km/h; Category 5 winds exceed 252 km/h — 25× faster. Enough to demolish reinforced structures."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times deeper is Lake Baikal than the average lake?",
+      "metric": "Depth",
+      "itemA": { "name": "Average lake depth (~8m)", "emoji": "🏞️" },
+      "itemB": { "name": "Lake Baikal (1,642m)", "emoji": "🌊" },
+      "ratio": 205,
+      "maxGuess": 650,
+      "difficulty": "hard",
+      "fact": "The average lake is ~8 m deep; Lake Baikal reaches 1,642 m — 205× deeper. It holds 20% of all unfrozen fresh surface water on Earth."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a thunderstorm cloud than Mount Everest?",
+      "metric": "Height",
+      "itemA": { "name": "Mount Everest (8,849m)", "emoji": "⛰️" },
+      "itemB": { "name": "Cumulonimbus cloud (up to 18km)", "emoji": "⛈️" },
+      "ratio": 2.0,
+      "maxGuess": 7,
+      "difficulty": "medium",
+      "fact": "Everest is 8,849 m; a large cumulonimbus thundercloud can reach 18,000 m — over 2× the height of Everest."
+    }
+  ]
+}

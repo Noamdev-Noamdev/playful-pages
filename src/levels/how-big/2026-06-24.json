@@ -1,0 +1,60 @@
+{
+  "id": 20260624,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times larger is the largest known organism (Pando aspen) than a blue whale?",
+      "metric": "Mass",
+      "itemA": { "name": "Blue whale (~150 tonnes)", "emoji": "🐋" },
+      "itemB": { "name": "Pando aspen clone (~6,000 tonnes)", "emoji": "🌳" },
+      "ratio": 40,
+      "maxGuess": 130,
+      "difficulty": "hard",
+      "fact": "A blue whale weighs ~150 tonnes; Pando, a clonal aspen forest in Utah, weighs ~6,000 tonnes — 40× heavier, and it's a single organism."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times longer is the longest root system than the tree is tall?",
+      "metric": "Length",
+      "itemA": { "name": "Tall oak tree (~30m)", "emoji": "🌳" },
+      "itemB": { "name": "Oak root spread (~50m radius)", "emoji": "🌱" },
+      "ratio": 1.7,
+      "maxGuess": 6,
+      "difficulty": "medium",
+      "fact": "A large oak may be ~30 m tall; its root system can spread 50 m in radius and extend 2× the tree's height underground."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times longer is a humpback whale's song than a pop song?",
+      "metric": "Duration",
+      "itemA": { "name": "Pop song (~3.5 minutes)", "emoji": "🎵" },
+      "itemB": { "name": "Humpback whale song (up to 30 min)", "emoji": "🐳" },
+      "ratio": 8.6,
+      "maxGuess": 28,
+      "difficulty": "medium",
+      "fact": "A pop song averages ~3.5 minutes; a humpback whale song can last 30 minutes or more — nearly 9× longer, and may travel thousands of km through the ocean."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times larger is the Amazon rainforest than the UK?",
+      "metric": "Area",
+      "itemA": { "name": "United Kingdom", "emoji": "🇬🇧" },
+      "itemB": { "name": "Amazon rainforest", "emoji": "🌿" },
+      "ratio": 22.7,
+      "maxGuess": 70,
+      "difficulty": "medium",
+      "fact": "The UK is ~243,610 km²; the Amazon rainforest covers ~5.5 million km² — about 23× larger. It produces 20% of Earth's oxygen."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a giant sequoia than an average human?",
+      "metric": "Height",
+      "itemA": { "name": "Average human (1.7m)", "emoji": "🧍" },
+      "itemB": { "name": "Giant sequoia (~84m)", "emoji": "🌲" },
+      "ratio": 49,
+      "maxGuess": 150,
+      "difficulty": "easy",
+      "fact": "A human is ~1.7 m; a giant sequoia like General Sherman is ~84 m tall — 49× taller. It's also the largest living tree by volume."
+    }
+  ]
+}

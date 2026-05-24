@@ -1,0 +1,60 @@
+{
+  "id": 20260620,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times more people live in China than in the United Kingdom?",
+      "metric": "Population",
+      "itemA": { "name": "United Kingdom", "emoji": "🇬🇧" },
+      "itemB": { "name": "China", "emoji": "🇨🇳" },
+      "ratio": 21,
+      "maxGuess": 65,
+      "difficulty": "easy",
+      "fact": "The UK has ~67 million people; China has ~1.4 billion — about 21× more. China alone has more people than every country in Europe combined."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times more trees are there on Earth than stars in the Milky Way?",
+      "metric": "Count",
+      "itemA": { "name": "Milky Way stars (~300 billion)", "emoji": "⭐" },
+      "itemB": { "name": "Trees on Earth (~3 trillion)", "emoji": "🌳" },
+      "ratio": 10,
+      "maxGuess": 30,
+      "difficulty": "hard",
+      "fact": "The Milky Way has ~300 billion stars; Earth has ~3 trillion trees — 10× more trees than stars in our galaxy."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times more bacteria live in your gut than cells in your body?",
+      "metric": "Count",
+      "itemA": { "name": "Human body cells (~30 trillion)", "emoji": "🧬" },
+      "itemB": { "name": "Gut bacteria (~38 trillion)", "emoji": "🦠" },
+      "ratio": 1.3,
+      "maxGuess": 5,
+      "difficulty": "hard",
+      "fact": "Your body has ~30 trillion human cells and ~38 trillion bacteria — about 1.3× more bacteria. You are, in a sense, more microbe than human."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times more ants than humans are there on Earth?",
+      "metric": "Count",
+      "itemA": { "name": "Humans on Earth", "emoji": "👥" },
+      "itemB": { "name": "Ants on Earth", "emoji": "🐜" },
+      "ratio": 2500000,
+      "maxGuess": 9000000,
+      "difficulty": "hard",
+      "fact": "There are ~8 billion humans; there are an estimated ~20 quadrillion ants — about 2.5 million ants for every person on Earth."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times more species of insects are there than mammals?",
+      "metric": "Count",
+      "itemA": { "name": "Mammal species (~6,400)", "emoji": "🐾" },
+      "itemB": { "name": "Insect species (~1 million)", "emoji": "🐛" },
+      "ratio": 156,
+      "maxGuess": 500,
+      "difficulty": "medium",
+      "fact": "There are ~6,400 known mammal species; there are ~1 million known insect species — 156× more. And millions of insect species are likely still undiscovered."
+    }
+  ]
+}

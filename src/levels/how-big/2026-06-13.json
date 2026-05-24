@@ -1,0 +1,90 @@
+{
+  "id": 20260613,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times larger is Russia than the United Kingdom?",
+      "metric": "Land area",
+      "itemA": {
+        "name": "United Kingdom",
+        "emoji": "🇬🇧"
+      },
+      "itemB": {
+        "name": "Russia",
+        "emoji": "🇷🇺"
+      },
+      "ratio": 69,
+      "maxGuess": 200,
+      "difficulty": "easy",
+      "fact": "The UK is ~243,610 km²; Russia is ~17.1 million km² — about 70× larger. Russia is the largest country on Earth by a huge margin."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times larger is the Sahara Desert than the entire European Union?",
+      "metric": "Area",
+      "itemA": {
+        "name": "European Union (4.2 million km²)",
+        "emoji": "🇪🇺"
+      },
+      "itemB": {
+        "name": "Sahara Desert (9.2 million km²)",
+        "emoji": "🏜️"
+      },
+      "ratio": 2.2,
+      "maxGuess": 8,
+      "difficulty": "hard",
+      "fact": "The EU covers ~4.2 million km²; the Sahara covers ~9.2 million km² — 2.2× larger. The Sahara is bigger than the entire EU plus the UK combined."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times longer is the equator than the distance from London to New York?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "London → New York",
+        "emoji": "✈️"
+      },
+      "itemB": {
+        "name": "Earth's equator",
+        "emoji": "🌍"
+      },
+      "ratio": 7.2,
+      "maxGuess": 22,
+      "difficulty": "medium",
+      "fact": "London to New York is ~5,570 km; Earth's equator is ~40,075 km — about 7.2× longer."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times larger is the Pacific Ocean than the Atlantic?",
+      "metric": "Area",
+      "itemA": {
+        "name": "Atlantic Ocean",
+        "emoji": "🌊"
+      },
+      "itemB": {
+        "name": "Pacific Ocean",
+        "emoji": "🌏"
+      },
+      "ratio": 1.9,
+      "maxGuess": 6,
+      "difficulty": "medium",
+      "fact": "The Atlantic is ~106 million km²; the Pacific is ~165 million km² — about 1.6× larger. The Pacific is bigger than all land on Earth combined."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is Mont Blanc than the tallest building in Paris?",
+      "metric": "Height",
+      "itemA": {
+        "name": "Montparnasse Tower (Paris)",
+        "emoji": "🏢"
+      },
+      "itemB": {
+        "name": "Mont Blanc",
+        "emoji": "🏔️"
+      },
+      "ratio": 25.5,
+      "maxGuess": 80,
+      "difficulty": "medium",
+      "fact": "Montparnasse Tower is 210 m; Mont Blanc is 4,808 m — nearly 23× taller. And that's just the Alps, not even Everest."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": 20260626,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is the Marathon than the first Olympic sprint (stadion)?",
+      "metric": "Distance",
+      "itemA": { "name": "Ancient stadion race (~192m)", "emoji": "🏃" },
+      "itemB": { "name": "Marathon (42.195km)", "emoji": "🏅" },
+      "ratio": 220,
+      "maxGuess": 700,
+      "difficulty": "medium",
+      "fact": "The ancient Greek stadion race was ~192 m (one stadium length); the marathon is 42,195 m — about 220× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times taller is the highest skydive (Felix Baumgartner) than Everest?",
+      "metric": "Altitude",
+      "itemA": { "name": "Mount Everest (8,849m)", "emoji": "⛰️" },
+      "itemB": { "name": "Baumgartner's jump (39,045m)", "emoji": "🪂" },
+      "ratio": 4.4,
+      "maxGuess": 14,
+      "difficulty": "medium",
+      "fact": "Everest is 8,849 m; Felix Baumgartner jumped from 39,045 m in 2012 — 4.4× higher than Everest, at the edge of space."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther did Apollo 13 travel (total) than the circumference of Earth?",
+      "metric": "Distance",
+      "itemA": { "name": "Earth's circumference (40,075km)", "emoji": "🌍" },
+      "itemB": { "name": "Apollo 13 total trip (~800,000km)", "emoji": "🚀" },
+      "ratio": 20,
+      "maxGuess": 60,
+      "difficulty": "hard",
+      "fact": "Earth's circumference is ~40,075 km; Apollo 13's total journey (Earth–Moon–Earth plus the abort loop) was ~800,000 km — 20× around Earth."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times heavier can the world's strongest man lift compared to an average person?",
+      "metric": "Weight lifted",
+      "itemA": { "name": "Average person's max lift (~60kg)", "emoji": "🏋️" },
+      "itemB": { "name": "World record deadlift (501kg)", "emoji": "🏆" },
+      "ratio": 8.4,
+      "maxGuess": 26,
+      "difficulty": "medium",
+      "fact": "An average untrained person can lift ~60 kg; the world record deadlift is 501 kg (Hafthor Bjornsson, 2020) — 8.4× more."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times faster did Usain Bolt run 100m than the average human walks it?",
+      "metric": "Speed",
+      "itemA": { "name": "Human walking pace (5 km/h)", "emoji": "🚶" },
+      "itemB": { "name": "Usain Bolt sprint (37.6 km/h avg)", "emoji": "⚡" },
+      "ratio": 7.5,
+      "maxGuess": 24,
+      "difficulty": "easy",
+      "fact": "Humans walk at ~5 km/h; Bolt's average speed over his 9.58s world record was ~37.6 km/h — 7.5× faster than a casual stroll."
+    }
+  ]
+}

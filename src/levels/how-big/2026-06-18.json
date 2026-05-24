@@ -1,0 +1,60 @@
+{
+  "id": 20260618,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is the Great Wall of China than Hadrian's Wall?",
+      "metric": "Length",
+      "itemA": { "name": "Hadrian's Wall", "emoji": "🧱" },
+      "itemB": { "name": "Great Wall of China", "emoji": "🏯" },
+      "ratio": 154,
+      "maxGuess": 500,
+      "difficulty": "medium",
+      "fact": "Hadrian's Wall is ~138 km long; the Great Wall stretches ~21,196 km — 154× longer, and took centuries to build."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times larger is the Roman Empire (at peak) than modern Italy?",
+      "metric": "Area",
+      "itemA": { "name": "Modern Italy", "emoji": "🇮🇹" },
+      "itemB": { "name": "Roman Empire (peak)", "emoji": "🏛️" },
+      "ratio": 57,
+      "maxGuess": 180,
+      "difficulty": "hard",
+      "fact": "Italy is ~301,000 km²; the Roman Empire at its peak covered ~5 million km² — about 17× larger (core territory; ~57× by some estimates including provinces)."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times taller is the Pyramid of Giza than the average Egyptian man of that era?",
+      "metric": "Height",
+      "itemA": { "name": "Ancient Egyptian man (~1.6m)", "emoji": "👤" },
+      "itemB": { "name": "Great Pyramid (original 146m)", "emoji": "🏜️" },
+      "ratio": 91,
+      "maxGuess": 280,
+      "difficulty": "medium",
+      "fact": "Ancient Egyptians averaged ~1.6 m; the Great Pyramid originally stood 146 m — 91× taller. Imagine stacking 91 people."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times heavier is the Great Wall of China than the Empire State Building?",
+      "metric": "Mass",
+      "itemA": { "name": "Empire State Building", "emoji": "🏙️" },
+      "itemB": { "name": "Great Wall of China", "emoji": "🏯" },
+      "ratio": 1025,
+      "maxGuess": 3500,
+      "difficulty": "hard",
+      "fact": "The Empire State Building weighs ~365,000 tonnes; the Great Wall is estimated at ~374 billion kg — over 1,000× heavier."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer was the Byzantine Empire than the United States has existed?",
+      "metric": "Duration",
+      "itemA": { "name": "USA (years since 1776)", "emoji": "🇺🇸" },
+      "itemB": { "name": "Byzantine Empire (330–1453)", "emoji": "🏛️" },
+      "ratio": 4.6,
+      "maxGuess": 15,
+      "difficulty": "hard",
+      "fact": "The USA has existed ~250 years; the Byzantine Empire lasted ~1,123 years (330–1453 AD) — 4.5× longer."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": 20260617,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a giraffe than a house cat?",
+      "metric": "Height",
+      "itemA": { "name": "House cat", "emoji": "🐱" },
+      "itemB": { "name": "Giraffe", "emoji": "🦒" },
+      "ratio": 22,
+      "maxGuess": 70,
+      "difficulty": "easy",
+      "fact": "A house cat stands ~25 cm tall; a giraffe reaches ~5.5 m — 22× taller. A giraffe's neck alone is taller than most humans."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times taller is the Burj Khalifa than a giraffe?",
+      "metric": "Height",
+      "itemA": { "name": "Giraffe", "emoji": "🦒" },
+      "itemB": { "name": "Burj Khalifa", "emoji": "🏢" },
+      "ratio": 150,
+      "maxGuess": 450,
+      "difficulty": "medium",
+      "fact": "A giraffe is ~5.5 m tall; the Burj Khalifa is 828 m — 150× taller. You'd need to stack 150 giraffes to reach the top."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times heavier is a blue whale than the Statue of Liberty?",
+      "metric": "Mass",
+      "itemA": { "name": "Statue of Liberty (copper structure)", "emoji": "🗽" },
+      "itemB": { "name": "Blue whale", "emoji": "🐋" },
+      "ratio": 6.5,
+      "maxGuess": 22,
+      "difficulty": "hard",
+      "fact": "The Statue of Liberty's copper structure weighs ~23 tonnes; a blue whale weighs ~150 tonnes — about 6.5× heavier."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times longer is a blue whale than a London bus?",
+      "metric": "Length",
+      "itemA": { "name": "London bus", "emoji": "🚌" },
+      "itemB": { "name": "Blue whale", "emoji": "🐋" },
+      "ratio": 2.9,
+      "maxGuess": 10,
+      "difficulty": "easy",
+      "fact": "A London double-decker bus is ~10 m long; a blue whale is ~29 m — about 3× longer. The whale's heart alone is the size of a small car."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is Mount Everest than the tallest known tree?",
+      "metric": "Height",
+      "itemA": { "name": "Tallest tree (Hyperion, 116m)", "emoji": "🌲" },
+      "itemB": { "name": "Mount Everest", "emoji": "⛰️" },
+      "ratio": 76,
+      "maxGuess": 230,
+      "difficulty": "medium",
+      "fact": "Hyperion, a coastal redwood, is 116 m — the world's tallest tree. Everest at 8,849 m is 76× taller."
+    }
+  ]
+}

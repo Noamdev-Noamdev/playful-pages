@@ -1,0 +1,60 @@
+{
+  "id": 20260608,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is Mount Everest than the Eiffel Tower?",
+      "metric": "Height",
+      "itemA": { "name": "Eiffel Tower", "emoji": "🗼" },
+      "itemB": { "name": "Mount Everest", "emoji": "⛰️" },
+      "ratio": 26.8,
+      "maxGuess": 80,
+      "difficulty": "easy",
+      "fact": "The Eiffel Tower is 330 m; Everest is 8,849 m — nearly 27× taller. Everest gains ~6 mm per year as the Indian plate pushes north."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times deeper is the Mariana Trench than the average ocean depth?",
+      "metric": "Depth",
+      "itemA": { "name": "Average ocean depth", "emoji": "🌊" },
+      "itemB": { "name": "Mariana Trench", "emoji": "🕳️" },
+      "ratio": 3.2,
+      "maxGuess": 10,
+      "difficulty": "medium",
+      "fact": "Average ocean depth is ~3,440 m; the Mariana Trench's Challenger Deep is 11,034 m — 3.2× deeper than average."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times taller is Olympus Mons (Mars) than Mount Everest?",
+      "metric": "Height",
+      "itemA": { "name": "Mount Everest", "emoji": "⛰️" },
+      "itemB": { "name": "Olympus Mons (Mars)", "emoji": "🔴" },
+      "ratio": 2.9,
+      "maxGuess": 10,
+      "difficulty": "hard",
+      "fact": "Everest is 8,849 m; Olympus Mons on Mars is 21,900 m — nearly 3× taller. It's the largest volcano in the Solar System."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times longer is the Mid-Ocean Ridge than the Great Wall of China?",
+      "metric": "Length",
+      "itemA": { "name": "Great Wall of China", "emoji": "🏯" },
+      "itemB": { "name": "Mid-Ocean Ridge", "emoji": "🌊" },
+      "ratio": 3.0,
+      "maxGuess": 10,
+      "difficulty": "hard",
+      "fact": "The Great Wall is ~21,196 km; the Mid-Ocean Ridge is ~65,000 km — 3× longer. It's the longest mountain range on Earth, entirely underwater."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times higher does a cruising airplane fly than Mount Everest's summit?",
+      "metric": "Altitude",
+      "itemA": { "name": "Mount Everest summit", "emoji": "⛰️" },
+      "itemB": { "name": "Cruising airplane", "emoji": "✈️" },
+      "ratio": 1.21,
+      "maxGuess": 5,
+      "difficulty": "medium",
+      "fact": "Everest peaks at 8,849 m; planes cruise at ~10,700 m — just 1.2× higher, but in a pressurised cabin with snacks."
+    }
+  ]
+}

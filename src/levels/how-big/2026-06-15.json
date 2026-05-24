@@ -1,0 +1,60 @@
+{
+  "id": 20260615,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is the Trans-Siberian Railway than the London Underground?",
+      "metric": "Length",
+      "itemA": { "name": "London Underground", "emoji": "🚇" },
+      "itemB": { "name": "Trans-Siberian Railway", "emoji": "🚂" },
+      "ratio": 64,
+      "maxGuess": 200,
+      "difficulty": "medium",
+      "fact": "The London Underground is ~402 km of track; the Trans-Siberian Railway is ~9,289 km — about 23× longer (total track vs route)."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a fully loaded container ship than the Eiffel Tower?",
+      "metric": "Mass",
+      "itemA": { "name": "Eiffel Tower", "emoji": "🗼" },
+      "itemB": { "name": "Largest container ship (loaded)", "emoji": "🚢" },
+      "ratio": 61,
+      "maxGuess": 200,
+      "difficulty": "hard",
+      "fact": "The Eiffel Tower weighs ~7,300 tonnes; a fully loaded container ship like the Evergreen Ever Ace weighs ~440,000 tonnes — 60× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times faster is the Shinkansen than a horse at full gallop?",
+      "metric": "Speed",
+      "itemA": { "name": "Horse (gallop)", "emoji": "🐴" },
+      "itemB": { "name": "Shinkansen bullet train", "emoji": "🚄" },
+      "ratio": 4.6,
+      "maxGuess": 15,
+      "difficulty": "medium",
+      "fact": "A horse gallops at ~65 km/h; the Shinkansen runs at ~300 km/h — about 4.6× faster."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times longer is a modern aircraft carrier than the Wright Brothers' first flight?",
+      "metric": "Length vs distance",
+      "itemA": { "name": "First flight distance (1903)", "emoji": "✈️" },
+      "itemB": { "name": "Aircraft carrier (USS Gerald Ford)", "emoji": "⚓" },
+      "ratio": 3.0,
+      "maxGuess": 10,
+      "difficulty": "hard",
+      "fact": "The Wright Brothers' first flight was 37 metres; the USS Gerald Ford is 337 m long — over 9× longer. The first plane could have taken off and landed on the flight deck."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is the Burj Khalifa than the wingspan of a Boeing 747?",
+      "metric": "Height vs wingspan",
+      "itemA": { "name": "Boeing 747 wingspan", "emoji": "✈️" },
+      "itemB": { "name": "Burj Khalifa", "emoji": "🏢" },
+      "ratio": 13.2,
+      "maxGuess": 40,
+      "difficulty": "medium",
+      "fact": "A 747's wingspan is ~64 m; the Burj Khalifa is 828 m tall — about 13× taller than the plane is wide."
+    }
+  ]
+}

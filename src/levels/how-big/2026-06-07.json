@@ -1,0 +1,60 @@
+{
+  "id": 20260607,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times heavier is a car than a bicycle?",
+      "metric": "Mass",
+      "itemA": { "name": "Bicycle", "emoji": "🚲" },
+      "itemB": { "name": "Average car", "emoji": "🚗" },
+      "ratio": 73,
+      "maxGuess": 200,
+      "difficulty": "easy",
+      "fact": "A bicycle weighs ~9 kg; an average car weighs ~1,400 kg — about 155× heavier. Yet both get you from A to B."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times taller is a 10-storey building than a standard door?",
+      "metric": "Height",
+      "itemA": { "name": "Standard door", "emoji": "🚪" },
+      "itemB": { "name": "10-storey building", "emoji": "🏢" },
+      "ratio": 14.5,
+      "maxGuess": 45,
+      "difficulty": "easy",
+      "fact": "A standard door is ~2 m tall; a 10-storey building is ~29 m — about 14.5× taller (roughly 3 m per floor)."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times heavier is a Boeing 747 than a Mini Cooper?",
+      "metric": "Mass",
+      "itemA": { "name": "Mini Cooper", "emoji": "🚗" },
+      "itemB": { "name": "Boeing 747 (loaded)", "emoji": "✈️" },
+      "ratio": 300,
+      "maxGuess": 900,
+      "difficulty": "medium",
+      "fact": "A Mini Cooper weighs ~1,350 kg; a loaded 747 weighs ~412,000 kg — about 305× heavier."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times larger is a football pitch than a tennis court?",
+      "metric": "Area",
+      "itemA": { "name": "Tennis court", "emoji": "🎾" },
+      "itemB": { "name": "Football pitch", "emoji": "⚽" },
+      "ratio": 37,
+      "maxGuess": 120,
+      "difficulty": "medium",
+      "fact": "A tennis court is ~261 m²; a football pitch is ~7,140 m² (105×68 m) — about 27× larger in area."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times more storage does a 1TB hard drive have than a 3.5-inch floppy disk?",
+      "metric": "Storage capacity",
+      "itemA": { "name": "Floppy disk (1.44MB)", "emoji": "💾" },
+      "itemB": { "name": "1TB hard drive", "emoji": "🖥️" },
+      "ratio": 711000,
+      "maxGuess": 2500000,
+      "difficulty": "hard",
+      "fact": "A floppy disk holds 1.44 MB; a 1TB drive holds 1,048,576 MB — about 728,000× more. One terabyte = 728,000 floppy disks."
+    }
+  ]
+}

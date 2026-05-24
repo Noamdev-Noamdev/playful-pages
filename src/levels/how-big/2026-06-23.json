@@ -1,0 +1,60 @@
+{
+  "id": 20260623,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times higher in frequency is the top piano note than the lowest?",
+      "metric": "Frequency",
+      "itemA": { "name": "Lowest piano note (A0 — 27.5Hz)", "emoji": "🎹" },
+      "itemB": { "name": "Highest piano note (C8 — 4186Hz)", "emoji": "🎹" },
+      "ratio": 152,
+      "maxGuess": 500,
+      "difficulty": "medium",
+      "fact": "The lowest piano note is 27.5 Hz; the highest is 4,186 Hz — 152× higher in frequency, spanning over 7 octaves."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times faster does light travel than sound in air?",
+      "metric": "Speed",
+      "itemA": { "name": "Speed of sound in air", "emoji": "🔊" },
+      "itemB": { "name": "Speed of light", "emoji": "💡" },
+      "ratio": 874030,
+      "maxGuess": 3000000,
+      "difficulty": "hard",
+      "fact": "Sound travels at 343 m/s; light at 299,792,458 m/s — 874,000× faster. This is why you see lightning before you hear thunder."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times louder is a jet engine than normal conversation (in decibels as power)?",
+      "metric": "Sound intensity",
+      "itemA": { "name": "Normal conversation (60dB)", "emoji": "💬" },
+      "itemB": { "name": "Jet engine at 30m (140dB)", "emoji": "✈️" },
+      "ratio": 100000000,
+      "maxGuess": 400000000,
+      "difficulty": "hard",
+      "fact": "Every 10 dB is 10× more sound intensity. 80 dB difference = 10⁸ = 100 million× louder. The decibel scale is logarithmic."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times longer is a radio wave (AM) than a visible light wave?",
+      "metric": "Wavelength",
+      "itemA": { "name": "Visible light (~500nm)", "emoji": "🌈" },
+      "itemB": { "name": "AM radio wave (~300m)", "emoji": "📻" },
+      "ratio": 600000000,
+      "maxGuess": 2000000000,
+      "difficulty": "hard",
+      "fact": "Visible light has wavelengths of ~500 nanometres; AM radio waves are ~300 metres — about 600 million× longer."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is the wavelength of red light than violet light?",
+      "metric": "Wavelength",
+      "itemA": { "name": "Violet light (~400nm)", "emoji": "🟣" },
+      "itemB": { "name": "Red light (~700nm)", "emoji": "🔴" },
+      "ratio": 1.75,
+      "maxGuess": 6,
+      "difficulty": "easy",
+      "fact": "Violet light is ~400 nm; red light is ~700 nm — about 1.75× longer wavelength. This small difference creates the entire visible rainbow."
+    }
+  ]
+}

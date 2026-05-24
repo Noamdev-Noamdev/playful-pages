@@ -1,0 +1,60 @@
+{
+  "id": 20260627,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times more visitors does the Louvre get per year than people live in Iceland?",
+      "metric": "Count",
+      "itemA": { "name": "Iceland population (~370,000)", "emoji": "🇮🇸" },
+      "itemB": { "name": "Louvre annual visitors (~9 million)", "emoji": "🏛️" },
+      "ratio": 24,
+      "maxGuess": 75,
+      "difficulty": "medium",
+      "fact": "Iceland has ~370,000 people; the Louvre gets ~9 million visitors per year — 24× more visitors than Iceland has residents."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times more emails are sent per day than letters were sent per year in 1980?",
+      "metric": "Count",
+      "itemA": { "name": "Letters sent globally in 1980 (~300 billion/year)", "emoji": "✉️" },
+      "itemB": { "name": "Emails sent per day today (~350 billion)", "emoji": "📧" },
+      "ratio": 427,
+      "maxGuess": 1400,
+      "difficulty": "hard",
+      "fact": "~300 billion physical letters were sent worldwide in 1980 (per year); today ~350 billion emails are sent every single day — 427× the annual letter count, daily."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times more data does Netflix stream per day than all internet traffic in 2000?",
+      "metric": "Data volume",
+      "itemA": { "name": "Total internet traffic in 2000 (~100 TB/day)", "emoji": "🌐" },
+      "itemB": { "name": "Netflix daily traffic (~500 TB/day)", "emoji": "🎥" },
+      "ratio": 5,
+      "maxGuess": 18,
+      "difficulty": "hard",
+      "fact": "In 2000, all internet traffic was ~100 TB/day; Netflix alone streams ~500+ TB/day today — 5× more than the entire 2000 internet."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times more powerful is a modern MRI scanner than Earth's magnetic field?",
+      "metric": "Magnetic field strength",
+      "itemA": { "name": "Earth's magnetic field (50 µT)", "emoji": "🌍" },
+      "itemB": { "name": "MRI scanner (1.5–3 Tesla)", "emoji": "🏥" },
+      "ratio": 40000,
+      "maxGuess": 150000,
+      "difficulty": "hard",
+      "fact": "Earth's magnetic field is ~50 microtesla; a typical MRI scanner is 1.5–3 Tesla — about 30,000–60,000× stronger."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times more books has the Library of Congress than a typical school library?",
+      "metric": "Count",
+      "itemA": { "name": "School library (~10,000 books)", "emoji": "📚" },
+      "itemB": { "name": "Library of Congress (~17 million books)", "emoji": "🏛️" },
+      "ratio": 1700,
+      "maxGuess": 5500,
+      "difficulty": "medium",
+      "fact": "A typical school library holds ~10,000 books; the Library of Congress holds ~17 million — 1,700× more, making it the largest library in the world."
+    }
+  ]
+}

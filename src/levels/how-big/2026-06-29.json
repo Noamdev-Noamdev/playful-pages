@@ -1,0 +1,90 @@
+{
+  "id": 20260629,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is the Nile than the English Channel is wide?",
+      "metric": "Length vs Width",
+      "itemA": {
+        "name": "English Channel (widest point, 240km)",
+        "emoji": "🌊"
+      },
+      "itemB": {
+        "name": "Nile River (6,650km)",
+        "emoji": "🏜️"
+      },
+      "ratio": 27.7,
+      "maxGuess": 90,
+      "difficulty": "medium",
+      "fact": "The English Channel is ~240 km at its widest; the Nile is ~6,650 km long — nearly 28× longer than the Channel is wide."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times farther is New York from London than London is from Paris?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "London to Paris (341km)",
+        "emoji": "🚄"
+      },
+      "itemB": {
+        "name": "London to New York (5,570km)",
+        "emoji": "✈️"
+      },
+      "ratio": 16.3,
+      "maxGuess": 50,
+      "difficulty": "easy",
+      "fact": "London to Paris is ~341 km; London to New York is ~5,570 km — over 16× further, crossing an entire ocean."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times longer is the coastline of Norway than the equator?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Earth's equator (40,075km)",
+        "emoji": "🌍"
+      },
+      "itemB": {
+        "name": "Norway's coastline (~100,915km)",
+        "emoji": "🇳🇴"
+      },
+      "ratio": 2.5,
+      "maxGuess": 8,
+      "difficulty": "hard",
+      "fact": "The equator is ~40,075 km; Norway's coastline (including fjords and islands) is ~100,915 km — 2.5× the length of the equator, packed into a relatively small country."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is Africa (at its widest) than the Amazon River is long?",
+      "metric": "Length vs Width",
+      "itemA": {
+        "name": "Amazon River length (6,992km)",
+        "emoji": "🌿"
+      },
+      "itemB": {
+        "name": "Africa's widest point (7,400km)",
+        "emoji": "🌍"
+      },
+      "ratio": 1.06,
+      "maxGuess": 4,
+      "difficulty": "hard",
+      "fact": "Africa is ~7,400 km wide at its widest; the Amazon is ~6,992 km long — almost identical. The Amazon would stretch almost all the way across Africa."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times could you walk around the Earth in the distance a migrating Arctic tern flies in a lifetime?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Earth's circumference (40,075km)",
+        "emoji": "🌍"
+      },
+      "itemB": {
+        "name": "Arctic tern lifetime migration (~2.4 million km)",
+        "emoji": "🐦"
+      },
+      "ratio": 60,
+      "maxGuess": 200,
+      "difficulty": "hard",
+      "fact": "Earth's circumference is ~40,075 km; an Arctic tern flies ~70,000 km/year and lives ~30 years — ~2.1 million km total, or ~53 times around Earth."
+    }
+  ]
+}

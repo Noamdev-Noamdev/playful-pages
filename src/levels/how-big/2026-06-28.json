@@ -1,0 +1,60 @@
+{
+  "id": 20260628,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times heavier is a newborn elephant than a newborn human?",
+      "metric": "Mass",
+      "itemA": { "name": "Newborn human (~3.5kg)", "emoji": "👶" },
+      "itemB": { "name": "Newborn elephant (~120kg)", "emoji": "🐘" },
+      "ratio": 34,
+      "maxGuess": 110,
+      "difficulty": "easy",
+      "fact": "A newborn human weighs ~3.5 kg; a newborn elephant weighs ~120 kg — 34× heavier. And elephant calves can walk within hours of birth."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a cruise ship than the Titanic?",
+      "metric": "Mass",
+      "itemA": { "name": "Titanic (~52,000 tonnes)", "emoji": "🚢" },
+      "itemB": { "name": "Wonder of the Seas (~236,000 tonnes)", "emoji": "⛴️" },
+      "ratio": 4.5,
+      "maxGuess": 15,
+      "difficulty": "medium",
+      "fact": "The Titanic was ~52,000 gross tonnes; the Wonder of the Seas (world's largest cruise ship) is ~236,000 GT — 4.5× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times heavier is Jupiter than all other planets combined?",
+      "metric": "Mass",
+      "itemA": { "name": "All other planets combined", "emoji": "🪐" },
+      "itemB": { "name": "Jupiter", "emoji": "🟠" },
+      "ratio": 2.5,
+      "maxGuess": 8,
+      "difficulty": "hard",
+      "fact": "All planets except Jupiter combined weigh ~450 Earth masses; Jupiter alone weighs ~318 Earth masses — but Jupiter is still ~2.5× heavier than all others combined."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times heavier is a neutron star than the Sun, despite being tiny?",
+      "metric": "Mass",
+      "itemA": { "name": "Our Sun", "emoji": "☀️" },
+      "itemB": { "name": "Typical neutron star (1.4 solar masses)", "emoji": "💫" },
+      "ratio": 1.4,
+      "maxGuess": 5,
+      "difficulty": "hard",
+      "fact": "A neutron star typically has ~1.4 solar masses — squeezed into a sphere just 20 km wide. A teaspoon of its material would weigh ~1 billion tonnes."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times heavier is an aircraft carrier than a Formula 1 car?",
+      "metric": "Mass",
+      "itemA": { "name": "Formula 1 car (798kg)", "emoji": "🏎️" },
+      "itemB": { "name": "USS Gerald Ford (100,000 tonnes)", "emoji": "⚓" },
+      "ratio": 125313,
+      "maxGuess": 400000,
+      "difficulty": "hard",
+      "fact": "An F1 car weighs 798 kg; the USS Gerald Ford aircraft carrier weighs ~100,000 tonnes — 125,000× heavier. It carries 90 aircraft and 5,000 crew."
+    }
+  ]
+}

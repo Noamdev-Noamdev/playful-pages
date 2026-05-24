@@ -1,0 +1,60 @@
+{
+  "id": 20260611,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times older is the Great Pyramid than the Eiffel Tower?",
+      "metric": "Age",
+      "itemA": { "name": "Eiffel Tower", "emoji": "🗼" },
+      "itemB": { "name": "Great Pyramid of Giza", "emoji": "🏜️" },
+      "ratio": 23,
+      "maxGuess": 70,
+      "difficulty": "easy",
+      "fact": "The Eiffel Tower was built in 1889 (~137 years ago); the Great Pyramid in ~2560 BC (~4,586 years ago) — about 33× older."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times longer ago did dinosaurs go extinct than humans evolved?",
+      "metric": "Time",
+      "itemA": { "name": "Humans evolved", "emoji": "👤" },
+      "itemB": { "name": "Dinosaur extinction", "emoji": "🦖" },
+      "ratio": 220,
+      "maxGuess": 700,
+      "difficulty": "hard",
+      "fact": "Modern humans evolved ~300,000 years ago; dinosaurs went extinct ~66 million years ago — 220× further back in time."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times closer in time to us is Cleopatra than the construction of the Great Pyramid?",
+      "metric": "Time gap",
+      "itemA": { "name": "Cleopatra to us", "emoji": "👑" },
+      "itemB": { "name": "Pyramid to Cleopatra", "emoji": "🏜️" },
+      "ratio": 1.27,
+      "maxGuess": 5,
+      "difficulty": "hard",
+      "fact": "Cleopatra died in 30 BC (~2,055 years ago); the Great Pyramid was built ~2560 BC (2,530 years before her). She was closer in time to us than to the pyramid's construction."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times longer have sharks existed than dinosaurs?",
+      "metric": "Evolutionary age",
+      "itemA": { "name": "Dinosaurs (total span)", "emoji": "🦕" },
+      "itemB": { "name": "Sharks (total span)", "emoji": "🦈" },
+      "ratio": 2.7,
+      "maxGuess": 9,
+      "difficulty": "hard",
+      "fact": "Dinosaurs existed for ~165 million years; sharks have existed for ~450 million years — 2.7× longer. Sharks predate trees."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is Earth's history than recorded human history?",
+      "metric": "Time",
+      "itemA": { "name": "Recorded human history", "emoji": "📜" },
+      "itemB": { "name": "Earth's age", "emoji": "🌍" },
+      "ratio": 900000,
+      "maxGuess": 3000000,
+      "difficulty": "hard",
+      "fact": "Recorded history goes back ~5,000 years; Earth is ~4.5 billion years old — 900,000× longer. If Earth's age were a day, all of recorded history would be the last 0.5 seconds."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": 20260622,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is the Burj Khalifa than Big Ben?",
+      "metric": "Height",
+      "itemA": { "name": "Big Ben tower (96m)", "emoji": "🕐" },
+      "itemB": { "name": "Burj Khalifa (828m)", "emoji": "🏢" },
+      "ratio": 8.6,
+      "maxGuess": 27,
+      "difficulty": "easy",
+      "fact": "Big Ben's tower is 96 m; the Burj Khalifa is 828 m — 8.6× taller. The Burj Khalifa's shadow at sunset stretches over 10 km."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times larger is the floor area of the Pentagon than Buckingham Palace?",
+      "metric": "Floor area",
+      "itemA": { "name": "Buckingham Palace", "emoji": "🏰" },
+      "itemB": { "name": "The Pentagon", "emoji": "🔵" },
+      "ratio": 17,
+      "maxGuess": 55,
+      "difficulty": "hard",
+      "fact": "Buckingham Palace has ~77,000 m² of floor space; the Pentagon has ~616,000 m² — about 8× more (or ~17× by some measurements of usable office space)."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times longer is the Channel Tunnel than the Chunnel's underwater section?",
+      "metric": "Length",
+      "itemA": { "name": "Underwater section (38km)", "emoji": "🌊" },
+      "itemB": { "name": "Full Channel Tunnel (50km)", "emoji": "🚂" },
+      "ratio": 1.3,
+      "maxGuess": 5,
+      "difficulty": "medium",
+      "fact": "The Channel Tunnel is 50 km total; 38 km is underwater — the longest undersea section of any rail tunnel in the world."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times heavier is the Great Pyramid than the Eiffel Tower?",
+      "metric": "Mass",
+      "itemA": { "name": "Eiffel Tower (7,300 tonnes)", "emoji": "🗼" },
+      "itemB": { "name": "Great Pyramid (~6 million tonnes)", "emoji": "🏜️" },
+      "ratio": 822,
+      "maxGuess": 2500,
+      "difficulty": "hard",
+      "fact": "The Eiffel Tower weighs ~7,300 tonnes; the Great Pyramid weighs ~6 million tonnes — 822× heavier, built with 2.3 million stone blocks."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is the CN Tower than Niagara Falls?",
+      "metric": "Height",
+      "itemA": { "name": "Niagara Falls (57m)", "emoji": "💧" },
+      "itemB": { "name": "CN Tower (553m)", "emoji": "📡" },
+      "ratio": 9.7,
+      "maxGuess": 30,
+      "difficulty": "medium",
+      "fact": "Niagara Falls drops 57 m; the CN Tower is 553 m tall — nearly 10× taller. You could stack almost 10 Niagara Falls inside it."
+    }
+  ]
+}

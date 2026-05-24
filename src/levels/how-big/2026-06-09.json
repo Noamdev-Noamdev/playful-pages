@@ -1,0 +1,60 @@
+{
+  "id": 20260609,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times faster is a modern smartphone processor than the Apollo 11 computer?",
+      "metric": "Processing speed",
+      "itemA": { "name": "Apollo Guidance Computer", "emoji": "🚀" },
+      "itemB": { "name": "Modern smartphone chip", "emoji": "📱" },
+      "ratio": 120000000,
+      "maxGuess": 500000000,
+      "difficulty": "hard",
+      "fact": "The Apollo computer ran at 0.043 MHz; a modern phone chip runs at ~3,200 MHz — about 120 million× faster. Apollo 11 landed on the Moon with less power than a calculator."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times more transistors does a modern CPU have than the first Intel 4004?",
+      "metric": "Transistor count",
+      "itemA": { "name": "Intel 4004 (1971)", "emoji": "💻" },
+      "itemB": { "name": "Modern CPU (2024)", "emoji": "🖥️" },
+      "ratio": 50000000000,
+      "maxGuess": 200000000000,
+      "difficulty": "hard",
+      "fact": "The Intel 4004 had 2,300 transistors; a modern CPU has ~100 billion — about 43 billion× more, each one smaller than a virus."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times larger is the internet today than in 2000 (by data stored)?",
+      "metric": "Data volume",
+      "itemA": { "name": "Internet data (2000)", "emoji": "🌐" },
+      "itemB": { "name": "Internet data (2024)", "emoji": "☁️" },
+      "ratio": 100000,
+      "maxGuess": 400000,
+      "difficulty": "hard",
+      "fact": "In 2000, the internet stored ~1 exabyte; today it stores ~100+ zettabytes — roughly 100,000× more data in 24 years."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times more energy does a nuclear power plant produce than a single wind turbine?",
+      "metric": "Power output",
+      "itemA": { "name": "Single wind turbine", "emoji": "🌬️" },
+      "itemB": { "name": "Nuclear power plant", "emoji": "⚛️" },
+      "ratio": 1500,
+      "maxGuess": 5000,
+      "difficulty": "hard",
+      "fact": "A wind turbine produces ~2 MW; a nuclear plant produces ~1,000–3,000 MW — roughly 1,500× more from a single reactor."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times heavier is a space shuttle than a Formula 1 car?",
+      "metric": "Mass",
+      "itemA": { "name": "Formula 1 car", "emoji": "🏎️" },
+      "itemB": { "name": "Space Shuttle (launch)", "emoji": "🚀" },
+      "ratio": 2500,
+      "maxGuess": 8000,
+      "difficulty": "medium",
+      "fact": "An F1 car weighs ~798 kg; the Space Shuttle at launch weighed ~2,030,000 kg — about 2,544× heavier including fuel and boosters."
+    }
+  ]
+}

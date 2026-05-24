@@ -1,0 +1,60 @@
+{
+  "id": 20260616,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times more energy does a lightning bolt release than a camera flash?",
+      "metric": "Energy",
+      "itemA": { "name": "Camera flash", "emoji": "📷" },
+      "itemB": { "name": "Lightning bolt", "emoji": "⚡" },
+      "ratio": 50000,
+      "maxGuess": 200000,
+      "difficulty": "hard",
+      "fact": "A camera flash releases ~0.001 kWh; a lightning bolt releases ~1–5 kWh — about 1,000–5,000× more energy, delivered in microseconds."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times more power does the Sun output than all human electricity generation combined?",
+      "metric": "Power output",
+      "itemA": { "name": "All human electricity", "emoji": "💡" },
+      "itemB": { "name": "The Sun's output", "emoji": "☀️" },
+      "ratio": 100000000,
+      "maxGuess": 400000000,
+      "difficulty": "hard",
+      "fact": "Humanity generates ~2.5 × 10¹³ W; the Sun outputs ~3.8 × 10²⁶ W — about 15 trillion× more. In one second, the Sun produces more energy than humanity uses in a million years."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times more energy does a nuclear bomb release than a ton of TNT?",
+      "metric": "Energy",
+      "itemA": { "name": "1 tonne of TNT", "emoji": "💣" },
+      "itemB": { "name": "Hiroshima bomb (~15 kilotons)", "emoji": "☢️" },
+      "ratio": 15000,
+      "maxGuess": 50000,
+      "difficulty": "hard",
+      "fact": "1 tonne of TNT releases ~4.2 GJ; the Hiroshima bomb released ~63,000 GJ (15 kilotons) — 15,000× more energy."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times more electricity does a kettle use than an LED bulb (per hour)?",
+      "metric": "Power",
+      "itemA": { "name": "LED light bulb (10W)", "emoji": "💡" },
+      "itemB": { "name": "Electric kettle (3000W)", "emoji": "🫖" },
+      "ratio": 300,
+      "maxGuess": 900,
+      "difficulty": "medium",
+      "fact": "An LED uses ~10W; a kettle uses ~3,000W — 300× more power. Boiling your kettle for 3 minutes uses as much energy as leaving an LED on for 15 hours."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times more energy does the human body use per day than a smartphone battery?",
+      "metric": "Energy",
+      "itemA": { "name": "Smartphone battery", "emoji": "📱" },
+      "itemB": { "name": "Human body (daily calories)", "emoji": "🧍" },
+      "ratio": 350,
+      "maxGuess": 1000,
+      "difficulty": "medium",
+      "fact": "A smartphone battery holds ~12 Wh; a human body uses ~2,000 kcal/day (~2,300 Wh) — about 190× more energy to keep you alive than your phone."
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": 20260630,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times more books exist today than when Gutenberg printed the first Bible?",
+      "metric": "Count",
+      "itemA": {
+        "name": "Books in 1455 (est. ~30,000 volumes in Europe)",
+        "emoji": "📖"
+      },
+      "itemB": {
+        "name": "Books published today (~170 million titles)",
+        "emoji": "📚"
+      },
+      "ratio": 5667,
+      "maxGuess": 18000,
+      "difficulty": "hard",
+      "fact": "Europe had ~30,000 hand-copied books in 1455; today ~170 million distinct titles exist — 5,600× more, thanks to the printing press Gutenberg invented."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times taller is the tallest wave ever surfed than a standard swimming pool depth?",
+      "metric": "Height vs Depth",
+      "itemA": {
+        "name": "Olympic pool depth (2m)",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Tallest surfed wave (26.2m, 2020)",
+        "emoji": "🏄"
+      },
+      "ratio": 13.1,
+      "maxGuess": 40,
+      "difficulty": "medium",
+      "fact": "An Olympic pool is 2 m deep; the tallest wave ever surfed was 26.2 m (Sebastian Steudtner, Nazaré, 2020) — 13× deeper than your pool."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times heavier are Earth's oceans than its entire atmosphere?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Earth's atmosphere (~5.15 × 10¹⁸ kg)",
+        "emoji": "🌬️"
+      },
+      "itemB": {
+        "name": "Earth's oceans (~1.4 × 10²¹ kg)",
+        "emoji": "🌊"
+      },
+      "ratio": 270,
+      "maxGuess": 900,
+      "difficulty": "hard",
+      "fact": "Earth's atmosphere weighs ~5.15 × 10¹⁸ kg; its oceans weigh ~1.4 × 10²¹ kg — the oceans are 270× heavier than all the air above you."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times farther away is the Andromeda Galaxy than the diameter of the Milky Way?",
+      "metric": "Distance vs Size",
+      "itemA": {
+        "name": "Milky Way diameter (~100,000 ly)",
+        "emoji": "🌌"
+      },
+      "itemB": {
+        "name": "Andromeda Galaxy distance (~2.537 million ly)",
+        "emoji": "🌠"
+      },
+      "ratio": 25.4,
+      "maxGuess": 80,
+      "difficulty": "hard",
+      "fact": "The Milky Way is ~100,000 light-years across; Andromeda is ~2.537 million light-years away — 25× our galaxy's width. Yet it's our nearest large neighbour."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times heavier is Earth than the Great Wall of China?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Great Wall of China (~374 billion kg)",
+        "emoji": "🏯"
+      },
+      "itemB": {
+        "name": "Earth (5.97 × 10²⁴ kg)",
+        "emoji": "🌍"
+      },
+      "ratio": 16000000000000,
+      "maxGuess": 60000000000000,
+      "difficulty": "hard",
+      "fact": "The Great Wall weighs ~374 billion kg; Earth weighs ~5.97 × 10²⁴ kg — 16 trillion× heavier. The Great Wall is quite literally a rounding error on a planetary scale."
+    }
+  ]
+}

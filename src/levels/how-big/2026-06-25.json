@@ -1,0 +1,60 @@
+{
+  "id": 20260625,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times larger is Earth than the Moon?",
+      "metric": "Diameter",
+      "itemA": { "name": "Moon", "emoji": "🌕" },
+      "itemB": { "name": "Earth", "emoji": "🌍" },
+      "ratio": 3.67,
+      "maxGuess": 12,
+      "difficulty": "easy",
+      "fact": "The Moon is 3,475 km wide; Earth is 12,742 km — 3.67× wider. Most people hugely overestimate this difference."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times farther is Mars from the Sun than Earth is?",
+      "metric": "Distance from Sun",
+      "itemA": { "name": "Earth from Sun (1 AU)", "emoji": "🌍" },
+      "itemB": { "name": "Mars from Sun (1.52 AU)", "emoji": "🔴" },
+      "ratio": 1.52,
+      "maxGuess": 5,
+      "difficulty": "easy",
+      "fact": "Earth is 1 AU from the Sun; Mars is 1.52 AU — only 1.5× further. Yet the distance varies hugely as both planets orbit."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times heavier is Saturn than Earth?",
+      "metric": "Mass",
+      "itemA": { "name": "Earth", "emoji": "🌍" },
+      "itemB": { "name": "Saturn", "emoji": "🪐" },
+      "ratio": 95,
+      "maxGuess": 300,
+      "difficulty": "medium",
+      "fact": "Earth weighs ~6 × 10²⁴ kg; Saturn weighs ~5.7 × 10²⁶ kg — 95× heavier. Yet Saturn is so low density it would float on water."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider are Saturn's rings than Earth's diameter?",
+      "metric": "Width",
+      "itemA": { "name": "Earth's diameter (12,742km)", "emoji": "🌍" },
+      "itemB": { "name": "Saturn's rings (280,000km wide)", "emoji": "🪐" },
+      "ratio": 22,
+      "maxGuess": 70,
+      "difficulty": "hard",
+      "fact": "Earth is 12,742 km wide; Saturn's rings span ~280,000 km — 22× wider than Earth, yet only ~10–100 m thick."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times farther is Voyager 1 from Earth than the Moon is?",
+      "metric": "Distance",
+      "itemA": { "name": "Moon from Earth", "emoji": "🌕" },
+      "itemB": { "name": "Voyager 1 from Earth", "emoji": "🛸" },
+      "ratio": 63000,
+      "maxGuess": 200000,
+      "difficulty": "hard",
+      "fact": "The Moon is ~384,400 km away; Voyager 1 is now ~24 billion km from Earth — about 63,000× further. Launched in 1977, it's the most distant human-made object."
+    }
+  ]
+}
