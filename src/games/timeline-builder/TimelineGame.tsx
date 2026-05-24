@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { Link } from "@tanstack/react-router";
 import {
     DndContext,
     DragOverlay,
@@ -11,8 +12,23 @@ import {
     type DragEndEvent,
     type DragStartEvent,
 } from "@dnd-kit/core";
-import { getRandomTimeline, sortedEvents } from "./timelines";
+import { TIMELINES, sortedEvents } from "./timelines";
 import type { Timeline, TimelineEvent, Phase, SlotResult } from "./types";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
+
+const DAILY_SLUG = "timeline-builder";
+
+/** Cheap deterministic hash → non-negative int (FNV-1a). */
+function hashKey(s: string): number {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+        h ^= s.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+}
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
