@@ -392,18 +392,8 @@ export function TimelineGame() {
         }, REVEAL_DELAY);
     }, [allPlaced, phase, slots, timeline]);
 
-    // ── Reset ──────────────────────────────────────────────────────────────────
+    // Daily mode: no restart — one play per day, replays via archive.
 
-    const handleReset = useCallback((excludeId?: string) => {
-        const next = getRandomTimeline(excludeId);
-        setTimeline(next);
-        setDrag(initialDragState(next));
-        setPhase("playing");
-        setResults([]);
-        setTotal(0);
-        setFadeOut(false);
-        setActiveId(null);
-    }, []);
 
     // ── Derived ────────────────────────────────────────────────────────────────
 
