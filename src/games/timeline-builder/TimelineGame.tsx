@@ -546,13 +546,23 @@ export function TimelineGame() {
                 )}
 
                 {isRevealed && (
-                    <button
-                        onClick={() => handleReset(timeline.id)}
-                        className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base
-              hover:opacity-90 active:scale-95 transition-all shadow-md"
-                    >
-                        Next timeline →
-                    </button>
+                    isTodaysDaily ? (
+                        <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center">
+                            <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
+                            <p className="text-sm text-muted-foreground mt-1">
+                                A new puzzle drops at midnight. Want more? Try the archive.
+                            </p>
+                        </div>
+                    ) : (
+                        <Link
+                            to="/archive/$slug"
+                            params={{ slug: DAILY_SLUG }}
+                            className="block w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base text-center
+                hover:opacity-90 active:scale-95 transition-all shadow-md"
+                        >
+                            ← Back to archive
+                        </Link>
+                    )
                 )}
             </div>
 
