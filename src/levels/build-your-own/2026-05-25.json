@@ -1,0 +1,10 @@
+{
+  "id": "rainbow",
+  "name": "Rainbow",
+  "emoji": "🌈",
+  "tier": 2,
+  "hint": "Where sunlight meets a passing storm.",
+  "recipes": [
+    ["rain", "sun"]
+  ]
+}
