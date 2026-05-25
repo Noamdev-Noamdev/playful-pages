@@ -311,13 +311,14 @@ export function AlchemyGame() {
 
   // ── Reveal-all-except-target ──────────────────────────────────────────────
   const revealOthers = useCallback(() => {
-    if (!dailyTarget) return;
-    const all = Object.keys(mergedElements).filter((id) => id !== dailyTarget.id);
+    if (!todaysTarget) return;
+    const targetId = todaysTarget.data.id;
+    const all = Object.keys(mergedElements).filter((id) => id !== targetId);
     setDiscovered(new Set(all));
     toast("Inventory unlocked", {
       description: "Every element except today's target is yours. Now find it.",
     });
-  }, [dailyTarget, mergedElements]);
+  }, [todaysTarget, mergedElements]);
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
@@ -342,14 +343,8 @@ export function AlchemyGame() {
         .alc-shaking   { animation: alc-shake  0.36s ease both; }
       `}</style>
 
-      {dailyLevel && (
-        <div className="flex justify-center">
-          <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
-        </div>
-      )}
-
       {/* ── Daily hint / reveal controls ─────────────────────────────────── */}
-      {dailyTarget && (
+      {todaysTarget && (
         <div className="rounded-2xl border-2 border-foreground bg-card px-4 py-3 flex flex-col gap-2">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
@@ -374,7 +369,7 @@ export function AlchemyGame() {
           </div>
           {showHint && (
             <p className="text-sm text-foreground italic leading-snug">
-              💡 {dailyTarget.hint}
+              💡 {todaysTarget.data.hint}
             </p>
           )}
         </div>
