@@ -5,7 +5,6 @@
   "tier": 2,
   "hint": "Where sunlight meets a passing storm.",
   "recipes": [
-    ["rain", "sun"],
-    ["light", "rain"]
+    ["rain", "sun"]
   ]
 }
