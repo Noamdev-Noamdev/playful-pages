@@ -1,6 +1,23 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useMemo, useEffect } from "react";
+import { toast } from "sonner";
 import { ELEMENTS, COMBINATIONS, TOTAL, combineKey } from "./elements";
-import type { CanvasItem, DragState } from "./types";
+import type { CanvasItem, DragState, Element } from "./types";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
+
+// ─── Daily ────────────────────────────────────────────────────────────────────
+
+const DAILY_SLUG = "build-your-own";
+
+interface DailyData {
+  id: string;
+  name: string;
+  emoji: string;
+  tier: number;
+  hint: string;
+  recipes: Array<[string, string]>;
+}
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -32,19 +49,81 @@ const TIER_COLOURS: Record<number, string> = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function AlchemyGame() {
+  // ── Daily target (from JSON) ───────────────────────────────────────────────
+  const dateParam = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("date");
+  }, []);
+
+  const dailyLevel = useMemo(() => {
+    return dateParam
+      ? getLevelByDate<DailyData>(DAILY_SLUG, dateParam)
+      : getDailyLevel<DailyData>(DAILY_SLUG);
+  }, [dateParam]);
+
+  const todayKey = formatDate(new Date());
+  const isTodaysDaily = !dateParam && (dailyLevel ? dailyLevel.date === todayKey : false);
+
+  const dailyTarget: DailyData | null = dailyLevel?.data ?? null;
+
+  // Merge daily element + recipes into our lookup tables.
+  const mergedElements = useMemo<Record<string, Element>>(() => {
+    if (!dailyTarget) return ELEMENTS;
+    return {
+      ...ELEMENTS,
+      [dailyTarget.id]: {
+        id: dailyTarget.id,
+        name: dailyTarget.name,
+        emoji: dailyTarget.emoji,
+        tier: dailyTarget.tier,
+      },
+    };
+  }, [dailyTarget]);
+
+  const mergedCombinations = useMemo<Record<string, string>>(() => {
+    if (!dailyTarget) return COMBINATIONS;
+    const out = { ...COMBINATIONS };
+    for (const [a, b] of dailyTarget.recipes) {
+      out[combineKey(a, b)] = dailyTarget.id;
+    }
+    return out;
+  }, [dailyTarget]);
+
+  const totalCount = TOTAL + (dailyTarget ? 1 : 0);
+
   const [discovered, setDiscovered] = useState<Set<string>>(
     () => new Set(STARTING_IDS)
   );
   const [canvasItems, setCanvasItems] = useState<CanvasItem[]>(
     () => STARTING_ITEMS.map((i) => ({ ...i }))
   );
-  const [toast, setToast] = useState<string | null>(null);      // recently found element id
-  const [isComplete, setIsComplete] = useState(false);
+  const [toastEl, setToastEl] = useState<string | null>(null);   // recently found element id
+  const [showHint, setShowHint] = useState(false);
+  const dailyFoundRef = useRef(false);
+  const allFoundRef = useRef(false);
 
   const canvasRef  = useRef<HTMLDivElement>(null);
-  const dragRef    = useRef<DragState | null>(null);             // mutable, no re-render on move
+  const dragRef    = useRef<DragState | null>(null);
   const nextId     = useRef(20);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // ── Daily completion lock ─────────────────────────────────────────────────
+  useEffect(() => {
+    if (!dailyTarget) return;
+    if (discovered.has(dailyTarget.id) && !dailyFoundRef.current) {
+      dailyFoundRef.current = true;
+      toast.success(`You found today's element! ${dailyTarget.emoji}`, {
+        description: dailyTarget.name,
+      });
+      if (isTodaysDaily) markDailyComplete(DAILY_SLUG);
+    }
+    if (discovered.size >= totalCount && !allFoundRef.current) {
+      allFoundRef.current = true;
+      toast.success("All elements discovered! 🌌", {
+        description: "You've built the entire universe.",
+      });
+    }
+  }, [discovered, dailyTarget, isTodaysDaily, totalCount]);
 
   // ── Helpers ───────────────────────────────────────────────────────────────
 
@@ -52,8 +131,8 @@ export function AlchemyGame() {
 
   const showToast = (elementId: string) => {
     if (toastTimer.current) clearTimeout(toastTimer.current);
-    setToast(elementId);
-    toastTimer.current = setTimeout(() => setToast(null), 2200);
+    setToastEl(elementId);
+    toastTimer.current = setTimeout(() => setToastEl(null), 2200);
   };
 
   const clearAnim = (instanceId: string, delay = 550) => {
@@ -72,8 +151,6 @@ export function AlchemyGame() {
       const rect = getRect();
       if (!rect) return;
 
-      // Read item position directly from state via functional update later;
-      // capture offset now from the event.
       const item = canvasItems.find((i) => i.instanceId === instanceId);
       if (!item) return;
 
@@ -83,7 +160,6 @@ export function AlchemyGame() {
         oy: e.clientY - rect.top  - item.y,
       };
 
-      // Bring dragged item to the top of the render order
       setCanvasItems((prev) => {
         const rest = prev.filter((i) => i.instanceId !== instanceId);
         const it   = prev.find((i)  => i.instanceId === instanceId)!;
@@ -125,7 +201,6 @@ export function AlchemyGame() {
         const cx = dragged.x + ITEM_W / 2;
         const cy = dragged.y + ITEM_H / 2;
 
-        // Find nearest other item within combine threshold
         let target: CanvasItem | null = null;
         let best = COMBINE_DIST;
         for (const other of prev) {
@@ -136,13 +211,12 @@ export function AlchemyGame() {
           if (d < best) { best = d; target = other; }
         }
 
-        if (!target) return prev; // no merge candidate
+        if (!target) return prev;
 
         const key      = combineKey(dragged.elementId, target.elementId);
-        const resultId = COMBINATIONS[key];
+        const resultId = mergedCombinations[key];
 
         if (!resultId) {
-          // Fail — shake the dragged item
           const shaken = prev.map((i) =>
             i.instanceId === drag.instanceId ? { ...i, anim: "shaking" as const } : i
           );
@@ -150,7 +224,6 @@ export function AlchemyGame() {
           return shaken;
         }
 
-        // Success — remove both, place result at midpoint
         const mx = Math.max(0, Math.min((canvasRef.current?.clientWidth ?? 400) - ITEM_W,
           (dragged.x + target.x) / 2));
         const my = Math.max(0, Math.min(CANVAS_H - ITEM_H,
@@ -166,12 +239,10 @@ export function AlchemyGame() {
 
         const isNew = !discovered.has(resultId);
 
-        // Schedule side-effects after render
         setTimeout(() => {
           if (isNew) {
             setDiscovered((d) => new Set([...d, resultId]));
             showToast(resultId);
-            if (resultId === "universe") setIsComplete(true);
           }
           clearAnim(newId, 550);
         }, 0);
@@ -184,16 +255,12 @@ export function AlchemyGame() {
         ];
       });
     },
-    [discovered]
+    [discovered, mergedCombinations]
   );
-
-  // ── Double-click to remove ─────────────────────────────────────────────────
 
   const onDoubleClick = useCallback((instanceId: string) => {
     setCanvasItems((prev) => prev.filter((i) => i.instanceId !== instanceId));
   }, []);
-
-  // ── Spawn from inventory ───────────────────────────────────────────────────
 
   const spawn = useCallback((elementId: string) => {
     const rect = getRect();
@@ -215,20 +282,22 @@ export function AlchemyGame() {
 
   const clearCanvas = useCallback(() => setCanvasItems([]), []);
 
-  const resetGame = useCallback(() => {
-    setDiscovered(new Set(STARTING_IDS));
-    setCanvasItems(STARTING_ITEMS.map((i) => ({ ...i })));
-    setIsComplete(false);
-    setToast(null);
-  }, []);
+  // ── Reveal-all-except-target ──────────────────────────────────────────────
+  const revealOthers = useCallback(() => {
+    if (!dailyTarget) return;
+    const all = Object.keys(mergedElements).filter((id) => id !== dailyTarget.id);
+    setDiscovered(new Set(all));
+    toast("Inventory unlocked", {
+      description: "Every element except today's target is yours. Now find it.",
+    });
+  }, [dailyTarget, mergedElements]);
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
-  const pct = Math.round((discovered.size / TOTAL) * 100);
+  const pct = Math.round((discovered.size / totalCount) * 100);
 
   return (
     <div className="flex flex-col gap-4 select-none">
-      {/* Keyframe definitions */}
       <style>{`
         @keyframes alc-appear {
           0%   { opacity:0; transform:scale(0) rotate(-14deg); }
@@ -246,37 +315,57 @@ export function AlchemyGame() {
         .alc-shaking   { animation: alc-shake  0.36s ease both; }
       `}</style>
 
-      {/* ── Completion banner ───────────────────────────────────────────── */}
-      {isComplete && (
-        <div className="rounded-2xl border-2 border-foreground bg-card p-5 text-center shadow-lg">
-          <p className="text-3xl mb-1">🪐</p>
-          <p className="text-xl font-black text-foreground">You discovered the Universe!</p>
-          <p className="text-sm text-muted-foreground mt-1">
-            The full chain — from primordial fire to cosmic infinity.
-          </p>
-          <button
-            onClick={resetGame}
-            className="mt-3 px-6 py-2 rounded-xl bg-foreground text-background font-semibold text-sm
-              hover:opacity-90 transition-opacity"
-          >
-            Start over
-          </button>
+      {dailyLevel && (
+        <div className="flex justify-center">
+          <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+        </div>
+      )}
+
+      {/* ── Daily hint / reveal controls ─────────────────────────────────── */}
+      {dailyTarget && (
+        <div className="rounded-2xl border-2 border-foreground bg-card px-4 py-3 flex flex-col gap-2">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
+              Today's target element
+            </p>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setShowHint((s) => !s)}
+                className="text-xs font-semibold border border-foreground rounded-lg px-2.5 py-1
+                  hover:bg-foreground hover:text-background transition-colors"
+              >
+                {showHint ? "Hide hint" : "Show hint"}
+              </button>
+              <button
+                onClick={revealOthers}
+                className="text-xs font-semibold border border-foreground rounded-lg px-2.5 py-1
+                  hover:bg-foreground hover:text-background transition-colors"
+              >
+                Reveal others
+              </button>
+            </div>
+          </div>
+          {showHint && (
+            <p className="text-sm text-foreground italic leading-snug">
+              💡 {dailyTarget.hint}
+            </p>
+          )}
         </div>
       )}
 
       {/* ── Discovery toast (fixed, top-right) ─────────────────────────── */}
-      {toast && (
+      {toastEl && mergedElements[toastEl] && (
         <div
           className="fixed top-5 right-5 z-50 flex items-center gap-3 rounded-2xl border-2
             border-foreground bg-card px-4 py-3 shadow-2xl"
           style={{ animation: "alc-appear 0.4s cubic-bezier(.34,1.56,.64,1) both" }}
         >
-          <span className="text-3xl">{ELEMENTS[toast].emoji}</span>
+          <span className="text-3xl">{mergedElements[toastEl].emoji}</span>
           <div>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">
               New Discovery!
             </p>
-            <p className="font-black text-foreground">{ELEMENTS[toast].name}</p>
+            <p className="font-black text-foreground">{mergedElements[toastEl].name}</p>
           </div>
         </div>
       )}
@@ -285,7 +374,7 @@ export function AlchemyGame() {
       <div className="flex items-center gap-3">
         <div className="flex-1">
           <div className="flex justify-between text-xs text-muted-foreground mb-1">
-            <span className="font-medium">{discovered.size} / {TOTAL} discovered</span>
+            <span className="font-medium">{discovered.size} / {totalCount} discovered</span>
             <span>{pct}%</span>
           </div>
           <div className="h-2 rounded-full bg-muted overflow-hidden border border-foreground">
@@ -301,13 +390,6 @@ export function AlchemyGame() {
             rounded-lg px-2.5 py-1 transition-colors shrink-0"
         >
           Clear
-        </button>
-        <button
-          onClick={resetGame}
-          className="text-xs text-muted-foreground hover:text-foreground border border-foreground
-            rounded-lg px-2.5 py-1 transition-colors shrink-0"
-        >
-          Reset
         </button>
       </div>
 
@@ -327,7 +409,7 @@ export function AlchemyGame() {
         )}
 
         {canvasItems.map((item) => {
-          const el = ELEMENTS[item.elementId];
+          const el = mergedElements[item.elementId];
           if (!el) return null;
           return (
             <div
@@ -371,10 +453,9 @@ export function AlchemyGame() {
         <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">
           Discovered elements
         </p>
-        {/* Group by tier */}
         {[0, 1, 2, 3, 4, 5, 6].map((tier) => {
           const tierItems = [...discovered]
-            .map((id) => ELEMENTS[id])
+            .map((id) => mergedElements[id])
             .filter((el) => el && el.tier === tier);
           if (tierItems.length === 0) return null;
 
