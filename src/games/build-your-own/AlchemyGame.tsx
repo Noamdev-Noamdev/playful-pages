@@ -2,13 +2,12 @@ import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import { toast } from "sonner";
 import { ELEMENTS, COMBINATIONS, TOTAL, combineKey } from "./elements";
 import type { CanvasItem, DragState, Element } from "./types";
-import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
-import { DailyBadge } from "@/components/DailyBadge";
-import { markDailyComplete } from "@/lib/dailyLock";
+import { getArchiveDates, getLevelByDate, formatDate } from "@/levels";
 
 // ─── Daily ────────────────────────────────────────────────────────────────────
 
 const DAILY_SLUG = "build-your-own";
+const STORAGE_KEY = "playpile:byo:discovered";
 
 interface DailyData {
   id: string;
@@ -17,6 +16,11 @@ interface DailyData {
   tier: number;
   hint: string;
   recipes: Array<[string, string]>;
+}
+
+interface DailyEntry {
+  date: string;
+  data: DailyData;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -49,55 +53,79 @@ const TIER_COLOURS: Record<number, string> = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function AlchemyGame() {
-  // ── Daily target (from JSON) ───────────────────────────────────────────────
-  const dateParam = useMemo(() => {
-    if (typeof window === "undefined") return null;
-    return new URLSearchParams(window.location.search).get("date");
+  // ── Collect every authored daily element dated ≤ today ─────────────────────
+  // The newest one is "today's target" (gets the hint + reveal-others button).
+  // All earlier ones are permanently merged into the element pool so they can
+  // be ingredients for future dailies.
+  const { allDailies, todaysTarget } = useMemo(() => {
+    const todayKey = formatDate(new Date());
+    const dates = getArchiveDates(DAILY_SLUG)
+      .filter((d) => d.date <= todayKey)
+      .sort((a, b) => (a.date < b.date ? -1 : 1));
+
+    const entries: DailyEntry[] = [];
+    for (const { date } of dates) {
+      const entry = getLevelByDate<DailyData>(DAILY_SLUG, date);
+      if (entry?.data) entries.push({ date: entry.date, data: entry.data });
+    }
+    return {
+      allDailies: entries,
+      todaysTarget: entries.length > 0 ? entries[entries.length - 1] : null,
+    };
   }, []);
 
-  const dailyLevel = useMemo(() => {
-    return dateParam
-      ? getLevelByDate<DailyData>(DAILY_SLUG, dateParam)
-      : getDailyLevel<DailyData>(DAILY_SLUG);
-  }, [dateParam]);
-
-  const todayKey = formatDate(new Date());
-  const isTodaysDaily = !dateParam && (dailyLevel ? dailyLevel.date === todayKey : false);
-
-  const dailyTarget: DailyData | null = dailyLevel?.data ?? null;
-
-  // Merge daily element + recipes into our lookup tables.
+  // Merge every past+today daily element into the lookup tables.
   const mergedElements = useMemo<Record<string, Element>>(() => {
-    if (!dailyTarget) return ELEMENTS;
-    return {
-      ...ELEMENTS,
-      [dailyTarget.id]: {
-        id: dailyTarget.id,
-        name: dailyTarget.name,
-        emoji: dailyTarget.emoji,
-        tier: dailyTarget.tier,
-      },
-    };
-  }, [dailyTarget]);
-
-  const mergedCombinations = useMemo<Record<string, string>>(() => {
-    if (!dailyTarget) return COMBINATIONS;
-    const out = { ...COMBINATIONS };
-    for (const [a, b] of dailyTarget.recipes) {
-      out[combineKey(a, b)] = dailyTarget.id;
+    if (allDailies.length === 0) return ELEMENTS;
+    const out: Record<string, Element> = { ...ELEMENTS };
+    for (const { data } of allDailies) {
+      out[data.id] = {
+        id: data.id,
+        name: data.name,
+        emoji: data.emoji,
+        tier: data.tier,
+      };
     }
     return out;
-  }, [dailyTarget]);
+  }, [allDailies]);
 
-  const totalCount = TOTAL + (dailyTarget ? 1 : 0);
+  const mergedCombinations = useMemo<Record<string, string>>(() => {
+    if (allDailies.length === 0) return COMBINATIONS;
+    const out: Record<string, string> = { ...COMBINATIONS };
+    for (const { data } of allDailies) {
+      for (const [a, b] of data.recipes) {
+        out[combineKey(a, b)] = data.id;
+      }
+    }
+    return out;
+  }, [allDailies]);
 
-  const [discovered, setDiscovered] = useState<Set<string>>(
-    () => new Set(STARTING_IDS)
-  );
+  const totalCount = TOTAL + allDailies.length;
+
+  // ── Discovered set — persisted across days ────────────────────────────────
+  const [discovered, setDiscovered] = useState<Set<string>>(() => {
+    if (typeof window === "undefined") return new Set(STARTING_IDS);
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const arr = JSON.parse(raw) as string[];
+        return new Set([...STARTING_IDS, ...arr]);
+      }
+    } catch { /* ignore */ }
+    return new Set(STARTING_IDS);
+  });
+
+  // Persist on every change.
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...discovered]));
+    } catch { /* ignore */ }
+  }, [discovered]);
+
   const [canvasItems, setCanvasItems] = useState<CanvasItem[]>(
     () => STARTING_ITEMS.map((i) => ({ ...i }))
   );
-  const [toastEl, setToastEl] = useState<string | null>(null);   // recently found element id
+  const [toastEl, setToastEl] = useState<string | null>(null);
   const [showHint, setShowHint] = useState(false);
   const dailyFoundRef = useRef(false);
   const allFoundRef = useRef(false);
@@ -107,27 +135,26 @@ export function AlchemyGame() {
   const nextId     = useRef(20);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // ── Daily completion lock ─────────────────────────────────────────────────
+  // ── Sonner notifications ──────────────────────────────────────────────────
   useEffect(() => {
-    if (!dailyTarget) return;
-    if (discovered.has(dailyTarget.id) && !dailyFoundRef.current) {
+    if (todaysTarget && discovered.has(todaysTarget.data.id) && !dailyFoundRef.current) {
       dailyFoundRef.current = true;
-      toast.success(`You found today's element! ${dailyTarget.emoji}`, {
-        description: dailyTarget.name,
+      toast.success(`You found today's element! ${todaysTarget.data.emoji}`, {
+        description: todaysTarget.data.name,
       });
-      if (isTodaysDaily) markDailyComplete(DAILY_SLUG);
     }
-    if (discovered.size >= totalCount && !allFoundRef.current) {
+    if (discovered.size >= totalCount && totalCount > 0 && !allFoundRef.current) {
       allFoundRef.current = true;
       toast.success("All elements discovered! 🌌", {
         description: "You've built the entire universe.",
       });
     }
-  }, [discovered, dailyTarget, isTodaysDaily, totalCount]);
+  }, [discovered, todaysTarget, totalCount]);
 
   // ── Helpers ───────────────────────────────────────────────────────────────
 
   const getRect = () => canvasRef.current?.getBoundingClientRect() ?? null;
+
 
   const showToast = (elementId: string) => {
     if (toastTimer.current) clearTimeout(toastTimer.current);
