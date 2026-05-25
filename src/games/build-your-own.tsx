@@ -10,6 +10,7 @@ const BuildYourOwn: Game = {
   color: "yellow",
   category: "originals",
   Component: AlchemyGame,
+  dailySlug: "build-your-own",
 };
 
 export default BuildYourOwn;
