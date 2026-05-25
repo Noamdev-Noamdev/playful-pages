@@ -1,0 +1,15 @@
+{
+  "id": 20260525,
+  "prompt": "Rank from lightest to heaviest brain",
+  "promptEmoji": "🧠",
+  "shareLabel": "by brain weight",
+  "metric": "Average brain weight (grams)",
+  "difficulty": "medium",
+  "items": [
+    { "name": "Honeybee",        "emoji": "🐝", "value": 0.001, "fact": "~0.001g — about the size of a sesame seed" },
+    { "name": "Mouse",           "emoji": "🐭", "value": 0.4,   "fact": "~0.4g — roughly 2% of its body weight" },
+    { "name": "Human",           "emoji": "🧠", "value": 1400,  "fact": "~1,400g — contains about 86 billion neurons" },
+    { "name": "African elephant","emoji": "🐘", "value": 5000,  "fact": "~5,000g — largest brain of any land animal" },
+    { "name": "Sperm whale",     "emoji": "🐋", "value": 8000,  "fact": "~8,000g — largest brain of any species" }
+  ]
+}

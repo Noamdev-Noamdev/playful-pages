@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-25",
+  "theme": "US History Landmarks",
+  "prompt": "Order these US history events from earliest to latest",
+  "themeEmoji": "🇺🇸",
+  "difficulty": "easy",
+  "events": [
+    {
+      "id": "us1",
+      "title": "Declaration of Independence",
+      "emoji": "📜",
+      "year": 1776,
+      "fact": "1776 — colonies declare independence from Britain"
+    },
+    {
+      "id": "us2",
+      "title": "Louisiana Purchase",
+      "emoji": "🗺️",
+      "year": 1803,
+      "fact": "1803 — US buys territory from France for $15 million"
+    },
+    {
+      "id": "us3",
+      "title": "Gettysburg Address",
+      "emoji": "📜",
+      "year": 1863,
+      "fact": "1863 — Lincoln's address at battlefield cemetery"
+    },
+    {
+      "id": "us4",
+      "title": "Statue of Liberty dedicated",
+      "emoji": "🗽",
+      "year": 1886,
+      "fact": "1886 — monument gifted by France dedicated"
+    },
+    {
+      "id": "us5",
+      "title": "Golden Gate Bridge opens",
+      "emoji": "🌉",
+      "year": 1937,
+      "fact": "1937 — suspension bridge connects SF to Marin County"
+    },
+    {
+      "id": "us6",
+      "title": "Mount Rushmore complete",
+      "emoji": "⛰️",
+      "year": 1941,
+      "fact": "1941 — four presidential faces carved in SD"
+    },
+    {
+      "id": "us7",
+      "title": "I Have a Dream speech",
+      "emoji": "🗣️",
+      "year": 1963,
+      "fact": "1963 — MLK Jr. delivers address at Lincoln Memorial"
+    }
+  ]
+}

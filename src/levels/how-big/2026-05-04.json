@@ -1,0 +1,90 @@
+{
+  "id": 20260504,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 31.6,
+      "maxGuess": 79,
+      "difficulty": "easy",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Bowling pin's 38 cm — making it about 32× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Great Pyramid of Giza than a Grizzly bear?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grizzly bear",
+        "emoji": "🐻"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 20000000,
+      "maxGuess": 50000000,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 6 billion kg vs Grizzly bear's 300 kg — making it about 20000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Width of United States?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 15.5,
+      "maxGuess": 39,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Width of United States's 4,500 km — making it about 16× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a London Eye than a Large pizza?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "itemB": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "ratio": 342.9,
+      "maxGuess": 858,
+      "difficulty": "medium",
+      "fact": "London Eye measures 120 m vs Large pizza's 35 cm — making it about 343× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Gummy bear than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "ratio": 40,
+      "maxGuess": 100,
+      "difficulty": "hard",
+      "fact": "Gummy bear measures 2 cm vs Tardigrade's 0.5 mm — making it about 40× longer."
+    }
+  ]
+}

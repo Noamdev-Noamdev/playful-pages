@@ -1,0 +1,40 @@
+{
+  "id": 20260522,
+  "prompt": "Rank from fewest to most calories",
+  "promptEmoji": "🍔",
+  "shareLabel": "by calorie count",
+  "metric": "Calories (kcal)",
+  "difficulty": "easy",
+  "items": [
+    {
+      "name": "McDonald's Apple Pie",
+      "emoji": "🥧",
+      "value": 240,
+      "fact": "240 kcal — warm pastry with apples"
+    },
+    {
+      "name": "McDonald's Cheeseburger",
+      "emoji": "🍔",
+      "value": 300,
+      "fact": "300 kcal — standard single patty burger"
+    },
+    {
+      "name": "Large Fries",
+      "emoji": "🍟",
+      "value": 510,
+      "fact": "510 kcal — salted potato sticks"
+    },
+    {
+      "name": "Big Mac",
+      "emoji": "🍔",
+      "value": 550,
+      "fact": "550 kcal — two all-beef patties, special sauce"
+    },
+    {
+      "name": "Double Qtr Pounder",
+      "emoji": "🍔",
+      "value": 740,
+      "fact": "740 kcal — double beef with cheese"
+    }
+  ]
+}

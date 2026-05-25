@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-04",
+  "theme": "Maritime Exploration",
+  "prompt": "Order these maritime events from earliest to latest",
+  "themeEmoji": "⛵",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "ma1",
+      "title": "Columbus reaches Bahamas",
+      "emoji": "⛵",
+      "year": 1492,
+      "fact": "1492 — lands in San Salvador sailing for Spain"
+    },
+    {
+      "id": "ma2",
+      "title": "Vasco da Gama reaches India",
+      "emoji": "⛵",
+      "year": 1498,
+      "fact": "1498 — first European to reach India by sea"
+    },
+    {
+      "id": "ma3",
+      "title": "Magellan sets sail",
+      "emoji": "⛵",
+      "year": 1519,
+      "fact": "1519 — five ships leave Spain to circumnavigate globe"
+    },
+    {
+      "id": "ma4",
+      "title": "Spanish Armada defeated",
+      "emoji": "⚔️",
+      "year": 1588,
+      "fact": "1588 — England defeats invading Spanish fleet"
+    },
+    {
+      "id": "ma5",
+      "title": "Mayflower lands at Plymouth",
+      "emoji": "⛵",
+      "year": 1620,
+      "fact": "1620 — Pilgrim Fathers establish Plymouth Colony"
+    },
+    {
+      "id": "ma6",
+      "title": "Cook charts Australia",
+      "emoji": "⚓",
+      "year": 1770,
+      "fact": "1770 — HMS Endeavour charts eastern coast"
+    },
+    {
+      "id": "ma7",
+      "title": "Battle of Trafalgar",
+      "emoji": "⚔️",
+      "year": 1805,
+      "fact": "1805 — British Navy under Nelson defeats French/Spanish fleet"
+    }
+  ]
+}

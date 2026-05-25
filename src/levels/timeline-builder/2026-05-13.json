@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-13",
+  "theme": "Communications",
+  "prompt": "Order these communication milestones from earliest to latest",
+  "themeEmoji": "🖨️",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "cm1",
+      "title": "Printing press invented",
+      "emoji": "🖨️",
+      "year": 1440,
+      "fact": "1440 — Johannes Gutenberg's movable type press"
+    },
+    {
+      "id": "cm2",
+      "title": "Telegraph developed",
+      "emoji": "🎛️",
+      "year": 1837,
+      "fact": "1837 — Morse and Cooke/Wheatstone systems patent"
+    },
+    {
+      "id": "cm3",
+      "title": "Telephone patented",
+      "emoji": "☎️",
+      "year": 1876,
+      "fact": "1876 — Alexander Graham Bell's speech transmitter"
+    },
+    {
+      "id": "cm4",
+      "title": "Radio transmission",
+      "emoji": "📻",
+      "year": 1895,
+      "fact": "1895 — Guglielmo Marconi sends wireless signals"
+    },
+    {
+      "id": "cm5",
+      "title": "Electronic television",
+      "emoji": "📺",
+      "year": 1927,
+      "fact": "1927 — Philo Farnsworth transmits first image"
+    },
+    {
+      "id": "cm6",
+      "title": "First email sent",
+      "emoji": "📧",
+      "year": 1971,
+      "fact": "1971 — Ray Tomlinson sends text between computers"
+    },
+    {
+      "id": "cm7",
+      "title": "First SMS text message",
+      "emoji": "💬",
+      "year": 1992,
+      "fact": "1992 — 'Merry Christmas' sent over Vodafone network"
+    }
+  ]
+}

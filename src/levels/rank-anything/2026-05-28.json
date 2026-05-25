@@ -1,0 +1,40 @@
+{
+  "id": 20260528,
+  "prompt": "Rank from fewest to most heart chambers / hearts",
+  "promptEmoji": "🫀",
+  "shareLabel": "by heart count",
+  "metric": "Number of hearts / chambers",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Human",
+      "emoji": "🫀",
+      "value": 1,
+      "fact": "1 heart — with 4 distinct chambers"
+    },
+    {
+      "name": "Octopus",
+      "emoji": "🐙",
+      "value": 3,
+      "fact": "3 hearts — two for gills, one for the body"
+    },
+    {
+      "name": "Hagfish",
+      "emoji": "🐟",
+      "value": 4,
+      "fact": "4 hearts — one primary and three accessory pumps"
+    },
+    {
+      "name": "Earthworm",
+      "emoji": "🪱",
+      "value": 10,
+      "fact": "10 pseudo-hearts — 5 pairs of aortic arches"
+    },
+    {
+      "name": "Cockroach",
+      "emoji": "🪳",
+      "value": 13,
+      "fact": "13 chambers — a single tube-like heart"
+    }
+  ]
+}

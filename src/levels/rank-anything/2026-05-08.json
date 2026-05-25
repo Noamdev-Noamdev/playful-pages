@@ -1,0 +1,40 @@
+{
+  "id": 20260508,
+  "prompt": "Rank these famous shipwrecks from shallowest to deepest",
+  "promptEmoji": "⚓",
+  "shareLabel": "by shipwreck depth",
+  "metric": "Depth below sea level (metres)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Vasa",
+      "emoji": "⛵",
+      "value": 32,
+      "fact": "32 m deep — sank in Stockholm harbor in 1628"
+    },
+    {
+      "name": "Andrea Doria",
+      "emoji": "🛳️",
+      "value": 73,
+      "fact": "73 m deep — sank off Nantucket in 1956"
+    },
+    {
+      "name": "Lusitania",
+      "emoji": "🚢",
+      "value": 93,
+      "fact": "93 m deep — torpedoed off Ireland in 1915"
+    },
+    {
+      "name": "Titanic",
+      "emoji": "🚢",
+      "value": 3800,
+      "fact": "3,800 m deep — hit iceberg in N. Atlantic in 1912"
+    },
+    {
+      "name": "USS Johnston",
+      "emoji": "⚓",
+      "value": 6456,
+      "fact": "6,456 m deep — WWII destroyer, deepest wreck identified"
+    }
+  ]
+}

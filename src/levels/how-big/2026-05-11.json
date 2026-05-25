@@ -1,0 +1,90 @@
+{
+  "id": 20260511,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a CN Tower than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "CN Tower",
+        "emoji": "🗼"
+      },
+      "ratio": 1455.3,
+      "maxGuess": 3639,
+      "difficulty": "easy",
+      "fact": "CN Tower measures 553 m vs Bowling pin's 38 cm — making it about 1455× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Standard brick than a Raindrop?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "itemB": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "ratio": 46000,
+      "maxGuess": 115000,
+      "difficulty": "easy",
+      "fact": "Standard brick measures 2.3 kg vs Raindrop's 0.05 g — making it about 46000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 3236.6,
+      "maxGuess": 8092,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Length of Manhattan's 21.6 km — making it about 3237× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Ceres dwarf planet than a Meteor Crater?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "itemB": {
+        "name": "Ceres dwarf planet",
+        "emoji": "🪐"
+      },
+      "ratio": 783.3,
+      "maxGuess": 1959,
+      "difficulty": "medium",
+      "fact": "Ceres dwarf planet measures 940 km vs Meteor Crater's 1.2 km — making it about 783× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Standard doorway than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Standard doorway",
+        "emoji": "🚪"
+      },
+      "ratio": 4000,
+      "maxGuess": 10000,
+      "difficulty": "hard",
+      "fact": "Standard doorway measures 2 m vs Tardigrade's 0.5 mm — making it about 4000× taller."
+    }
+  ]
+}

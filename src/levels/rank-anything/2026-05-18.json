@@ -1,0 +1,40 @@
+{
+  "id": 20260518,
+  "prompt": "Rank from shortest to longest electromagnetic wavelength of visible colors",
+  "promptEmoji": "🌈",
+  "shareLabel": "by wavelength",
+  "metric": "Wavelength (nanometres)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Violet",
+      "emoji": "💜",
+      "value": 400,
+      "fact": "~400 nm — highest frequency of visible light"
+    },
+    {
+      "name": "Blue",
+      "emoji": "💙",
+      "value": 470,
+      "fact": "~470 nm — scatters easily, making sky look blue"
+    },
+    {
+      "name": "Green",
+      "emoji": "💚",
+      "value": 530,
+      "fact": "~530 nm — human eye is most sensitive to green"
+    },
+    {
+      "name": "Yellow",
+      "emoji": "💛",
+      "value": 580,
+      "fact": "~580 nm — high visibility, used for warning signs"
+    },
+    {
+      "name": "Red",
+      "emoji": "❤️",
+      "value": 700,
+      "fact": "~700 nm — longest wavelength, scatters the least"
+    }
+  ]
+}

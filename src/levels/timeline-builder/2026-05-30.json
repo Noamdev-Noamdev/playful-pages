@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-30",
+  "theme": "Discoveries in Geology",
+  "prompt": "Order these geological events from earliest to latest",
+  "themeEmoji": "🪨",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "ge1",
+      "title": "Hutton proposes deep time",
+      "emoji": "⏳",
+      "year": 1785,
+      "fact": "1785 — James Hutton details uniformitarianism"
+    },
+    {
+      "id": "ge2",
+      "title": "First nationwide geological map",
+      "emoji": "🗺️",
+      "year": 1815,
+      "fact": "1815 — William Smith maps geological strata of England"
+    },
+    {
+      "id": "ge3",
+      "title": "Principles of Geology published",
+      "emoji": "🪨",
+      "year": 1830,
+      "fact": "1830 — Charles Lyell's landmark multi-volume work"
+    },
+    {
+      "id": "ge4",
+      "title": "Continental drift proposed",
+      "emoji": "🌍",
+      "year": 1912,
+      "fact": "1912 — Alfred Wegener details supercontinent Pangaea"
+    },
+    {
+      "id": "ge5",
+      "title": "Mid-Atlantic Ridge mapped",
+      "emoji": "🗺️",
+      "year": 1953,
+      "fact": "1953 — Marie Tharp discovers massive rift valley"
+    },
+    {
+      "id": "ge6",
+      "title": "Seafloor spreading proposed",
+      "emoji": "🌊",
+      "year": 1960,
+      "fact": "1960 — Harry Hess details plate tectonics mechanism"
+    },
+    {
+      "id": "ge7",
+      "title": "Alvarez asteroid hypothesis",
+      "emoji": "☄️",
+      "year": 1980,
+      "fact": "1980 — proposes impact killed dinosaurs at K-Pg boundary"
+    }
+  ]
+}

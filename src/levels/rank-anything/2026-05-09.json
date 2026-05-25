@@ -1,0 +1,40 @@
+{
+  "id": 20260509,
+  "prompt": "Rank from quietest to loudest sound",
+  "promptEmoji": "🔊",
+  "shareLabel": "by loudness",
+  "metric": "Sound level (decibels)",
+  "difficulty": "easy",
+  "items": [
+    {
+      "name": "Rustling leaves",
+      "emoji": "🍂",
+      "value": 20,
+      "fact": "~20 dB — barely audible whisper scale"
+    },
+    {
+      "name": "Normal conversation",
+      "emoji": "🗣️",
+      "value": 60,
+      "fact": "~60 dB — comfortable conversational level"
+    },
+    {
+      "name": "Lawnmower",
+      "emoji": "🚜",
+      "value": 90,
+      "fact": "~90 dB — hearing protection recommended"
+    },
+    {
+      "name": "Rock concert",
+      "emoji": "🎸",
+      "value": 120,
+      "fact": "~120 dB — human threshold of pain"
+    },
+    {
+      "name": "Rocket launch (Saturn V)",
+      "emoji": "🚀",
+      "value": 180,
+      "fact": "~180 dB — sound pressure can damage tissue"
+    }
+  ]
+}

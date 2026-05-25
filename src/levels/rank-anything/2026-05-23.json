@@ -1,0 +1,40 @@
+{
+  "id": 20260523,
+  "prompt": "Rank from fewest to most eggs in a single clutch",
+  "promptEmoji": "🥚",
+  "shareLabel": "by egg count",
+  "metric": "Number of eggs laid",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Emperor Penguin",
+      "emoji": "🐧",
+      "value": 1,
+      "fact": "1 egg — incubated on the father's feet"
+    },
+    {
+      "name": "Bald Eagle",
+      "emoji": "🦅",
+      "value": 2,
+      "fact": "2 eggs — typically in a massive nest"
+    },
+    {
+      "name": "Green Sea Turtle",
+      "emoji": "🐢",
+      "value": 110,
+      "fact": "~110 eggs — buried in sandy beach nests"
+    },
+    {
+      "name": "Salmon",
+      "emoji": "🐟",
+      "value": 5000,
+      "fact": "~5,000 eggs — laid in river gravel nests"
+    },
+    {
+      "name": "Ocean Sunfish",
+      "emoji": "🐟",
+      "value": 300000000,
+      "fact": "300 million eggs — most of any vertebrate"
+    }
+  ]
+}

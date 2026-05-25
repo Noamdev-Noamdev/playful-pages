@@ -1,0 +1,40 @@
+{
+  "id": 20260516,
+  "prompt": "Rank these historical empires from shortest to longest duration",
+  "promptEmoji": "👑",
+  "shareLabel": "by empire lifespan",
+  "metric": "Duration (years)",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Nazi Germany",
+      "emoji": "🇩🇪",
+      "value": 12,
+      "fact": "12 years — 1933 to 1945, the Third Reich"
+    },
+    {
+      "name": "Mongol Empire",
+      "emoji": "🏹",
+      "value": 162,
+      "fact": "162 years — 1206 to 1368, largest contiguous empire"
+    },
+    {
+      "name": "Roman Republic",
+      "emoji": "🏛️",
+      "value": 482,
+      "fact": "482 years — 509 BC to 27 BC"
+    },
+    {
+      "name": "Ottoman Empire",
+      "emoji": "🕌",
+      "value": 624,
+      "fact": "624 years — 1299 to 1922, spanned Europe & Asia"
+    },
+    {
+      "name": "Byzantine Empire",
+      "emoji": "👑",
+      "value": 1123,
+      "fact": "1,123 years — 330 AD to 1453 AD"
+    }
+  ]
+}

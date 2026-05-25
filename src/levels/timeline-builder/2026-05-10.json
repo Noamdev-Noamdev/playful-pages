@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-10",
+  "theme": "Astronomical Discoveries",
+  "prompt": "Order these celestial discoveries from earliest to latest",
+  "themeEmoji": "🪐",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "as1",
+      "title": "Heliocentrisim published",
+      "emoji": "☀️",
+      "year": 1543,
+      "fact": "1543 — Copernicus challenges Earth-centered model"
+    },
+    {
+      "id": "as2",
+      "title": "Jupiter's moons observed",
+      "emoji": "🔭",
+      "year": 1610,
+      "fact": "1610 — Galileo spots Io, Europa, Ganymede, Callisto"
+    },
+    {
+      "id": "as3",
+      "title": "Uranus discovered",
+      "emoji": "🔵",
+      "year": 1781,
+      "fact": "1781 — William Herschel spots planet with telescope"
+    },
+    {
+      "id": "as4",
+      "title": "Neptune discovered",
+      "emoji": "🔵",
+      "year": 1846,
+      "fact": "1846 — predicted mathematically before observation"
+    },
+    {
+      "id": "as5",
+      "title": "Universe expansion shown",
+      "emoji": "🌌",
+      "year": 1929,
+      "fact": "1929 — Edwin Hubble measures galactic redshifts"
+    },
+    {
+      "id": "as6",
+      "title": "Pluto discovered",
+      "emoji": "❄️",
+      "year": 1930,
+      "fact": "1930 — Clyde Tombaugh finds 9th planet (later dwarf)"
+    },
+    {
+      "id": "as7",
+      "title": "First exoplanet confirmed",
+      "emoji": "🪐",
+      "year": 1995,
+      "fact": "1995 — 51 Pegasi b discovered orbiting Sun-like star"
+    }
+  ]
+}

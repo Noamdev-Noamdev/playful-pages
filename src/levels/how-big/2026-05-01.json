@@ -1,0 +1,90 @@
+{
+  "id": 20260501,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 760,
+      "maxGuess": 1900,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Tardigrade's 0.5 mm — making it about 760× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Cruise ship than a Mountain bike?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Mountain bike",
+        "emoji": "🚲"
+      },
+      "itemB": {
+        "name": "Cruise ship",
+        "emoji": "🚢"
+      },
+      "ratio": 16285714.3,
+      "maxGuess": 40714286,
+      "difficulty": "easy",
+      "fact": "Cruise ship measures 228 million kg vs Mountain bike's 14 kg — making it about 16285714× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 208.3,
+      "maxGuess": 521,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Length of Manhattan's 21.6 km — making it about 208× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a London Eye?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 10,
+      "maxGuess": 25,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs London Eye's 120 m — making it about 10× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a CN Tower than a Gateway Arch?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gateway Arch",
+        "emoji": "🌉"
+      },
+      "itemB": {
+        "name": "CN Tower",
+        "emoji": "🗼"
+      },
+      "ratio": 2.88,
+      "maxGuess": 10,
+      "difficulty": "hard",
+      "fact": "CN Tower measures 553 m vs Gateway Arch's 192 m — making it about 3× taller."
+    }
+  ]
+}

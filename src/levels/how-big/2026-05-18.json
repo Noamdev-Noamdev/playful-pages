@@ -1,0 +1,90 @@
+{
+  "id": 20260518,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 31.6,
+      "maxGuess": 79,
+      "difficulty": "easy",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Bowling pin's 38 cm — making it about 32× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Mountain bike than a Grain of sand?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grain of sand",
+        "emoji": "⏳"
+      },
+      "itemB": {
+        "name": "Mountain bike",
+        "emoji": "🚲"
+      },
+      "ratio": 1400000,
+      "maxGuess": 3500000,
+      "difficulty": "easy",
+      "fact": "Mountain bike measures 14 kg vs Grain of sand's 0.01 g — making it about 1400000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Olympic swimming pool?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Olympic swimming pool",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 1398220,
+      "maxGuess": 3495550,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Olympic swimming pool's 0.05 km — making it about 1398220× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Ceres dwarf planet than a Large pizza?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "itemB": {
+        "name": "Ceres dwarf planet",
+        "emoji": "🪐"
+      },
+      "ratio": 2685714.3,
+      "maxGuess": 6714286,
+      "difficulty": "medium",
+      "fact": "Ceres dwarf planet measures 940 km vs Large pizza's 35 cm — making it about 2685714× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Gateway Arch than a Giant Sequoia?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Giant Sequoia",
+        "emoji": "🌲"
+      },
+      "itemB": {
+        "name": "Gateway Arch",
+        "emoji": "🌉"
+      },
+      "ratio": 2.29,
+      "maxGuess": 10,
+      "difficulty": "hard",
+      "fact": "Gateway Arch measures 192 m vs Giant Sequoia's 84 m — making it about 2× taller."
+    }
+  ]
+}

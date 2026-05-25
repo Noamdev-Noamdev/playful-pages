@@ -1,0 +1,90 @@
+{
+  "id": 20260517,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Standard doorway than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Standard doorway",
+        "emoji": "🚪"
+      },
+      "ratio": 5.26,
+      "maxGuess": 14,
+      "difficulty": "easy",
+      "fact": "Standard doorway measures 2 m vs Bowling pin's 38 cm — making it about 5× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Mountain bike than a Standard brick?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "itemB": {
+        "name": "Mountain bike",
+        "emoji": "🚲"
+      },
+      "ratio": 6.09,
+      "maxGuess": 16,
+      "difficulty": "easy",
+      "fact": "Mountain bike measures 14 kg vs Standard brick's 2.3 kg — making it about 6× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Great Barrier Reef than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Great Barrier Reef",
+        "emoji": "🪸"
+      },
+      "ratio": 106.5,
+      "maxGuess": 267,
+      "difficulty": "medium",
+      "fact": "Great Barrier Reef measures 2,300 km vs Length of Manhattan's 21.6 km — making it about 107× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Large pizza than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "ratio": 8.75,
+      "maxGuess": 22,
+      "difficulty": "medium",
+      "fact": "Large pizza measures 35 cm vs Ping pong ball's 4 cm — making it about 9× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Great Pyramid of Giza than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 274000,
+      "maxGuess": 685000,
+      "difficulty": "hard",
+      "fact": "Great Pyramid of Giza measures 137 m vs Tardigrade's 0.5 mm — making it about 274000× taller."
+    }
+  ]
+}

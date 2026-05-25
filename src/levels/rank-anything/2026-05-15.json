@@ -1,0 +1,40 @@
+{
+  "id": 20260515,
+  "prompt": "Rank from slowest to fastest wind speed",
+  "promptEmoji": "💨",
+  "shareLabel": "by wind speed",
+  "metric": "Wind speed (km/h)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Gentle breeze",
+      "emoji": "🍃",
+      "value": 15,
+      "fact": "15 km/h — leaves rustle, wind felt on face"
+    },
+    {
+      "name": "Gale",
+      "emoji": "💨",
+      "value": 65,
+      "fact": "65 km/h — twigs break off trees, hard to walk"
+    },
+    {
+      "name": "Hurricane Cat 5",
+      "emoji": "🌀",
+      "value": 252,
+      "fact": "252+ km/h — catastrophic damage to buildings"
+    },
+    {
+      "name": "Tornado wind (max)",
+      "emoji": "🌪️",
+      "value": 484,
+      "fact": "484 km/h — highest recorded speed (Oklahoma, 1999)"
+    },
+    {
+      "name": "Neptune's winds",
+      "emoji": "🔵",
+      "value": 2100,
+      "fact": "2,100 km/h — fastest winds in the Solar System"
+    }
+  ]
+}

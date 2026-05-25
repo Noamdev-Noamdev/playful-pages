@@ -1,0 +1,40 @@
+{
+  "id": 20260529,
+  "prompt": "Rank from lowest to highest freezing point",
+  "promptEmoji": "❄️",
+  "shareLabel": "by freezing point",
+  "metric": "Freezing point (°C)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Helium",
+      "emoji": "🎈",
+      "value": -272,
+      "fact": "−272 °C — only freezes under high pressure near absolute zero"
+    },
+    {
+      "name": "Ethanol (pure)",
+      "emoji": "🧪",
+      "value": -114,
+      "fact": "−114 °C — reason why vodka doesn't freeze in home freezers"
+    },
+    {
+      "name": "Mercury",
+      "emoji": "🌡️",
+      "value": -38.8,
+      "fact": "−38.8 °C — freezes into a malleable solid metal"
+    },
+    {
+      "name": "Water",
+      "emoji": "💧",
+      "value": 0,
+      "fact": "0 °C — basic standard reference point"
+    },
+    {
+      "name": "Olive oil",
+      "emoji": "🫒",
+      "value": 6,
+      "fact": "~6 °C — starts to solidify in a cold refrigerator"
+    }
+  ]
+}

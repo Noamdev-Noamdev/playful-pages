@@ -1,0 +1,40 @@
+{
+  "id": 20260512,
+  "prompt": "Rank from driest to wettest city",
+  "promptEmoji": "🌧️",
+  "shareLabel": "by annual rainfall",
+  "metric": "Average annual rainfall (mm)",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Cairo, Egypt",
+      "emoji": "🏜️",
+      "value": 25,
+      "fact": "25 mm — hyper-arid desert climate"
+    },
+    {
+      "name": "London, UK",
+      "emoji": "☁️",
+      "value": 600,
+      "fact": "600 mm — famous for drizzle, but relatively dry"
+    },
+    {
+      "name": "Seattle, USA",
+      "emoji": "🌧️",
+      "value": 960,
+      "fact": "960 mm — overcast and rainy winter season"
+    },
+    {
+      "name": "Singapore",
+      "emoji": "🇸🇬",
+      "value": 2160,
+      "fact": "2,160 mm — tropical rainforest, wet all year"
+    },
+    {
+      "name": "Mawsynram, India",
+      "emoji": "⛈️",
+      "value": 11871,
+      "fact": "11,871 mm — wettest inhabited place on Earth"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": 20260506,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Standard doorway than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Standard doorway",
+        "emoji": "🚪"
+      },
+      "ratio": 5.26,
+      "maxGuess": 14,
+      "difficulty": "easy",
+      "fact": "Standard doorway measures 2 m vs Bowling pin's 38 cm — making it about 5× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Great Pyramid of Giza than a Raindrop?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 120000000000000,
+      "maxGuess": 300000000000000,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 6 billion kg vs Raindrop's 0.05 g — making it about 120000000000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 208.3,
+      "maxGuess": 521,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Length of Manhattan's 21.6 km — making it about 208× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a London Eye than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "ratio": 3000,
+      "maxGuess": 7500,
+      "difficulty": "medium",
+      "fact": "London Eye measures 120 m vs Ping pong ball's 4 cm — making it about 3000× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Gateway Arch than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Gateway Arch",
+        "emoji": "🌉"
+      },
+      "ratio": 384000,
+      "maxGuess": 960000,
+      "difficulty": "hard",
+      "fact": "Gateway Arch measures 192 m vs Tardigrade's 0.5 mm — making it about 384000× taller."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": 20260527,
+  "prompt": "Rank these Shakespeare plays from fewest to most characters",
+  "promptEmoji": "🎭",
+  "shareLabel": "by character count",
+  "metric": "Number of speaking characters",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "The Tempest",
+      "emoji": "⚡",
+      "value": 20,
+      "fact": "20 characters — shipwrecked survivors on an island"
+    },
+    {
+      "name": "Macbeth",
+      "emoji": "👑",
+      "value": 28,
+      "fact": "28 characters — Scottish tragedy of ambition"
+    },
+    {
+      "name": "Romeo and Juliet",
+      "emoji": "🎭",
+      "value": 36,
+      "fact": "36 characters — star-crossed lovers in Verona"
+    },
+    {
+      "name": "Hamlet",
+      "emoji": "💀",
+      "value": 41,
+      "fact": "41 characters — prince of Denmark tragedy"
+    },
+    {
+      "name": "Henry VI, Part 3",
+      "emoji": "⚔️",
+      "value": 45,
+      "fact": "45 characters — War of the Roses history play"
+    }
+  ]
+}

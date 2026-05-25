@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-26",
+  "theme": "Art History",
+  "prompt": "Order these art milestones from earliest to latest",
+  "themeEmoji": "🎨",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "art1",
+      "title": "Mona Lisa started",
+      "emoji": "🎨",
+      "year": 1503,
+      "fact": "1503 — Leonardo da Vinci begins painting in Florence"
+    },
+    {
+      "id": "art2",
+      "title": "The Night Watch painted",
+      "emoji": "🎨",
+      "year": 1642,
+      "fact": "1642 — Rembrandt completes Dutch Golden Age masterpiece"
+    },
+    {
+      "id": "art3",
+      "title": "Impression, Sunrise painted",
+      "emoji": "🎨",
+      "year": 1872,
+      "fact": "1872 — Claude Monet gives name to Impressionism"
+    },
+    {
+      "id": "art4",
+      "title": "The Starry Night painted",
+      "emoji": "🎨",
+      "year": 1889,
+      "fact": "1889 — Vincent van Gogh paints work in asylum"
+    },
+    {
+      "id": "art5",
+      "title": "Picasso's Cubist debut",
+      "emoji": "🎨",
+      "year": 1907,
+      "fact": "1907 — Les Demoiselles d'Avignon shocks art world"
+    },
+    {
+      "id": "art6",
+      "title": "Persistence of Memory",
+      "emoji": "🎨",
+      "year": 1931,
+      "fact": "1931 — Salvador Dalí's melting clocks surrealist work"
+    },
+    {
+      "id": "art7",
+      "title": "Campbell's Soup Cans",
+      "emoji": "🥫",
+      "year": 1962,
+      "fact": "1962 — Andy Warhol introduces Pop Art screens"
+    }
+  ]
+}

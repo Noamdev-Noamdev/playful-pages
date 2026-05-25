@@ -1,0 +1,90 @@
+{
+  "id": 20260531,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Great Pyramid of Giza than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 360.5,
+      "maxGuess": 902,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 137 m vs Bowling pin's 38 cm — making it about 361× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Great Pyramid of Giza than a Grizzly bear?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grizzly bear",
+        "emoji": "🐻"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 20000000,
+      "maxGuess": 50000000,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 6 billion kg vs Grizzly bear's 300 kg — making it about 20000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Great Barrier Reef?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Great Barrier Reef",
+        "emoji": "🪸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 30.4,
+      "maxGuess": 76,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Great Barrier Reef's 2,300 km — making it about 30× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Large pizza than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "ratio": 8.75,
+      "maxGuess": 22,
+      "difficulty": "medium",
+      "fact": "Large pizza measures 35 cm vs Ping pong ball's 4 cm — making it about 9× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Golden retriever?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Golden retriever",
+        "emoji": "🦮"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 20,
+      "maxGuess": 50,
+      "difficulty": "hard",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Golden retriever's 60 cm — making it about 20× longer."
+    }
+  ]
+}

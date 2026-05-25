@@ -1,0 +1,40 @@
+{
+  "id": 20260514,
+  "prompt": "Rank from shortest to longest flight range",
+  "promptEmoji": "🦅",
+  "shareLabel": "by flight distance",
+  "metric": "Maximum flight distance / migration (km)",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Chicken",
+      "emoji": "🐔",
+      "value": 0.05,
+      "fact": "~0.05 km — short bursts, flightless in practice"
+    },
+    {
+      "name": "Wild Turkey",
+      "emoji": "🦃",
+      "value": 1.5,
+      "fact": "~1.5 km — strong flyers for short distances"
+    },
+    {
+      "name": "Hummingbird",
+      "emoji": "🐦",
+      "value": 800,
+      "fact": "800 km — nonstop flight across Gulf of Mexico"
+    },
+    {
+      "name": "Wandering Albatross",
+      "emoji": "🦅",
+      "value": 15000,
+      "fact": "15,000 km — glides thousands of miles over oceans"
+    },
+    {
+      "name": "Arctic Tern",
+      "emoji": "🐦",
+      "value": 90000,
+      "fact": "90,000 km — annual pole-to-pole migration"
+    }
+  ]
+}

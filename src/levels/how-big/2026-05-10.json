@@ -1,0 +1,90 @@
+{
+  "id": 20260510,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Gateway Arch than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Gateway Arch",
+        "emoji": "🌉"
+      },
+      "ratio": 505.3,
+      "maxGuess": 1264,
+      "difficulty": "easy",
+      "fact": "Gateway Arch measures 192 m vs Bowling pin's 38 cm — making it about 505× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Giant panda than a Grain of sand?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grain of sand",
+        "emoji": "⏳"
+      },
+      "itemB": {
+        "name": "Giant panda",
+        "emoji": "🐼"
+      },
+      "ratio": 10000000,
+      "maxGuess": 25000000,
+      "difficulty": "easy",
+      "fact": "Giant panda measures 100 kg vs Grain of sand's 0.01 g — making it about 10000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Olympic swimming pool?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Olympic swimming pool",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 90000,
+      "maxGuess": 225000,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Olympic swimming pool's 0.05 km — making it about 90000× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Ceres dwarf planet than a London Eye?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "itemB": {
+        "name": "Ceres dwarf planet",
+        "emoji": "🪐"
+      },
+      "ratio": 7833.3,
+      "maxGuess": 19584,
+      "difficulty": "medium",
+      "fact": "Ceres dwarf planet measures 940 km vs London Eye's 120 m — making it about 7833× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Golden retriever?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Golden retriever",
+        "emoji": "🦮"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 20,
+      "maxGuess": 50,
+      "difficulty": "hard",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Golden retriever's 60 cm — making it about 20× longer."
+    }
+  ]
+}

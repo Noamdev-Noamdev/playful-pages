@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-07",
+  "theme": "Historic Landmarks",
+  "prompt": "Order these landmarks by completion year (earliest to latest)",
+  "themeEmoji": "🏛️",
+  "difficulty": "easy",
+  "events": [
+    {
+      "id": "l1",
+      "title": "Great Pyramid of Giza",
+      "emoji": "🏜️",
+      "year": -2560,
+      "fact": "2560 BC — built as tomb for Pharaoh Khufu"
+    },
+    {
+      "id": "l2",
+      "title": "Parthenon in Athens",
+      "emoji": "🏛️",
+      "year": -447,
+      "fact": "447 BC — temple dedicated to goddess Athena"
+    },
+    {
+      "id": "l3",
+      "title": "Terracotta Army buried",
+      "emoji": "🛡️",
+      "year": -210,
+      "fact": "210 BC — buried with Qin Shi Huang in China"
+    },
+    {
+      "id": "l4",
+      "title": "Colosseum completed",
+      "emoji": "🏟️",
+      "year": 80,
+      "fact": "80 AD — Roman amphitheater completed under Titus"
+    },
+    {
+      "id": "l5",
+      "title": "Machu Picchu built",
+      "emoji": "🏔️",
+      "year": 1450,
+      "fact": "1450 AD — Inca citadel in Peruvian Andes"
+    },
+    {
+      "id": "l6",
+      "title": "Taj Mahal completed",
+      "emoji": "🕌",
+      "year": 1648,
+      "fact": "1648 AD — white marble mausoleum in Agra, India"
+    },
+    {
+      "id": "l7",
+      "title": "Eiffel Tower completed",
+      "emoji": "🗼",
+      "year": 1889,
+      "fact": "1889 AD — entrance arch for World's Fair in Paris"
+    }
+  ]
+}

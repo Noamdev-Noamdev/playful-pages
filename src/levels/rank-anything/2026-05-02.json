@@ -1,0 +1,40 @@
+{
+  "id": 20260502,
+  "prompt": "Rank from lightest to heaviest sports ball",
+  "promptEmoji": "🏀",
+  "shareLabel": "by ball weight",
+  "metric": "Official weight (grams)",
+  "difficulty": "easy",
+  "items": [
+    {
+      "name": "Table tennis ball",
+      "emoji": "🏓",
+      "value": 2.7,
+      "fact": "2.7 g — extremely lightweight celluloid"
+    },
+    {
+      "name": "Tennis ball",
+      "emoji": "🎾",
+      "value": 58,
+      "fact": "~58 g — pressurized felt-covered rubber"
+    },
+    {
+      "name": "Baseball",
+      "emoji": "⚾",
+      "value": 145,
+      "fact": "~145 g — cork center wrapped in leather"
+    },
+    {
+      "name": "Soccer ball",
+      "emoji": "⚽",
+      "value": 430,
+      "fact": "~430 g — size 5 match ball"
+    },
+    {
+      "name": "Bowling ball (max)",
+      "emoji": "🎳",
+      "value": 7200,
+      "fact": "7,200 g — maximum regulation weight of 16 lbs"
+    }
+  ]
+}

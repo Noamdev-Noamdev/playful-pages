@@ -1,0 +1,40 @@
+{
+  "id": 20260517,
+  "prompt": "Rank from fewest to most transistors",
+  "promptEmoji": "💾",
+  "shareLabel": "by transistor count",
+  "metric": "Number of transistors",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Intel 4004 (1971)",
+      "emoji": "💾",
+      "value": 2300,
+      "fact": "2,300 transistors — first commercial CPU"
+    },
+    {
+      "name": "Intel Pentium (1993)",
+      "emoji": "💻",
+      "value": 3100000,
+      "fact": "3.1 million transistors — 0.8 micron process"
+    },
+    {
+      "name": "Apple A4 (2010)",
+      "emoji": "📱",
+      "value": 149000000,
+      "fact": "149 million transistors — used in iPad and iPhone 4"
+    },
+    {
+      "name": "Apple M1 (2020)",
+      "emoji": "🍏",
+      "value": 16000000000,
+      "fact": "16 billion transistors — 5nm process"
+    },
+    {
+      "name": "NVIDIA H100 (2022)",
+      "emoji": "⚡",
+      "value": 80000000000,
+      "fact": "80 billion transistors — datacenter AI chip"
+    }
+  ]
+}

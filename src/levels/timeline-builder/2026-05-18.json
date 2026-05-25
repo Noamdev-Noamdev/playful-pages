@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-18",
+  "theme": "Environmental Milestones",
+  "prompt": "Order these environmental events from earliest to latest",
+  "themeEmoji": "🌲",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "en1",
+      "title": "Yellowstone National Park",
+      "emoji": "🌲",
+      "year": 1872,
+      "fact": "1872 — Ulysses S. Grant establishes first national park"
+    },
+    {
+      "id": "en2",
+      "title": "Silent Spring published",
+      "emoji": "📚",
+      "year": 1962,
+      "fact": "1962 — Rachel Carson raises awareness of pesticide dangers"
+    },
+    {
+      "id": "en3",
+      "title": "First Earth Day",
+      "emoji": "🌍",
+      "year": 1970,
+      "fact": "1970 — millions protest for environmental protection"
+    },
+    {
+      "id": "en4",
+      "title": "Ozone hole discovered",
+      "emoji": "🌍",
+      "year": 1985,
+      "fact": "1985 — British Antarctic Survey alerts world of depletion"
+    },
+    {
+      "id": "en5",
+      "title": "Montreal Protocol signed",
+      "emoji": "📜",
+      "year": 1987,
+      "fact": "1987 — global agreement to phase out CFCs"
+    },
+    {
+      "id": "en6",
+      "title": "Kyoto Protocol adopted",
+      "emoji": "📜",
+      "year": 1997,
+      "fact": "1997 — treaty to reduce greenhouse gas emissions"
+    },
+    {
+      "id": "en7",
+      "title": "Paris Agreement signed",
+      "emoji": "✍️",
+      "year": 2015,
+      "fact": "2015 — treaty to limit global warming below 2 °C"
+    }
+  ]
+}

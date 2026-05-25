@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-09",
+  "theme": "History of Transportation",
+  "prompt": "Order these transport milestones from earliest to latest",
+  "themeEmoji": "🛞",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "tr1",
+      "title": "Invention of the wheel",
+      "emoji": "🛞",
+      "year": -3500,
+      "fact": "3500 BC — Sumerian wheels used for pottery and carts"
+    },
+    {
+      "id": "tr2",
+      "title": "Cugnot's steam carriage",
+      "emoji": "🚂",
+      "year": 1769,
+      "fact": "1769 — first self-propelled mechanical vehicle"
+    },
+    {
+      "id": "tr3",
+      "title": "First steam locomotive",
+      "emoji": "🚂",
+      "year": 1804,
+      "fact": "1804 — Richard Trevithick's engine runs in Wales"
+    },
+    {
+      "id": "tr4",
+      "title": "Benz Patent-Motorwagen",
+      "emoji": "🚗",
+      "year": 1886,
+      "fact": "1886 — widely regarded as first modern automobile"
+    },
+    {
+      "id": "tr5",
+      "title": "Ford Model T",
+      "emoji": "🚗",
+      "year": 1908,
+      "fact": "1908 — first mass-produced affordable assembly car"
+    },
+    {
+      "id": "tr6",
+      "title": "Shinkansen bullet train",
+      "emoji": "🚄",
+      "year": 1964,
+      "fact": "1964 — high-speed rail line opens in Tokyo, Japan"
+    },
+    {
+      "id": "tr7",
+      "title": "Tesla Roadster released",
+      "emoji": "⚡",
+      "year": 2008,
+      "fact": "2008 — first highway legal production all-electric car"
+    }
+  ]
+}

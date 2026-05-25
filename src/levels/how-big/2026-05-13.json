@@ -1,0 +1,90 @@
+{
+  "id": 20260513,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 760,
+      "maxGuess": 1900,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Tardigrade's 0.5 mm — making it about 760× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Grizzly bear than a Raindrop?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "itemB": {
+        "name": "Grizzly bear",
+        "emoji": "🐻"
+      },
+      "ratio": 6000000,
+      "maxGuess": 15000000,
+      "difficulty": "easy",
+      "fact": "Grizzly bear measures 300 kg vs Raindrop's 0.05 g — making it about 6000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 208.3,
+      "maxGuess": 521,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Length of Manhattan's 21.6 km — making it about 208× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 30000,
+      "maxGuess": 75000,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs Ping pong ball's 4 cm — making it about 30000× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 600,
+      "maxGuess": 1500,
+      "difficulty": "hard",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Gummy bear's 2 cm — making it about 600× longer."
+    }
+  ]
+}

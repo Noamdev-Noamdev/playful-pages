@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-22",
+  "theme": "Architecture",
+  "prompt": "Order these architectural structures by completion (earliest to latest)",
+  "themeEmoji": "⛪",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "ar1",
+      "title": "Salisbury Cathedral begins",
+      "emoji": "⛪",
+      "year": 1220,
+      "fact": "1220 — Early English Gothic architecture showcase"
+    },
+    {
+      "id": "ar2",
+      "title": "Florence Cathedral dome",
+      "emoji": "⛪",
+      "year": 1436,
+      "fact": "1436 — Brunelleschi completes revolutionary dome"
+    },
+    {
+      "id": "ar3",
+      "title": "St. Paul's Cathedral begins",
+      "emoji": "⛪",
+      "year": 1675,
+      "fact": "1675 — Christopher Wren rebuilds London cathedral"
+    },
+    {
+      "id": "ar4",
+      "title": "Eiffel Tower completed",
+      "emoji": "🗼",
+      "year": 1889,
+      "fact": "1889 — wrought-iron lattice tower completed"
+    },
+    {
+      "id": "ar5",
+      "title": "Empire State Building",
+      "emoji": "🏢",
+      "year": 1931,
+      "fact": "1931 — Art Deco skyscraper becomes world's tallest"
+    },
+    {
+      "id": "ar6",
+      "title": "Sydney Opera House",
+      "emoji": "⛵",
+      "year": 1973,
+      "fact": "1973 — Expressionist design by Jørn Utzon opens"
+    },
+    {
+      "id": "ar7",
+      "title": "Burj Khalifa completed",
+      "emoji": "🏢",
+      "year": 2010,
+      "fact": "2010 — ultra-tall megastructure, tallest in world"
+    }
+  ]
+}

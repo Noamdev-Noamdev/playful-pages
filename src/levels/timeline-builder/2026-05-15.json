@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-15",
+  "theme": "Writing & Books",
+  "prompt": "Order these writing technology milestones from earliest to latest",
+  "themeEmoji": "📜",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "wr1",
+      "title": "Cuneiform in Sumer",
+      "emoji": "🪨",
+      "year": -3200,
+      "fact": "3200 BC — oldest known writing system on clay tablets"
+    },
+    {
+      "id": "wr2",
+      "title": "Egyptian Hieroglyphs",
+      "emoji": "📜",
+      "year": -3000,
+      "fact": "3000 BC — pictographic writing system on papyrus/stone"
+    },
+    {
+      "id": "wr3",
+      "title": "Paper invented in China",
+      "emoji": "📜",
+      "year": -105,
+      "fact": "105 BC — Cai Lun invents modern papermaking process"
+    },
+    {
+      "id": "wr4",
+      "title": "Gutenberg printing press",
+      "emoji": "🖨️",
+      "year": 1440,
+      "fact": "1440 — movable metal type system introduced to Europe"
+    },
+    {
+      "id": "wr5",
+      "title": "QWERTY typewriter",
+      "emoji": "⌨️",
+      "year": 1868,
+      "fact": "1868 — Christopher Sholes patents typewriter layout"
+    },
+    {
+      "id": "wr6",
+      "title": "Laser printer invented",
+      "emoji": "🖨️",
+      "year": 1969,
+      "fact": "1969 — Gary Starkweather adapts xerography at Xerox"
+    },
+    {
+      "id": "wr7",
+      "title": "E-book invented",
+      "emoji": "📖",
+      "year": 1971,
+      "fact": "1971 — Michael S. Hart digitizes US Declaration for Project Gutenberg"
+    }
+  ]
+}

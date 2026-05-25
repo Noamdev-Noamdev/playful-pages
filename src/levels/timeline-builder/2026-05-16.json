@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-16",
+  "theme": "Photography & Cinema",
+  "prompt": "Order these visual media milestones from earliest to latest",
+  "themeEmoji": "📷",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "ph1",
+      "title": "Oldest surviving photo",
+      "emoji": "📷",
+      "year": 1826,
+      "fact": "1826 — Niépce captures 'View from the Window at Le Gras'"
+    },
+    {
+      "id": "ph2",
+      "title": "Daguerreotype announced",
+      "emoji": "📷",
+      "year": 1839,
+      "fact": "1839 — first publicly available photographic process"
+    },
+    {
+      "id": "ph3",
+      "title": "Kodak camera introduced",
+      "emoji": "📷",
+      "year": 1888,
+      "fact": "1888 — George Eastman's 'You press the button, we do the rest'"
+    },
+    {
+      "id": "ph4",
+      "title": "Lumière brothers short films",
+      "emoji": "🎥",
+      "year": 1895,
+      "fact": "1895 — first public screening of projected motion pictures"
+    },
+    {
+      "id": "ph5",
+      "title": "The Jazz Singer (talkie)",
+      "emoji": "🎬",
+      "year": 1927,
+      "fact": "1927 — first feature-length film with synchronized dialogue"
+    },
+    {
+      "id": "ph6",
+      "title": "Snow White (animated)",
+      "emoji": "🍎",
+      "year": 1937,
+      "fact": "1937 — Disney's first full-length cell animated movie"
+    },
+    {
+      "id": "ph7",
+      "title": "Toy Story (CGI feature)",
+      "emoji": "🧸",
+      "year": 1995,
+      "fact": "1995 — Pixar's breakthrough first full-CGI feature"
+    }
+  ]
+}

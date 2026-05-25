@@ -1,0 +1,90 @@
+{
+  "id": 20260503,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 19,
+      "maxGuess": 48,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Gummy bear's 2 cm — making it about 19× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Great Pyramid of Giza than a Cruise ship?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Cruise ship",
+        "emoji": "🚢"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 26.3,
+      "maxGuess": 66,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 6 billion kg vs Cruise ship's 228 million kg — making it about 26× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Great Barrier Reef?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Great Barrier Reef",
+        "emoji": "🪸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 30.4,
+      "maxGuess": 76,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Great Barrier Reef's 2,300 km — making it about 30× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Ceres dwarf planet than a London Eye?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "itemB": {
+        "name": "Ceres dwarf planet",
+        "emoji": "🪐"
+      },
+      "ratio": 7833.3,
+      "maxGuess": 19584,
+      "difficulty": "medium",
+      "fact": "Ceres dwarf planet measures 940 km vs London Eye's 120 m — making it about 7833× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a CN Tower than a Giant Sequoia?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Giant Sequoia",
+        "emoji": "🌲"
+      },
+      "itemB": {
+        "name": "CN Tower",
+        "emoji": "🗼"
+      },
+      "ratio": 6.58,
+      "maxGuess": 17,
+      "difficulty": "hard",
+      "fact": "CN Tower measures 553 m vs Giant Sequoia's 84 m — making it about 7× taller."
+    }
+  ]
+}

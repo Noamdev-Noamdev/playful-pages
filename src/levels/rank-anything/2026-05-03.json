@@ -1,0 +1,40 @@
+{
+  "id": 20260503,
+  "prompt": "Rank from lowest to highest boiling point",
+  "promptEmoji": "🌡️",
+  "shareLabel": "by boiling point",
+  "metric": "Boiling point (°C)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Helium",
+      "emoji": "🎈",
+      "value": -269,
+      "fact": "−269 °C — lowest boiling point of any element"
+    },
+    {
+      "name": "Nitrogen",
+      "emoji": "💨",
+      "value": -196,
+      "fact": "−196 °C — used for cryopreservation"
+    },
+    {
+      "name": "Water",
+      "emoji": "💧",
+      "value": 100,
+      "fact": "100 °C — at standard sea-level atmospheric pressure"
+    },
+    {
+      "name": "Mercury",
+      "emoji": "🌡️",
+      "value": 357,
+      "fact": "357 °C — the only liquid metal at room temp"
+    },
+    {
+      "name": "Gold",
+      "emoji": "🪙",
+      "value": 2856,
+      "fact": "2,856 °C — high boiling point precious metal"
+    }
+  ]
+}

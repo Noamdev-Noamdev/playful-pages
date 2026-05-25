@@ -1,0 +1,90 @@
+{
+  "id": 20260519,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Giant Sequoia than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Giant Sequoia",
+        "emoji": "🌲"
+      },
+      "ratio": 221.1,
+      "maxGuess": 553,
+      "difficulty": "easy",
+      "fact": "Giant Sequoia measures 84 m vs Bowling pin's 38 cm — making it about 221× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Cruise ship than a Mountain bike?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Mountain bike",
+        "emoji": "🚲"
+      },
+      "itemB": {
+        "name": "Cruise ship",
+        "emoji": "🚢"
+      },
+      "ratio": 16285714.3,
+      "maxGuess": 40714286,
+      "difficulty": "easy",
+      "fact": "Cruise ship measures 228 million kg vs Mountain bike's 14 kg — making it about 16285714× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Width of United States?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 15.5,
+      "maxGuess": 39,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Width of United States's 4,500 km — making it about 16× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Large pizza than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "ratio": 8.75,
+      "maxGuess": 22,
+      "difficulty": "medium",
+      "fact": "Large pizza measures 35 cm vs Ping pong ball's 4 cm — making it about 9× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Gateway Arch than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Gateway Arch",
+        "emoji": "🌉"
+      },
+      "ratio": 9600,
+      "maxGuess": 24000,
+      "difficulty": "hard",
+      "fact": "Gateway Arch measures 192 m vs Gummy bear's 2 cm — making it about 9600× taller."
+    }
+  ]
+}

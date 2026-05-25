@@ -1,0 +1,40 @@
+{
+  "id": 20260505,
+  "prompt": "Rank these video game consoles from oldest to newest",
+  "promptEmoji": "🎮",
+  "shareLabel": "by release year",
+  "metric": "Release year",
+  "difficulty": "easy",
+  "items": [
+    {
+      "name": "Atari 2600",
+      "emoji": "🕹️",
+      "value": 1977,
+      "fact": "Released 1977 — popularized ROM cartridges"
+    },
+    {
+      "name": "NES",
+      "emoji": "🎮",
+      "value": 1983,
+      "fact": "Released 1983 in Japan (Famicom), 1985 in US"
+    },
+    {
+      "name": "PlayStation 1",
+      "emoji": "💿",
+      "value": 1994,
+      "fact": "Released 1994 — Sony's breakthrough CD console"
+    },
+    {
+      "name": "PlayStation 2",
+      "emoji": "📀",
+      "value": 2000,
+      "fact": "Released 2000 — best-selling console of all time"
+    },
+    {
+      "name": "Nintendo Switch",
+      "emoji": "🔴",
+      "value": 2017,
+      "fact": "Released 2017 — hybrid home/handheld console"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": 20260513,
+  "prompt": "Rank from lowest to highest melting point",
+  "promptEmoji": "🔥",
+  "shareLabel": "by melting point",
+  "metric": "Melting point (°C)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Mercury",
+      "emoji": "🌡️",
+      "value": -39,
+      "fact": "−39 °C — liquid at room temperature"
+    },
+    {
+      "name": "Lead",
+      "emoji": "🪵",
+      "value": 327,
+      "fact": "327 °C — low melting point toxic metal"
+    },
+    {
+      "name": "Aluminium",
+      "emoji": "🥫",
+      "value": 660,
+      "fact": "660 °C — lightweight and ductile"
+    },
+    {
+      "name": "Copper",
+      "emoji": "🪙",
+      "value": 1085,
+      "fact": "1,085 °C — highly conductive transition metal"
+    },
+    {
+      "name": "Tungsten",
+      "emoji": "💡",
+      "value": 3422,
+      "fact": "3,422 °C — highest melting point of all metals"
+    }
+  ]
+}

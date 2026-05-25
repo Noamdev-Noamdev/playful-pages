@@ -1,0 +1,90 @@
+{
+  "id": 20260515,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 760,
+      "maxGuess": 1900,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Tardigrade's 0.5 mm — making it about 760× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Great Pyramid of Giza than a Standard brick?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 2608695652.2,
+      "maxGuess": 6521739131,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 6 billion kg vs Standard brick's 2.3 kg — making it about 2608695652× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Width of United States?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 15.5,
+      "maxGuess": 39,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Width of United States's 4,500 km — making it about 16× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a London Eye than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "ratio": 3000,
+      "maxGuess": 7500,
+      "difficulty": "medium",
+      "fact": "London Eye measures 120 m vs Ping pong ball's 4 cm — making it about 3000× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Giant Sequoia than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Giant Sequoia",
+        "emoji": "🌲"
+      },
+      "ratio": 4200,
+      "maxGuess": 10500,
+      "difficulty": "hard",
+      "fact": "Giant Sequoia measures 84 m vs Gummy bear's 2 cm — making it about 4200× taller."
+    }
+  ]
+}

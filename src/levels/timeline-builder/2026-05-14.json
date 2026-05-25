@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-14",
+  "theme": "Classical Music",
+  "prompt": "Order these musical milestones from earliest to latest",
+  "themeEmoji": "🎼",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "mu1",
+      "title": "Brandenburg Concertos",
+      "emoji": "🎼",
+      "year": 1721,
+      "fact": "1721 — J.S. Bach presents works to Margrave"
+    },
+    {
+      "id": "mu2",
+      "title": "Marriage of Figaro premier",
+      "emoji": "🎭",
+      "year": 1786,
+      "fact": "1786 — W.A. Mozart's opera buffa opens in Vienna"
+    },
+    {
+      "id": "mu3",
+      "title": "Beethoven's Fifth Symphony",
+      "emoji": "🎵",
+      "year": 1808,
+      "fact": "1808 — premiere of iconic four-note opening"
+    },
+    {
+      "id": "mu4",
+      "title": "Wagner's Ring Cycle premier",
+      "emoji": "💍",
+      "year": 1876,
+      "fact": "1876 — full 15-hour epic performed in Bayreuth"
+    },
+    {
+      "id": "mu5",
+      "title": "Nutcracker ballet premier",
+      "emoji": "🩰",
+      "year": 1892,
+      "fact": "1892 — Tchaikovsky's seasonal classic in St. Petersburg"
+    },
+    {
+      "id": "mu6",
+      "title": "Rite of Spring riot",
+      "emoji": "🎻",
+      "year": 1913,
+      "fact": "1913 — Igor Stravinsky's avante-garde premiere causes uproar"
+    },
+    {
+      "id": "mu7",
+      "title": "Rhapsody in Blue premier",
+      "emoji": "🎹",
+      "year": 1924,
+      "fact": "1924 — George Gershwin blends jazz and classical"
+    }
+  ]
+}

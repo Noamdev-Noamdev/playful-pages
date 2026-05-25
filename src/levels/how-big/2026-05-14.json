@@ -1,0 +1,90 @@
+{
+  "id": 20260514,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 19,
+      "maxGuess": 48,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Gummy bear's 2 cm — making it about 19× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Standard brick than a Grain of sand?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grain of sand",
+        "emoji": "⏳"
+      },
+      "itemB": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "ratio": 230000,
+      "maxGuess": 575000,
+      "difficulty": "easy",
+      "fact": "Standard brick measures 2.3 kg vs Grain of sand's 0.01 g — making it about 230000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Great Barrier Reef than a Olympic swimming pool?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Olympic swimming pool",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Great Barrier Reef",
+        "emoji": "🪸"
+      },
+      "ratio": 46000,
+      "maxGuess": 115000,
+      "difficulty": "medium",
+      "fact": "Great Barrier Reef measures 2,300 km vs Olympic swimming pool's 0.05 km — making it about 46000× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a London Eye?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 10,
+      "maxGuess": 25,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs London Eye's 120 m — making it about 10× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Golden retriever than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Golden retriever",
+        "emoji": "🦮"
+      },
+      "ratio": 1.58,
+      "maxGuess": 10,
+      "difficulty": "hard",
+      "fact": "Golden retriever measures 60 cm vs Bowling pin's 38 cm — making it about 2× taller."
+    }
+  ]
+}

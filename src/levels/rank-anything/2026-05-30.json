@@ -1,0 +1,40 @@
+{
+  "id": 20260530,
+  "prompt": "Rank these planets from slowest to fastest orbital speed",
+  "promptEmoji": "🪐",
+  "shareLabel": "by orbital speed",
+  "metric": "Average orbital speed (km/s)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Neptune",
+      "emoji": "🔵",
+      "value": 5.4,
+      "fact": "5.4 km/s — farthest planet orbits slowly"
+    },
+    {
+      "name": "Jupiter",
+      "emoji": "🪐",
+      "value": 13.1,
+      "fact": "13.1 km/s — gas giant takes 12 Earth years"
+    },
+    {
+      "name": "Earth",
+      "emoji": "🌍",
+      "value": 29.8,
+      "fact": "29.8 km/s — zooming through space right now"
+    },
+    {
+      "name": "Venus",
+      "emoji": "♀️",
+      "value": 35,
+      "fact": "35.0 km/s — closer to solar gravitational pull"
+    },
+    {
+      "name": "Mercury",
+      "emoji": "☿",
+      "value": 47.4,
+      "fact": "47.4 km/s — closest, fastest planet in orbit"
+    }
+  ]
+}

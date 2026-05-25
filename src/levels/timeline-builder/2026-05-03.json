@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-03",
+  "theme": "History of Video Games",
+  "prompt": "Order these gaming milestones from earliest to latest",
+  "themeEmoji": "🎮",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "g1",
+      "title": "Pong released by Atari",
+      "emoji": "🕹️",
+      "year": 1972,
+      "fact": "1972 — first commercially successful arcade game"
+    },
+    {
+      "id": "g2",
+      "title": "Pac-Man released",
+      "emoji": "🍒",
+      "year": 1980,
+      "fact": "1980 — pop culture arcade sensation by Namco"
+    },
+    {
+      "id": "g3",
+      "title": "NES released in US",
+      "emoji": "🎮",
+      "year": 1985,
+      "fact": "1985 — revived the home video game industry"
+    },
+    {
+      "id": "g4",
+      "title": "Game Boy released",
+      "emoji": "👾",
+      "year": 1989,
+      "fact": "1989 — iconic handheld bundled with Tetris"
+    },
+    {
+      "id": "g5",
+      "title": "PlayStation 1 launched",
+      "emoji": "💿",
+      "year": 1994,
+      "fact": "1994 — Sony enters market with 3D CD graphics"
+    },
+    {
+      "id": "g6",
+      "title": "World of Warcraft launched",
+      "emoji": "⚔️",
+      "year": 2004,
+      "fact": "2004 — redefined MMORPG genre popularity"
+    },
+    {
+      "id": "g7",
+      "title": "Minecraft full release",
+      "emoji": "⛏️",
+      "year": 2011,
+      "fact": "2011 — sandbox game becomes best-selling of all time"
+    }
+  ]
+}

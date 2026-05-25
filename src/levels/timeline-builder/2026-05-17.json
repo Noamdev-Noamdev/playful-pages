@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-17",
+  "theme": "Toys & Games",
+  "prompt": "Order these game releases from earliest to latest",
+  "themeEmoji": "🧱",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "ty1",
+      "title": "Senet played in Egypt",
+      "emoji": "🏜️",
+      "year": -3000,
+      "fact": "3000 BC — board game found in predynastic tombs"
+    },
+    {
+      "id": "ty2",
+      "title": "Chaturanga in India",
+      "emoji": "♟️",
+      "year": 600,
+      "fact": "600 AD — chess ancestor developed in Gupta Empire"
+    },
+    {
+      "id": "ty3",
+      "title": "Landlord's Game patented",
+      "emoji": "🎩",
+      "year": 1903,
+      "fact": "1903 — Lizzie Magie designs precursor to Monopoly"
+    },
+    {
+      "id": "ty4",
+      "title": "LEGO bricks patented",
+      "emoji": "🧱",
+      "year": 1949,
+      "fact": "1949 — automatic binding bricks released in Denmark"
+    },
+    {
+      "id": "ty5",
+      "title": "Barbie doll introduced",
+      "emoji": "👗",
+      "year": 1959,
+      "fact": "1959 — debuted by Mattel at American Toy Fair"
+    },
+    {
+      "id": "ty6",
+      "title": "Rubik's Cube invented",
+      "emoji": "🧩",
+      "year": 1974,
+      "fact": "1974 — Erno Rubik creates 3D puzzle in Hungary"
+    },
+    {
+      "id": "ty7",
+      "title": "Pokémon Red and Green",
+      "emoji": "👾",
+      "year": 1996,
+      "fact": "1996 — Game Boy release launches global franchise"
+    }
+  ]
+}

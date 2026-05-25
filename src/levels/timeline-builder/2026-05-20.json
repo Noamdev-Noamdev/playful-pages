@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-20",
+  "theme": "History of Chemistry",
+  "prompt": "Order these chemical milestones from earliest to latest",
+  "themeEmoji": "🧪",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "ch1",
+      "title": "The Sceptical Chymist",
+      "emoji": "🧪",
+      "year": 1661,
+      "fact": "1661 — Robert Boyle separates chemistry from alchemy"
+    },
+    {
+      "id": "ch2",
+      "title": "Oxygen discovered",
+      "emoji": "💨",
+      "year": 1774,
+      "fact": "1774 — Priestley and Scheele isolate oxygen gas"
+    },
+    {
+      "id": "ch3",
+      "title": "First modern element list",
+      "emoji": "🧪",
+      "year": 1789,
+      "fact": "1789 — Antoine Lavoisier defines element and names oxygen/hydrogen"
+    },
+    {
+      "id": "ch4",
+      "title": "Atomic Theory proposed",
+      "emoji": "⚛️",
+      "year": 1803,
+      "fact": "1803 — John Dalton explains elements combine by mass ratios"
+    },
+    {
+      "id": "ch5",
+      "title": "Periodic Table published",
+      "emoji": "🧪",
+      "year": 1869,
+      "fact": "1869 — Dmitri Mendeleev organizes elements by properties"
+    },
+    {
+      "id": "ch6",
+      "title": "Marie Curie Chemistry Nobel",
+      "emoji": "🏅",
+      "year": 1911,
+      "fact": "1911 — awarded for discovering radium and polonium"
+    },
+    {
+      "id": "ch7",
+      "title": "Buckyballs discovered",
+      "emoji": "⚽",
+      "year": 1985,
+      "fact": "1985 — Kroto, Smalley, and Curl discover hollow carbon fullerenes"
+    }
+  ]
+}

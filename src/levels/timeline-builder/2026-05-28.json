@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-28",
+  "theme": "Discoveries in Zoology",
+  "prompt": "Order these zoological events from earliest to latest",
+  "themeEmoji": "🦁",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "zo1",
+      "title": "Systema Naturae published",
+      "emoji": "🦁",
+      "year": 1735,
+      "fact": "1735 — Carl Linnaeus introduces binomial nomenclature"
+    },
+    {
+      "id": "zo2",
+      "title": "Lamarck proposes evolution",
+      "emoji": "🦒",
+      "year": 1809,
+      "fact": "1809 — Lamarck details inheritance of acquired traits"
+    },
+    {
+      "id": "zo3",
+      "title": "Darwin visits Galápagos",
+      "emoji": "🐢",
+      "year": 1835,
+      "fact": "1835 — HMS Beagle lands, notes unique wildlife"
+    },
+    {
+      "id": "zo4",
+      "title": "Goodall studies chimpanzees",
+      "emoji": "🦍",
+      "year": 1960,
+      "fact": "1960 — Jane Goodall observes tool-making in Gombe"
+    },
+    {
+      "id": "zo5",
+      "title": "Hydrothermal vents found",
+      "emoji": "🌊",
+      "year": 1977,
+      "fact": "1977 — discovery of deep sea ecosystems living without sunlight"
+    },
+    {
+      "id": "zo6",
+      "title": "Dolly the Sheep cloned",
+      "emoji": "🐑",
+      "year": 1996,
+      "fact": "1996 — first mammal cloned from adult somatic cell"
+    },
+    {
+      "id": "zo7",
+      "title": "Coelacanth population found",
+      "emoji": "🐟",
+      "year": 2005,
+      "fact": "2005 — population of 'living fossil' fish found off Tanzania"
+    }
+  ]
+}

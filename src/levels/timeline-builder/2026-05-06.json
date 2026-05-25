@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-06",
+  "theme": "Evolution of Physics",
+  "prompt": "Order these physics milestones from earliest to latest",
+  "themeEmoji": "🍎",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "py1",
+      "title": "Kepler's laws published",
+      "emoji": "🪐",
+      "year": 1609,
+      "fact": "1609 — describes elliptical orbits of planets"
+    },
+    {
+      "id": "py2",
+      "title": "Newton's laws of motion",
+      "emoji": "🍎",
+      "year": 1687,
+      "fact": "1687 — Principia Mathematica details gravity and mechanics"
+    },
+    {
+      "id": "py3",
+      "title": "Double-slit experiment",
+      "emoji": "🌊",
+      "year": 1801,
+      "fact": "1801 — Thomas Young demonstrates wave nature of light"
+    },
+    {
+      "id": "py4",
+      "title": "Electron discovered",
+      "emoji": "⚛️",
+      "year": 1897,
+      "fact": "1897 — J.J. Thomson identifies subatomic particle"
+    },
+    {
+      "id": "py5",
+      "title": "Photoelectric effect paper",
+      "emoji": "⚡",
+      "year": 1905,
+      "fact": "1905 — Einstein explains quantum light packets"
+    },
+    {
+      "id": "py6",
+      "title": "Heisenberg uncertainty",
+      "emoji": "⚛️",
+      "year": 1927,
+      "fact": "1927 — details limit of precision in quantum measurements"
+    },
+    {
+      "id": "py7",
+      "title": "Gravitational waves detected",
+      "emoji": "🌊",
+      "year": 2015,
+      "fact": "2015 — LIGO detects ripple from merging black holes"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": 20260525,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 19,
+      "maxGuess": 48,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Gummy bear's 2 cm — making it about 19× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Great Pyramid of Giza than a Grizzly bear?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grizzly bear",
+        "emoji": "🐻"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 20000000,
+      "maxGuess": 50000000,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 6 billion kg vs Grizzly bear's 300 kg — making it about 20000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 208.3,
+      "maxGuess": 521,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Length of Manhattan's 21.6 km — making it about 208× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Ceres dwarf planet than a Meteor Crater?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "itemB": {
+        "name": "Ceres dwarf planet",
+        "emoji": "🪐"
+      },
+      "ratio": 783.3,
+      "maxGuess": 1959,
+      "difficulty": "medium",
+      "fact": "Ceres dwarf planet measures 940 km vs Meteor Crater's 1.2 km — making it about 783× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Bowling pin than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 19,
+      "maxGuess": 48,
+      "difficulty": "hard",
+      "fact": "Bowling pin measures 38 cm vs Gummy bear's 2 cm — making it about 19× longer."
+    }
+  ]
+}

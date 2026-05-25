@@ -1,0 +1,40 @@
+{
+  "id": 20260504,
+  "prompt": "Rank from fewest to most bones",
+  "promptEmoji": "🦴",
+  "shareLabel": "by bone count",
+  "metric": "Number of bones",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Great White Shark",
+      "emoji": "🦈",
+      "value": 0,
+      "fact": "0 bones — skeleton is entirely cartilage"
+    },
+    {
+      "name": "Human",
+      "emoji": "🦴",
+      "value": 206,
+      "fact": "206 bones — adult skeleton"
+    },
+    {
+      "name": "Cat",
+      "emoji": "🐈",
+      "value": 244,
+      "fact": "~244 bones — flexible spine with extra vertebrae"
+    },
+    {
+      "name": "Dog",
+      "emoji": "🐕",
+      "value": 320,
+      "fact": "~320 bones — varies slightly by breed tail length"
+    },
+    {
+      "name": "Python",
+      "emoji": "🐍",
+      "value": 600,
+      "fact": "~600 bones — mostly ribs and vertebrae"
+    }
+  ]
+}

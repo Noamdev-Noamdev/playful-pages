@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-11",
+  "theme": "Classic Literature",
+  "prompt": "Order these literary releases from earliest to latest",
+  "themeEmoji": "📚",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "li1",
+      "title": "Don Quixote published",
+      "emoji": "📚",
+      "year": 1605,
+      "fact": "1605 — Miguel de Cervantes' classic Spanish novel"
+    },
+    {
+      "id": "li2",
+      "title": "Frankenstein published",
+      "emoji": "🧟",
+      "year": 1818,
+      "fact": "1818 — Mary Shelley's gothic sci-fi masterpiece"
+    },
+    {
+      "id": "li3",
+      "title": "Moby-Dick published",
+      "emoji": "🐳",
+      "year": 1851,
+      "fact": "1851 — Herman Melville's whale-hunting epic"
+    },
+    {
+      "id": "li4",
+      "title": "The Hobbit published",
+      "emoji": "🧙",
+      "year": 1937,
+      "fact": "1937 — J.R.R. Tolkien introduces Middle-earth"
+    },
+    {
+      "id": "li5",
+      "title": "Nineteen Eighty-Four",
+      "emoji": "👁️",
+      "year": 1949,
+      "fact": "1949 — George Orwell's dystopian political novel"
+    },
+    {
+      "id": "li6",
+      "title": "Harry Potter book 1",
+      "emoji": "🧙",
+      "year": 1997,
+      "fact": "1997 — J.K. Rowling launches fantasy franchise"
+    },
+    {
+      "id": "li7",
+      "title": "The Hunger Games",
+      "emoji": "🏹",
+      "year": 2008,
+      "fact": "2008 — Suzanne Collins' dystopian trilogy opener"
+    }
+  ]
+}

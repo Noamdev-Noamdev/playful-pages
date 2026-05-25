@@ -1,0 +1,90 @@
+{
+  "id": 20260530,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Giant Sequoia than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Giant Sequoia",
+        "emoji": "🌲"
+      },
+      "ratio": 221.1,
+      "maxGuess": 553,
+      "difficulty": "easy",
+      "fact": "Giant Sequoia measures 84 m vs Bowling pin's 38 cm — making it about 221× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Cruise ship than a Standard brick?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "itemB": {
+        "name": "Cruise ship",
+        "emoji": "🚢"
+      },
+      "ratio": 99130434.8,
+      "maxGuess": 247826087,
+      "difficulty": "easy",
+      "fact": "Cruise ship measures 228 million kg vs Standard brick's 2.3 kg — making it about 99130435× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Olympic swimming pool?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Olympic swimming pool",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 1398220,
+      "maxGuess": 3495550,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Olympic swimming pool's 0.05 km — making it about 1398220× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Large pizza than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "ratio": 8.75,
+      "maxGuess": 22,
+      "difficulty": "medium",
+      "fact": "Large pizza measures 35 cm vs Ping pong ball's 4 cm — making it about 9× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Great Pyramid of Giza than a Tyrannosaurus Rex?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 11.4,
+      "maxGuess": 29,
+      "difficulty": "hard",
+      "fact": "Great Pyramid of Giza measures 137 m vs Tyrannosaurus Rex's 12 m — making it about 11× taller."
+    }
+  ]
+}

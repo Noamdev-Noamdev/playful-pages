@@ -1,0 +1,40 @@
+{
+  "id": 20260531,
+  "prompt": "Rank these lakes from shallowest to deepest maximum depth",
+  "promptEmoji": "💧",
+  "shareLabel": "by lake depth",
+  "metric": "Maximum depth (metres)",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Lake Erie",
+      "emoji": "🇺🇸",
+      "value": 64,
+      "fact": "64 m deep — shallowest of the Great Lakes"
+    },
+    {
+      "name": "Lake Victoria",
+      "emoji": "🇹🇿",
+      "value": 84,
+      "fact": "84 m deep — largest tropical lake in the world"
+    },
+    {
+      "name": "Lake Superior",
+      "emoji": "🇨🇦",
+      "value": 406,
+      "fact": "406 m deep — largest freshwater lake by area"
+    },
+    {
+      "name": "Lake Tanganyika",
+      "emoji": "🇧🇮",
+      "value": 1470,
+      "fact": "1,470 m deep — second deepest lake in the world"
+    },
+    {
+      "name": "Lake Baikal",
+      "emoji": "🇷🇺",
+      "value": 1642,
+      "fact": "1,642 m deep — deepest and oldest lake on Earth"
+    }
+  ]
+}

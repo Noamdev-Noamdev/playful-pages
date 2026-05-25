@@ -1,0 +1,40 @@
+{
+  "id": 20260506,
+  "prompt": "Rank these waterfalls from shortest to tallest",
+  "promptEmoji": "🌊",
+  "shareLabel": "by waterfall height",
+  "metric": "Height (metres)",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Niagara Falls",
+      "emoji": "🌊",
+      "value": 51,
+      "fact": "51 m tall — highest flow rate in North America"
+    },
+    {
+      "name": "Iguazu Falls",
+      "emoji": "🌊",
+      "value": 82,
+      "fact": "82 m tall — spanning Argentina and Brazil"
+    },
+    {
+      "name": "Victoria Falls",
+      "emoji": "🏞️",
+      "value": 108,
+      "fact": "108 m tall — the largest curtain of falling water"
+    },
+    {
+      "name": "Yosemite Falls",
+      "emoji": "🌲",
+      "value": 739,
+      "fact": "739 m tall — tallest waterfall in Yosemite Park"
+    },
+    {
+      "name": "Angel Falls",
+      "emoji": "🏔️",
+      "value": 979,
+      "fact": "979 m tall — tallest uninterrupted waterfall in the world"
+    }
+  ]
+}

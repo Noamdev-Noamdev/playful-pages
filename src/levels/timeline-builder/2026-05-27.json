@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-27",
+  "theme": "History of Philosophy",
+  "prompt": "Order these philosophical events from earliest to latest",
+  "themeEmoji": "🧠",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "ph1",
+      "title": "Buddha starts teaching",
+      "emoji": "🧘",
+      "year": -500,
+      "fact": "-500 BC — Siddhartha Gautama begins teaching in ancient India"
+    },
+    {
+      "id": "ph2",
+      "title": "Socrates sentenced to death",
+      "emoji": "🏛️",
+      "year": -399,
+      "fact": "-399 BC — executed by drinking hemlock in Athens"
+    },
+    {
+      "id": "ph3",
+      "title": "Aristotle founds the Lyceum",
+      "emoji": "🏛️",
+      "year": -350,
+      "fact": "-350 BC — Aristotle establishes school in Athens"
+    },
+    {
+      "id": "ph4",
+      "title": "Descartes publishes Meditations",
+      "emoji": "🧠",
+      "year": 1641,
+      "fact": "1641 — René Descartes publishes Meditations on First Philosophy"
+    },
+    {
+      "id": "ph5",
+      "title": "Locke publishes Essay",
+      "emoji": "🧠",
+      "year": 1690,
+      "fact": "1690 — John Locke details early empiricism theory"
+    },
+    {
+      "id": "ph6",
+      "title": "Kant publishes Critique",
+      "emoji": "📖",
+      "year": 1781,
+      "fact": "1781 — Immanuel Kant details theory of transcendental idealism"
+    },
+    {
+      "id": "ph7",
+      "title": "Nietzsche writes Zarathustra",
+      "emoji": "⚡",
+      "year": 1883,
+      "fact": "1883 — Friedrich Nietzsche introduces the Overman concept"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": 20260507,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 31.6,
+      "maxGuess": 79,
+      "difficulty": "easy",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Bowling pin's 38 cm — making it about 32× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Giant panda than a Grain of sand?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grain of sand",
+        "emoji": "⏳"
+      },
+      "itemB": {
+        "name": "Giant panda",
+        "emoji": "🐼"
+      },
+      "ratio": 10000000,
+      "maxGuess": 25000000,
+      "difficulty": "easy",
+      "fact": "Giant panda measures 100 kg vs Grain of sand's 0.01 g — making it about 10000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Width of United States?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 15.5,
+      "maxGuess": 39,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Width of United States's 4,500 km — making it about 16× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a London Eye than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "ratio": 3000,
+      "maxGuess": 7500,
+      "difficulty": "medium",
+      "fact": "London Eye measures 120 m vs Ping pong ball's 4 cm — making it about 3000× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Standard doorway?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Standard doorway",
+        "emoji": "🚪"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 6,
+      "maxGuess": 15,
+      "difficulty": "hard",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Standard doorway's 2 m — making it about 6× longer."
+    }
+  ]
+}

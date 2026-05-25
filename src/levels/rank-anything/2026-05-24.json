@@ -1,0 +1,40 @@
+{
+  "id": 20260524,
+  "prompt": "Rank from shortest to longest wingspan",
+  "promptEmoji": "🦅",
+  "shareLabel": "by wingspan",
+  "metric": "Average wingspan (metres)",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Hummingbird",
+      "emoji": "🐦",
+      "value": 0.1,
+      "fact": "~10 cm wingspan — can hover and fly backwards"
+    },
+    {
+      "name": "American Robin",
+      "emoji": "🐦",
+      "value": 0.2,
+      "fact": "~20 cm wingspan — common backyard songbird"
+    },
+    {
+      "name": "Barn Owl",
+      "emoji": "🦉",
+      "value": 0.85,
+      "fact": "~85 cm wingspan — silent flight for night hunting"
+    },
+    {
+      "name": "Bald Eagle",
+      "emoji": "🦅",
+      "value": 2,
+      "fact": "~2.0 m wingspan — majestic bird of prey"
+    },
+    {
+      "name": "Wandering Albatross",
+      "emoji": "🦅",
+      "value": 3.3,
+      "fact": "~3.3 m wingspan — largest of any living bird"
+    }
+  ]
+}

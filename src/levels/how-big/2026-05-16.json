@@ -1,0 +1,90 @@
+{
+  "id": 20260516,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Golden retriever than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Golden retriever",
+        "emoji": "🦮"
+      },
+      "ratio": 1.58,
+      "maxGuess": 10,
+      "difficulty": "easy",
+      "fact": "Golden retriever measures 60 cm vs Bowling pin's 38 cm — making it about 2× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Grizzly bear than a Standard brick?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "itemB": {
+        "name": "Grizzly bear",
+        "emoji": "🐻"
+      },
+      "ratio": 130.4,
+      "maxGuess": 326,
+      "difficulty": "easy",
+      "fact": "Grizzly bear measures 300 kg vs Standard brick's 2.3 kg — making it about 130× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Olympic swimming pool?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Olympic swimming pool",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 90000,
+      "maxGuess": 225000,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Olympic swimming pool's 0.05 km — making it about 90000× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a Large pizza?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 3428.6,
+      "maxGuess": 8572,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs Large pizza's 35 cm — making it about 3429× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Great Pyramid of Giza than a Tyrannosaurus Rex?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 11.4,
+      "maxGuess": 29,
+      "difficulty": "hard",
+      "fact": "Great Pyramid of Giza measures 137 m vs Tyrannosaurus Rex's 12 m — making it about 11× taller."
+    }
+  ]
+}

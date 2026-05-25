@@ -1,0 +1,90 @@
+{
+  "id": 20260512,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 760,
+      "maxGuess": 1900,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Tardigrade's 0.5 mm — making it about 760× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Great Pyramid of Giza than a Raindrop?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 120000000000000,
+      "maxGuess": 300000000000000,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 6 billion kg vs Raindrop's 0.05 g — making it about 120000000000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Width of United States?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 15.5,
+      "maxGuess": 39,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Width of United States's 4,500 km — making it about 16× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a Large pizza?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Large pizza",
+        "emoji": "🍕"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 3428.6,
+      "maxGuess": 8572,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs Large pizza's 35 cm — making it about 3429× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Standard doorway?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Standard doorway",
+        "emoji": "🚪"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 6,
+      "maxGuess": 15,
+      "difficulty": "hard",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Standard doorway's 2 m — making it about 6× longer."
+    }
+  ]
+}

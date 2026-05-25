@@ -1,0 +1,90 @@
+{
+  "id": 20260521,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Gateway Arch than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Gateway Arch",
+        "emoji": "🌉"
+      },
+      "ratio": 505.3,
+      "maxGuess": 1264,
+      "difficulty": "easy",
+      "fact": "Gateway Arch measures 192 m vs Bowling pin's 38 cm — making it about 505× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Giant panda than a Raindrop?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "itemB": {
+        "name": "Giant panda",
+        "emoji": "🐼"
+      },
+      "ratio": 2000000,
+      "maxGuess": 5000000,
+      "difficulty": "easy",
+      "fact": "Giant panda measures 100 kg vs Raindrop's 0.05 g — making it about 2000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 3236.6,
+      "maxGuess": 8092,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Length of Manhattan's 21.6 km — making it about 3237× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Ceres dwarf planet than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "Ceres dwarf planet",
+        "emoji": "🪐"
+      },
+      "ratio": 23500000,
+      "maxGuess": 58750000,
+      "difficulty": "medium",
+      "fact": "Ceres dwarf planet measures 940 km vs Ping pong ball's 4 cm — making it about 23500000× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a CN Tower than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "CN Tower",
+        "emoji": "🗼"
+      },
+      "ratio": 27650,
+      "maxGuess": 69125,
+      "difficulty": "hard",
+      "fact": "CN Tower measures 553 m vs Gummy bear's 2 cm — making it about 27650× taller."
+    }
+  ]
+}

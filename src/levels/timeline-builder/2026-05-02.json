@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-02",
+  "theme": "History of Computing",
+  "prompt": "Order these computer milestones from earliest to latest",
+  "themeEmoji": "💻",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "c1",
+      "title": "Analytical Engine designed",
+      "emoji": "⚙️",
+      "year": 1837,
+      "fact": "1837 — Charles Babbage's mechanical computer design"
+    },
+    {
+      "id": "c2",
+      "title": "ENIAC completed",
+      "emoji": "🔌",
+      "year": 1945,
+      "fact": "1945 — first general-purpose electronic digital computer"
+    },
+    {
+      "id": "c3",
+      "title": "UNIVAC I delivered",
+      "emoji": "💾",
+      "year": 1951,
+      "fact": "1951 — first commercial computer in the US"
+    },
+    {
+      "id": "c4",
+      "title": "Intel 4004 microprocessor",
+      "emoji": "💾",
+      "year": 1971,
+      "fact": "1971 — first single-chip commercial CPU"
+    },
+    {
+      "id": "c5",
+      "title": "IBM Personal Computer",
+      "emoji": "💻",
+      "year": 1981,
+      "fact": "1981 — popularized the term 'PC' and standards"
+    },
+    {
+      "id": "c6",
+      "title": "Windows 95 released",
+      "emoji": "💽",
+      "year": 1995,
+      "fact": "1995 — introduced Start menu and taskbar"
+    },
+    {
+      "id": "c7",
+      "title": "Raspberry Pi launched",
+      "emoji": "🍓",
+      "year": 2012,
+      "fact": "2012 — ultra-low-cost credit-card sized computer"
+    }
+  ]
+}

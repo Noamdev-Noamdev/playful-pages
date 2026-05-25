@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-29",
+  "theme": "History of Meteorology",
+  "prompt": "Order these meteorological events from earliest to latest",
+  "themeEmoji": "☁️",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "me1",
+      "title": "Galileo water thermoscope",
+      "emoji": "🌡️",
+      "year": 1593,
+      "fact": "1593 — first device to measure temperature variations"
+    },
+    {
+      "id": "me2",
+      "title": "Torricelli invents barometer",
+      "emoji": "🌡️",
+      "year": 1643,
+      "fact": "1643 — invents first mercury barometer to measure pressure"
+    },
+    {
+      "id": "me3",
+      "title": "Fahrenheit mercury thermometer",
+      "emoji": "🌡️",
+      "year": 1714,
+      "fact": "1714 — first highly accurate mercury-in-glass thermometer"
+    },
+    {
+      "id": "me4",
+      "title": "Cloud classification proposed",
+      "emoji": "☁️",
+      "year": 1802,
+      "fact": "1802 — Luke Howard defines cumulus, stratus, cirrus"
+    },
+    {
+      "id": "me5",
+      "title": "Beaufort wind scale designed",
+      "emoji": "💨",
+      "year": 1805,
+      "fact": "1805 — Francis Beaufort designs empirical wind force scale"
+    },
+    {
+      "id": "me6",
+      "title": "First weather satellite",
+      "emoji": "🛰️",
+      "year": 1960,
+      "fact": "1960 — TIROS-1 launched, transmits first cloud images"
+    },
+    {
+      "id": "me7",
+      "title": "Chaos theory published",
+      "emoji": "🦋",
+      "year": 1963,
+      "fact": "1963 — Edward Lorenz details limits of weather forecasting"
+    }
+  ]
+}

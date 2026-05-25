@@ -1,0 +1,40 @@
+{
+  "id": 20260507,
+  "prompt": "Rank from fewest to most letters in the alphabet",
+  "promptEmoji": "🔤",
+  "shareLabel": "by alphabet size",
+  "metric": "Number of letters",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Hawaiian",
+      "emoji": "🌺",
+      "value": 13,
+      "fact": "13 letters — 5 vowels and 8 consonants"
+    },
+    {
+      "name": "Italian",
+      "emoji": "🍕",
+      "value": 21,
+      "fact": "21 letters — excludes J, K, W, X, Y"
+    },
+    {
+      "name": "English",
+      "emoji": "📝",
+      "value": 26,
+      "fact": "26 letters — standard Latin alphabet"
+    },
+    {
+      "name": "Russian (Cyrillic)",
+      "emoji": "🇷🇺",
+      "value": 33,
+      "fact": "33 letters — developed in 9th century AD"
+    },
+    {
+      "name": "Khmer (Cambodian)",
+      "emoji": "🇰🇭",
+      "value": 74,
+      "fact": "74 letters — world's longest alphabet"
+    }
+  ]
+}

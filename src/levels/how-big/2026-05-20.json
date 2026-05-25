@@ -1,0 +1,90 @@
+{
+  "id": 20260520,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Great Pyramid of Giza than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Great Pyramid of Giza",
+        "emoji": "🏜️"
+      },
+      "ratio": 360.5,
+      "maxGuess": 902,
+      "difficulty": "easy",
+      "fact": "Great Pyramid of Giza measures 137 m vs Bowling pin's 38 cm — making it about 361× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Mountain bike than a Standard brick?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "itemB": {
+        "name": "Mountain bike",
+        "emoji": "🚲"
+      },
+      "ratio": 6.09,
+      "maxGuess": 16,
+      "difficulty": "easy",
+      "fact": "Mountain bike measures 14 kg vs Standard brick's 2.3 kg — making it about 6× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Great Barrier Reef?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Great Barrier Reef",
+        "emoji": "🪸"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 1.96,
+      "maxGuess": 10,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Great Barrier Reef's 2,300 km — making it about 2× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 30000,
+      "maxGuess": 75000,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs Ping pong ball's 4 cm — making it about 30000× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a CN Tower than a Golden retriever?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Golden retriever",
+        "emoji": "🦮"
+      },
+      "itemB": {
+        "name": "CN Tower",
+        "emoji": "🗼"
+      },
+      "ratio": 921.7,
+      "maxGuess": 2305,
+      "difficulty": "hard",
+      "fact": "CN Tower measures 553 m vs Golden retriever's 60 cm — making it about 922× taller."
+    }
+  ]
+}

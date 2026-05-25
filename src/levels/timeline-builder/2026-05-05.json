@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-05",
+  "theme": "Aviation Pioneers",
+  "prompt": "Order these aviation milestones from earliest to latest",
+  "themeEmoji": "✈️",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "a1",
+      "title": "Hot air balloon flight",
+      "emoji": "🎈",
+      "year": 1783,
+      "fact": "1783 — Montgolfier brothers fly in Paris"
+    },
+    {
+      "id": "a2",
+      "title": "Wright Brothers flight",
+      "emoji": "✈️",
+      "year": 1903,
+      "fact": "1903 — first controlled powered heavier-than-air flight"
+    },
+    {
+      "id": "a3",
+      "title": "Lindbergh trans-Atlantic",
+      "emoji": "✈️",
+      "year": 1927,
+      "fact": "1927 — first solo nonstop flight across Atlantic"
+    },
+    {
+      "id": "a4",
+      "title": "Hindenburg disaster",
+      "emoji": "🔥",
+      "year": 1937,
+      "fact": "1937 — German airship catches fire in New Jersey"
+    },
+    {
+      "id": "a5",
+      "title": "Chuck Yeager breaks sound barrier",
+      "emoji": "💨",
+      "year": 1947,
+      "fact": "1947 — flew Bell X-1 rocket plane at Mach 1.06"
+    },
+    {
+      "id": "a6",
+      "title": "Concorde first flight",
+      "emoji": "✈️",
+      "year": 1969,
+      "fact": "1969 — supersonic commercial passenger jet debut"
+    },
+    {
+      "id": "a7",
+      "title": "SpaceX Falcon 9 reuse",
+      "emoji": "🚀",
+      "year": 2015,
+      "fact": "2015 — first landing and reuse of orbital rocket booster"
+    }
+  ]
+}

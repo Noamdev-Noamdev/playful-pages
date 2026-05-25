@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-24",
+  "theme": "Energy & Power",
+  "prompt": "Order these energy milestones from earliest to latest",
+  "themeEmoji": "⚡",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "eg1",
+      "title": "Newcomen steam engine",
+      "emoji": "⚙️",
+      "year": 1712,
+      "fact": "1712 — first practical atmospheric engine"
+    },
+    {
+      "id": "eg2",
+      "title": "Electromagnetic induction",
+      "emoji": "⚡",
+      "year": 1831,
+      "fact": "1831 — Michael Faraday discovers generator principle"
+    },
+    {
+      "id": "eg3",
+      "title": "Pearl Street Station (power)",
+      "emoji": "💡",
+      "year": 1882,
+      "fact": "1882 — Edison opens first commercial US power plant"
+    },
+    {
+      "id": "eg4",
+      "title": "Chicago Pile-1 (reactor)",
+      "emoji": "⚛️",
+      "year": 1942,
+      "fact": "1942 — Fermi achieves first self-sustaining nuclear reaction"
+    },
+    {
+      "id": "eg5",
+      "title": "Obninsk grid connected",
+      "emoji": "⚡",
+      "year": 1954,
+      "fact": "1954 — first nuclear power station to generate grid power"
+    },
+    {
+      "id": "eg6",
+      "title": "Three Mile Island accident",
+      "emoji": "⚠️",
+      "year": 1979,
+      "fact": "1979 — partial meltdown of reactor in Pennsylvania"
+    },
+    {
+      "id": "eg7",
+      "title": "Net energy gain in fusion",
+      "emoji": "⚛️",
+      "year": 2022,
+      "fact": "2022 — NIF achieves ignition (more energy out than in)"
+    }
+  ]
+}

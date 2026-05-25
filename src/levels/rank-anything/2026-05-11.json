@@ -1,0 +1,40 @@
+{
+  "id": 20260511,
+  "prompt": "Rank from least to most dense material",
+  "promptEmoji": "⚖️",
+  "shareLabel": "by density",
+  "metric": "Density (kg/m³)",
+  "difficulty": "hard",
+  "items": [
+    {
+      "name": "Styrofoam",
+      "emoji": "📦",
+      "value": 30,
+      "fact": "~30 kg/m³ — extremely light expanded plastic"
+    },
+    {
+      "name": "Oak Wood",
+      "emoji": "🪵",
+      "value": 750,
+      "fact": "~750 kg/m³ — dense hardwood, floats in water"
+    },
+    {
+      "name": "Water",
+      "emoji": "💧",
+      "value": 1000,
+      "fact": "1,000 kg/m³ — standard standard at 4 °C"
+    },
+    {
+      "name": "Iron",
+      "emoji": "⛓️",
+      "value": 7874,
+      "fact": "7,874 kg/m³ — core component of buildings/steel"
+    },
+    {
+      "name": "Gold",
+      "emoji": "🪙",
+      "value": 19300,
+      "fact": "19,300 kg/m³ — extremely heavy, nearly 20× water"
+    }
+  ]
+}

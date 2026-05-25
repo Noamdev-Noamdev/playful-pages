@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-19",
+  "theme": "History of Math",
+  "prompt": "Order these mathematical milestones from earliest to latest",
+  "themeEmoji": "📐",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "ma1",
+      "title": "Euclid's Elements written",
+      "emoji": "📐",
+      "year": -300,
+      "fact": "300 BC — foundation of geometry and number theory"
+    },
+    {
+      "id": "ma2",
+      "title": "Al-Khwarizmi's Algebra",
+      "emoji": "🧮",
+      "year": 820,
+      "fact": "820 AD — introduces systematic solution of linear equations"
+    },
+    {
+      "id": "ma3",
+      "title": "Fibonacci's Liber Abaci",
+      "emoji": "🧮",
+      "year": 1202,
+      "fact": "1202 AD — introduces Hindu-Arabic numerals to Europe"
+    },
+    {
+      "id": "ma4",
+      "title": "Calculus developed",
+      "emoji": "✍️",
+      "year": 1665,
+      "fact": "1665 — Newton and Leibniz independently create calculus"
+    },
+    {
+      "id": "ma5",
+      "title": "Bridges of Königsberg solved",
+      "emoji": "🌉",
+      "year": 1736,
+      "fact": "1736 — Leonhard Euler lays foundation of graph theory"
+    },
+    {
+      "id": "ma6",
+      "title": "Fermat's Last Theorem proved",
+      "emoji": "📝",
+      "year": 1994,
+      "fact": "1994 — Andrew Wiles publishes proof after 358 years"
+    },
+    {
+      "id": "ma7",
+      "title": "Poincaré Conjecture proved",
+      "emoji": "🧠",
+      "year": 2003,
+      "fact": "2003 — Grigori Perelman solves century-old topology puzzle"
+    }
+  ]
+}

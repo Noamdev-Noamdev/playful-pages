@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-01",
+  "theme": "Ancient Empires",
+  "prompt": "Order these events from earliest to latest",
+  "themeEmoji": "🏛️",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "e1",
+      "title": "Great Pyramid of Giza completed",
+      "emoji": "🏜️",
+      "year": -2560,
+      "fact": "-2560 BC — built for Pharaoh Khufu"
+    },
+    {
+      "id": "e2",
+      "title": "Rome founded",
+      "emoji": "🏛️",
+      "year": -753,
+      "fact": "-753 BC — legendary founding by Romulus and Remus"
+    },
+    {
+      "id": "e3",
+      "title": "Battle of Gaugamela",
+      "emoji": "⚔️",
+      "year": -331,
+      "fact": "-331 BC — Alexander the Great defeats Darius III of Persia"
+    },
+    {
+      "id": "e4",
+      "title": "Qin Dynasty unifies China",
+      "emoji": "🇨🇳",
+      "year": -221,
+      "fact": "-221 BC — Qin Shi Huang becomes first Emperor"
+    },
+    {
+      "id": "e5",
+      "title": "Julius Caesar assassinated",
+      "emoji": "🗡️",
+      "year": -44,
+      "fact": "-44 BC — stabbed by senators on the Ides of March"
+    },
+    {
+      "id": "e6",
+      "title": "Pompeii destroyed",
+      "emoji": "🌋",
+      "year": 79,
+      "fact": "79 AD — eruption of Mount Vesuvius buries the city"
+    },
+    {
+      "id": "e7",
+      "title": "Fall of Western Rome",
+      "emoji": "🏛️",
+      "year": 476,
+      "fact": "476 AD — Romulus Augustulus deposed by Odoacer"
+    }
+  ]
+}

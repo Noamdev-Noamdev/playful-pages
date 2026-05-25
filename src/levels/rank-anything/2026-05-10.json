@@ -1,0 +1,40 @@
+{
+  "id": 20260510,
+  "prompt": "Rank these board games from oldest to newest",
+  "promptEmoji": "🎲",
+  "shareLabel": "by game age",
+  "metric": "Year first published",
+  "difficulty": "medium",
+  "items": [
+    {
+      "name": "Chess",
+      "emoji": "♟️",
+      "value": 600,
+      "fact": "~600 AD — originated as Chaturanga in India"
+    },
+    {
+      "name": "Monopoly",
+      "emoji": "🎩",
+      "value": 1935,
+      "fact": "1935 — published by Parker Brothers"
+    },
+    {
+      "name": "Scrabble",
+      "emoji": "🔠",
+      "value": 1948,
+      "fact": "1948 — trademarked by James Brunot"
+    },
+    {
+      "name": "Catan",
+      "emoji": "🐑",
+      "value": 1995,
+      "fact": "1995 — German style board game by Klaus Teuber"
+    },
+    {
+      "name": "Pandemic",
+      "emoji": "🦠",
+      "value": 2008,
+      "fact": "2008 — cooperative board game by Matt Leacock"
+    }
+  ]
+}

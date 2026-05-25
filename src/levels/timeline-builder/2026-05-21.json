@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-21",
+  "theme": "History of Archaeology",
+  "prompt": "Order these archaeological discoveries from earliest to latest",
+  "themeEmoji": "🪨",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "ac1",
+      "title": "Pompeii excavation begins",
+      "emoji": "🏛️",
+      "year": 1748,
+      "fact": "1748 — systematic excavation of volcanic ruins"
+    },
+    {
+      "id": "ac2",
+      "title": "Rosetta Stone discovered",
+      "emoji": "🪨",
+      "year": 1799,
+      "fact": "1799 — key to deciphering hieroglyphs found"
+    },
+    {
+      "id": "ac3",
+      "title": "Troy excavated",
+      "emoji": "🏛️",
+      "year": 1871,
+      "fact": "1871 — Heinrich Schliemann excavates Hisarlik mound"
+    },
+    {
+      "id": "ac4",
+      "title": "Tutankhamun tomb found",
+      "emoji": "👑",
+      "year": 1922,
+      "fact": "1922 — Howard Carter finds intact royal tomb"
+    },
+    {
+      "id": "ac5",
+      "title": "Dead Sea Scrolls found",
+      "emoji": "📜",
+      "year": 1947,
+      "fact": "1947 — ancient Hebrew manuscripts found in Qumran"
+    },
+    {
+      "id": "ac6",
+      "title": "Terracotta Army found",
+      "emoji": "🛡️",
+      "year": 1974,
+      "fact": "1974 — farmers dig well and find clay army"
+    },
+    {
+      "id": "ac7",
+      "title": "Ötzi the Iceman found",
+      "emoji": "🧊",
+      "year": 1991,
+      "fact": "1991 — natural mummy discovered in Ötztal Alps"
+    }
+  ]
+}

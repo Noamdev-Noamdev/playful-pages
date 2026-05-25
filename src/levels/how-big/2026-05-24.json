@@ -1,0 +1,90 @@
+{
+  "id": 20260524,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 760,
+      "maxGuess": 1900,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Tardigrade's 0.5 mm — making it about 760× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Grizzly bear than a Raindrop?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "itemB": {
+        "name": "Grizzly bear",
+        "emoji": "🐻"
+      },
+      "ratio": 6000000,
+      "maxGuess": 15000000,
+      "difficulty": "easy",
+      "fact": "Grizzly bear measures 300 kg vs Raindrop's 0.05 g — making it about 6000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Radius of Jupiter than a Great Barrier Reef?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Great Barrier Reef",
+        "emoji": "🪸"
+      },
+      "itemB": {
+        "name": "Radius of Jupiter",
+        "emoji": "🪐"
+      },
+      "ratio": 30.4,
+      "maxGuess": 76,
+      "difficulty": "medium",
+      "fact": "Radius of Jupiter measures 69,911 km vs Great Barrier Reef's 2,300 km — making it about 30× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a London Eye?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 10,
+      "maxGuess": 25,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs London Eye's 120 m — making it about 10× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a Giant Sequoia than a Gummy bear?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Gummy bear",
+        "emoji": "🧸"
+      },
+      "itemB": {
+        "name": "Giant Sequoia",
+        "emoji": "🌲"
+      },
+      "ratio": 4200,
+      "maxGuess": 10500,
+      "difficulty": "hard",
+      "fact": "Giant Sequoia measures 84 m vs Gummy bear's 2 cm — making it about 4200× taller."
+    }
+  ]
+}

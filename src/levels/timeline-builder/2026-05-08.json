@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-08",
+  "theme": "Medical Discoveries",
+  "prompt": "Order these medical milestones from earliest to latest",
+  "themeEmoji": "💉",
+  "difficulty": "hard",
+  "events": [
+    {
+      "id": "m1",
+      "title": "Smallpox vaccine",
+      "emoji": "💉",
+      "year": 1796,
+      "fact": "1796 — Edward Jenner creates first vaccine"
+    },
+    {
+      "id": "m2",
+      "title": "Ether anesthesia",
+      "emoji": "😷",
+      "year": 1846,
+      "fact": "1846 — first public demo of ether during surgery"
+    },
+    {
+      "id": "m3",
+      "title": "X-rays discovered",
+      "emoji": "🩻",
+      "year": 1895,
+      "fact": "1895 — Wilhelm Röntgen detects electromagnetic radiation"
+    },
+    {
+      "id": "m4",
+      "title": "Insulin first used",
+      "emoji": "🩸",
+      "year": 1922,
+      "fact": "1922 — treats type 1 diabetes in human patient"
+    },
+    {
+      "id": "m5",
+      "title": "Penicillin discovered",
+      "emoji": "💊",
+      "year": 1928,
+      "fact": "1928 — Alexander Fleming finds mold killing bacteria"
+    },
+    {
+      "id": "m6",
+      "title": "Polio vaccine developed",
+      "emoji": "👶",
+      "year": 1953,
+      "fact": "1953 — Jonas Salk announces successful trial"
+    },
+    {
+      "id": "m7",
+      "title": "First heart transplant",
+      "emoji": "🫀",
+      "year": 1967,
+      "fact": "1967 — Christian Barnard performs surgery in Cape Town"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "id": 20260508,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times taller is a Giant Sequoia than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Giant Sequoia",
+        "emoji": "🌲"
+      },
+      "ratio": 221.1,
+      "maxGuess": 553,
+      "difficulty": "easy",
+      "fact": "Giant Sequoia measures 84 m vs Bowling pin's 38 cm — making it about 221× taller."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Raindrop than a Grain of sand?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Grain of sand",
+        "emoji": "⏳"
+      },
+      "itemB": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "ratio": 5,
+      "maxGuess": 13,
+      "difficulty": "easy",
+      "fact": "Raindrop measures 0.05 g vs Grain of sand's 0.01 g — making it about 5× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Width of United States than a Length of Manhattan?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "itemB": {
+        "name": "Width of United States",
+        "emoji": "🇺🇸"
+      },
+      "ratio": 208.3,
+      "maxGuess": 521,
+      "difficulty": "medium",
+      "fact": "Width of United States measures 4,500 km vs Length of Manhattan's 21.6 km — making it about 208× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a London Eye than a Ping pong ball?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "Ping pong ball",
+        "emoji": "🏓"
+      },
+      "itemB": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "ratio": 3000,
+      "maxGuess": 7500,
+      "difficulty": "medium",
+      "fact": "London Eye measures 120 m vs Ping pong ball's 4 cm — making it about 3000× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 31.6,
+      "maxGuess": 79,
+      "difficulty": "hard",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Bowling pin's 38 cm — making it about 32× longer."
+    }
+  ]
+}

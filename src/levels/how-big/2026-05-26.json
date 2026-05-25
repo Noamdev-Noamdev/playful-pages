@@ -1,0 +1,90 @@
+{
+  "id": 20260526,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Tyrannosaurus Rex than a Bowling pin?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "itemB": {
+        "name": "Tyrannosaurus Rex",
+        "emoji": "🦖"
+      },
+      "ratio": 31.6,
+      "maxGuess": 79,
+      "difficulty": "easy",
+      "fact": "Tyrannosaurus Rex measures 12 m vs Bowling pin's 38 cm — making it about 32× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Grizzly bear than a Standard brick?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Standard brick",
+        "emoji": "🧱"
+      },
+      "itemB": {
+        "name": "Grizzly bear",
+        "emoji": "🐻"
+      },
+      "ratio": 130.4,
+      "maxGuess": 326,
+      "difficulty": "easy",
+      "fact": "Grizzly bear measures 300 kg vs Standard brick's 2.3 kg — making it about 130× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Length of Manhattan than a Olympic swimming pool?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Olympic swimming pool",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "ratio": 432,
+      "maxGuess": 1080,
+      "difficulty": "medium",
+      "fact": "Length of Manhattan measures 21.6 km vs Olympic swimming pool's 0.05 km — making it about 432× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Meteor Crater than a London Eye?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "itemB": {
+        "name": "Meteor Crater",
+        "emoji": "☄️"
+      },
+      "ratio": 10,
+      "maxGuess": 25,
+      "difficulty": "medium",
+      "fact": "Meteor Crater measures 1.2 km vs London Eye's 120 m — making it about 10× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times longer is a Bowling pin than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 760,
+      "maxGuess": 1900,
+      "difficulty": "hard",
+      "fact": "Bowling pin measures 38 cm vs Tardigrade's 0.5 mm — making it about 760× longer."
+    }
+  ]
+}

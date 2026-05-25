@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-31",
+  "theme": "Modern Medicine Advances",
+  "prompt": "Order these medical achievements from earliest to latest",
+  "themeEmoji": "💉",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "md1",
+      "title": "Banting and Best isolate insulin",
+      "emoji": "🩸",
+      "year": 1921,
+      "fact": "1921 — isolates insulin to treat diabetes"
+    },
+    {
+      "id": "md2",
+      "title": "Fleming discovers penicillin",
+      "emoji": "💊",
+      "year": 1928,
+      "fact": "1928 — Alexander Fleming finds mold killing bacteria"
+    },
+    {
+      "id": "md3",
+      "title": "Jonas Salk polio vaccine",
+      "emoji": "👶",
+      "year": 1953,
+      "fact": "1953 — develops successful vaccine for polio"
+    },
+    {
+      "id": "md4",
+      "title": "First human heart transplant",
+      "emoji": "🫀",
+      "year": 1967,
+      "fact": "1967 — Christian Barnard performs surgery in Cape Town"
+    },
+    {
+      "id": "md5",
+      "title": "First IVF baby born",
+      "emoji": "👶",
+      "year": 1978,
+      "fact": "1978 — Louise Brown born in Oldham, England"
+    },
+    {
+      "id": "md6",
+      "title": "HIV virus isolated",
+      "emoji": "🔬",
+      "year": 1983,
+      "fact": "1983 — Luc Montagnier identifies retrovirus causing AIDS"
+    },
+    {
+      "id": "md7",
+      "title": "mRNA vaccine approval",
+      "emoji": "💉",
+      "year": 2020,
+      "fact": "2020 — first mRNA vaccines authorized for emergency use"
+    }
+  ]
+}

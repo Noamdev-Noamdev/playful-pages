@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-12",
+  "theme": "Exploration of Earth",
+  "prompt": "Order these exploration milestones from earliest to latest",
+  "themeEmoji": "⛵",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "ex1",
+      "title": "Marco Polo travels to Asia",
+      "emoji": "🐫",
+      "year": 1271,
+      "fact": "1271 — Venetian merchant travels the Silk Road"
+    },
+    {
+      "id": "ex2",
+      "title": "Columbus reaches Americas",
+      "emoji": "⛵",
+      "year": 1492,
+      "fact": "1492 — sailing under Spain, lands in Bahamas"
+    },
+    {
+      "id": "ex3",
+      "title": "Magellan circumnavigation",
+      "emoji": "⛵",
+      "year": 1519,
+      "fact": "1519 — fleet sets sail to circle the globe"
+    },
+    {
+      "id": "ex4",
+      "title": "Cook maps Australia",
+      "emoji": "⚓",
+      "year": 1770,
+      "fact": "1770 — HMS Endeavour charts eastern coast"
+    },
+    {
+      "id": "ex5",
+      "title": "Lewis and Clark expedition",
+      "emoji": "🪵",
+      "year": 1804,
+      "fact": "1804 — US military expedition maps Western territory"
+    },
+    {
+      "id": "ex6",
+      "title": "Amundsen reaches South Pole",
+      "emoji": "❄️",
+      "year": 1911,
+      "fact": "1911 — Norwegian explorer beats Robert Falcon Scott"
+    },
+    {
+      "id": "ex7",
+      "title": "Mariana Trench descent",
+      "emoji": "🌊",
+      "year": 1960,
+      "fact": "1960 — Trieste bathyscaphe reaches Challenger Deep"
+    }
+  ]
+}

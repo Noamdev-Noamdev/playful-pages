@@ -1,0 +1,90 @@
+{
+  "id": 20260502,
+  "rounds": [
+    {
+      "id": 1,
+      "prompt": "How many times longer is a Bowling pin than a Tardigrade?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Tardigrade",
+        "emoji": "🧫"
+      },
+      "itemB": {
+        "name": "Bowling pin",
+        "emoji": "🎳"
+      },
+      "ratio": 760,
+      "maxGuess": 1900,
+      "difficulty": "easy",
+      "fact": "Bowling pin measures 38 cm vs Tardigrade's 0.5 mm — making it about 760× longer."
+    },
+    {
+      "id": 2,
+      "prompt": "How many times heavier is a Cruise ship than a Raindrop?",
+      "metric": "Mass",
+      "itemA": {
+        "name": "Raindrop",
+        "emoji": "💧"
+      },
+      "itemB": {
+        "name": "Cruise ship",
+        "emoji": "🚢"
+      },
+      "ratio": 4560000000000,
+      "maxGuess": 11400000000000,
+      "difficulty": "easy",
+      "fact": "Cruise ship measures 228 million kg vs Raindrop's 0.05 g — making it about 4560000000000× heavier."
+    },
+    {
+      "id": 3,
+      "prompt": "How many times farther is a Length of Manhattan than a Olympic swimming pool?",
+      "metric": "Distance",
+      "itemA": {
+        "name": "Olympic swimming pool",
+        "emoji": "🏊"
+      },
+      "itemB": {
+        "name": "Length of Manhattan",
+        "emoji": "🏙️"
+      },
+      "ratio": 432,
+      "maxGuess": 1080,
+      "difficulty": "medium",
+      "fact": "Length of Manhattan measures 21.6 km vs Olympic swimming pool's 0.05 km — making it about 432× farther."
+    },
+    {
+      "id": 4,
+      "prompt": "How many times wider is a Ceres dwarf planet than a London Eye?",
+      "metric": "Diameter",
+      "itemA": {
+        "name": "London Eye",
+        "emoji": "🎡"
+      },
+      "itemB": {
+        "name": "Ceres dwarf planet",
+        "emoji": "🪐"
+      },
+      "ratio": 7833.3,
+      "maxGuess": 19584,
+      "difficulty": "medium",
+      "fact": "Ceres dwarf planet measures 940 km vs London Eye's 120 m — making it about 7833× wider."
+    },
+    {
+      "id": 5,
+      "prompt": "How many times taller is a CN Tower than a Standard doorway?",
+      "metric": "Length",
+      "itemA": {
+        "name": "Standard doorway",
+        "emoji": "🚪"
+      },
+      "itemB": {
+        "name": "CN Tower",
+        "emoji": "🗼"
+      },
+      "ratio": 276.5,
+      "maxGuess": 692,
+      "difficulty": "hard",
+      "fact": "CN Tower measures 553 m vs Standard doorway's 2 m — making it about 277× taller."
+    }
+  ]
+}

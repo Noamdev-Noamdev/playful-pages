@@ -1,0 +1,58 @@
+{
+  "id": "timeline-2026-05-23",
+  "theme": "Women's History",
+  "prompt": "Order these milestones in women's history from earliest to latest",
+  "themeEmoji": "👩",
+  "difficulty": "medium",
+  "events": [
+    {
+      "id": "wo1",
+      "title": "Seneca Falls Convention",
+      "emoji": "📜",
+      "year": 1848,
+      "fact": "1848 — first women's rights convention in the US"
+    },
+    {
+      "id": "wo2",
+      "title": "NZ grants women's suffrage",
+      "emoji": "🇳🇿",
+      "year": 1893,
+      "fact": "1893 — New Zealand becomes first country to grant vote"
+    },
+    {
+      "id": "wo3",
+      "title": "Marie Curie first Nobel",
+      "emoji": "🏅",
+      "year": 1903,
+      "fact": "1903 — first woman to win Nobel Prize (Physics)"
+    },
+    {
+      "id": "wo4",
+      "title": "Amelia Earhart solo flight",
+      "emoji": "✈️",
+      "year": 1932,
+      "fact": "1932 — first woman to fly solo across Atlantic"
+    },
+    {
+      "id": "wo5",
+      "title": "First woman in space",
+      "emoji": "👩‍🚀",
+      "year": 1963,
+      "fact": "1963 — Valentina Tereshkova orbits in Vostok 6"
+    },
+    {
+      "id": "wo6",
+      "title": "Margaret Thatcher PM",
+      "emoji": "💂",
+      "year": 1979,
+      "fact": "1979 — becomes first female UK Prime Minister"
+    },
+    {
+      "id": "wo7",
+      "title": "Kamala Harris sworn in",
+      "emoji": "🇺🇸",
+      "year": 2021,
+      "fact": "2021 — first female Vice President of the United States"
+    }
+  ]
+}
