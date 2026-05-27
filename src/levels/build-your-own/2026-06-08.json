@@ -1,0 +1,13 @@
+{
+  "id": "island",
+  "name": "Island",
+  "emoji": "🏝️",
+  "tier": 3,
+  "hint": "Land rising from endless water.",
+  "recipes": [
+    [
+      "volcano",
+      "ocean"
+    ]
+  ]
+}

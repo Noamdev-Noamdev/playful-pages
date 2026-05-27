@@ -1,0 +1,13 @@
+{
+  "id": "paper",
+  "name": "Paper",
+  "emoji": "📄",
+  "tier": 4,
+  "hint": "A tree turned into a whisper.",
+  "recipes": [
+    [
+      "tree",
+      "tool"
+    ]
+  ]
+}

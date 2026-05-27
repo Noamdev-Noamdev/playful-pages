@@ -1,0 +1,13 @@
+{
+  "id": "video_game",
+  "name": "Video Game",
+  "emoji": "🎮",
+  "tier": 6,
+  "hint": "Rules, joy, and buttons in motion.",
+  "recipes": [
+    [
+      "computer",
+      "music"
+    ]
+  ]
+}

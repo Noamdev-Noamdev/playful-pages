@@ -1,0 +1,13 @@
+{
+  "id": "storybook",
+  "name": "Storybook",
+  "emoji": "📕",
+  "tier": 4,
+  "hint": "A pocket of adventures on pages.",
+  "recipes": [
+    [
+      "paper",
+      "library"
+    ]
+  ]
+}

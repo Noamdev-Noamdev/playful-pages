@@ -1,0 +1,13 @@
+{
+  "id": "quantum",
+  "name": "Quantum",
+  "emoji": "⚛️",
+  "tier": 6,
+  "hint": "Rules that wobble when you look.",
+  "recipes": [
+    [
+      "technology",
+      "universe"
+    ]
+  ]
+}

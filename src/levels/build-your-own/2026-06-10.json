@@ -1,0 +1,13 @@
+{
+  "id": "sail",
+  "name": "Sail",
+  "emoji": "⛵",
+  "tier": 4,
+  "hint": "Cloth that catches the unseen.",
+  "recipes": [
+    [
+      "ship",
+      "air"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "comet",
+  "name": "Comet",
+  "emoji": "☄️",
+  "tier": 6,
+  "hint": "A bright traveler with a long tail.",
+  "recipes": [
+    [
+      "star",
+      "time"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "coral",
+  "name": "Coral",
+  "emoji": "🪸",
+  "tier": 3,
+  "hint": "Stone that grows in salt-blue light.",
+  "recipes": [
+    [
+      "ocean",
+      "stone"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "whirlpool",
+  "name": "Whirlpool",
+  "emoji": "🕳️",
+  "tier": 3,
+  "hint": "A spinning mouth in open water.",
+  "recipes": [
+    [
+      "ocean",
+      "storm"
+    ]
+  ]
+}

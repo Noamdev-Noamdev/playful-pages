@@ -1,0 +1,13 @@
+{
+  "id": "harbor",
+  "name": "Harbor",
+  "emoji": "⚓",
+  "tier": 4,
+  "hint": "Where journeys pause at stone and rope.",
+  "recipes": [
+    [
+      "ship",
+      "village"
+    ]
+  ]
+}

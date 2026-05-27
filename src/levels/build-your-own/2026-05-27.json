@@ -1,0 +1,13 @@
+{
+  "id": "camera",
+  "name": "Camera",
+  "emoji": "📷",
+  "tier": 5,
+  "hint": "A click that keeps a moment.",
+  "recipes": [
+    [
+      "computer",
+      "glass"
+    ]
+  ]
+}

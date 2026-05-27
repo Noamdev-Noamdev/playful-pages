@@ -1,0 +1,13 @@
+{
+  "id": "airport",
+  "name": "Airport",
+  "emoji": "🛬",
+  "tier": 5,
+  "hint": "Where the sky shakes hands with land.",
+  "recipes": [
+    [
+      "city",
+      "airplane"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "campfire",
+  "name": "Campfire",
+  "emoji": "🏕️",
+  "tier": 2,
+  "hint": "Stories gathered around a small flame.",
+  "recipes": [
+    [
+      "fire",
+      "forest"
+    ]
+  ]
+}

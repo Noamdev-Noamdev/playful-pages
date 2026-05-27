@@ -1,0 +1,13 @@
+{
+  "id": "dew",
+  "name": "Dew",
+  "emoji": "💦",
+  "tier": 1,
+  "hint": "Morning beads on sleeping leaves.",
+  "recipes": [
+    [
+      "grass",
+      "cloud"
+    ]
+  ]
+}

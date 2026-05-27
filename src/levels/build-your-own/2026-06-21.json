@@ -1,0 +1,13 @@
+{
+  "id": "ai",
+  "name": "AI",
+  "emoji": "🧠",
+  "tier": 6,
+  "hint": "A mind made of logic and data.",
+  "recipes": [
+    [
+      "computer",
+      "wisdom"
+    ]
+  ]
+}

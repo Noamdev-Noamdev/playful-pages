@@ -1,0 +1,13 @@
+{
+  "id": "canyon",
+  "name": "Canyon",
+  "emoji": "🏜️",
+  "tier": 2,
+  "hint": "A river’s long patience in stone.",
+  "recipes": [
+    [
+      "river",
+      "mountain"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "podcast",
+  "name": "Podcast",
+  "emoji": "🎙️",
+  "tier": 6,
+  "hint": "Stories delivered through your ears.",
+  "recipes": [
+    [
+      "internet",
+      "music"
+    ]
+  ]
+}

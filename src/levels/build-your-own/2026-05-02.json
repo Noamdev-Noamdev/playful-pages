@@ -1,0 +1,13 @@
+{
+  "id": "hail",
+  "name": "Hail",
+  "emoji": "🧊",
+  "tier": 2,
+  "hint": "Storms that throw frozen punctuation.",
+  "recipes": [
+    [
+      "storm",
+      "cloud"
+    ]
+  ]
+}

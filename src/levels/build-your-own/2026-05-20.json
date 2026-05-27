@@ -1,0 +1,13 @@
+{
+  "id": "garden",
+  "name": "Garden",
+  "emoji": "🌺",
+  "tier": 3,
+  "hint": "A small universe of careful growth.",
+  "recipes": [
+    [
+      "flower",
+      "house"
+    ]
+  ]
+}

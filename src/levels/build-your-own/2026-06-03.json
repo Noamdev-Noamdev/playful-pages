@@ -1,0 +1,13 @@
+{
+  "id": "constellation",
+  "name": "Constellation",
+  "emoji": "🌟",
+  "tier": 6,
+  "hint": "Stars stitched into a story.",
+  "recipes": [
+    [
+      "star",
+      "satellite"
+    ]
+  ]
+}

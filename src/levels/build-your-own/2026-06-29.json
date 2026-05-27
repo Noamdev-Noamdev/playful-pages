@@ -1,0 +1,13 @@
+{
+  "id": "paradox",
+  "name": "Paradox",
+  "emoji": "♾️",
+  "tier": 6,
+  "hint": "Truth folded into a knot.",
+  "recipes": [
+    [
+      "time",
+      "universe"
+    ]
+  ]
+}

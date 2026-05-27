@@ -1,0 +1,13 @@
+{
+  "id": "lighthouse",
+  "name": "Lighthouse",
+  "emoji": "🗼",
+  "tier": 4,
+  "hint": "A bright warning on a dark coast.",
+  "recipes": [
+    [
+      "ship",
+      "star"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "meteor_shower",
+  "name": "Meteor Shower",
+  "emoji": "🌠",
+  "tier": 6,
+  "hint": "Night briefly filled with falling light.",
+  "recipes": [
+    [
+      "comet",
+      "star"
+    ]
+  ]
+}

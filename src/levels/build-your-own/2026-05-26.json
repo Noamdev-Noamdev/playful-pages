@@ -1,0 +1,13 @@
+{
+  "id": "prism",
+  "name": "Prism",
+  "emoji": "🔺",
+  "tier": 5,
+  "hint": "Light split into secret colors.",
+  "recipes": [
+    [
+      "glass",
+      "rainbow"
+    ]
+  ]
+}

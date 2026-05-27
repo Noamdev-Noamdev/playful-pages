@@ -1,0 +1,13 @@
+{
+  "id": "wind_turbine",
+  "name": "Wind Turbine",
+  "emoji": "⚙️",
+  "tier": 5,
+  "hint": "Air turned into steady power.",
+  "recipes": [
+    [
+      "air",
+      "electricity"
+    ]
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "beehive",
+  "name": "Beehive",
+  "emoji": "🍯",
+  "tier": 4,
+  "hint": "A buzzing home of golden work.",
+  "recipes": [
+    [
+      "honey",
+      "house"
+    ]
+  ]
+}

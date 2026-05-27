@@ -1,0 +1,13 @@
+{
+  "id": "reef",
+  "name": "Reef",
+  "emoji": "🐠",
+  "tier": 4,
+  "hint": "A city for fish made of stone.",
+  "recipes": [
+    [
+      "coral",
+      "fish"
+    ]
+  ]
+}

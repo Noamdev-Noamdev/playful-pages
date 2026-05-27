@@ -1,0 +1,13 @@
+{
+  "id": "aurora",
+  "name": "Aurora",
+  "emoji": "🌌",
+  "tier": 6,
+  "hint": "Night sky wearing electric silk.",
+  "recipes": [
+    [
+      "sky",
+      "star"
+    ]
+  ]
+}

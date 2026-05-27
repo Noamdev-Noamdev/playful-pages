@@ -1,0 +1,13 @@
+{
+  "id": "space_station",
+  "name": "Space Station",
+  "emoji": "🛰️",
+  "tier": 6,
+  "hint": "A house that never touches earth.",
+  "recipes": [
+    [
+      "satellite",
+      "space"
+    ]
+  ]
+}

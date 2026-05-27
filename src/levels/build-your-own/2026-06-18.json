@@ -1,0 +1,13 @@
+{
+  "id": "livestream",
+  "name": "Livestream",
+  "emoji": "📺",
+  "tier": 6,
+  "hint": "A moment broadcast as it happens.",
+  "recipes": [
+    [
+      "internet",
+      "camera"
+    ]
+  ]
+}

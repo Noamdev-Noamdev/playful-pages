@@ -1,0 +1,13 @@
+{
+  "id": "skyscraper",
+  "name": "Skyscraper",
+  "emoji": "🏢",
+  "tier": 5,
+  "hint": "Metal reaching for the clouds.",
+  "recipes": [
+    [
+      "city",
+      "metal"
+    ]
+  ]
+}

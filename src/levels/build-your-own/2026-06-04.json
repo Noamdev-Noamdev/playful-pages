@@ -1,0 +1,13 @@
+{
+  "id": "astronaut",
+  "name": "Astronaut",
+  "emoji": "👨‍🚀",
+  "tier": 6,
+  "hint": "A human wearing the void.",
+  "recipes": [
+    [
+      "human",
+      "rocket"
+    ]
+  ]
+}

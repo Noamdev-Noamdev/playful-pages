@@ -1,0 +1,13 @@
+{
+  "id": "sandcastle",
+  "name": "Sandcastle",
+  "emoji": "🏰",
+  "tier": 4,
+  "hint": "A kingdom built to be washed away.",
+  "recipes": [
+    [
+      "sand",
+      "house"
+    ]
+  ]
+}

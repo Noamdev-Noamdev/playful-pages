@@ -1,0 +1,13 @@
+{
+  "id": "city",
+  "name": "City",
+  "emoji": "🏙️",
+  "tier": 4,
+  "hint": "A thousand lives sharing one skyline.",
+  "recipes": [
+    [
+      "village",
+      "technology"
+    ]
+  ]
+}

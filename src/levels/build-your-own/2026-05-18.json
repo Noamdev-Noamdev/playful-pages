@@ -1,0 +1,13 @@
+{
+  "id": "library",
+  "name": "Library",
+  "emoji": "📖",
+  "tier": 4,
+  "hint": "A quiet room full of borrowed worlds.",
+  "recipes": [
+    [
+      "house",
+      "wisdom"
+    ]
+  ]
+}

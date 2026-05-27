@@ -1,0 +1,13 @@
+{
+  "id": "black_hole",
+  "name": "Black Hole",
+  "emoji": "⚫",
+  "tier": 6,
+  "hint": "A hunger that bends the night.",
+  "recipes": [
+    [
+      "space",
+      "space"
+    ]
+  ]
+}

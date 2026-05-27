@@ -1,0 +1,13 @@
+{
+  "id": "power_grid",
+  "name": "Power Grid",
+  "emoji": "🔌",
+  "tier": 5,
+  "hint": "Electric veins beneath bright streets.",
+  "recipes": [
+    [
+      "electricity",
+      "village"
+    ]
+  ]
+}

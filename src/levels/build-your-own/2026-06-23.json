@@ -1,0 +1,13 @@
+{
+  "id": "social_network",
+  "name": "Social Network",
+  "emoji": "👥",
+  "tier": 6,
+  "hint": "People connected by glowing threads.",
+  "recipes": [
+    [
+      "internet",
+      "human"
+    ]
+  ]
+}

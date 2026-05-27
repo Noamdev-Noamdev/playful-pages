@@ -1,0 +1,13 @@
+{
+  "id": "dream",
+  "name": "Dream",
+  "emoji": "💭",
+  "tier": 6,
+  "hint": "A story you borrow from sleep.",
+  "recipes": [
+    [
+      "human",
+      "cloud"
+    ]
+  ]
+}

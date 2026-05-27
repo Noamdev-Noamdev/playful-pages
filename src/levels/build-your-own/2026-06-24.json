@@ -1,0 +1,13 @@
+{
+  "id": "cryptocurrency",
+  "name": "Cryptocurrency",
+  "emoji": "🪙",
+  "tier": 6,
+  "hint": "Money that lives inside a ledger.",
+  "recipes": [
+    [
+      "internet",
+      "metal"
+    ]
+  ]
+}

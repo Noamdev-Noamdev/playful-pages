@@ -1,0 +1,13 @@
+{
+  "id": "honeycake",
+  "name": "Honeycake",
+  "emoji": "🍰",
+  "tier": 4,
+  "hint": "Sweetness carried by warmth.",
+  "recipes": [
+    [
+      "honey",
+      "fire"
+    ]
+  ]
+}

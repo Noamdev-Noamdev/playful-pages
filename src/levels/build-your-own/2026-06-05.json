@@ -1,0 +1,13 @@
+{
+  "id": "launchpad",
+  "name": "Launchpad",
+  "emoji": "🛫",
+  "tier": 5,
+  "hint": "The ground that says goodbye.",
+  "recipes": [
+    [
+      "rocket",
+      "tool"
+    ]
+  ]
+}

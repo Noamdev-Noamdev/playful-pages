@@ -1,0 +1,13 @@
+{
+  "id": "rainforest",
+  "name": "Rainforest",
+  "emoji": "🌴",
+  "tier": 3,
+  "hint": "Green thunder under endless drops.",
+  "recipes": [
+    [
+      "forest",
+      "rain"
+    ]
+  ]
+}

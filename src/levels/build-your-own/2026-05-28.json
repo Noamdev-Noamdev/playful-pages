@@ -1,0 +1,13 @@
+{
+  "id": "radio",
+  "name": "Radio",
+  "emoji": "📻",
+  "tier": 5,
+  "hint": "Music riding invisible waves.",
+  "recipes": [
+    [
+      "electricity",
+      "music"
+    ]
+  ]
+}

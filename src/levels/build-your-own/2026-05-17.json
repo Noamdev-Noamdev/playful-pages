@@ -1,0 +1,13 @@
+{
+  "id": "festival",
+  "name": "Festival",
+  "emoji": "🎪",
+  "tier": 4,
+  "hint": "A village dressed up with sound.",
+  "recipes": [
+    [
+      "music",
+      "village"
+    ]
+  ]
+}

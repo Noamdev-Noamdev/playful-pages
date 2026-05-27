@@ -1,0 +1,13 @@
+{
+  "id": "tornado",
+  "name": "Tornado",
+  "emoji": "🌀",
+  "tier": 3,
+  "hint": "A spinning ladder from cloud to ground.",
+  "recipes": [
+    [
+      "storm",
+      "air"
+    ]
+  ]
+}

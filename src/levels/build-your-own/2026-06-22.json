@@ -1,0 +1,13 @@
+{
+  "id": "smartphone",
+  "name": "Smartphone",
+  "emoji": "📱",
+  "tier": 5,
+  "hint": "A computer that fits your palm.",
+  "recipes": [
+    [
+      "computer",
+      "internet"
+    ]
+  ]
+}

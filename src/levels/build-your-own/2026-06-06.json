@@ -1,0 +1,13 @@
+{
+  "id": "submarine",
+  "name": "Submarine",
+  "emoji": "🛥️",
+  "tier": 5,
+  "hint": "A ship that prefers the deep.",
+  "recipes": [
+    [
+      "ship",
+      "metal"
+    ]
+  ]
+}

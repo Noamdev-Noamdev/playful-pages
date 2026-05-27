@@ -1,0 +1,13 @@
+{
+  "id": "paint",
+  "name": "Paint",
+  "emoji": "🎨",
+  "tier": 4,
+  "hint": "Color captured for a willing brush.",
+  "recipes": [
+    [
+      "flower",
+      "tool"
+    ]
+  ]
+}

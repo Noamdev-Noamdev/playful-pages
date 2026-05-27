@@ -1,0 +1,13 @@
+{
+  "id": "thunderbird",
+  "name": "Thunderbird",
+  "emoji": "🦅",
+  "tier": 5,
+  "hint": "Wings that carry a storm’s spark.",
+  "recipes": [
+    [
+      "bird",
+      "lightning"
+    ]
+  ]
+}

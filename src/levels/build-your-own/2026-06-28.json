@@ -1,0 +1,13 @@
+{
+  "id": "philosophy",
+  "name": "Philosophy",
+  "emoji": "🤔",
+  "tier": 6,
+  "hint": "Questions that refuse easy answers.",
+  "recipes": [
+    [
+      "wisdom",
+      "human"
+    ]
+  ]
+}

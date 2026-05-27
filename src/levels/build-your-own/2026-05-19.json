@@ -1,0 +1,13 @@
+{
+  "id": "telescope",
+  "name": "Telescope",
+  "emoji": "🔭",
+  "tier": 5,
+  "hint": "Glass that makes distant things honest.",
+  "recipes": [
+    [
+      "glass",
+      "star"
+    ]
+  ]
+}
