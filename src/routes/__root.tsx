@@ -40,8 +40,16 @@ export const Route = createRootRoute({
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Playpile" },
       { name: "twitter:description", content: "Hand-built games everyday" },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png" },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png",
+      },
     ],
     links: [
       {

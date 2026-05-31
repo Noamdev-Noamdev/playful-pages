@@ -4,10 +4,5 @@
   "emoji": "📱",
   "tier": 5,
   "hint": "A computer that fits your palm.",
-  "recipes": [
-    [
-      "computer",
-      "internet"
-    ]
-  ]
+  "recipes": [["computer", "internet"]]
 }

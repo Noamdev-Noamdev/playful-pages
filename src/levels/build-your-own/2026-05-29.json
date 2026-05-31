@@ -4,10 +4,5 @@
   "emoji": "🗺️",
   "tier": 6,
   "hint": "Stars replaced by silent machines.",
-  "recipes": [
-    [
-      "satellite",
-      "computer"
-    ]
-  ]
+  "recipes": [["satellite", "computer"]]
 }

@@ -54,13 +54,23 @@ const colorMap: Record<string, string> = {
 };
 
 const MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 const DAY_LABELS = ["S", "M", "T", "W", "T", "F", "S"];
 
 interface DayCell {
-  date: string;       // YYYY-MM-DD (or "" for blank cell)
+  date: string; // YYYY-MM-DD (or "" for blank cell)
   dayOfMonth: number;
   dayNumber?: number; // 1-indexed archive position if level exists
 }
@@ -131,7 +141,9 @@ function ArchiveForGame() {
         {/* Header — themed in the game's color */}
         <div className={`mt-8 rounded-3xl border-2 border-foreground ${accent} p-6 sm:p-8`}>
           <p className="text-xs font-bold uppercase tracking-widest opacity-70">Daily archive</p>
-          <h1 className="mt-1 font-display text-5xl font-black leading-none sm:text-6xl">{title}</h1>
+          <h1 className="mt-1 font-display text-5xl font-black leading-none sm:text-6xl">
+            {title}
+          </h1>
           <p className="mt-3 max-w-xl text-sm opacity-80 sm:text-base">{description}</p>
           <p className="mt-4 text-xs font-bold uppercase tracking-wider">
             {totalLevels} {totalLevels === 1 ? "puzzle" : "puzzles"} authored
@@ -141,7 +153,9 @@ function ArchiveForGame() {
         {/* Legend */}
         <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
           <span className="flex items-center gap-1.5">
-            <span className={`inline-block h-3 w-3 rounded-sm border-2 border-foreground ${accent}`} />
+            <span
+              className={`inline-block h-3 w-3 rounded-sm border-2 border-foreground ${accent}`}
+            />
             Available
           </span>
           <span className="flex items-center gap-1.5">
@@ -243,7 +257,6 @@ function ArchiveForGame() {
                       )}
                     </div>
                   );
-
                 })}
               </div>
             </section>

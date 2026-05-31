@@ -6,10 +6,35 @@
   "metric": "Height above sea level (metres)",
   "difficulty": "medium",
   "items": [
-    { "name": "Mont Blanc",   "emoji": "🏔️", "value": 4808, "fact": "4,808 m — highest peak in the Alps" },
-    { "name": "Kilimanjaro",  "emoji": "🌋", "value": 5895, "fact": "5,895 m — Africa's highest, a dormant volcano" },
-    { "name": "Aconcagua",    "emoji": "🏔️", "value": 6961, "fact": "6,961 m — highest peak in the Americas" },
-    { "name": "K2",           "emoji": "❄️", "value": 8611, "fact": "8,611 m — deadlier than Everest per summit attempt" },
-    { "name": "Mount Everest","emoji": "⛰️", "value": 8849, "fact": "8,849 m — highest point on Earth" }
+    {
+      "name": "Mont Blanc",
+      "emoji": "🏔️",
+      "value": 4808,
+      "fact": "4,808 m — highest peak in the Alps"
+    },
+    {
+      "name": "Kilimanjaro",
+      "emoji": "🌋",
+      "value": 5895,
+      "fact": "5,895 m — Africa's highest, a dormant volcano"
+    },
+    {
+      "name": "Aconcagua",
+      "emoji": "🏔️",
+      "value": 6961,
+      "fact": "6,961 m — highest peak in the Americas"
+    },
+    {
+      "name": "K2",
+      "emoji": "❄️",
+      "value": 8611,
+      "fact": "8,611 m — deadlier than Everest per summit attempt"
+    },
+    {
+      "name": "Mount Everest",
+      "emoji": "⛰️",
+      "value": 8849,
+      "fact": "8,849 m — highest point on Earth"
+    }
   ]
 }

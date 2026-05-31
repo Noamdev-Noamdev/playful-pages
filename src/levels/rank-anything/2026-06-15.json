@@ -6,10 +6,25 @@
   "metric": "Caffeine per typical serving (mg)",
   "difficulty": "medium",
   "items": [
-    { "name": "Green tea",        "emoji": "🍵", "value": 28,  "fact": "~28 mg per cup — gentle boost" },
-    { "name": "Coca-Cola (330ml)","emoji": "🥤", "value": 34,  "fact": "~34 mg — less than most people assume" },
-    { "name": "Black tea",        "emoji": "🫖", "value": 47,  "fact": "~47 mg per cup" },
-    { "name": "Espresso shot",    "emoji": "☕", "value": 63,  "fact": "~63 mg in 30ml — concentrated but small volume" },
-    { "name": "Energy drink",     "emoji": "⚡", "value": 160, "fact": "~160 mg per can — Red Bull, Monster etc." }
+    { "name": "Green tea", "emoji": "🍵", "value": 28, "fact": "~28 mg per cup — gentle boost" },
+    {
+      "name": "Coca-Cola (330ml)",
+      "emoji": "🥤",
+      "value": 34,
+      "fact": "~34 mg — less than most people assume"
+    },
+    { "name": "Black tea", "emoji": "🫖", "value": 47, "fact": "~47 mg per cup" },
+    {
+      "name": "Espresso shot",
+      "emoji": "☕",
+      "value": 63,
+      "fact": "~63 mg in 30ml — concentrated but small volume"
+    },
+    {
+      "name": "Energy drink",
+      "emoji": "⚡",
+      "value": 160,
+      "fact": "~160 mg per can — Red Bull, Monster etc."
+    }
   ]
 }

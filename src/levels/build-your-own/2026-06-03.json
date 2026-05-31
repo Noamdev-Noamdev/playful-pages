@@ -4,10 +4,5 @@
   "emoji": "🌟",
   "tier": 6,
   "hint": "Stars stitched into a story.",
-  "recipes": [
-    [
-      "star",
-      "satellite"
-    ]
-  ]
+  "recipes": [["star", "satellite"]]
 }

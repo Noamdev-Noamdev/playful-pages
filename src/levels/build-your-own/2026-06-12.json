@@ -4,10 +4,5 @@
   "emoji": "🔋",
   "tier": 5,
   "hint": "Sunlight packed into a quiet box.",
-  "recipes": [
-    [
-      "sun",
-      "technology"
-    ]
-  ]
+  "recipes": [["sun", "technology"]]
 }

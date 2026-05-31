@@ -34,8 +34,7 @@ function canPlace(grid: Grid, row: number, col: number, num: number): boolean {
   const br = Math.floor(row / 3) * 3;
   const bc = Math.floor(col / 3) * 3;
   for (let r = br; r < br + 3; r++)
-    for (let c = bc; c < bc + 3; c++)
-      if (grid[r][c] === num) return false;
+    for (let c = bc; c < bc + 3; c++) if (grid[r][c] === num) return false;
   return true;
 }
 
@@ -81,8 +80,8 @@ function SudokuGame() {
   const [errors, setErrors] = useState<Set<string>>(new Set());
   const [won, setWon] = useState(false);
   const [noteMode, setNoteMode] = useState(false);
-  const [notes, setNotes] = useState<Set<number>[][][]>(
-    () => Array.from({ length: 9 }, () => Array.from({ length: 9 }, () => [new Set<number>()]))
+  const [notes, setNotes] = useState<Set<number>[][][]>(() =>
+    Array.from({ length: 9 }, () => Array.from({ length: 9 }, () => [new Set<number>()])),
   );
 
   const startGame = useCallback(() => {
@@ -96,7 +95,9 @@ function SudokuGame() {
     setNotes(Array.from({ length: 9 }, () => Array.from({ length: 9 }, () => [new Set<number>()])));
   }, []);
 
-  useEffect(() => { startGame(); }, [startGame]);
+  useEffect(() => {
+    startGame();
+  }, [startGame]);
 
   const getConflicts = useCallback((grid: Grid): Set<string> => {
     const errs = new Set<string>();
@@ -105,14 +106,22 @@ function SudokuGame() {
         const v = grid[r][c];
         if (v === null) continue;
         for (let i = 0; i < 9; i++)
-          if (i !== c && grid[r][i] === v) { errs.add(`${r},${c}`); errs.add(`${r},${i}`); }
+          if (i !== c && grid[r][i] === v) {
+            errs.add(`${r},${c}`);
+            errs.add(`${r},${i}`);
+          }
         for (let i = 0; i < 9; i++)
-          if (i !== r && grid[i][c] === v) { errs.add(`${r},${c}`); errs.add(`${i},${c}`); }
-        const br = Math.floor(r / 3) * 3, bc = Math.floor(c / 3) * 3;
+          if (i !== r && grid[i][c] === v) {
+            errs.add(`${r},${c}`);
+            errs.add(`${i},${c}`);
+          }
+        const br = Math.floor(r / 3) * 3,
+          bc = Math.floor(c / 3) * 3;
         for (let rr = br; rr < br + 3; rr++)
           for (let cc = bc; cc < bc + 3; cc++)
             if ((rr !== r || cc !== c) && grid[rr][cc] === v) {
-              errs.add(`${r},${c}`); errs.add(`${rr},${cc}`);
+              errs.add(`${r},${c}`);
+              errs.add(`${rr},${cc}`);
             }
       }
     }
@@ -121,55 +130,67 @@ function SudokuGame() {
 
   const isComplete = useCallback((grid: Grid, sol: Grid): boolean => {
     for (let r = 0; r < 9; r++)
-      for (let c = 0; c < 9; c++)
-        if (grid[r][c] !== sol[r][c]) return false;
+      for (let c = 0; c < 9; c++) if (grid[r][c] !== sol[r][c]) return false;
     return true;
   }, []);
 
-  const inputNumber = useCallback((num: number | null) => {
-    if (!selected || won) return;
-    const [r, c] = selected;
-    if (puzzle[r][c] !== null) return;
+  const inputNumber = useCallback(
+    (num: number | null) => {
+      if (!selected || won) return;
+      const [r, c] = selected;
+      if (puzzle[r][c] !== null) return;
 
-    if (noteMode && num !== null) {
+      if (noteMode && num !== null) {
+        setNotes((prev) => {
+          const next = prev.map((row) => row.map((cell) => [new Set(cell[0])]));
+          const s = next[r][c][0];
+          s.has(num) ? s.delete(num) : s.add(num);
+          return next;
+        });
+        return;
+      }
+
+      const newGrid = deepCopy(userGrid);
+      newGrid[r][c] = num;
+      setUserGrid(newGrid);
+
       setNotes((prev) => {
         const next = prev.map((row) => row.map((cell) => [new Set(cell[0])]));
-        const s = next[r][c][0];
-        s.has(num) ? s.delete(num) : s.add(num);
+        next[r][c][0].clear();
         return next;
       });
-      return;
-    }
 
-    const newGrid = deepCopy(userGrid);
-    newGrid[r][c] = num;
-    setUserGrid(newGrid);
+      const errs = getConflicts(newGrid);
+      setErrors(errs);
 
-    setNotes((prev) => {
-      const next = prev.map((row) => row.map((cell) => [new Set(cell[0])]));
-      next[r][c][0].clear();
-      return next;
-    });
-
-    const errs = getConflicts(newGrid);
-    setErrors(errs);
-
-    if (errs.size === 0 && isComplete(newGrid, solution)) {
-      setWon(true);
-    }
-  }, [selected, won, puzzle, noteMode, userGrid, solution, getConflicts, isComplete]);
+      if (errs.size === 0 && isComplete(newGrid, solution)) {
+        setWon(true);
+      }
+    },
+    [selected, won, puzzle, noteMode, userGrid, solution, getConflicts, isComplete],
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!selected) return;
       const [r, c] = selected;
-      if (e.key >= "1" && e.key <= "9") { e.preventDefault(); inputNumber(parseInt(e.key)); }
-      else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
-      else if (e.key === "ArrowUp"    && r > 0) { e.preventDefault(); setSelected([r - 1, c]); }
-      else if (e.key === "ArrowDown"  && r < 8) { e.preventDefault(); setSelected([r + 1, c]); }
-      else if (e.key === "ArrowLeft"  && c > 0) { e.preventDefault(); setSelected([r, c - 1]); }
-      else if (e.key === "ArrowRight" && c < 8) { e.preventDefault(); setSelected([r, c + 1]); }
-      else if (e.key === "n" || e.key === "N")  setNoteMode((v) => !v);
+      if (e.key >= "1" && e.key <= "9") {
+        e.preventDefault();
+        inputNumber(parseInt(e.key));
+      } else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
+      else if (e.key === "ArrowUp" && r > 0) {
+        e.preventDefault();
+        setSelected([r - 1, c]);
+      } else if (e.key === "ArrowDown" && r < 8) {
+        e.preventDefault();
+        setSelected([r + 1, c]);
+      } else if (e.key === "ArrowLeft" && c > 0) {
+        e.preventDefault();
+        setSelected([r, c - 1]);
+      } else if (e.key === "ArrowRight" && c < 8) {
+        e.preventDefault();
+        setSelected([r, c + 1]);
+      } else if (e.key === "n" || e.key === "N") setNoteMode((v) => !v);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -179,75 +200,135 @@ function SudokuGame() {
 
   const getCellClasses = (r: number, c: number) => {
     const isSelected = selected?.[0] === r && selected?.[1] === c;
-    const isGiven    = puzzle[r][c] !== null;
-    const isError    = errors.has(`${r},${c}`);
-    const cellVal    = userGrid[r][c];
-    const isSameNum  = !isSelected && selVal !== null && cellVal === selVal;
-    const isPeer     = selected &&
-      (selected[0] === r || selected[1] === c ||
+    const isGiven = puzzle[r][c] !== null;
+    const isError = errors.has(`${r},${c}`);
+    const cellVal = userGrid[r][c];
+    const isSameNum = !isSelected && selVal !== null && cellVal === selVal;
+    const isPeer =
+      selected &&
+      (selected[0] === r ||
+        selected[1] === c ||
         (Math.floor(selected[0] / 3) === Math.floor(r / 3) &&
-         Math.floor(selected[1] / 3) === Math.floor(c / 3)));
+          Math.floor(selected[1] / 3) === Math.floor(c / 3)));
 
     let bg = "bg-white";
-    if (isSelected)     bg = "bg-sky-300";
-    else if (isError)   bg = "bg-red-100";
+    if (isSelected) bg = "bg-sky-300";
+    else if (isError) bg = "bg-red-100";
     else if (isSameNum) bg = "bg-sky-200";
-    else if (isPeer)    bg = "bg-sky-50";
+    else if (isPeer) bg = "bg-sky-50";
 
-    const text = isError ? "text-red-500" : isGiven ? "text-slate-800 font-bold" : "text-sky-600 font-semibold";
-    const borderR = c === 2 || c === 5 ? "border-r-2 border-r-slate-500" : c === 8 ? "" : "border-r border-r-slate-200";
-    const borderB = r === 2 || r === 5 ? "border-b-2 border-b-slate-500" : r === 8 ? "" : "border-b border-b-slate-200";
+    const text = isError
+      ? "text-red-500"
+      : isGiven
+        ? "text-slate-800 font-bold"
+        : "text-sky-600 font-semibold";
+    const borderR =
+      c === 2 || c === 5
+        ? "border-r-2 border-r-slate-500"
+        : c === 8
+          ? ""
+          : "border-r border-r-slate-200";
+    const borderB =
+      r === 2 || r === 5
+        ? "border-b-2 border-b-slate-500"
+        : r === 8
+          ? ""
+          : "border-b border-b-slate-200";
 
     return `relative flex items-center justify-center cursor-pointer text-base transition-colors ${bg} ${text} ${borderR} ${borderB}`;
   };
 
   return (
     <div className="flex flex-col items-center gap-5 py-6 select-none">
-      <WinOverlay show={won} onPlayAgain={startGame} message="Puzzle Solved!" sub="Nine squares conquered — well done!" />
+      <WinOverlay
+        show={won}
+        onPlayAgain={startGame}
+        message="Puzzle Solved!"
+        sub="Nine squares conquered — well done!"
+      />
 
-      <div className="border-2 border-slate-600 rounded-xl overflow-hidden shadow-xl"
-        style={{ display: "grid", gridTemplateColumns: "repeat(9, 2.5rem)", gridTemplateRows: "repeat(9, 2.5rem)" }}>
+      <div
+        className="border-2 border-slate-600 rounded-xl overflow-hidden shadow-xl"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(9, 2.5rem)",
+          gridTemplateRows: "repeat(9, 2.5rem)",
+        }}
+      >
         {Array.from({ length: 9 }, (_, r) =>
           Array.from({ length: 9 }, (_, c) => {
             const val = userGrid[r][c];
             const noteSet = notes[r][c][0];
             return (
-              <div key={`${r}-${c}`} className={getCellClasses(r, c)}
+              <div
+                key={`${r}-${c}`}
+                className={getCellClasses(r, c)}
                 style={{ width: "2.5rem", height: "2.5rem" }}
-                onClick={() => !won && setSelected([r, c])}>
-                {val !== null ? <span>{val}</span>
-                  : noteSet.size > 0 ? (
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", width: "100%", height: "100%", padding: "2px" }}>
-                      {[1,2,3,4,5,6,7,8,9].map((n) => (
-                        <span key={n} style={{ fontSize: "0.45rem", lineHeight: 1 }}
-                          className={`flex items-center justify-center ${noteSet.has(n) ? "text-slate-500" : "text-transparent"}`}>{n}</span>
-                      ))}
-                    </div>
-                  ) : null}
+                onClick={() => !won && setSelected([r, c])}
+              >
+                {val !== null ? (
+                  <span>{val}</span>
+                ) : noteSet.size > 0 ? (
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "repeat(3, 1fr)",
+                      width: "100%",
+                      height: "100%",
+                      padding: "2px",
+                    }}
+                  >
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                      <span
+                        key={n}
+                        style={{ fontSize: "0.45rem", lineHeight: 1 }}
+                        className={`flex items-center justify-center ${noteSet.has(n) ? "text-slate-500" : "text-transparent"}`}
+                      >
+                        {n}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             );
-          })
+          }),
         )}
       </div>
 
       <div className="flex items-center gap-3">
-        <button onClick={() => setNoteMode((v) => !v)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border ${noteMode ? "bg-amber-400 border-amber-500 text-amber-900" : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"}`}>
+        <button
+          onClick={() => setNoteMode((v) => !v)}
+          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border ${noteMode ? "bg-amber-400 border-amber-500 text-amber-900" : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"}`}
+        >
           ✏️ Notes {noteMode ? "ON" : "OFF"}
         </button>
-        {[1,2,3,4,5,6,7,8,9].map((n) => (
-          <button key={n} onClick={() => inputNumber(n)}
-            className="w-9 h-9 rounded-lg bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-700 font-bold text-sm transition-colors">{n}</button>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+          <button
+            key={n}
+            onClick={() => inputNumber(n)}
+            className="w-9 h-9 rounded-lg bg-sky-50 hover:bg-sky-100 border border-sky-200 text-sky-700 font-bold text-sm transition-colors"
+          >
+            {n}
+          </button>
         ))}
-        <button onClick={() => inputNumber(null)}
-          className="w-9 h-9 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 text-base font-bold transition-colors">✕</button>
+        <button
+          onClick={() => inputNumber(null)}
+          className="w-9 h-9 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 text-base font-bold transition-colors"
+        >
+          ✕
+        </button>
       </div>
 
-      <button onClick={startGame}
-        className="px-6 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm transition-colors shadow-md shadow-sky-200">
+      <button
+        onClick={startGame}
+        className="px-6 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm transition-colors shadow-md shadow-sky-200"
+      >
         New Game
       </button>
-      <p className="text-xs text-slate-400">Click a cell · type 1–9 · arrows to move · <kbd className="bg-slate-100 px-1 rounded">N</kbd> toggles notes</p>
+      <p className="text-xs text-slate-400">
+        Click a cell · type 1–9 · arrows to move ·{" "}
+        <kbd className="bg-slate-100 px-1 rounded">N</kbd> toggles notes
+      </p>
     </div>
   );
 }

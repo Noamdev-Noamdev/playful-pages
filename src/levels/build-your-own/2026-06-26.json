@@ -4,10 +4,5 @@
   "emoji": "🌠",
   "tier": 6,
   "hint": "Night briefly filled with falling light.",
-  "recipes": [
-    [
-      "comet",
-      "star"
-    ]
-  ]
+  "recipes": [["comet", "star"]]
 }

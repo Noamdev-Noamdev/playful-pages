@@ -33,10 +33,10 @@ const COMBINE_DIST = 68; // px, centre-to-centre
 const STARTING_IDS = ["fire", "water", "earth", "air"];
 
 const STARTING_ITEMS: CanvasItem[] = [
-  { instanceId: "s0", elementId: "fire",  x: 28,  y: 24,  anim: "idle" },
-  { instanceId: "s1", elementId: "water", x: 136, y: 24,  anim: "idle" },
-  { instanceId: "s2", elementId: "earth", x: 244, y: 24,  anim: "idle" },
-  { instanceId: "s3", elementId: "air",   x: 352, y: 24,  anim: "idle" },
+  { instanceId: "s0", elementId: "fire", x: 28, y: 24, anim: "idle" },
+  { instanceId: "s1", elementId: "water", x: 136, y: 24, anim: "idle" },
+  { instanceId: "s2", elementId: "earth", x: 244, y: 24, anim: "idle" },
+  { instanceId: "s3", elementId: "air", x: 352, y: 24, anim: "idle" },
 ];
 
 // Tier label colours (Tailwind-safe)
@@ -111,7 +111,9 @@ export function AlchemyGame() {
         const arr = JSON.parse(raw) as string[];
         return new Set([...STARTING_IDS, ...arr]);
       }
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
     return new Set(STARTING_IDS);
   });
 
@@ -119,20 +121,22 @@ export function AlchemyGame() {
   useEffect(() => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify([...discovered]));
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   }, [discovered]);
 
-  const [canvasItems, setCanvasItems] = useState<CanvasItem[]>(
-    () => STARTING_ITEMS.map((i) => ({ ...i }))
+  const [canvasItems, setCanvasItems] = useState<CanvasItem[]>(() =>
+    STARTING_ITEMS.map((i) => ({ ...i })),
   );
   const [toastEl, setToastEl] = useState<string | null>(null);
   const [showHint, setShowHint] = useState(false);
   const dailyFoundRef = useRef(false);
   const allFoundRef = useRef(false);
 
-  const canvasRef  = useRef<HTMLDivElement>(null);
-  const dragRef    = useRef<DragState | null>(null);
-  const nextId     = useRef(20);
+  const canvasRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<DragState | null>(null);
+  const nextId = useRef(20);
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ── Sonner notifications ──────────────────────────────────────────────────
@@ -155,7 +159,6 @@ export function AlchemyGame() {
 
   const getRect = () => canvasRef.current?.getBoundingClientRect() ?? null;
 
-
   const showToast = (elementId: string) => {
     if (toastTimer.current) clearTimeout(toastTimer.current);
     setToastEl(elementId);
@@ -165,7 +168,7 @@ export function AlchemyGame() {
   const clearAnim = (instanceId: string, delay = 550) => {
     setTimeout(() => {
       setCanvasItems((prev) =>
-        prev.map((i) => (i.instanceId === instanceId ? { ...i, anim: "idle" } : i))
+        prev.map((i) => (i.instanceId === instanceId ? { ...i, anim: "idle" } : i)),
       );
     }, delay);
   };
@@ -184,36 +187,31 @@ export function AlchemyGame() {
       dragRef.current = {
         instanceId,
         ox: e.clientX - rect.left - item.x,
-        oy: e.clientY - rect.top  - item.y,
+        oy: e.clientY - rect.top - item.y,
       };
 
       setCanvasItems((prev) => {
         const rest = prev.filter((i) => i.instanceId !== instanceId);
-        const it   = prev.find((i)  => i.instanceId === instanceId)!;
+        const it = prev.find((i) => i.instanceId === instanceId)!;
         return [...rest, { ...it, anim: "idle" }];
       });
     },
-    [canvasItems]
+    [canvasItems],
   );
 
-  const onPointerMove = useCallback(
-    (e: React.PointerEvent<HTMLDivElement>) => {
-      const drag = dragRef.current;
-      if (!drag) return;
-      const rect = getRect();
-      if (!rect) return;
+  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    const rect = getRect();
+    if (!rect) return;
 
-      const nx = Math.max(0, Math.min(rect.width  - ITEM_W, e.clientX - rect.left - drag.ox));
-      const ny = Math.max(0, Math.min(CANVAS_H    - ITEM_H, e.clientY - rect.top  - drag.oy));
+    const nx = Math.max(0, Math.min(rect.width - ITEM_W, e.clientX - rect.left - drag.ox));
+    const ny = Math.max(0, Math.min(CANVAS_H - ITEM_H, e.clientY - rect.top - drag.oy));
 
-      setCanvasItems((prev) =>
-        prev.map((i) =>
-          i.instanceId === drag.instanceId ? { ...i, x: nx, y: ny } : i
-        )
-      );
-    },
-    []
-  );
+    setCanvasItems((prev) =>
+      prev.map((i) => (i.instanceId === drag.instanceId ? { ...i, x: nx, y: ny } : i)),
+    );
+  }, []);
 
   const onPointerUp = useCallback(
     (_e: React.PointerEvent<HTMLDivElement>) => {
@@ -234,33 +232,38 @@ export function AlchemyGame() {
           if (other.instanceId === drag.instanceId) continue;
           const dx = cx - (other.x + ITEM_W / 2);
           const dy = cy - (other.y + ITEM_H / 2);
-          const d  = Math.sqrt(dx * dx + dy * dy);
-          if (d < best) { best = d; target = other; }
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < best) {
+            best = d;
+            target = other;
+          }
         }
 
         if (!target) return prev;
 
-        const key      = combineKey(dragged.elementId, target.elementId);
+        const key = combineKey(dragged.elementId, target.elementId);
         const resultId = mergedCombinations[key];
 
         if (!resultId) {
           const shaken = prev.map((i) =>
-            i.instanceId === drag.instanceId ? { ...i, anim: "shaking" as const } : i
+            i.instanceId === drag.instanceId ? { ...i, anim: "shaking" as const } : i,
           );
           clearAnim(drag.instanceId, 380);
           return shaken;
         }
 
-        const mx = Math.max(0, Math.min((canvasRef.current?.clientWidth ?? 400) - ITEM_W,
-          (dragged.x + target.x) / 2));
-        const my = Math.max(0, Math.min(CANVAS_H - ITEM_H,
-          (dragged.y + target.y) / 2));
+        const mx = Math.max(
+          0,
+          Math.min((canvasRef.current?.clientWidth ?? 400) - ITEM_W, (dragged.x + target.x) / 2),
+        );
+        const my = Math.max(0, Math.min(CANVAS_H - ITEM_H, (dragged.y + target.y) / 2));
 
         const newId: string = `i${nextId.current++}`;
         const newItem: CanvasItem = {
           instanceId: newId,
-          elementId:  resultId,
-          x: mx, y: my,
+          elementId: resultId,
+          x: mx,
+          y: my,
           anim: "appearing",
         };
 
@@ -276,13 +279,13 @@ export function AlchemyGame() {
 
         return [
           ...prev.filter(
-            (i) => i.instanceId !== drag.instanceId && i.instanceId !== target!.instanceId
+            (i) => i.instanceId !== drag.instanceId && i.instanceId !== target!.instanceId,
           ),
           newItem,
         ];
       });
     },
-    [discovered, mergedCombinations]
+    [discovered, mergedCombinations],
   );
 
   const onDoubleClick = useCallback((instanceId: string) => {
@@ -291,9 +294,9 @@ export function AlchemyGame() {
 
   const spawn = useCallback((elementId: string) => {
     const rect = getRect();
-    const maxX = (rect?.width  ?? 400) - ITEM_W - 10;
+    const maxX = (rect?.width ?? 400) - ITEM_W - 10;
     const maxY = CANVAS_H - ITEM_H - 10;
-    const id   = `i${nextId.current++}`;
+    const id = `i${nextId.current++}`;
     setCanvasItems((prev) => [
       ...prev,
       {
@@ -396,7 +399,9 @@ export function AlchemyGame() {
       <div className="flex items-center gap-3">
         <div className="flex-1">
           <div className="flex justify-between text-xs text-muted-foreground mb-1">
-            <span className="font-medium">{discovered.size} / {totalCount} discovered</span>
+            <span className="font-medium">
+              {discovered.size} / {totalCount} discovered
+            </span>
             <span>{pct}%</span>
           </div>
           <div className="h-2 rounded-full bg-muted overflow-hidden border border-foreground">
@@ -446,15 +451,15 @@ export function AlchemyGame() {
                 "cursor-grab active:cursor-grabbing",
                 "hover:shadow-lg transition-shadow",
                 item.anim === "appearing" ? "alc-appearing" : "",
-                item.anim === "shaking"   ? "alc-shaking"   : "",
+                item.anim === "shaking" ? "alc-shaking" : "",
               ].join(" ")}
               style={{
-                left:        item.x,
-                top:         item.y,
-                width:       ITEM_W,
-                height:      ITEM_H,
+                left: item.x,
+                top: item.y,
+                width: ITEM_W,
+                height: ITEM_H,
                 touchAction: "none",
-                zIndex:      item.anim === "appearing" ? 50 : 1,
+                zIndex: item.anim === "appearing" ? 50 : 1,
               }}
             >
               <span className="text-3xl leading-none">{el.emoji}</span>
@@ -482,12 +487,20 @@ export function AlchemyGame() {
           if (tierItems.length === 0) return null;
 
           const tierLabels = [
-            "Primordial", "Reactions", "Nature", "Life", "Civilisation", "Technology", "Cosmic",
+            "Primordial",
+            "Reactions",
+            "Nature",
+            "Life",
+            "Civilisation",
+            "Technology",
+            "Cosmic",
           ];
 
           return (
             <div key={tier} className="mb-3">
-              <span className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full mb-1.5 ${TIER_COLOURS[tier]}`}>
+              <span
+                className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full mb-1.5 ${TIER_COLOURS[tier]}`}
+              >
                 {tierLabels[tier]}
               </span>
               <div className="flex flex-wrap gap-1.5">

@@ -6,10 +6,30 @@
   "metric": "Year",
   "difficulty": "medium",
   "items": [
-    { "name": "Magna Carta signed",       "emoji": "📋", "value": 1215, "fact": "1215 — limited royal power for the first time" },
-    { "name": "Gutenberg Bible printed",  "emoji": "📖", "value": 1455, "fact": "1455 — first major book printed in Europe" },
-    { "name": "French Revolution begins", "emoji": "🏴", "value": 1789, "fact": "1789 — storming of the Bastille, July 14" },
-    { "name": "World War I begins",       "emoji": "⚔️", "value": 1914, "fact": "1914 — triggered by one assassination" },
-    { "name": "Moon landing",             "emoji": "🌕", "value": 1969, "fact": "1969 — Apollo 11, July 20" }
+    {
+      "name": "Magna Carta signed",
+      "emoji": "📋",
+      "value": 1215,
+      "fact": "1215 — limited royal power for the first time"
+    },
+    {
+      "name": "Gutenberg Bible printed",
+      "emoji": "📖",
+      "value": 1455,
+      "fact": "1455 — first major book printed in Europe"
+    },
+    {
+      "name": "French Revolution begins",
+      "emoji": "🏴",
+      "value": 1789,
+      "fact": "1789 — storming of the Bastille, July 14"
+    },
+    {
+      "name": "World War I begins",
+      "emoji": "⚔️",
+      "value": 1914,
+      "fact": "1914 — triggered by one assassination"
+    },
+    { "name": "Moon landing", "emoji": "🌕", "value": 1969, "fact": "1969 — Apollo 11, July 20" }
   ]
 }

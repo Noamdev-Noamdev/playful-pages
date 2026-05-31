@@ -4,10 +4,5 @@
   "emoji": "💭",
   "tier": 6,
   "hint": "A story you borrow from sleep.",
-  "recipes": [
-    [
-      "human",
-      "cloud"
-    ]
-  ]
+  "recipes": [["human", "cloud"]]
 }

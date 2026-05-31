@@ -45,10 +45,10 @@ Matches `Puzzle` from `src/games/rank-anything/types.ts`:
   "difficulty": "medium",
   "items": [
     { "name": "Antarctica", "emoji": "🧊", "value": -60, "fact": "−60 °C avg" },
-    { "name": "Siberia",    "emoji": "❄️", "value": -25, "fact": "−25 °C avg" },
-    { "name": "London",     "emoji": "☁️", "value": 19,  "fact": "~19 °C avg" },
-    { "name": "Sahara",     "emoji": "🏜️", "value": 38,  "fact": "~38 °C avg" },
-    { "name": "Venus",      "emoji": "🪐", "value": 465, "fact": "465 °C" }
+    { "name": "Siberia", "emoji": "❄️", "value": -25, "fact": "−25 °C avg" },
+    { "name": "London", "emoji": "☁️", "value": 19, "fact": "~19 °C avg" },
+    { "name": "Sahara", "emoji": "🏜️", "value": 38, "fact": "~38 °C avg" },
+    { "name": "Venus", "emoji": "🪐", "value": 465, "fact": "465 °C" }
   ]
 }
 ```
@@ -108,7 +108,7 @@ To wire a new game into the archive:
 // src/games/my-game.tsx
 const MyGame: Game = {
   // ...
-  dailySlug: "my-game",   // ← matches the folder name under src/levels/
+  dailySlug: "my-game", // ← matches the folder name under src/levels/
 };
 ```
 
@@ -118,9 +118,7 @@ Then inside the game component:
 const dailyLevel = useMemo(() => {
   if (typeof window === "undefined") return getDailyLevel<Puzzle>("my-game");
   const date = new URLSearchParams(window.location.search).get("date");
-  return date
-    ? getLevelByDate<Puzzle>("my-game", date)
-    : getDailyLevel<Puzzle>("my-game");
+  return date ? getLevelByDate<Puzzle>("my-game", date) : getDailyLevel<Puzzle>("my-game");
 }, []);
 ```
 
@@ -131,21 +129,21 @@ working example.
 
 ## 6. Helpers (`@/levels`)
 
-| Function                                  | Use for                                                    |
-| ----------------------------------------- | ---------------------------------------------------------- |
-| `getDailyLevel<T>(slug, today?)`          | Today's level for a game                                   |
-| `getLevelByDate<T>(slug, "YYYY-MM-DD")`   | A specific dated level (archive playback)                  |
-| `getArchiveDates(slug)`                   | `[{ date, dayNumber }, ...]` — every authored date         |
-| `getArchiveSize(slug)`                    | Total authored levels                                      |
-| `listArchiveSlugs()`                      | Every game slug that has at least one level                |
-| `formatDate(date)`                        | Local-time `YYYY-MM-DD` string                             |
+| Function                                | Use for                                            |
+| --------------------------------------- | -------------------------------------------------- |
+| `getDailyLevel<T>(slug, today?)`        | Today's level for a game                           |
+| `getLevelByDate<T>(slug, "YYYY-MM-DD")` | A specific dated level (archive playback)          |
+| `getArchiveDates(slug)`                 | `[{ date, dayNumber }, ...]` — every authored date |
+| `getArchiveSize(slug)`                  | Total authored levels                              |
+| `listArchiveSlugs()`                    | Every game slug that has at least one level        |
+| `formatDate(date)`                      | Local-time `YYYY-MM-DD` string                     |
 
 ---
 
 ## 7. Testing a future puzzle
 
 ```ts
-getDailyLevel("rank-anything", new Date("2026-12-25"))
+getDailyLevel("rank-anything", new Date("2026-12-25"));
 ```
 
 Or just visit `/play/<game-slug>?date=2026-12-25` directly.

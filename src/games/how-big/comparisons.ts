@@ -6,7 +6,7 @@ export const COMPARISONS: Comparison[] = [
     id: 1,
     prompt: "How many times longer is a Blue Whale than a Human?",
     metric: "Length",
-    itemA: { name: "Human",      emoji: "🧍" },
+    itemA: { name: "Human", emoji: "🧍" },
     itemB: { name: "Blue Whale", emoji: "🐋" },
     ratio: 14.5,
     maxGuess: 50,
@@ -18,7 +18,7 @@ export const COMPARISONS: Comparison[] = [
     prompt: "How many times taller is the Eiffel Tower than a London double-decker bus?",
     metric: "Height",
     itemA: { name: "Double-decker bus", emoji: "🚌" },
-    itemB: { name: "Eiffel Tower",      emoji: "🗼" },
+    itemB: { name: "Eiffel Tower", emoji: "🗼" },
     ratio: 94,
     maxGuess: 300,
     difficulty: "easy",
@@ -40,7 +40,7 @@ export const COMPARISONS: Comparison[] = [
     prompt: "How many times wider is a human hair than a red blood cell?",
     metric: "Diameter",
     itemA: { name: "Red blood cell", emoji: "🔴" },
-    itemB: { name: "Human hair",     emoji: "🧵" },
+    itemB: { name: "Human hair", emoji: "🧵" },
     ratio: 10,
     maxGuess: 50,
     difficulty: "easy",
@@ -50,7 +50,7 @@ export const COMPARISONS: Comparison[] = [
     id: 5,
     prompt: "How many times taller is Mount Everest than the Burj Khalifa?",
     metric: "Height",
-    itemA: { name: "Burj Khalifa",  emoji: "🏢" },
+    itemA: { name: "Burj Khalifa", emoji: "🏢" },
     itemB: { name: "Mount Everest", emoji: "⛰️" },
     ratio: 10.7,
     maxGuess: 40,
@@ -63,7 +63,7 @@ export const COMPARISONS: Comparison[] = [
     id: 6,
     prompt: "How many times larger is Earth's diameter than the Moon's?",
     metric: "Diameter",
-    itemA: { name: "Moon",  emoji: "🌕" },
+    itemA: { name: "Moon", emoji: "🌕" },
     itemB: { name: "Earth", emoji: "🌍" },
     ratio: 3.67,
     maxGuess: 20,
@@ -74,7 +74,7 @@ export const COMPARISONS: Comparison[] = [
     id: 7,
     prompt: "How many times farther is the Moon than the International Space Station?",
     metric: "Distance from Earth",
-    itemA: { name: "ISS",  emoji: "🛸" },
+    itemA: { name: "ISS", emoji: "🛸" },
     itemB: { name: "Moon", emoji: "🌕" },
     ratio: 1090,
     maxGuess: 5000,
@@ -86,7 +86,7 @@ export const COMPARISONS: Comparison[] = [
     prompt: "How many times heavier is a Boeing 747 than a Formula 1 car?",
     metric: "Mass",
     itemA: { name: "Formula 1 car", emoji: "🏎️" },
-    itemB: { name: "Boeing 747",    emoji: "✈️" },
+    itemB: { name: "Boeing 747", emoji: "✈️" },
     ratio: 434,
     maxGuess: 1000,
     difficulty: "medium",
@@ -97,8 +97,8 @@ export const COMPARISONS: Comparison[] = [
     prompt: "How many times taller is Mount Everest than a cruising airplane?",
     metric: "Altitude",
     itemA: { name: "Cruising airplane", emoji: "✈️" },
-    itemB: { name: "Mount Everest",     emoji: "⛰️" },
-    ratio: 0.88,  // actually Everest is lower — let's flip
+    itemB: { name: "Mount Everest", emoji: "⛰️" },
+    ratio: 0.88, // actually Everest is lower — let's flip
     // Flip: airplane cruises at ~10,700m, Everest is 8,849m
     // So airplane altitude > Everest. Airplane is the larger.
     // Let me redo: "How much higher does a cruising plane fly than Everest's peak?"
@@ -123,7 +123,7 @@ export const COMPARISONS: Comparison[] = [
     prompt: "How many times heavier is the Great Wall of China than the Empire State Building?",
     metric: "Mass",
     itemA: { name: "Empire State Building", emoji: "🏙️" },
-    itemB: { name: "Great Wall of China",   emoji: "🏯" },
+    itemB: { name: "Great Wall of China", emoji: "🏯" },
     ratio: 374,
     maxGuess: 2000,
     difficulty: "medium",
@@ -133,7 +133,7 @@ export const COMPARISONS: Comparison[] = [
     id: 12,
     prompt: "How many times wider is Jupiter than Earth?",
     metric: "Diameter",
-    itemA: { name: "Earth",   emoji: "🌍" },
+    itemA: { name: "Earth", emoji: "🌍" },
     itemB: { name: "Jupiter", emoji: "🪐" },
     ratio: 11.2,
     maxGuess: 50,
@@ -147,7 +147,7 @@ export const COMPARISONS: Comparison[] = [
     prompt: "How many times wider is the Sun than Earth?",
     metric: "Diameter",
     itemA: { name: "Earth", emoji: "🌍" },
-    itemB: { name: "Sun",   emoji: "☀️" },
+    itemB: { name: "Sun", emoji: "☀️" },
     ratio: 109,
     maxGuess: 500,
     difficulty: "hard",
@@ -157,7 +157,7 @@ export const COMPARISONS: Comparison[] = [
     id: 14,
     prompt: "How many times larger is UY Scuti (the largest known star) than our Sun?",
     metric: "Diameter",
-    itemA: { name: "Sun",      emoji: "☀️" },
+    itemA: { name: "Sun", emoji: "☀️" },
     itemB: { name: "UY Scuti", emoji: "🌟" },
     ratio: 1700,
     maxGuess: 5000,
@@ -168,7 +168,7 @@ export const COMPARISONS: Comparison[] = [
     id: 15,
     prompt: "How many times farther is Neptune than the Moon from Earth?",
     metric: "Distance from Earth",
-    itemA: { name: "Moon",    emoji: "🌕" },
+    itemA: { name: "Moon", emoji: "🌕" },
     itemB: { name: "Neptune", emoji: "🔵" },
     ratio: 11600,
     maxGuess: 50000,
@@ -179,8 +179,8 @@ export const COMPARISONS: Comparison[] = [
     id: 16,
     prompt: "How many times wider is a human hair than a DNA strand?",
     metric: "Width",
-    itemA: { name: "DNA strand",  emoji: "🧬" },
-    itemB: { name: "Human hair",  emoji: "🧵" },
+    itemA: { name: "DNA strand", emoji: "🧬" },
+    itemB: { name: "Human hair", emoji: "🧵" },
     ratio: 29000,
     maxGuess: 100000,
     difficulty: "hard",
@@ -190,7 +190,7 @@ export const COMPARISONS: Comparison[] = [
     id: 17,
     prompt: "How many times longer is the observable universe than the Milky Way?",
     metric: "Diameter",
-    itemA: { name: "Milky Way",          emoji: "🌌" },
+    itemA: { name: "Milky Way", emoji: "🌌" },
     itemB: { name: "Observable Universe", emoji: "🪐" },
     ratio: 930,
     maxGuess: 5000,
@@ -201,7 +201,7 @@ export const COMPARISONS: Comparison[] = [
     id: 18,
     prompt: "How many times heavier is a neutron star than the Sun?",
     metric: "Mass",
-    itemA: { name: "Sun",          emoji: "☀️" },
+    itemA: { name: "Sun", emoji: "☀️" },
     itemB: { name: "Neutron Star", emoji: "💫" },
     ratio: 2,
     maxGuess: 20,
@@ -212,7 +212,7 @@ export const COMPARISONS: Comparison[] = [
     id: 19,
     prompt: "How many times longer is a blue whale than an ant?",
     metric: "Length",
-    itemA: { name: "Ant",        emoji: "🐜" },
+    itemA: { name: "Ant", emoji: "🐜" },
     itemB: { name: "Blue Whale", emoji: "🐋" },
     ratio: 14500,
     maxGuess: 50000,
@@ -223,7 +223,7 @@ export const COMPARISONS: Comparison[] = [
     id: 20,
     prompt: "How many times taller is the tallest tsunami wave ever recorded than Big Ben?",
     metric: "Height",
-    itemA: { name: "Big Ben",               emoji: "🕐" },
+    itemA: { name: "Big Ben", emoji: "🕐" },
     itemB: { name: "Lituya Bay Mega-Tsunami", emoji: "🌊" },
     ratio: 6.9,
     maxGuess: 30,
@@ -237,7 +237,7 @@ export const COMPARISONS: Comparison[] = [
 COMPARISONS[8] = {
   ...COMPARISONS[8],
   prompt: "How much higher does a cruising airplane fly than the peak of Mount Everest?",
-  itemA: { name: "Mount Everest",     emoji: "⛰️" },
+  itemA: { name: "Mount Everest", emoji: "⛰️" },
   itemB: { name: "Cruising airplane", emoji: "✈️" },
   ratio: 1.21,
   maxGuess: 10,
@@ -246,9 +246,16 @@ COMPARISONS[8] = {
 
 export function pickRounds(count = 5, seed?: number): typeof COMPARISONS {
   // Deterministic shuffle via seed (for daily mode)
-  const rng = seed !== undefined
-    ? (() => { let s = seed; return () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 0xffffffff; }; })()
-    : Math.random;
+  const rng =
+    seed !== undefined
+      ? (() => {
+          let s = seed;
+          return () => {
+            s = (s * 1664525 + 1013904223) & 0xffffffff;
+            return (s >>> 0) / 0xffffffff;
+          };
+        })()
+      : Math.random;
 
   const arr = [...COMPARISONS];
   for (let i = arr.length - 1; i > 0; i--) {

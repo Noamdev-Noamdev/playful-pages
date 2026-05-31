@@ -6,10 +6,30 @@
   "metric": "Estimated weight (tonnes)",
   "difficulty": "medium",
   "items": [
-    { "name": "Velociraptor",   "emoji": "🦖", "value": 0.015, "fact": "~15 kg — turkey-sized, not Jurassic Park-sized" },
-    { "name": "Triceratops",    "emoji": "🦕", "value": 8,     "fact": "~8 tonnes — three horns, massive frill" },
-    { "name": "T-Rex",          "emoji": "🦖", "value": 9,     "fact": "~9 tonnes — apex predator of its era" },
-    { "name": "Brachiosaurus",  "emoji": "🦕", "value": 56,    "fact": "~56 tonnes — as long as two city buses" },
-    { "name": "Patagotitan",    "emoji": "🦴", "value": 77,    "fact": "~77 tonnes — possibly the heaviest land animal ever" }
+    {
+      "name": "Velociraptor",
+      "emoji": "🦖",
+      "value": 0.015,
+      "fact": "~15 kg — turkey-sized, not Jurassic Park-sized"
+    },
+    {
+      "name": "Triceratops",
+      "emoji": "🦕",
+      "value": 8,
+      "fact": "~8 tonnes — three horns, massive frill"
+    },
+    { "name": "T-Rex", "emoji": "🦖", "value": 9, "fact": "~9 tonnes — apex predator of its era" },
+    {
+      "name": "Brachiosaurus",
+      "emoji": "🦕",
+      "value": 56,
+      "fact": "~56 tonnes — as long as two city buses"
+    },
+    {
+      "name": "Patagotitan",
+      "emoji": "🦴",
+      "value": 77,
+      "fact": "~77 tonnes — possibly the heaviest land animal ever"
+    }
   ]
 }

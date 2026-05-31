@@ -4,10 +4,5 @@
   "emoji": "♾️",
   "tier": 6,
   "hint": "Truth folded into a knot.",
-  "recipes": [
-    [
-      "time",
-      "universe"
-    ]
-  ]
+  "recipes": [["time", "universe"]]
 }

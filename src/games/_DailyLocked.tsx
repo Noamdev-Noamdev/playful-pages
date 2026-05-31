@@ -5,9 +5,7 @@ export function DailyLocked({ slug, title }: { slug: string; title: string }) {
   return (
     <div className="rounded-3xl border-2 border-foreground bg-card p-8 text-center sm:p-12">
       <Sparkles className="mx-auto h-12 w-12" strokeWidth={2.25} />
-      <h2 className="mt-4 font-display text-3xl font-black sm:text-4xl">
-        See you tomorrow!
-      </h2>
+      <h2 className="mt-4 font-display text-3xl font-black sm:text-4xl">See you tomorrow!</h2>
       <p className="mt-3 text-muted-foreground">
         You've already finished today's <strong>{title}</strong>. A new puzzle drops at midnight.
       </p>

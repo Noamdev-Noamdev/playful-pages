@@ -6,10 +6,35 @@
   "metric": "Year built (lower = newer)",
   "difficulty": "medium",
   "items": [
-    { "name": "Burj Khalifa",        "emoji": "🏢", "value": 2010, "fact": "Completed 2010 — tallest building in the world" },
-    { "name": "Eiffel Tower",        "emoji": "🗼", "value": 1889, "fact": "Completed 1889 — meant to be temporary" },
-    { "name": "Statue of Liberty",   "emoji": "🗽", "value": 1886, "fact": "Dedicated 1886 — a gift from France" },
-    { "name": "Machu Picchu",        "emoji": "🏔️", "value": 1450, "fact": "~1450 AD — Inca citadel abandoned ~100 years later" },
-    { "name": "Great Pyramid of Giza","emoji": "🏜️","value": -2560,"fact": "~2560 BC — oldest of the Seven Wonders, still standing" }
+    {
+      "name": "Burj Khalifa",
+      "emoji": "🏢",
+      "value": 2010,
+      "fact": "Completed 2010 — tallest building in the world"
+    },
+    {
+      "name": "Eiffel Tower",
+      "emoji": "🗼",
+      "value": 1889,
+      "fact": "Completed 1889 — meant to be temporary"
+    },
+    {
+      "name": "Statue of Liberty",
+      "emoji": "🗽",
+      "value": 1886,
+      "fact": "Dedicated 1886 — a gift from France"
+    },
+    {
+      "name": "Machu Picchu",
+      "emoji": "🏔️",
+      "value": 1450,
+      "fact": "~1450 AD — Inca citadel abandoned ~100 years later"
+    },
+    {
+      "name": "Great Pyramid of Giza",
+      "emoji": "🏜️",
+      "value": -2560,
+      "fact": "~2560 BC — oldest of the Seven Wonders, still standing"
+    }
   ]
 }

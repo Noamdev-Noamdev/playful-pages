@@ -4,10 +4,5 @@
   "emoji": "🌺",
   "tier": 3,
   "hint": "A small universe of careful growth.",
-  "recipes": [
-    [
-      "flower",
-      "house"
-    ]
-  ]
+  "recipes": [["flower", "house"]]
 }

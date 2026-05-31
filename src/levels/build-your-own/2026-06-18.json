@@ -4,10 +4,5 @@
   "emoji": "📺",
   "tier": 6,
   "hint": "A moment broadcast as it happens.",
-  "recipes": [
-    [
-      "internet",
-      "camera"
-    ]
-  ]
+  "recipes": [["internet", "camera"]]
 }

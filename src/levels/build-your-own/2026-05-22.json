@@ -4,10 +4,5 @@
   "emoji": "📄",
   "tier": 4,
   "hint": "A tree turned into a whisper.",
-  "recipes": [
-    [
-      "tree",
-      "tool"
-    ]
-  ]
+  "recipes": [["tree", "tool"]]
 }

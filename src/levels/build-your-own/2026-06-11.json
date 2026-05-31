@@ -4,10 +4,5 @@
   "emoji": "⚙️",
   "tier": 5,
   "hint": "Air turned into steady power.",
-  "recipes": [
-    [
-      "air",
-      "electricity"
-    ]
-  ]
+  "recipes": [["air", "electricity"]]
 }

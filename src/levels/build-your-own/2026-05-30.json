@@ -4,10 +4,5 @@
   "emoji": "🛻",
   "tier": 6,
   "hint": "A robot that explores without sleep.",
-  "recipes": [
-    [
-      "robot",
-      "space"
-    ]
-  ]
+  "recipes": [["robot", "space"]]
 }

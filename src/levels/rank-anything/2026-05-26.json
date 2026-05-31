@@ -6,10 +6,25 @@
   "metric": "Number of teeth",
   "difficulty": "medium",
   "items": [
-    { "name": "Human (adult)",     "emoji": "🦷", "value": 32,    "fact": "32 teeth (full adult set)" },
-    { "name": "Dog (adult)",       "emoji": "🐶", "value": 42,    "fact": "42 teeth (10 more than humans)" },
-    { "name": "Bottlenose dolphin","emoji": "🐬", "value": 88,    "fact": "~88 teeth (they only grow one set for life)" },
-    { "name": "Great white shark", "emoji": "🦈", "value": 3000,  "fact": "~3,000 teeth active at any time, in rows" },
-    { "name": "Garden snail",      "emoji": "🐌", "value": 14000, "fact": "~14,000 microscopic teeth on their tongue" }
+    { "name": "Human (adult)", "emoji": "🦷", "value": 32, "fact": "32 teeth (full adult set)" },
+    { "name": "Dog (adult)", "emoji": "🐶", "value": 42, "fact": "42 teeth (10 more than humans)" },
+    {
+      "name": "Bottlenose dolphin",
+      "emoji": "🐬",
+      "value": 88,
+      "fact": "~88 teeth (they only grow one set for life)"
+    },
+    {
+      "name": "Great white shark",
+      "emoji": "🦈",
+      "value": 3000,
+      "fact": "~3,000 teeth active at any time, in rows"
+    },
+    {
+      "name": "Garden snail",
+      "emoji": "🐌",
+      "value": 14000,
+      "fact": "~14,000 microscopic teeth on their tongue"
+    }
   ]
 }

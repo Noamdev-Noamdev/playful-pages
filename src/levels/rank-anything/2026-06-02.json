@@ -6,10 +6,25 @@
   "metric": "Diameter (km)",
   "difficulty": "medium",
   "items": [
-    { "name": "Mercury", "emoji": "☿",  "value": 4879,   "fact": "4,879 km — smaller than some moons" },
-    { "name": "Mars",    "emoji": "🔴", "value": 6779,   "fact": "6,779 km — roughly half Earth's width" },
-    { "name": "Earth",   "emoji": "🌍", "value": 12742,  "fact": "12,742 km" },
-    { "name": "Neptune", "emoji": "🔵", "value": 49244,  "fact": "49,244 km — nearly 4× Earth" },
-    { "name": "Jupiter", "emoji": "🪐", "value": 139820, "fact": "139,820 km — 11× Earth's diameter" }
+    {
+      "name": "Mercury",
+      "emoji": "☿",
+      "value": 4879,
+      "fact": "4,879 km — smaller than some moons"
+    },
+    {
+      "name": "Mars",
+      "emoji": "🔴",
+      "value": 6779,
+      "fact": "6,779 km — roughly half Earth's width"
+    },
+    { "name": "Earth", "emoji": "🌍", "value": 12742, "fact": "12,742 km" },
+    { "name": "Neptune", "emoji": "🔵", "value": 49244, "fact": "49,244 km — nearly 4× Earth" },
+    {
+      "name": "Jupiter",
+      "emoji": "🪐",
+      "value": 139820,
+      "fact": "139,820 km — 11× Earth's diameter"
+    }
   ]
 }

@@ -6,10 +6,20 @@
   "metric": "Length (km)",
   "difficulty": "hard",
   "items": [
-    { "name": "Volga",       "emoji": "🌊", "value": 3531, "fact": "3,531 km — Europe's longest river" },
-    { "name": "Mississippi", "emoji": "🏞️", "value": 3730, "fact": "3,730 km — backbone of the USA" },
-    { "name": "Congo",       "emoji": "🌿", "value": 4700, "fact": "4,700 km — world's deepest river" },
-    { "name": "Nile",        "emoji": "🏜️", "value": 6650, "fact": "~6,650 km — long disputed with Amazon" },
-    { "name": "Yangtze",     "emoji": "🇨🇳", "value": 6300, "fact": "6,300 km — Asia's longest river" }
+    { "name": "Volga", "emoji": "🌊", "value": 3531, "fact": "3,531 km — Europe's longest river" },
+    {
+      "name": "Mississippi",
+      "emoji": "🏞️",
+      "value": 3730,
+      "fact": "3,730 km — backbone of the USA"
+    },
+    { "name": "Congo", "emoji": "🌿", "value": 4700, "fact": "4,700 km — world's deepest river" },
+    {
+      "name": "Nile",
+      "emoji": "🏜️",
+      "value": 6650,
+      "fact": "~6,650 km — long disputed with Amazon"
+    },
+    { "name": "Yangtze", "emoji": "🇨🇳", "value": 6300, "fact": "6,300 km — Asia's longest river" }
   ]
 }

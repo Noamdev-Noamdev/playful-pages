@@ -1,15 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
 
-type CardColor =
-  | "pink"
-  | "yellow"
-  | "mint"
-  | "sky"
-  | "lilac"
-  | "peach"
-  | "lime"
-  | "coral";
+type CardColor = "pink" | "yellow" | "mint" | "sky" | "lilac" | "peach" | "lime" | "coral";
 
 const colorMap: Record<CardColor, string> = {
   pink: "bg-card-pink",
@@ -50,9 +42,7 @@ export function PlayCard({
         <h3 className="font-display text-2xl font-extrabold leading-tight text-foreground capitalize">
           {title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {description}
-        </p>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
         <span className="absolute right-4 top-4 rounded-full border-2 border-foreground bg-muted px-2 py-0.5 text-xs font-bold uppercase tracking-wider">
           Under Construction
         </span>
@@ -74,9 +64,7 @@ export function PlayCard({
       <h3 className="font-display text-2xl font-extrabold leading-tight text-foreground capitalize">
         {title}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-        {description}
-      </p>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
     </Link>
   );
 }

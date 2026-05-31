@@ -6,10 +6,35 @@
   "metric": "Duration (days)",
   "difficulty": "hard",
   "items": [
-    { "name": "Vostok 1 (Gagarin)",       "emoji": "👨‍🚀", "value": 0.075, "fact": "108 minutes — first human in space, 1961" },
-    { "name": "Apollo 11 Moon landing",   "emoji": "🌕",  "value": 8.3,   "fact": "8.3 days — July 16–24, 1969" },
-    { "name": "Space Shuttle Columbia 1", "emoji": "🚀",  "value": 2.25,  "fact": "2.25 days — first Shuttle flight, April 1981" },
-    { "name": "Scott Kelly ISS record",   "emoji": "🛸",  "value": 340,   "fact": "340 days — US record for single spaceflight" },
-    { "name": "Valery Polyakov MIR",      "emoji": "⭐",  "value": 438,   "fact": "438 days — world record, still unbroken" }
+    {
+      "name": "Vostok 1 (Gagarin)",
+      "emoji": "👨‍🚀",
+      "value": 0.075,
+      "fact": "108 minutes — first human in space, 1961"
+    },
+    {
+      "name": "Apollo 11 Moon landing",
+      "emoji": "🌕",
+      "value": 8.3,
+      "fact": "8.3 days — July 16–24, 1969"
+    },
+    {
+      "name": "Space Shuttle Columbia 1",
+      "emoji": "🚀",
+      "value": 2.25,
+      "fact": "2.25 days — first Shuttle flight, April 1981"
+    },
+    {
+      "name": "Scott Kelly ISS record",
+      "emoji": "🛸",
+      "value": 340,
+      "fact": "340 days — US record for single spaceflight"
+    },
+    {
+      "name": "Valery Polyakov MIR",
+      "emoji": "⭐",
+      "value": 438,
+      "fact": "438 days — world record, still unbroken"
+    }
   ]
 }

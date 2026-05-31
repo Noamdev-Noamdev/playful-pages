@@ -4,10 +4,5 @@
   "emoji": "🌉",
   "tier": 4,
   "hint": "Two shores choosing to shake hands.",
-  "recipes": [
-    [
-      "village",
-      "river"
-    ]
-  ]
+  "recipes": [["village", "river"]]
 }

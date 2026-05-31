@@ -13,15 +13,14 @@ interface DailyData {
   rounds: Comparison[];
 }
 
-
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const ROUNDS_PER_GAME = 5;
-const BASE_RADIUS     = 44;    // px — fixed radius of the smaller item (A)
-const MAX_RADIUS      = 175;   // px — cap so circles always fit on screen
-const VISUAL_POWER    = 0.38;  // sub-linear so extreme ratios stay visible
-const REVEAL_PAUSE    = 680;   // ms of tension before animation
-const ANIM_MS         = 900;   // ms for circle size transition
+const BASE_RADIUS = 44; // px — fixed radius of the smaller item (A)
+const MAX_RADIUS = 175; // px — cap so circles always fit on screen
+const VISUAL_POWER = 0.38; // sub-linear so extreme ratios stay visible
+const REVEAL_PAUSE = 680; // ms of tension before animation
+const ANIM_MS = 900; // ms for circle size transition
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -50,9 +49,9 @@ function calcScore(guess: number, actual: number): number {
 /** Format a ratio nicely */
 function fmtRatio(r: number): string {
   if (r >= 10000) return `${(r / 1000).toFixed(0)}k×`;
-  if (r >= 1000)  return `${(r / 1000).toFixed(1)}k×`;
-  if (r >= 100)   return `${Math.round(r)}×`;
-  if (r >= 10)    return `${r.toFixed(1)}×`;
+  if (r >= 1000) return `${(r / 1000).toFixed(1)}k×`;
+  if (r >= 100) return `${Math.round(r)}×`;
+  if (r >= 10) return `${r.toFixed(1)}×`;
   return `${r.toFixed(2)}×`;
 }
 
@@ -60,24 +59,24 @@ function fmtRatio(r: number): string {
 function scoreColor(s: number): string {
   if (s >= 85) return "#16a34a"; // green
   if (s >= 55) return "#d97706"; // amber
-  return "#dc2626";              // red
+  return "#dc2626"; // red
 }
 
 /** Score label */
 function scoreLabel(s: number): string {
   if (s === 100) return "Perfect! 🎯";
-  if (s >= 85)   return "Very close! 🔥";
-  if (s >= 60)   return "Pretty good 👍";
-  if (s >= 35)   return "Off a bit 🤔";
+  if (s >= 85) return "Very close! 🔥";
+  if (s >= 60) return "Pretty good 👍";
+  if (s >= 35) return "Off a bit 🤔";
   return "Way off! 😬";
 }
 
 // ─── Diff badge ───────────────────────────────────────────────────────────────
 
 const DIFF_STYLE: Record<string, string> = {
-  easy:   "bg-emerald-100 text-emerald-700",
+  easy: "bg-emerald-100 text-emerald-700",
   medium: "bg-amber-100   text-amber-700",
-  hard:   "bg-red-100     text-red-700",
+  hard: "bg-red-100     text-red-700",
 };
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -108,11 +107,11 @@ export function ScaleGame() {
     const seedKey = (dateParam ?? todayKey).replaceAll("-", "");
     return pickRounds(ROUNDS_PER_GAME, Number(seedKey));
   });
-  const [roundIdx,  setRoundIdx]  = useState(0);
-  const [phase,     setPhase]     = useState<Phase>("playing");
+  const [roundIdx, setRoundIdx] = useState(0);
+  const [phase, setPhase] = useState<Phase>("playing");
   const [sliderVal, setSliderVal] = useState(100); // middle of 0–200
-  const [bRadius,   setBRadius]   = useState(BASE_RADIUS); // animated by CSS
-  const [results,   setResults]   = useState<RoundResult[]>([]);
+  const [bRadius, setBRadius] = useState(BASE_RADIUS); // animated by CSS
+  const [results, setResults] = useState<RoundResult[]>([]);
 
   const comp = rounds[roundIdx];
 
@@ -123,13 +122,11 @@ export function ScaleGame() {
     }
   }, [phase, isTodaysDaily]);
 
-
-
   // ── Derived ────────────────────────────────────────────────────────────────
 
   const guessRatio = useMemo(
     () => sliderToRatio(sliderVal, comp.maxGuess),
-    [sliderVal, comp.maxGuess]
+    [sliderVal, comp.maxGuess],
   );
 
   // ── Slider change — update circle B live ──────────────────────────────────
@@ -141,7 +138,7 @@ export function ScaleGame() {
       setSliderVal(v);
       setBRadius(visualRadius(sliderToRatio(v, comp.maxGuess)));
     },
-    [phase, comp.maxGuess]
+    [phase, comp.maxGuess],
   );
 
   // ── Reveal ─────────────────────────────────────────────────────────────────
@@ -181,22 +178,26 @@ export function ScaleGame() {
 
   // Daily mode: no restart — one play per day, replays via archive.
 
-
   // ── DONE SCREEN ────────────────────────────────────────────────────────────
 
   if (phase === "done") {
     const total = results.reduce((s, r) => s + r.score, 0);
-    const pct   = Math.round((total / (ROUNDS_PER_GAME * 100)) * 100);
+    const pct = Math.round((total / (ROUNDS_PER_GAME * 100)) * 100);
 
     return (
       <div className="flex flex-col gap-5">
         <div className="rounded-3xl border-2 border-foreground bg-card p-7 text-center">
-          <p className="text-5xl font-black text-foreground">{total} / {ROUNDS_PER_GAME * 100}</p>
+          <p className="text-5xl font-black text-foreground">
+            {total} / {ROUNDS_PER_GAME * 100}
+          </p>
           <p className="text-muted-foreground text-sm mt-1">
-            {pct >= 90 ? "🎯 Extraordinary spatial intuition!" :
-             pct >= 70 ? "🔥 Really impressive!" :
-             pct >= 50 ? "👍 Solid effort!" :
-             "🤔 The universe is stranger than it seems!"}
+            {pct >= 90
+              ? "🎯 Extraordinary spatial intuition!"
+              : pct >= 70
+                ? "🔥 Really impressive!"
+                : pct >= 50
+                  ? "👍 Solid effort!"
+                  : "🤔 The universe is stranger than it seems!"}
           </p>
         </div>
 
@@ -205,8 +206,10 @@ export function ScaleGame() {
           {results.map((r, i) => {
             const c = rounds[i];
             return (
-              <div key={r.compId}
-                className="rounded-2xl border border-foreground bg-card px-4 py-3 flex items-center gap-3">
+              <div
+                key={r.compId}
+                className="rounded-2xl border border-foreground bg-card px-4 py-3 flex items-center gap-3"
+              >
                 <span className="text-2xl">{c.itemB.emoji}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold text-foreground truncate">
@@ -218,8 +221,10 @@ export function ScaleGame() {
                     Actual: <strong>{fmtRatio(r.actual)}</strong>
                   </p>
                 </div>
-                <span className="text-sm font-black shrink-0"
-                  style={{ color: scoreColor(r.score) }}>
+                <span
+                  className="text-sm font-black shrink-0"
+                  style={{ color: scoreColor(r.score) }}
+                >
                   {r.score}
                 </span>
               </div>
@@ -248,12 +253,11 @@ export function ScaleGame() {
     );
   }
 
-
   // ── MAIN GAME SCREEN ───────────────────────────────────────────────────────
 
   const currentResult = results[results.length - 1];
-  const isRevealed    = phase === "revealed";
-  const isRevealing   = phase === "revealing";
+  const isRevealed = phase === "revealed";
+  const isRevealing = phase === "revealing";
 
   return (
     <div className="flex flex-col gap-5">
@@ -271,19 +275,20 @@ export function ScaleGame() {
         </div>
       )}
 
-
-
       {/* Round counter + difficulty */}
       <div className="flex items-center justify-between">
         <div className="flex gap-1.5">
           {Array.from({ length: ROUNDS_PER_GAME }, (_, i) => (
-            <div key={i}
+            <div
+              key={i}
               className={`h-2 w-8 rounded-full border border-foreground transition-colors
                 ${i < roundIdx ? "bg-foreground" : i === roundIdx ? "bg-foreground/40" : "bg-card"}`}
             />
           ))}
         </div>
-        <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${DIFF_STYLE[comp.difficulty]}`}>
+        <span
+          className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${DIFF_STYLE[comp.difficulty]}`}
+        >
           {comp.difficulty}
         </span>
       </div>
@@ -297,15 +302,16 @@ export function ScaleGame() {
       </div>
 
       {/* Visual arena */}
-      <div className="rounded-3xl border-2 border-foreground bg-card px-6 py-8
-        flex items-end justify-center gap-10 min-h-[220px] relative">
-
+      <div
+        className="rounded-3xl border-2 border-foreground bg-card px-6 py-8
+        flex items-end justify-center gap-10 min-h-[220px] relative"
+      >
         {/* Label A */}
         <div className="flex flex-col items-center gap-2">
           <div
             className="rounded-full border-2 border-foreground bg-card flex items-center justify-center"
             style={{
-              width:  BASE_RADIUS * 2,
+              width: BASE_RADIUS * 2,
               height: BASE_RADIUS * 2,
               flexShrink: 0,
             }}
@@ -322,7 +328,7 @@ export function ScaleGame() {
           <div
             className="scale-circle-b rounded-full border-2 border-foreground bg-card flex items-center justify-center"
             style={{
-              width:  bRadius * 2,
+              width: bRadius * 2,
               height: bRadius * 2,
               flexShrink: 0,
             }}
@@ -347,9 +353,7 @@ export function ScaleGame() {
         <div className="flex flex-col gap-2">
           <div className="flex justify-between text-xs text-muted-foreground px-1">
             <span>Similar size</span>
-            <span className="font-black text-foreground text-base">
-              {fmtRatio(guessRatio)}
-            </span>
+            <span className="font-black text-foreground text-base">{fmtRatio(guessRatio)}</span>
             <span>{fmtRatio(comp.maxGuess)}</span>
           </div>
           <input
@@ -372,12 +376,10 @@ export function ScaleGame() {
         <div className="rounded-2xl border-2 border-foreground bg-card px-5 py-4 flex flex-col gap-3">
           {/* Score */}
           <div className="flex items-center justify-between">
-            <p className="font-black text-lg"
-              style={{ color: scoreColor(currentResult.score) }}>
+            <p className="font-black text-lg" style={{ color: scoreColor(currentResult.score) }}>
               {scoreLabel(currentResult.score)}
             </p>
-            <p className="text-2xl font-black"
-              style={{ color: scoreColor(currentResult.score) }}>
+            <p className="text-2xl font-black" style={{ color: scoreColor(currentResult.score) }}>
               +{currentResult.score}
             </p>
           </div>
@@ -412,9 +414,7 @@ export function ScaleGame() {
           </div>
 
           {/* Fact */}
-          <p className="text-xs text-muted-foreground leading-relaxed italic">
-            💡 {comp.fact}
-          </p>
+          <p className="text-xs text-muted-foreground leading-relaxed italic">💡 {comp.fact}</p>
         </div>
       )}
 

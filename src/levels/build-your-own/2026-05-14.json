@@ -4,10 +4,5 @@
   "emoji": "⛲",
   "tier": 3,
   "hint": "Earth exhaling boiling breath.",
-  "recipes": [
-    [
-      "steam",
-      "mountain"
-    ]
-  ]
+  "recipes": [["steam", "mountain"]]
 }

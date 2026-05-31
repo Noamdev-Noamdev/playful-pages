@@ -7,13 +7,13 @@ import { UnderConstruction } from "@/games/_UnderConstruction";
 import { DailyLocked } from "@/games/_DailyLocked";
 import { hasCompletedToday } from "@/lib/dailyLock";
 
-
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
   validateSearch: (search: Record<string, unknown>): { date?: string } => ({
-    date: typeof search.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(search.date)
-      ? search.date
-      : undefined,
+    date:
+      typeof search.date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(search.date)
+        ? search.date
+        : undefined,
   }),
   loader: ({ params }) => {
     const game = getGame(params.slug);
@@ -69,8 +69,8 @@ function PlayPage() {
 
   // Daily lock: only applies when playing today's daily (no ?date param).
   // Re-checked on focus so finishing a puzzle then returning shows the lock.
-  const [locked, setLocked] = useState<boolean>(() =>
-    !!game?.dailySlug && !date && hasCompletedToday(game.slug),
+  const [locked, setLocked] = useState<boolean>(
+    () => !!game?.dailySlug && !date && hasCompletedToday(game.slug),
   );
   useEffect(() => {
     if (!game?.dailySlug || date) return;
@@ -84,8 +84,6 @@ function PlayPage() {
 
   const Icon = game.icon;
   const GameComponent = game.Component;
-
-
 
   return (
     <div className="min-h-screen bg-background">
@@ -144,7 +142,6 @@ function PlayPage() {
             <GameComponent />
           )}
         </div>
-
       </main>
     </div>
   );

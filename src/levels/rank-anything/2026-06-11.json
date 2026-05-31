@@ -6,10 +6,35 @@
   "metric": "Average depth (metres)",
   "difficulty": "hard",
   "items": [
-    { "name": "Arctic Ocean",   "emoji": "🧊", "value": 1205, "fact": "1,205 m avg — shallowest of the five oceans" },
-    { "name": "Southern Ocean", "emoji": "🐧", "value": 3270, "fact": "3,270 m avg — surrounds Antarctica" },
-    { "name": "Indian Ocean",   "emoji": "🌏", "value": 3741, "fact": "3,741 m avg — warmest of the oceans" },
-    { "name": "Atlantic Ocean", "emoji": "🌎", "value": 3332, "fact": "3,332 m avg — S-shaped between the Americas and Europe" },
-    { "name": "Pacific Ocean",  "emoji": "🌊", "value": 4280, "fact": "4,280 m avg — contains the deepest point on Earth" }
+    {
+      "name": "Arctic Ocean",
+      "emoji": "🧊",
+      "value": 1205,
+      "fact": "1,205 m avg — shallowest of the five oceans"
+    },
+    {
+      "name": "Southern Ocean",
+      "emoji": "🐧",
+      "value": 3270,
+      "fact": "3,270 m avg — surrounds Antarctica"
+    },
+    {
+      "name": "Indian Ocean",
+      "emoji": "🌏",
+      "value": 3741,
+      "fact": "3,741 m avg — warmest of the oceans"
+    },
+    {
+      "name": "Atlantic Ocean",
+      "emoji": "🌎",
+      "value": 3332,
+      "fact": "3,332 m avg — S-shaped between the Americas and Europe"
+    },
+    {
+      "name": "Pacific Ocean",
+      "emoji": "🌊",
+      "value": 4280,
+      "fact": "4,280 m avg — contains the deepest point on Earth"
+    }
   ]
 }

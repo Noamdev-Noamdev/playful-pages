@@ -20,7 +20,7 @@ Each file is a single object with a unique `id` and a `rounds` array of
       "id": 1,
       "prompt": "How many times longer is a Blue Whale than a Human?",
       "metric": "Length",
-      "itemA": { "name": "Human",      "emoji": "🧍" },
+      "itemA": { "name": "Human", "emoji": "🧍" },
       "itemB": { "name": "Blue Whale", "emoji": "🐋" },
       "ratio": 14.5,
       "maxGuess": 50,
@@ -32,19 +32,19 @@ Each file is a single object with a unique `id` and a `rounds` array of
 }
 ```
 
-| Field                | Type                          | Notes                                                            |
-| -------------------- | ----------------------------- | ---------------------------------------------------------------- |
-| `id`                 | number                        | Unique — recommend `YYYYMMDD`                                    |
-| `rounds`             | array (length 5)              | Each round is a Comparison (see below)                           |
-| `rounds[].id`        | number                        | Unique within the set                                            |
-| `rounds[].prompt`    | string                        | Question shown above the circles                                 |
-| `rounds[].metric`    | string                        | Subtitle (e.g. "Height", "Mass", "Distance")                     |
-| `rounds[].itemA`     | `{ name, emoji }`             | The **smaller** item (fixed-size circle)                         |
-| `rounds[].itemB`     | `{ name, emoji }`             | The **larger** item (animated circle)                            |
-| `rounds[].ratio`     | number > 1                    | How many times bigger B is than A                                |
-| `rounds[].maxGuess`  | number                        | Top of the slider — set ~2–3× the true ratio so it stays winnable |
-| `rounds[].difficulty`| `"easy" \| "medium" \| "hard"`| Drives the colored badge                                         |
-| `rounds[].fact`      | string                        | Shown after reveal                                               |
+| Field                 | Type                           | Notes                                                             |
+| --------------------- | ------------------------------ | ----------------------------------------------------------------- |
+| `id`                  | number                         | Unique — recommend `YYYYMMDD`                                     |
+| `rounds`              | array (length 5)               | Each round is a Comparison (see below)                            |
+| `rounds[].id`         | number                         | Unique within the set                                             |
+| `rounds[].prompt`     | string                         | Question shown above the circles                                  |
+| `rounds[].metric`     | string                         | Subtitle (e.g. "Height", "Mass", "Distance")                      |
+| `rounds[].itemA`      | `{ name, emoji }`              | The **smaller** item (fixed-size circle)                          |
+| `rounds[].itemB`      | `{ name, emoji }`              | The **larger** item (animated circle)                             |
+| `rounds[].ratio`      | number > 1                     | How many times bigger B is than A                                 |
+| `rounds[].maxGuess`   | number                         | Top of the slider — set ~2–3× the true ratio so it stays winnable |
+| `rounds[].difficulty` | `"easy" \| "medium" \| "hard"` | Drives the colored badge                                          |
+| `rounds[].fact`       | string                         | Shown after reveal                                                |
 
 ## Rules
 

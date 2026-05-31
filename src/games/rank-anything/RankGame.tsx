@@ -8,14 +8,13 @@ import { markDailyComplete } from "@/lib/dailyLock";
 
 const DAILY_SLUG = "rank-anything";
 
-
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const CARD_H = 64;   // px — height of each card
-const CARD_GAP = 10;   // px — gap between cards
+const CARD_H = 64; // px — height of each card
+const CARD_GAP = 10; // px — gap between cards
 const CARD_STRIDE = CARD_H + CARD_GAP;
-const REVEAL_MS = 380;  // ms per card during reveal
-const CORRECT_MS = 520;  // ms for correction slide animation
+const REVEAL_MS = 380; // ms per card during reveal
+const CORRECT_MS = 520; // ms for correction slide animation
 
 // ─── Difficulty badge ─────────────────────────────────────────────────────────
 
@@ -30,11 +29,11 @@ const DIFF_STYLES: Record<string, string> = {
 type Phase = "playing" | "revealing" | "done";
 
 interface RankedItem extends PuzzleItem {
-  uid: string;      // stable identity across reorders
+  uid: string; // stable identity across reorders
 }
 
 interface RevealState {
-  index: number;          // which card is currently being revealed
+  index: number; // which card is currently being revealed
   results: ("correct" | "wrong" | null)[];
 }
 
@@ -50,9 +49,7 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 function buildItems(puzzle: Puzzle): RankedItem[] {
-  return shuffleArray(
-    puzzle.items.map((item, i) => ({ ...item, uid: `${puzzle.id}-${i}` }))
-  );
+  return shuffleArray(puzzle.items.map((item, i) => ({ ...item, uid: `${puzzle.id}-${i}` })));
 }
 
 function scoreItems(userOrder: RankedItem[]): ("correct" | "wrong")[] {
@@ -70,9 +67,9 @@ function buildShareText(puzzle: Puzzle, results: ("correct" | "wrong" | null)[])
 
 interface DragState {
   uid: string;
-  startY: number;   // pointer Y when drag began
-  currentY: number;   // current pointer Y
-  originIdx: number;   // index in list when drag started
+  startY: number; // pointer Y when drag began
+  currentY: number; // current pointer Y
+  originIdx: number; // index in list when drag started
 }
 
 // ─── Main Component ───────────────────────────────────────────────────────────
@@ -114,7 +111,6 @@ export function RankGame() {
     }
   }, [phase, isTodaysDaily]);
 
-
   // ── Reset ──────────────────────────────────────────────────────────────────
 
   const reset = useCallback((excludeId?: number) => {
@@ -133,34 +129,40 @@ export function RankGame() {
 
   // ── Drag: pointer events ───────────────────────────────────────────────────
 
-  const onPointerDown = useCallback((e: React.PointerEvent, uid: string) => {
-    if (phase !== "playing") return;
-    e.currentTarget.setPointerCapture(e.pointerId);
-    const idx = itemsRef.current.findIndex((it) => it.uid === uid);
-    setDrag({ uid, startY: e.clientY, currentY: e.clientY, originIdx: idx });
-  }, [phase]);
+  const onPointerDown = useCallback(
+    (e: React.PointerEvent, uid: string) => {
+      if (phase !== "playing") return;
+      e.currentTarget.setPointerCapture(e.pointerId);
+      const idx = itemsRef.current.findIndex((it) => it.uid === uid);
+      setDrag({ uid, startY: e.clientY, currentY: e.clientY, originIdx: idx });
+    },
+    [phase],
+  );
 
-  const onPointerMove = useCallback((e: React.PointerEvent) => {
-    if (!drag) return;
-    const newY = e.clientY;
-    setDrag((d) => d ? { ...d, currentY: newY } : null);
+  const onPointerMove = useCallback(
+    (e: React.PointerEvent) => {
+      if (!drag) return;
+      const newY = e.clientY;
+      setDrag((d) => (d ? { ...d, currentY: newY } : null));
 
-    // Reorder list based on drag position
-    const delta = newY - drag.startY;
-    const newIdx = Math.max(0, Math.min(
-      itemsRef.current.length - 1,
-      drag.originIdx + Math.round(delta / CARD_STRIDE)
-    ));
+      // Reorder list based on drag position
+      const delta = newY - drag.startY;
+      const newIdx = Math.max(
+        0,
+        Math.min(itemsRef.current.length - 1, drag.originIdx + Math.round(delta / CARD_STRIDE)),
+      );
 
-    setItems((prev) => {
-      const oldIdx = prev.findIndex((it) => it.uid === drag.uid);
-      if (oldIdx === newIdx) return prev;
-      const next = [...prev];
-      const [moved] = next.splice(oldIdx, 1);
-      next.splice(newIdx, 0, moved);
-      return next;
-    });
-  }, [drag]);
+      setItems((prev) => {
+        const oldIdx = prev.findIndex((it) => it.uid === drag.uid);
+        if (oldIdx === newIdx) return prev;
+        const next = [...prev];
+        const [moved] = next.splice(oldIdx, 1);
+        next.splice(newIdx, 0, moved);
+        return next;
+      });
+    },
+    [drag],
+  );
 
   const onPointerUp = useCallback(() => {
     setDrag(null);
@@ -228,7 +230,10 @@ export function RankGame() {
     <div className="flex flex-col items-center gap-6 py-4 select-none">
       <WinOverlay
         show={won}
-        onPlayAgain={() => { setWon(false); reset(puzzle.id); }}
+        onPlayAgain={() => {
+          setWon(false);
+          reset(puzzle.id);
+        }}
         message="Perfect score! 🎯"
         sub="Every item in exactly the right place."
         archiveSlug={dailyLevel ? DAILY_SLUG : undefined}
@@ -245,10 +250,10 @@ export function RankGame() {
           <span>{puzzle.promptEmoji}</span>
           <span>{puzzle.prompt}</span>
         </h2>
-        <p className="text-sm text-muted-foreground font-medium">
-          {puzzle.metric}
-        </p>
-        <span className={`inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full border ${DIFF_STYLES[puzzle.difficulty]}`}>
+        <p className="text-sm text-muted-foreground font-medium">{puzzle.metric}</p>
+        <span
+          className={`inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full border ${DIFF_STYLES[puzzle.difficulty]}`}
+        >
           {puzzle.difficulty}
         </span>
       </div>
@@ -267,9 +272,8 @@ export function RankGame() {
           const result = reveal.results[visualIdx] ?? null;
 
           // During correction phase: slide from current position to corrected position
-          const targetIdx = correctedOrder.length > 0
-            ? (correctedIdxMap.get(item.uid) ?? visualIdx)
-            : visualIdx;
+          const targetIdx =
+            correctedOrder.length > 0 ? (correctedIdxMap.get(item.uid) ?? visualIdx) : visualIdx;
           const baseY = targetIdx * CARD_STRIDE;
 
           // Drag offset: only on the dragged card, clamped to container
@@ -280,7 +284,11 @@ export function RankGame() {
             const max = (items.length - 1 - drag.originIdx) * CARD_STRIDE;
             dragOffset = Math.max(min, Math.min(max, raw));
             // Snap to the visual slot (handled via setItems), keep a smooth feel
-            dragOffset = drag.currentY - drag.startY - Math.round((drag.currentY - drag.startY) / CARD_STRIDE) * CARD_STRIDE + Math.round((drag.currentY - drag.startY) / CARD_STRIDE) * CARD_STRIDE;
+            dragOffset =
+              drag.currentY -
+              drag.startY -
+              Math.round((drag.currentY - drag.startY) / CARD_STRIDE) * CARD_STRIDE +
+              Math.round((drag.currentY - drag.startY) / CARD_STRIDE) * CARD_STRIDE;
             dragOffset = drag.currentY - drag.startY;
             dragOffset = Math.max(min, Math.min(max, dragOffset));
           }
@@ -340,17 +348,13 @@ export function RankGame() {
                   {item.name}
                 </p>
                 {result !== null && (
-                  <p className="text-xs text-muted-foreground leading-tight mt-0.5">
-                    {item.fact}
-                  </p>
+                  <p className="text-xs text-muted-foreground leading-tight mt-0.5">{item.fact}</p>
                 )}
               </div>
 
               {/* Result badge */}
               {result !== null && (
-                <span className="shrink-0 text-lg">
-                  {result === "correct" ? "✅" : "❌"}
-                </span>
+                <span className="shrink-0 text-lg">{result === "correct" ? "✅" : "❌"}</span>
               )}
             </div>
           );
@@ -428,9 +432,7 @@ export function RankGame() {
 
       {/* Hint during revealing */}
       {phase === "revealing" && (
-        <p className="text-xs text-muted-foreground animate-pulse">
-          Revealing…
-        </p>
+        <p className="text-xs text-muted-foreground animate-pulse">Revealing…</p>
       )}
 
       <p className="text-xs text-muted-foreground">

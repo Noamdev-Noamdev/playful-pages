@@ -4,10 +4,5 @@
   "emoji": "📡",
   "tier": 6,
   "hint": "A bowl listening to space.",
-  "recipes": [
-    [
-      "satellite",
-      "house"
-    ]
-  ]
+  "recipes": [["satellite", "house"]]
 }

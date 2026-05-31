@@ -4,10 +4,5 @@
   "emoji": "🍰",
   "tier": 4,
   "hint": "Sweetness carried by warmth.",
-  "recipes": [
-    [
-      "honey",
-      "fire"
-    ]
-  ]
+  "recipes": [["honey", "fire"]]
 }

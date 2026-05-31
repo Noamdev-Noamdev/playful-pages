@@ -4,10 +4,5 @@
   "emoji": "🪞",
   "tier": 4,
   "hint": "Light returning to its sender.",
-  "recipes": [
-    [
-      "glass",
-      "sun"
-    ]
-  ]
+  "recipes": [["glass", "sun"]]
 }

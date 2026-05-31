@@ -36,11 +36,11 @@ Every game file exports a default object that matches the `Game` type from `./ty
 
 ```ts
 export interface Game {
-  slug: string;          // URL segment, e.g. "sudoku" → /play/sudoku
-  title: string;         // Display name on the card and page header
-  description: string;   // Short blurb shown on the card
-  icon: LucideIcon;      // Any icon from `lucide-react`
-  color: CardColor;      // Card background — see colors below
+  slug: string; // URL segment, e.g. "sudoku" → /play/sudoku
+  title: string; // Display name on the card and page header
+  description: string; // Short blurb shown on the card
+  icon: LucideIcon; // Any icon from `lucide-react`
+  color: CardColor; // Card background — see colors below
   category: "originals" | "classics";
   Component: ComponentType; // The actual playable React component
 }
@@ -123,12 +123,12 @@ export default MyGameMeta;
 Open `src/games/index.ts` and add **two lines**:
 
 ```ts
-import MyGame from "./my-game";       // ← new import
+import MyGame from "./my-game"; // ← new import
 
 export const games: Game[] = [
   Blank1,
   // ...
-  MyGame,                             // ← new entry
+  MyGame, // ← new entry
 ];
 ```
 
@@ -145,9 +145,11 @@ A full-screen confetti + modal that appears when the player wins. Drive it with 
 ```tsx
 <WinOverlay
   show={won}
-  onPlayAgain={() => { setWon(false); /* reset state */ }}
-  message="Puzzle Solved!"   // optional, defaults to "Puzzle Solved!"
-  sub="You cracked it!"      // optional sub-message
+  onPlayAgain={() => {
+    setWon(false); /* reset state */
+  }}
+  message="Puzzle Solved!" // optional, defaults to "Puzzle Solved!"
+  sub="You cracked it!" // optional sub-message
 />
 ```
 
@@ -158,7 +160,9 @@ A full-screen confetti + modal that appears when the player wins. Drive it with 
 A small "🛠 Complete" button that lets you instantly trigger the win state while building. **Comment out the single line** before shipping a game:
 
 ```tsx
-{/* <DevComplete onComplete={() => setWon(true)} /> */}
+{
+  /* <DevComplete onComplete={() => setWon(true)} /> */
+}
 ```
 
 ### `ComingSoon` — placeholder

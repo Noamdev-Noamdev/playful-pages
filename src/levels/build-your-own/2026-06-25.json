@@ -4,10 +4,5 @@
   "emoji": "🛰️",
   "tier": 6,
   "hint": "A house that never touches earth.",
-  "recipes": [
-    [
-      "satellite",
-      "space"
-    ]
-  ]
+  "recipes": [["satellite", "space"]]
 }

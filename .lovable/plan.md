@@ -1,12 +1,15 @@
 ## Goal
+
 Apply the same daily/archive system used by Rank Anything and How Big Is It Really to Timeline Builder.
 
 ## Changes
 
 ### 1. `src/games/timeline-builder.tsx`
+
 Add `dailySlug: "timeline-builder"` to the Game config so the `/play/$slug` route enforces the daily lock and the `/archive/$slug` route appears.
 
 ### 2. `src/games/timeline-builder/TimelineGame.tsx`
+
 Mirror the structure from `how-big/ScaleGame.tsx`:
 
 - Read `?date` search param via `useSearch({ from: "/play/$slug" })`.
@@ -22,6 +25,7 @@ Mirror the structure from `how-big/ScaleGame.tsx`:
 - Render `<DailyBadge dayNumber={...} date={...} />` above the game when a level entry exists.
 
 ### 3. `src/levels/timeline-builder/README.md` (new)
+
 JSON schema doc for authoring daily timelines:
 
 ```json
@@ -32,24 +36,33 @@ JSON schema doc for authoring daily timelines:
   "prompt": "Place these milestones in order",
   "difficulty": "medium",
   "events": [
-    { "id": "sputnik", "title": "Sputnik 1 launched", "emoji": "🛰️", "year": 1957, "fact": "First artificial satellite." }
+    {
+      "id": "sputnik",
+      "title": "Sputnik 1 launched",
+      "emoji": "🛰️",
+      "year": 1957,
+      "fact": "First artificial satellite."
+    }
     // ... exactly 7 events (matches SLOT_COUNT)
   ]
 }
 ```
 
 Rules:
+
 - Filename must be `YYYY-MM-DD.json`.
 - Exactly 7 events.
 - `difficulty` is `easy | medium | hard`.
 - Events can be authored in any order — they're sorted on reveal.
 
 ### 4. No changes needed to
+
 - `src/levels/index.ts` (already globs `./*/*.json`)
 - `src/routes/play.$slug.tsx` / `src/routes/archive.$slug.tsx` (already generic on `dailySlug`)
 - `src/lib/dailyLock.ts` (slug-keyed already)
 
 ## Technical notes
+
 - The fallback seed uses the same FNV-style hash already in `src/levels/index.ts`; for the in-game pool fallback I'll inline a small deterministic pick (same approach used in `ScaleGame`).
 - The current `timelines.ts` pool stays as the fallback source — once JSON files are authored, they override per-day automatically.
 - Daily-lock state for `timeline-builder` will start fresh (localStorage key `playpile:dailyDone:timeline-builder`).

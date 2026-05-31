@@ -6,10 +6,25 @@
   "metric": "Land area (km²)",
   "difficulty": "medium",
   "items": [
-    { "name": "Monaco",    "emoji": "🇲🇨", "value": 2.02,      "fact": "2.02 km² — smaller than Central Park" },
-    { "name": "Singapore", "emoji": "🇸🇬", "value": 728,       "fact": "728 km² — a city that is also a country" },
-    { "name": "Iceland",   "emoji": "🇮🇸", "value": 103000,    "fact": "103,000 km²" },
-    { "name": "Mexico",    "emoji": "🇲🇽", "value": 1964375,   "fact": "1.96 million km²" },
-    { "name": "Canada",    "emoji": "🇨🇦", "value": 9984670,   "fact": "9.98 million km² — 2nd largest country" }
+    {
+      "name": "Monaco",
+      "emoji": "🇲🇨",
+      "value": 2.02,
+      "fact": "2.02 km² — smaller than Central Park"
+    },
+    {
+      "name": "Singapore",
+      "emoji": "🇸🇬",
+      "value": 728,
+      "fact": "728 km² — a city that is also a country"
+    },
+    { "name": "Iceland", "emoji": "🇮🇸", "value": 103000, "fact": "103,000 km²" },
+    { "name": "Mexico", "emoji": "🇲🇽", "value": 1964375, "fact": "1.96 million km²" },
+    {
+      "name": "Canada",
+      "emoji": "🇨🇦",
+      "value": 9984670,
+      "fact": "9.98 million km² — 2nd largest country"
+    }
   ]
 }

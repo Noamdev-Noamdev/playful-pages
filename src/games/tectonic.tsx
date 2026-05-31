@@ -53,10 +53,16 @@ function generateRegions(): RegionMap {
       if (map[r][c] !== -1) continue;
 
       // Find adjacent assigned region with smallest size
-      const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+      const dirs = [
+        [-1, 0],
+        [1, 0],
+        [0, -1],
+        [0, 1],
+      ];
       const adjRegions: number[] = [];
       for (const [dr, dc] of dirs) {
-        const nr = r + dr, nc = c + dc;
+        const nr = r + dr,
+          nc = c + dc;
         if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && map[nr][nc] !== -1)
           adjRegions.push(map[nr][nc]);
       }
@@ -72,9 +78,7 @@ function generateRegions(): RegionMap {
   }
 
   // Assign any remaining orphans to nearest region
-  for (let r = 0; r < ROWS; r++)
-    for (let c = 0; c < COLS; c++)
-      if (map[r][c] === -1) map[r][c] = 0;
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (map[r][c] === -1) map[r][c] = 0;
 
   return map;
 }
@@ -96,13 +100,21 @@ function neighbors8(r: number, c: number): [number, number][] {
   for (let dr = -1; dr <= 1; dr++)
     for (let dc = -1; dc <= 1; dc++) {
       if (dr === 0 && dc === 0) continue;
-      const nr = r + dr, nc = c + dc;
+      const nr = r + dr,
+        nc = c + dc;
       if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) result.push([nr, nc]);
     }
   return result;
 }
 
-function canPlaceCell(board: Board, rmap: RegionMap, sizes: Map<number, number>, r: number, c: number, val: number): boolean {
+function canPlaceCell(
+  board: Board,
+  rmap: RegionMap,
+  sizes: Map<number, number>,
+  r: number,
+  c: number,
+  val: number,
+): boolean {
   const regionId = rmap[r][c];
   const maxVal = sizes.get(regionId) ?? 1;
   if (val < 1 || val > maxVal) return false;
@@ -114,8 +126,7 @@ function canPlaceCell(board: Board, rmap: RegionMap, sizes: Map<number, number>,
         return false;
 
   // No same value in 8-neighbors
-  for (const [nr, nc] of neighbors8(r, c))
-    if (board[nr][nc] === val) return false;
+  for (const [nr, nc] of neighbors8(r, c)) if (board[nr][nc] === val) return false;
 
   return true;
 }
@@ -154,7 +165,11 @@ function generatePuzzle(): { puzzle: Board; solution: Board; rmap: RegionMap } {
 
     // Reject regions larger than 5 (Tectonic convention)
     let valid = true;
-    for (const sz of sizes.values()) if (sz > 5) { valid = false; break; }
+    for (const sz of sizes.values())
+      if (sz > 5) {
+        valid = false;
+        break;
+      }
     if (!valid) continue;
 
     solution = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
@@ -188,18 +203,32 @@ function hasBorder(rmap: RegionMap, r: number, c: number, dir: "right" | "bottom
 // ─── Palette ─────────────────────────────────────────────────────────────────
 
 const REGION_COLORS = [
-  "bg-emerald-50", "bg-teal-50", "bg-cyan-50",
-  "bg-green-50", "bg-sky-50", "bg-lime-50",
-  "bg-emerald-100", "bg-teal-100", "bg-cyan-100",
+  "bg-emerald-50",
+  "bg-teal-50",
+  "bg-cyan-50",
+  "bg-green-50",
+  "bg-sky-50",
+  "bg-lime-50",
+  "bg-emerald-100",
+  "bg-teal-100",
+  "bg-cyan-100",
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
 function TectonicGame() {
-  const [puzzle, setPuzzle] = useState<Board>(() => Array.from({ length: ROWS }, () => Array(COLS).fill(null)));
-  const [solution, setSolution] = useState<Board>(() => Array.from({ length: ROWS }, () => Array(COLS).fill(null)));
-  const [userBoard, setUserBoard] = useState<Board>(() => Array.from({ length: ROWS }, () => Array(COLS).fill(null)));
-  const [rmap, setRmap] = useState<RegionMap>(() => Array.from({ length: ROWS }, () => Array(COLS).fill(0)));
+  const [puzzle, setPuzzle] = useState<Board>(() =>
+    Array.from({ length: ROWS }, () => Array(COLS).fill(null)),
+  );
+  const [solution, setSolution] = useState<Board>(() =>
+    Array.from({ length: ROWS }, () => Array(COLS).fill(null)),
+  );
+  const [userBoard, setUserBoard] = useState<Board>(() =>
+    Array.from({ length: ROWS }, () => Array(COLS).fill(null)),
+  );
+  const [rmap, setRmap] = useState<RegionMap>(() =>
+    Array.from({ length: ROWS }, () => Array(COLS).fill(0)),
+  );
   const [sizes, setSizes] = useState<Map<number, number>>(new Map());
   const [selected, setSelected] = useState<[number, number] | null>(null);
   const [errors, setErrors] = useState<Set<string>>(new Set());
@@ -218,63 +247,85 @@ function TectonicGame() {
     setWon(false);
   }, []);
 
-  useEffect(() => { startGame(); }, [startGame]);
+  useEffect(() => {
+    startGame();
+  }, [startGame]);
 
-  const checkErrors = useCallback((board: Board, rm: RegionMap, sz: Map<number, number>): Set<string> => {
-    const errs = new Set<string>();
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        const v = board[r][c];
-        if (v === null) continue;
-        // Check region duplicate
-        for (let rr = 0; rr < ROWS; rr++)
-          for (let cc = 0; cc < COLS; cc++)
-            if ((rr !== r || cc !== c) && rm[rr][cc] === rm[r][c] && board[rr][cc] === v) {
-              errs.add(`${r},${c}`); errs.add(`${rr},${cc}`);
+  const checkErrors = useCallback(
+    (board: Board, rm: RegionMap, sz: Map<number, number>): Set<string> => {
+      const errs = new Set<string>();
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const v = board[r][c];
+          if (v === null) continue;
+          // Check region duplicate
+          for (let rr = 0; rr < ROWS; rr++)
+            for (let cc = 0; cc < COLS; cc++)
+              if ((rr !== r || cc !== c) && rm[rr][cc] === rm[r][c] && board[rr][cc] === v) {
+                errs.add(`${r},${c}`);
+                errs.add(`${rr},${cc}`);
+              }
+          // Check 8-neighbors
+          for (const [nr, nc] of neighbors8(r, c))
+            if (board[nr][nc] === v) {
+              errs.add(`${r},${c}`);
+              errs.add(`${nr},${nc}`);
             }
-        // Check 8-neighbors
-        for (const [nr, nc] of neighbors8(r, c))
-          if (board[nr][nc] === v) { errs.add(`${r},${c}`); errs.add(`${nr},${nc}`); }
-        // Check value in range
-        const maxVal = sz.get(rm[r][c]) ?? 1;
-        if (v > maxVal) errs.add(`${r},${c}`);
+          // Check value in range
+          const maxVal = sz.get(rm[r][c]) ?? 1;
+          if (v > maxVal) errs.add(`${r},${c}`);
+        }
       }
-    }
-    return errs;
-  }, []);
+      return errs;
+    },
+    [],
+  );
 
   const isComplete = useCallback((board: Board, sol: Board): boolean => {
     for (let r = 0; r < ROWS; r++)
-      for (let c = 0; c < COLS; c++)
-        if (board[r][c] !== sol[r][c]) return false;
+      for (let c = 0; c < COLS; c++) if (board[r][c] !== sol[r][c]) return false;
     return true;
   }, []);
 
-  const inputNumber = useCallback((val: number | null) => {
-    if (!selected || won) return;
-    const [r, c] = selected;
-    if (puzzle[r][c] !== null) return;
+  const inputNumber = useCallback(
+    (val: number | null) => {
+      if (!selected || won) return;
+      const [r, c] = selected;
+      if (puzzle[r][c] !== null) return;
 
-    const newBoard = userBoard.map((row) => [...row]);
-    newBoard[r][c] = val;
-    setUserBoard(newBoard);
+      const newBoard = userBoard.map((row) => [...row]);
+      newBoard[r][c] = val;
+      setUserBoard(newBoard);
 
-    const errs = checkErrors(newBoard, rmap, sizes);
-    setErrors(errs);
+      const errs = checkErrors(newBoard, rmap, sizes);
+      setErrors(errs);
 
-    if (errs.size === 0 && isComplete(newBoard, solution)) setWon(true);
-  }, [selected, won, puzzle, userBoard, rmap, sizes, solution, checkErrors, isComplete]);
+      if (errs.size === 0 && isComplete(newBoard, solution)) setWon(true);
+    },
+    [selected, won, puzzle, userBoard, rmap, sizes, solution, checkErrors, isComplete],
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!selected) return;
       const [r, c] = selected;
-      if (e.key >= "1" && e.key <= "5") { e.preventDefault(); inputNumber(parseInt(e.key)); }
-      else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
-      else if (e.key === "ArrowUp" && r > 0) { e.preventDefault(); setSelected([r - 1, c]); }
-      else if (e.key === "ArrowDown" && r < ROWS - 1) { e.preventDefault(); setSelected([r + 1, c]); }
-      else if (e.key === "ArrowLeft" && c > 0) { e.preventDefault(); setSelected([r, c - 1]); }
-      else if (e.key === "ArrowRight" && c < COLS - 1) { e.preventDefault(); setSelected([r, c + 1]); }
+      if (e.key >= "1" && e.key <= "5") {
+        e.preventDefault();
+        inputNumber(parseInt(e.key));
+      } else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
+      else if (e.key === "ArrowUp" && r > 0) {
+        e.preventDefault();
+        setSelected([r - 1, c]);
+      } else if (e.key === "ArrowDown" && r < ROWS - 1) {
+        e.preventDefault();
+        setSelected([r + 1, c]);
+      } else if (e.key === "ArrowLeft" && c > 0) {
+        e.preventDefault();
+        setSelected([r, c - 1]);
+      } else if (e.key === "ArrowRight" && c < COLS - 1) {
+        e.preventDefault();
+        setSelected([r, c + 1]);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -284,16 +335,28 @@ function TectonicGame() {
 
   return (
     <div className="flex flex-col items-center gap-5 py-6 select-none">
-      <WinOverlay show={won} onPlayAgain={startGame} message="Tectonic Solved!" sub="Every region perfectly filled!" />
+      <WinOverlay
+        show={won}
+        onPlayAgain={startGame}
+        message="Tectonic Solved!"
+        sub="Every region perfectly filled!"
+      />
 
       {/* Instructions */}
       <p className="text-xs text-slate-400 max-w-xs text-center">
-        Fill each region with <strong>1 → region size</strong>. No two identical numbers may touch — even diagonally.
+        Fill each region with <strong>1 → region size</strong>. No two identical numbers may touch —
+        even diagonally.
       </p>
 
       {/* Grid */}
-      <div className="relative shadow-xl rounded-xl overflow-hidden border-2 border-slate-600"
-        style={{ display: "grid", gridTemplateColumns: `repeat(${COLS}, ${CELL}px)`, gridTemplateRows: `repeat(${ROWS}, ${CELL}px)` }}>
+      <div
+        className="relative shadow-xl rounded-xl overflow-hidden border-2 border-slate-600"
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${COLS}, ${CELL}px)`,
+          gridTemplateRows: `repeat(${ROWS}, ${CELL}px)`,
+        }}
+      >
         {Array.from({ length: ROWS }, (_, r) =>
           Array.from({ length: COLS }, (_, c) => {
             const val = userBoard[r][c];
@@ -303,8 +366,12 @@ function TectonicGame() {
             const regionId = rmap[r][c];
             const regionColor = REGION_COLORS[regionId % REGION_COLORS.length];
 
-            const borderR = hasBorder(rmap, r, c, "right") ? "3px solid #475569" : "1px solid #cbd5e1";
-            const borderB = hasBorder(rmap, r, c, "bottom") ? "3px solid #475569" : "1px solid #cbd5e1";
+            const borderR = hasBorder(rmap, r, c, "right")
+              ? "3px solid #475569"
+              : "1px solid #cbd5e1";
+            const borderB = hasBorder(rmap, r, c, "bottom")
+              ? "3px solid #475569"
+              : "1px solid #cbd5e1";
             const borderT = r === 0 ? "none" : "1px solid #cbd5e1";
             const borderL = c === 0 ? "none" : "1px solid #cbd5e1";
 
@@ -317,33 +384,49 @@ function TectonicGame() {
                 key={`${r}-${c}`}
                 onClick={() => !won && setSelected([r, c])}
                 className={`flex items-center justify-center cursor-pointer transition-colors ${bg}`}
-                style={{ width: CELL, height: CELL, borderTop: borderT, borderLeft: borderL, borderRight: borderR, borderBottom: borderB }}
+                style={{
+                  width: CELL,
+                  height: CELL,
+                  borderTop: borderT,
+                  borderLeft: borderL,
+                  borderRight: borderR,
+                  borderBottom: borderB,
+                }}
               >
-                <span className={`text-xl font-bold ${isErr ? "text-red-500" : isGiven ? "text-slate-800" : "text-emerald-600"}`}>
+                <span
+                  className={`text-xl font-bold ${isErr ? "text-red-500" : isGiven ? "text-slate-800" : "text-emerald-600"}`}
+                >
                   {val ?? ""}
                 </span>
               </div>
             );
-          })
+          }),
         )}
       </div>
 
       {/* Number pad — show 1–5 */}
       <div className="flex items-center gap-3">
         {[1, 2, 3, 4, 5].map((n) => (
-          <button key={n} onClick={() => inputNumber(n)}
-            className="w-10 h-10 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 font-bold text-base transition-colors">
+          <button
+            key={n}
+            onClick={() => inputNumber(n)}
+            className="w-10 h-10 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-700 font-bold text-base transition-colors"
+          >
             {n}
           </button>
         ))}
-        <button onClick={() => inputNumber(null)}
-          className="w-10 h-10 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 text-base font-bold transition-colors">
+        <button
+          onClick={() => inputNumber(null)}
+          className="w-10 h-10 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 text-base font-bold transition-colors"
+        >
           ✕
         </button>
       </div>
 
-      <button onClick={startGame}
-        className="px-6 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm transition-colors shadow-md shadow-emerald-200">
+      <button
+        onClick={startGame}
+        className="px-6 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm transition-colors shadow-md shadow-emerald-200"
+      >
         New Game
       </button>
 

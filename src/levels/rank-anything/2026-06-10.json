@@ -6,10 +6,30 @@
   "metric": "Average weight (grams)",
   "difficulty": "hard",
   "items": [
-    { "name": "Kidney",  "emoji": "🫘", "value": 150,  "fact": "~150g each — you have two, but one suffices" },
-    { "name": "Heart",   "emoji": "🫀", "value": 300,  "fact": "~300g — beats 100,000 times a day" },
-    { "name": "Brain",   "emoji": "🧠", "value": 1400, "fact": "~1,400g — 2% of body weight, 20% of energy" },
-    { "name": "Liver",   "emoji": "🍖", "value": 1500, "fact": "~1,500g — the body's largest internal organ" },
-    { "name": "Skin",    "emoji": "🧬", "value": 4700, "fact": "~4,700g — your largest organ by weight" }
+    {
+      "name": "Kidney",
+      "emoji": "🫘",
+      "value": 150,
+      "fact": "~150g each — you have two, but one suffices"
+    },
+    { "name": "Heart", "emoji": "🫀", "value": 300, "fact": "~300g — beats 100,000 times a day" },
+    {
+      "name": "Brain",
+      "emoji": "🧠",
+      "value": 1400,
+      "fact": "~1,400g — 2% of body weight, 20% of energy"
+    },
+    {
+      "name": "Liver",
+      "emoji": "🍖",
+      "value": 1500,
+      "fact": "~1,500g — the body's largest internal organ"
+    },
+    {
+      "name": "Skin",
+      "emoji": "🧬",
+      "value": 4700,
+      "fact": "~4,700g — your largest organ by weight"
+    }
   ]
 }

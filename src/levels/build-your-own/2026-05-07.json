@@ -4,10 +4,5 @@
   "emoji": "🧭",
   "tier": 4,
   "hint": "A needle that trusts the sky.",
-  "recipes": [
-    [
-      "tool",
-      "star"
-    ]
-  ]
+  "recipes": [["tool", "star"]]
 }

@@ -6,10 +6,15 @@
   "metric": "Sugar per 100g (grams)",
   "difficulty": "easy",
   "items": [
-    { "name": "Broccoli",      "emoji": "🥦", "value": 1.7,  "fact": "1.7g — one of the least sugary veg" },
-    { "name": "Orange",        "emoji": "🍊", "value": 9.4,  "fact": "9.4g — mostly fructose" },
-    { "name": "Banana",        "emoji": "🍌", "value": 12.2, "fact": "12.2g — riper = more sugar" },
+    {
+      "name": "Broccoli",
+      "emoji": "🥦",
+      "value": 1.7,
+      "fact": "1.7g — one of the least sugary veg"
+    },
+    { "name": "Orange", "emoji": "🍊", "value": 9.4, "fact": "9.4g — mostly fructose" },
+    { "name": "Banana", "emoji": "🍌", "value": 12.2, "fact": "12.2g — riper = more sugar" },
     { "name": "Medjool dates", "emoji": "🌴", "value": 66.5, "fact": "66.5g — nature's candy bar" },
-    { "name": "Hard candy",    "emoji": "🍭", "value": 87.0, "fact": "~87g — almost pure sugar" }
+    { "name": "Hard candy", "emoji": "🍭", "value": 87.0, "fact": "~87g — almost pure sugar" }
   ]
 }

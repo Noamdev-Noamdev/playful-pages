@@ -6,10 +6,35 @@
   "metric": "Approximate word count",
   "difficulty": "medium",
   "items": [
-    { "name": "The Great Gatsby",      "emoji": "📗", "value": 47094,  "fact": "~47,000 words — F. Scott Fitzgerald, 1925" },
-    { "name": "Harry Potter & the Philosopher's Stone","emoji": "🧙", "value": 77325, "fact": "~77,000 words — shortest in the series" },
-    { "name": "The Lord of the Rings", "emoji": "💍", "value": 481103, "fact": "~481,000 words across all three volumes" },
-    { "name": "War and Peace",         "emoji": "⚔️", "value": 580000, "fact": "~580,000 words — Tolstoy's epic masterpiece" },
-    { "name": "In Search of Lost Time","emoji": "🕰️", "value": 1500000,"fact": "~1.5 million words — Proust's 7-volume novel" }
+    {
+      "name": "The Great Gatsby",
+      "emoji": "📗",
+      "value": 47094,
+      "fact": "~47,000 words — F. Scott Fitzgerald, 1925"
+    },
+    {
+      "name": "Harry Potter & the Philosopher's Stone",
+      "emoji": "🧙",
+      "value": 77325,
+      "fact": "~77,000 words — shortest in the series"
+    },
+    {
+      "name": "The Lord of the Rings",
+      "emoji": "💍",
+      "value": 481103,
+      "fact": "~481,000 words across all three volumes"
+    },
+    {
+      "name": "War and Peace",
+      "emoji": "⚔️",
+      "value": 580000,
+      "fact": "~580,000 words — Tolstoy's epic masterpiece"
+    },
+    {
+      "name": "In Search of Lost Time",
+      "emoji": "🕰️",
+      "value": 1500000,
+      "fact": "~1.5 million words — Proust's 7-volume novel"
+    }
   ]
 }

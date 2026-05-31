@@ -6,10 +6,25 @@
   "metric": "Average download speed (Mbps)",
   "difficulty": "hard",
   "items": [
-    { "name": "Cuba",          "emoji": "🇨🇺", "value": 6,    "fact": "~6 Mbps — limited infrastructure" },
-    { "name": "India",         "emoji": "🇮🇳", "value": 60,   "fact": "~60 Mbps — rapidly improving" },
-    { "name": "United Kingdom","emoji": "🇬🇧", "value": 155,  "fact": "~155 Mbps — national average" },
-    { "name": "South Korea",   "emoji": "🇰🇷", "value": 280,  "fact": "~280 Mbps — consistently fastest in Asia" },
-    { "name": "Singapore",     "emoji": "🇸🇬", "value": 340,  "fact": "~340 Mbps — among the world's fastest" }
+    { "name": "Cuba", "emoji": "🇨🇺", "value": 6, "fact": "~6 Mbps — limited infrastructure" },
+    { "name": "India", "emoji": "🇮🇳", "value": 60, "fact": "~60 Mbps — rapidly improving" },
+    {
+      "name": "United Kingdom",
+      "emoji": "🇬🇧",
+      "value": 155,
+      "fact": "~155 Mbps — national average"
+    },
+    {
+      "name": "South Korea",
+      "emoji": "🇰🇷",
+      "value": 280,
+      "fact": "~280 Mbps — consistently fastest in Asia"
+    },
+    {
+      "name": "Singapore",
+      "emoji": "🇸🇬",
+      "value": 340,
+      "fact": "~340 Mbps — among the world's fastest"
+    }
   ]
 }

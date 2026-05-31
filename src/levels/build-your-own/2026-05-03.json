@@ -4,10 +4,5 @@
   "emoji": "🌀",
   "tier": 3,
   "hint": "A spinning ladder from cloud to ground.",
-  "recipes": [
-    [
-      "storm",
-      "air"
-    ]
-  ]
+  "recipes": [["storm", "air"]]
 }

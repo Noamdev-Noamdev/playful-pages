@@ -6,9 +6,9 @@ import { WinOverlay } from "./_WinOverlay";
 // ─── Cell Types ───────────────────────────────────────────────────────────────
 
 type KCell =
-  | { k: "B" }                                      // solid black
-  | { k: "C"; a: number | null; d: number | null }  // clue: a=across, d=down
-  | { k: "W"; given?: number };                      // white (playable)
+  | { k: "B" } // solid black
+  | { k: "C"; a: number | null; d: number | null } // clue: a=across, d=down
+  | { k: "W"; given?: number }; // white (playable)
 
 type PuzzleDef = { label: string; grid: KCell[][] };
 
@@ -34,8 +34,13 @@ const PUZZLES: PuzzleDef[] = [
   {
     label: "Beginner",
     grid: [
-      [{ k: "B" }, { k: "C", a: null, d: 12 }, { k: "C", a: null, d: 14 }, { k: "C", a: null, d: 19 }],
-      [{ k: "C", a: 9,  d: null }, { k: "W" }, { k: "W" }, { k: "W", given: 6 }],
+      [
+        { k: "B" },
+        { k: "C", a: null, d: 12 },
+        { k: "C", a: null, d: 14 },
+        { k: "C", a: null, d: 19 },
+      ],
+      [{ k: "C", a: 9, d: null }, { k: "W" }, { k: "W" }, { k: "W", given: 6 }],
       [{ k: "C", a: 12, d: null }, { k: "W" }, { k: "W" }, { k: "W" }],
       [{ k: "C", a: 24, d: null }, { k: "W", given: 8 }, { k: "W" }, { k: "W" }],
     ],
@@ -43,7 +48,13 @@ const PUZZLES: PuzzleDef[] = [
   {
     label: "Medium",
     grid: [
-      [{ k: "B" }, { k: "C", a: null, d: 12 }, { k: "C", a: null, d: 17 }, { k: "C", a: null, d: 20 }, { k: "C", a: null, d: 25 }],
+      [
+        { k: "B" },
+        { k: "C", a: null, d: 12 },
+        { k: "C", a: null, d: 17 },
+        { k: "C", a: null, d: 20 },
+        { k: "C", a: null, d: 25 },
+      ],
       [{ k: "C", a: 17, d: null }, { k: "W", given: 3 }, { k: "W" }, { k: "W" }, { k: "W" }],
       [{ k: "C", a: 19, d: null }, { k: "W" }, { k: "W" }, { k: "W", given: 8 }, { k: "W" }],
       [{ k: "C", a: 22, d: null }, { k: "W" }, { k: "W" }, { k: "W" }, { k: "W", given: 9 }],
@@ -53,11 +64,46 @@ const PUZZLES: PuzzleDef[] = [
   {
     label: "Hard",
     grid: [
-      [{ k: "B" }, { k: "C", a: null, d: 13 }, { k: "C", a: null, d: 17 }, { k: "C", a: null, d: 25 }, { k: "C", a: null, d: 22 }, { k: "C", a: null, d: 23 }],
-      [{ k: "C", a: 25, d: null }, { k: "W" }, { k: "W" }, { k: "W" }, { k: "W" }, { k: "W", given: 9 }],
-      [{ k: "C", a: 23, d: null }, { k: "W" }, { k: "W", given: 8 }, { k: "W" }, { k: "W" }, { k: "W" }],
-      [{ k: "C", a: 25, d: null }, { k: "W" }, { k: "W" }, { k: "W", given: 9 }, { k: "W" }, { k: "W" }],
-      [{ k: "C", a: 27, d: null }, { k: "W", given: 4 }, { k: "W" }, { k: "W" }, { k: "W" }, { k: "W" }],
+      [
+        { k: "B" },
+        { k: "C", a: null, d: 13 },
+        { k: "C", a: null, d: 17 },
+        { k: "C", a: null, d: 25 },
+        { k: "C", a: null, d: 22 },
+        { k: "C", a: null, d: 23 },
+      ],
+      [
+        { k: "C", a: 25, d: null },
+        { k: "W" },
+        { k: "W" },
+        { k: "W" },
+        { k: "W" },
+        { k: "W", given: 9 },
+      ],
+      [
+        { k: "C", a: 23, d: null },
+        { k: "W" },
+        { k: "W", given: 8 },
+        { k: "W" },
+        { k: "W" },
+        { k: "W" },
+      ],
+      [
+        { k: "C", a: 25, d: null },
+        { k: "W" },
+        { k: "W" },
+        { k: "W", given: 9 },
+        { k: "W" },
+        { k: "W" },
+      ],
+      [
+        { k: "C", a: 27, d: null },
+        { k: "W", given: 4 },
+        { k: "W" },
+        { k: "W" },
+        { k: "W" },
+        { k: "W" },
+      ],
     ],
   },
 ];
@@ -80,7 +126,10 @@ function extractRuns(grid: KCell[][]): Run[] {
         const sum = cell.a;
         const cells: [number, number][] = [];
         c++;
-        while (c < COLS && grid[r][c].k === "W") { cells.push([r, c]); c++; }
+        while (c < COLS && grid[r][c].k === "W") {
+          cells.push([r, c]);
+          c++;
+        }
         if (cells.length > 0) runs.push({ cells, sum });
       } else c++;
     }
@@ -95,7 +144,10 @@ function extractRuns(grid: KCell[][]): Run[] {
         const sum = cell.d;
         const cells: [number, number][] = [];
         r++;
-        while (r < ROWS && grid[r][c].k === "W") { cells.push([r, c]); r++; }
+        while (r < ROWS && grid[r][c].k === "W") {
+          cells.push([r, c]);
+          r++;
+        }
         if (cells.length > 0) runs.push({ cells, sum });
       } else r++;
     }
@@ -108,7 +160,7 @@ function extractRuns(grid: KCell[][]): Run[] {
 
 function validateBoard(
   userVals: (number | null)[][],
-  runs: Run[]
+  runs: Run[],
 ): { errors: Set<string>; complete: boolean } {
   const errors = new Set<string>();
   let allFilled = true;
@@ -117,7 +169,10 @@ function validateBoard(
     const vals = cells.map(([r, c]) => userVals[r][c]);
     const filled = vals.filter((v) => v !== null) as number[];
 
-    if (filled.length < cells.length) { allFilled = false; continue; }
+    if (filled.length < cells.length) {
+      allFilled = false;
+      continue;
+    }
 
     // Duplicate check
     const seen = new Set<number>();
@@ -146,7 +201,7 @@ function initUserVals(grid: KCell[][]): (number | null)[][] {
     row.map((cell) => {
       if (cell.k === "W") return cell.given ?? null;
       return null;
-    })
+    }),
   );
 }
 
@@ -154,23 +209,49 @@ function initUserVals(grid: KCell[][]): (number | null)[][] {
 
 function ClueCell({ a, d, size }: { a: number | null; d: number | null; size: number }) {
   return (
-    <div style={{ width: size, height: size, position: "relative", background: "#1e293b", overflow: "hidden" }}>
+    <div
+      style={{
+        width: size,
+        height: size,
+        position: "relative",
+        background: "#1e293b",
+        overflow: "hidden",
+      }}
+    >
       <svg width={size} height={size} style={{ position: "absolute", inset: 0 }}>
         <line x1={0} y1={0} x2={size} y2={size} stroke="#475569" strokeWidth={1.5} />
       </svg>
       {/* Down clue — top-right */}
       {d !== null && (
-        <span style={{
-          position: "absolute", top: 3, right: 5,
-          fontSize: size * 0.28, fontWeight: 700, color: "#94a3b8", lineHeight: 1,
-        }}>{d}</span>
+        <span
+          style={{
+            position: "absolute",
+            top: 3,
+            right: 5,
+            fontSize: size * 0.28,
+            fontWeight: 700,
+            color: "#94a3b8",
+            lineHeight: 1,
+          }}
+        >
+          {d}
+        </span>
       )}
       {/* Across clue — bottom-left */}
       {a !== null && (
-        <span style={{
-          position: "absolute", bottom: 3, left: 5,
-          fontSize: size * 0.28, fontWeight: 700, color: "#cbd5e1", lineHeight: 1,
-        }}>{a}</span>
+        <span
+          style={{
+            position: "absolute",
+            bottom: 3,
+            left: 5,
+            fontSize: size * 0.28,
+            fontWeight: 700,
+            color: "#cbd5e1",
+            lineHeight: 1,
+          }}
+        >
+          {a}
+        </span>
       )}
     </div>
   );
@@ -203,32 +284,63 @@ function KakuroGame() {
 
   const handlePlayAgain = () => resetPuzzle(puzzleIdx);
 
-  const inputNumber = useCallback((val: number | null) => {
-    if (!selected || won) return;
-    const [r, c] = selected;
-    const cell = puzzle.grid[r][c];
-    if (cell.k !== "W" || cell.given !== undefined) return;
+  const inputNumber = useCallback(
+    (val: number | null) => {
+      if (!selected || won) return;
+      const [r, c] = selected;
+      const cell = puzzle.grid[r][c];
+      if (cell.k !== "W" || cell.given !== undefined) return;
 
-    const newVals = userVals.map((row) => [...row]);
-    newVals[r][c] = val;
-    setUserVals(newVals);
+      const newVals = userVals.map((row) => [...row]);
+      newVals[r][c] = val;
+      setUserVals(newVals);
 
-    const { errors: errs, complete } = validateBoard(newVals, runs);
-    setErrors(errs);
-    if (complete) setWon(true);
-  }, [selected, won, puzzle, userVals, runs]);
+      const { errors: errs, complete } = validateBoard(newVals, runs);
+      setErrors(errs);
+      if (complete) setWon(true);
+    },
+    [selected, won, puzzle, userVals, runs],
+  );
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!selected) return;
       const [r, c] = selected;
-      const ROWS = puzzle.grid.length, COLS = puzzle.grid[0].length;
-      if (e.key >= "1" && e.key <= "9") { e.preventDefault(); inputNumber(parseInt(e.key)); }
-      else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
-      else if (e.key === "ArrowUp")    { e.preventDefault(); for (let nr = r-1; nr >= 0; nr--) if (puzzle.grid[nr][c].k === "W") { setSelected([nr, c]); break; } }
-      else if (e.key === "ArrowDown")  { e.preventDefault(); for (let nr = r+1; nr < ROWS; nr++) if (puzzle.grid[nr][c].k === "W") { setSelected([nr, c]); break; } }
-      else if (e.key === "ArrowLeft")  { e.preventDefault(); for (let nc = c-1; nc >= 0; nc--) if (puzzle.grid[r][nc].k === "W") { setSelected([r, nc]); break; } }
-      else if (e.key === "ArrowRight") { e.preventDefault(); for (let nc = c+1; nc < COLS; nc++) if (puzzle.grid[r][nc].k === "W") { setSelected([r, nc]); break; } }
+      const ROWS = puzzle.grid.length,
+        COLS = puzzle.grid[0].length;
+      if (e.key >= "1" && e.key <= "9") {
+        e.preventDefault();
+        inputNumber(parseInt(e.key));
+      } else if (e.key === "Backspace" || e.key === "Delete" || e.key === "0") inputNumber(null);
+      else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        for (let nr = r - 1; nr >= 0; nr--)
+          if (puzzle.grid[nr][c].k === "W") {
+            setSelected([nr, c]);
+            break;
+          }
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        for (let nr = r + 1; nr < ROWS; nr++)
+          if (puzzle.grid[nr][c].k === "W") {
+            setSelected([nr, c]);
+            break;
+          }
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        for (let nc = c - 1; nc >= 0; nc--)
+          if (puzzle.grid[r][nc].k === "W") {
+            setSelected([r, nc]);
+            break;
+          }
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        for (let nc = c + 1; nc < COLS; nc++)
+          if (puzzle.grid[r][nc].k === "W") {
+            setSelected([r, nc]);
+            break;
+          }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -238,39 +350,61 @@ function KakuroGame() {
 
   return (
     <div className="flex flex-col items-center gap-5 py-6 select-none">
-      <WinOverlay show={won} onPlayAgain={handlePlayAgain} message="Kakuro Solved!" sub="All the sums add up perfectly!" />
+      <WinOverlay
+        show={won}
+        onPlayAgain={handlePlayAgain}
+        message="Kakuro Solved!"
+        sub="All the sums add up perfectly!"
+      />
 
       {/* Puzzle selector */}
       <div className="flex gap-2">
         {PUZZLES.map((p, i) => (
-          <button key={i} onClick={() => handlePuzzleChange(i)}
+          <button
+            key={i}
+            onClick={() => handlePuzzleChange(i)}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition-colors
-              ${puzzleIdx === i
-                ? "bg-coral-500 border-orange-400 bg-orange-500 text-white"
-                : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"}`}>
+              ${
+                puzzleIdx === i
+                  ? "bg-coral-500 border-orange-400 bg-orange-500 text-white"
+                  : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"
+              }`}
+          >
             {p.label}
           </button>
         ))}
       </div>
 
       <p className="text-xs text-slate-400 max-w-xs text-center">
-        Fill white cells with <strong>1–9</strong>. Each run must sum to its clue with no repeated digits.
-        <br />Clue cell: <span className="font-mono">down \ across</span>.
+        Fill white cells with <strong>1–9</strong>. Each run must sum to its clue with no repeated
+        digits.
+        <br />
+        Clue cell: <span className="font-mono">down \ across</span>.
       </p>
 
       {/* Grid */}
-      <div className="rounded-xl overflow-hidden shadow-xl border-2 border-slate-700"
-        style={{ display: "grid", gridTemplateColumns: `repeat(${puzzle.grid[0].length}, ${CELL}px)` }}>
+      <div
+        className="rounded-xl overflow-hidden shadow-xl border-2 border-slate-700"
+        style={{
+          display: "grid",
+          gridTemplateColumns: `repeat(${puzzle.grid[0].length}, ${CELL}px)`,
+        }}
+      >
         {puzzle.grid.map((row, r) =>
           row.map((cell, c) => {
-            if (cell.k === "B") return (
-              <div key={`${r}-${c}`} style={{ width: CELL, height: CELL, background: "#0f172a" }} />
-            );
-            if (cell.k === "C") return (
-              <div key={`${r}-${c}`} style={{ width: CELL, height: CELL }}>
-                <ClueCell a={cell.a} d={cell.d} size={CELL} />
-              </div>
-            );
+            if (cell.k === "B")
+              return (
+                <div
+                  key={`${r}-${c}`}
+                  style={{ width: CELL, height: CELL, background: "#0f172a" }}
+                />
+              );
+            if (cell.k === "C")
+              return (
+                <div key={`${r}-${c}`} style={{ width: CELL, height: CELL }}>
+                  <ClueCell a={cell.a} d={cell.d} size={CELL} />
+                </div>
+              );
 
             // White cell
             const val = userVals[r][c];
@@ -279,51 +413,68 @@ function KakuroGame() {
             const isError = errors.has(`${r},${c}`);
 
             let bg = "#ffffff";
-            if (isSelected) bg = "#fed7aa";       // orange-200
-            else if (isError) bg = "#fee2e2";      // red-100
+            if (isSelected)
+              bg = "#fed7aa"; // orange-200
+            else if (isError) bg = "#fee2e2"; // red-100
 
             return (
-              <div key={`${r}-${c}`}
-                onClick={() => { if (!isGiven && !won) setSelected([r, c]); }}
+              <div
+                key={`${r}-${c}`}
+                onClick={() => {
+                  if (!isGiven && !won) setSelected([r, c]);
+                }}
                 style={{
-                  width: CELL, height: CELL,
+                  width: CELL,
+                  height: CELL,
                   background: bg,
                   border: "1px solid #e2e8f0",
-                  display: "flex", alignItems: "center", justifyContent: "center",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   cursor: isGiven ? "default" : "pointer",
                   transition: "background 0.15s",
-                }}>
-                <span style={{
-                  fontSize: "1.2rem",
-                  fontWeight: isGiven ? 800 : 600,
-                  color: isError ? "#ef4444" : isGiven ? "#0f172a" : "#ea580c",
-                }}>
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "1.2rem",
+                    fontWeight: isGiven ? 800 : 600,
+                    color: isError ? "#ef4444" : isGiven ? "#0f172a" : "#ea580c",
+                  }}
+                >
                   {val ?? ""}
                 </span>
               </div>
             );
-          })
+          }),
         )}
       </div>
 
       {/* Number pad */}
       <div className="flex items-center gap-2">
-        {[1,2,3,4,5,6,7,8,9].map((n) => (
-          <button key={n} onClick={() => inputNumber(n)}
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+          <button
+            key={n}
+            onClick={() => inputNumber(n)}
             className="w-9 h-9 rounded-lg bg-orange-50 hover:bg-orange-100 border border-orange-200
-              text-orange-700 font-bold text-sm transition-colors">
+              text-orange-700 font-bold text-sm transition-colors"
+          >
             {n}
           </button>
         ))}
-        <button onClick={() => inputNumber(null)}
+        <button
+          onClick={() => inputNumber(null)}
           className="w-9 h-9 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200
-            text-slate-400 font-bold transition-colors">
+            text-slate-400 font-bold transition-colors"
+        >
           ✕
         </button>
       </div>
 
-      <button onClick={handlePlayAgain}
-        className="px-6 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm transition-colors shadow-md shadow-orange-200">
+      <button
+        onClick={handlePlayAgain}
+        className="px-6 py-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm transition-colors shadow-md shadow-orange-200"
+      >
         Reset Puzzle
       </button>
 

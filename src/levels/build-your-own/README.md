@@ -2,7 +2,7 @@
 
 Each day, one **target element** appears in the game. Players try to discover it
 by combining elements on the canvas. They can also peek at a hint or use the
-"Reveal others" button (which unlocks every element *except* today's target).
+"Reveal others" button (which unlocks every element _except_ today's target).
 
 ## Where the files live
 
@@ -30,14 +30,14 @@ the archive at `/archive/build-your-own`.
 
 ### Fields
 
-| Field     | Type                 | Notes                                                                                              |
-|-----------|----------------------|----------------------------------------------------------------------------------------------------|
-| `id`      | string               | Unique element id. Lower-snake-case. Must **not** collide with anything in `elements.ts`.          |
-| `name`    | string               | Display name shown on the tile and in the toast.                                                   |
-| `emoji`   | string               | Single emoji.                                                                                       |
-| `tier`    | integer 0–6          | Determines which inventory group it appears in (0=Primordial … 6=Cosmic).                          |
-| `hint`    | string               | One short sentence shown behind the "Show hint" button.                                            |
-| `recipes` | array of `[a, b]`    | Each pair is two element ids whose combination produces this element. Order in the pair doesn't matter. **Use only ids that exist in `elements.ts`** (or a previous-tier daily, but prefer base elements). At least one recipe required. |
+| Field     | Type              | Notes                                                                                                                                                                                                                                    |
+| --------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`      | string            | Unique element id. Lower-snake-case. Must **not** collide with anything in `elements.ts`.                                                                                                                                                |
+| `name`    | string            | Display name shown on the tile and in the toast.                                                                                                                                                                                         |
+| `emoji`   | string            | Single emoji.                                                                                                                                                                                                                            |
+| `tier`    | integer 0–6       | Determines which inventory group it appears in (0=Primordial … 6=Cosmic).                                                                                                                                                                |
+| `hint`    | string            | One short sentence shown behind the "Show hint" button.                                                                                                                                                                                  |
+| `recipes` | array of `[a, b]` | Each pair is two element ids whose combination produces this element. Order in the pair doesn't matter. **Use only ids that exist in `elements.ts`** (or a previous-tier daily, but prefer base elements). At least one recipe required. |
 
 ### Rules of thumb
 

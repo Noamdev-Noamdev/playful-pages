@@ -11,8 +11,7 @@ export const Route = createFileRoute("/")({
       { title: "Playpile" },
       {
         name: "description",
-        content:
-          "A pile of playful, original web experiments and classic logic puzzles.",
+        content: "A pile of playful, original web experiments and classic logic puzzles.",
       },
     ],
   }),
@@ -25,8 +24,7 @@ const content: Record<
   originals: {
     eyebrow: "Originals",
     title: "A pile of playful daily games.",
-    subtitle:
-      "Hand-built tiny games. New ones appear when nobody's looking.",
+    subtitle: "Hand-built tiny games. New ones appear when nobody's looking.",
     items: originals,
   },
   classics: {
@@ -53,9 +51,7 @@ function Index() {
           <h1 className="mt-4 font-display text-5xl font-black leading-[0.95] sm:text-6xl md:text-7xl">
             {title}
           </h1>
-          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-            {subtitle}
-          </p>
+          <p className="mt-4 text-base text-muted-foreground sm:text-lg">{subtitle}</p>
         </section>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">

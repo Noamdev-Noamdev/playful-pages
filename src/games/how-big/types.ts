@@ -1,13 +1,13 @@
 export interface Comparison {
   id: number;
-  prompt: string;        // "How many times taller is B than A?"
-  metric: string;        // "Height" | "Diameter" | "Mass" | "Distance"
+  prompt: string; // "How many times taller is B than A?"
+  metric: string; // "Height" | "Diameter" | "Mass" | "Distance"
   itemA: CompItem;
-  itemB: CompItem;       // B is always the larger one
-  ratio: number;         // itemB / itemA — always > 1
-  maxGuess: number;      // upper bound of the slider for this comparison
+  itemB: CompItem; // B is always the larger one
+  ratio: number; // itemB / itemA — always > 1
+  maxGuess: number; // upper bound of the slider for this comparison
   difficulty: "easy" | "medium" | "hard";
-  fact: string;          // shown after reveal
+  fact: string; // shown after reveal
 }
 
 export interface CompItem {

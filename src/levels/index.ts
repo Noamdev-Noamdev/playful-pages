@@ -102,10 +102,7 @@ export function getDailyLevel<T = unknown>(
 }
 
 /** Look up a specific dated level for a game. */
-export function getLevelByDate<T = unknown>(
-  slug: string,
-  date: string,
-): LevelEntry<T> | null {
+export function getLevelByDate<T = unknown>(slug: string, date: string): LevelEntry<T> | null {
   const archive = archives[slug];
   if (!archive) return null;
   const idx = archive.findIndex((e) => e.date === date);
