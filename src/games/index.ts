@@ -1,6 +1,7 @@
 import type { Game } from "./types";
 
 import RankAnything from "./rank-anything";
+import Signal from "./signal";
 import BuildYourOwn from "./build-your-own";
 import HowBig from "./how-big";
 import TimelineBuilder from "./timeline-builder";
@@ -26,6 +27,7 @@ export const games: Game[] = [
   Tectonic,
   Kakuro,
   Futoshiki,
+  Signal,
 ];
 
 export const originals = games.filter((g) => g.category === "originals");
