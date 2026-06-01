@@ -7,7 +7,8 @@ import { getArchiveDates, getLevelByDate, formatDate } from "@/levels";
 // ─── Daily ────────────────────────────────────────────────────────────────────
 
 const DAILY_SLUG = "build-your-own";
-const STORAGE_KEY = "playpile:byo:discovered";
+// Per-day key so progress resets at midnight (local time).
+const STORAGE_PREFIX = "playpile:byo:discovered:";
 
 interface DailyData {
   id: string;
