@@ -1,11 +1,16 @@
 import { Radio } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import type { Game } from "./types";
 import { WinOverlay } from "./_WinOverlay";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Types
 ───────────────────────────────────────────────────────────────────────────── */
+
+const DAILY_SLUG = "signal";
 
 type CellKind = "empty" | "constraint" | "blocked";
 
@@ -15,103 +20,44 @@ interface PCell {
 }
 
 interface Puzzle {
-  id: number;
+  id: string;
   title: string;
   hint: string;
   grid: PCell[][];
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Cell factories (shorthand for puzzle definitions)
-───────────────────────────────────────────────────────────────────────────── */
-
-const E = (): PCell => ({ kind: "empty" });
-const B = (): PCell => ({ kind: "blocked" });
-const N = (n: number): PCell => ({ kind: "constraint", req: n });
+interface RawPuzzle {
+  id: string;
+  title: string;
+  hint: string;
+  grid: string[][];
+}
 
 const GS = 6; // grid size
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Puzzle definitions
-   Each solution is verified by hand (solutions shown in comments only).
-
-   Signal rule: a tower at (r,c) emits in all 4 cardinal directions; the beam
-   travels until it hits a BLOCKED tile or the grid edge. Blocked tiles are
-   not covered. Constraint tiles are NOT blocked — beams pass through them.
-   Coverage of a tile = number of towers whose beam reaches it.
+   Parse JSON token grid → PCell grid
 ───────────────────────────────────────────────────────────────────────────── */
 
-const PUZZLES: Puzzle[] = [
-  {
-    id: 1,
-    title: "Introduction",
-    hint: "Each number is the exact signal count that cell must receive.",
-    // Solution: towers at (1,2) and (4,4)
-    // (0,2)→col2 T1=1  (1,4)→row1+col4=2  (1,5)→row1=1
-    // (4,0)→row4=1  (4,2)→col2+row4=2  (5,4)→col4=1
-    grid: [
-      [E(), E(), N(1), E(), E(), E()],
-      [E(), E(), E(), E(), N(2), N(1)],
-      [E(), E(), E(), E(), E(), E()],
-      [E(), E(), E(), E(), E(), E()],
-      [N(1), E(), N(2), E(), E(), E()],
-      [E(), E(), E(), E(), N(1), E()],
-    ],
-  },
-  {
-    id: 2,
-    title: "Crossroads",
-    hint: "Three towers must form a triangle of intersecting signals.",
-    // Solution: towers at (0,3), (3,0), (5,5)
-    // (0,0)→row0+col0=2  (0,5)→row0+col5=2  (1,3)→col3=1
-    // (3,4)→row3=1  (3,5)→row3+col5=2  (5,1)→row5=1  (5,3)→col3+row5=2
-    grid: [
-      [N(2), E(), E(), E(), E(), N(2)],
-      [E(), E(), E(), N(1), E(), E()],
-      [E(), E(), E(), E(), E(), E()],
-      [E(), E(), E(), E(), N(1), N(2)],
-      [E(), E(), E(), E(), E(), E()],
-      [E(), N(1), E(), N(2), E(), E()],
-    ],
-  },
-  {
-    id: 3,
-    title: "Barrier",
-    hint: "A blocked tile cuts the signal — plan your towers around it.",
-    // Blocker at (3,2).  Solution: towers at (0,2), (4,4), (5,0)
-    // T1=(0,2): col2 down stops at blocker → covers (1,2),(2,2) only
-    // (0,0)→row0+col0=2  (0,4)→row0+col4=2  (1,2)→col2 T1=1
-    // (4,0)→row4+col0=2  (4,2)→row4 T2=1 (col2 blocked)
-    // (5,2)→row5 T3=1 (col2 blocked)  (5,4)→row5+col4=2
-    grid: [
-      [N(2), E(), E(), E(), N(2), E()],
-      [E(), E(), N(1), E(), E(), E()],
-      [E(), E(), E(), E(), E(), E()],
-      [E(), E(), B(), E(), E(), E()],
-      [N(2), E(), N(1), E(), E(), E()],
-      [E(), E(), N(1), E(), N(2), E()],
-    ],
-  },
-  {
-    id: 4,
-    title: "Compression",
-    hint: "Two barriers fragment the grid — find the right gaps.",
-    // Blockers at (0,3) and (5,2).  Solution: towers at (0,5), (3,2), (4,0)
-    // T2=(0,5): row0 left blocked at (0,3) → only covers (0,4)
-    // T1=(3,2): col2 down blocked at (5,2) → covers (4,2) only below tower
-    // (0,0)→col0 T3=1  (0,2)→col2 T1=1 [T2 row0 blocked]
-    // (3,0)→row3 T1 + col0 T3=2  (4,2)→col2 T1 + row4 T3=2
-    // (4,5)→row4 T3 + col5 T2=2  (5,5)→col5 T2=1
-    grid: [
-      [N(1), E(), N(1), B(), E(), E()],
-      [E(), E(), E(), E(), E(), E()],
-      [E(), E(), E(), E(), E(), E()],
-      [N(2), E(), E(), E(), E(), E()],
-      [E(), E(), N(2), E(), E(), N(2)],
-      [E(), E(), B(), E(), E(), N(1)],
-    ],
-  },
-];
+function parseToken(token: string): PCell {
+  if (token === ".") return { kind: "empty" };
+  if (token === "#") return { kind: "blocked" };
+  const n = Number(token);
+  if (Number.isFinite(n) && n >= 0 && n <= 9) {
+    return { kind: "constraint", req: n };
+  }
+  // Unknown token → treat as empty so a typo doesn't crash the board.
+  return { kind: "empty" };
+}
+
+function parsePuzzle(raw: RawPuzzle): Puzzle {
+  return {
+    id: raw.id,
+    title: raw.title,
+    hint: raw.hint,
+    grid: raw.grid.map((row) => row.map(parseToken)),
+  };
+}
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Core logic
@@ -159,15 +105,34 @@ function checkWin(grid: PCell[][], cov: number[][]): boolean {
 ───────────────────────────────────────────────────────────────────────────── */
 
 function SignalGame() {
-  const [puzzleIdx, setPuzzleIdx] = useState(0);
+  // ── Daily selection (archive playback via ?date=YYYY-MM-DD) ───────────────
+  const dateParam = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("date");
+  }, []);
+
+  const dailyLevel = useMemo(() => {
+    return dateParam
+      ? getLevelByDate<RawPuzzle>(DAILY_SLUG, dateParam)
+      : getDailyLevel<RawPuzzle>(DAILY_SLUG);
+  }, [dateParam]);
+
+  const isTodaysDaily = !dateParam;
+  const puzzle = useMemo<Puzzle | null>(() => {
+    if (!dailyLevel?.data) return null;
+    return parsePuzzle(dailyLevel.data);
+  }, [dailyLevel]);
+
   const [towers, setTowers] = useState<boolean[][]>(makeTowers);
   const [history, setHistory] = useState<boolean[][][]>([]);
   const [won, setWon] = useState(false);
   const [pulseKey, setPulseKey] = useState("");
 
-  const puzzle = PUZZLES[puzzleIdx];
-  const coverage = computeCoverage(puzzle.grid, towers);
-  const solved = checkWin(puzzle.grid, coverage);
+  const coverage = useMemo(
+    () => (puzzle ? computeCoverage(puzzle.grid, towers) : null),
+    [puzzle, towers],
+  );
+  const solved = !!(puzzle && coverage && checkWin(puzzle.grid, coverage));
 
   // Delay win overlay slightly so the last satisfaction animation can play
   useEffect(() => {
@@ -176,6 +141,24 @@ function SignalGame() {
       return () => clearTimeout(t);
     }
   }, [solved, won]);
+
+  // Lock today's daily once solved
+  useEffect(() => {
+    if (won && isTodaysDaily) {
+      markDailyComplete(DAILY_SLUG);
+    }
+  }, [won, isTodaysDaily]);
+
+  if (!puzzle || !coverage) {
+    return (
+      <div className="rounded-3xl border-2 border-foreground bg-card p-8 text-center">
+        <p className="font-display text-2xl font-black">No puzzle for this date</p>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Check the archive for an available day.
+        </p>
+      </div>
+    );
+  }
 
   const handleClick = (r: number, c: number) => {
     if (won || puzzle.grid[r][c].kind !== "empty") return;
@@ -203,12 +186,6 @@ function SignalGame() {
     setTowers(history[history.length - 1]);
     setHistory((h) => h.slice(0, -1));
   };
-  const doNext = () => {
-    setPuzzleIdx((i) => (i + 1) % PUZZLES.length);
-    setHistory([]);
-    setTowers(makeTowers());
-    setWon(false);
-  };
 
   // Progress counters
   const totalConstraints = puzzle.grid.flat().filter((c) => c.kind === "constraint").length;
@@ -222,7 +199,6 @@ function SignalGame() {
   const controls = [
     { label: "Reset", fn: doReset, disabled: false },
     { label: "Undo", fn: doUndo, disabled: history.length === 0 },
-    { label: "Next →", fn: doNext, disabled: false },
   ];
 
   return (
@@ -239,11 +215,14 @@ function SignalGame() {
       `}</style>
 
       <div className="space-y-4">
+        {dailyLevel && (
+          <div className="flex justify-center">
+            <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+          </div>
+        )}
+
         {/* ── Puzzle header ────────────────────────────────────────────────── */}
         <div className="text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
-            Puzzle {puzzle.id} of {PUZZLES.length}
-          </p>
           <p className="font-display text-2xl font-extrabold leading-tight text-foreground">
             {puzzle.title}
           </p>
@@ -257,21 +236,6 @@ function SignalGame() {
           <span className="text-xs font-semibold text-muted-foreground">
             {satisfiedCount}/{totalConstraints} satisfied
           </span>
-          <div className="flex gap-1.5">
-            {PUZZLES.map((_, i) => (
-              <div
-                key={i}
-                className={[
-                  "h-2 w-2 rounded-full border border-foreground/30 transition-all",
-                  i < puzzleIdx
-                    ? "bg-foreground/25"
-                    : i === puzzleIdx
-                      ? "bg-card-sky border-foreground shadow-[0_0_0_1px_var(--foreground)]"
-                      : "bg-muted",
-                ].join(" ")}
-              />
-            ))}
-          </div>
         </div>
 
         {/* ── Game board ───────────────────────────────────────────────────── */}
@@ -333,15 +297,15 @@ function SignalGame() {
           ))}
         </div>
 
-        {/* ── Win overlay ──────────────────────────────────────────────────── */}
+        {/* ── Win overlay (no "play again" — one daily per day) ────────────── */}
         <WinOverlay
           show={won}
-          onPlayAgain={doNext}
+          onPlayAgain={doReset}
           message="Signal Complete!"
           sub={
-            puzzleIdx < PUZZLES.length - 1
-              ? "Next puzzle incoming…"
-              : "All puzzles cleared — loop continues!"
+            isTodaysDaily
+              ? "Come back tomorrow for a new puzzle, or replay past days from the archive."
+              : "Replay another day from the archive."
           }
         />
       </div>
@@ -445,6 +409,7 @@ const SignalMeta: Game = {
   color: "sky",
   category: "originals",
   Component: SignalGame,
+  dailySlug: "signal",
 };
 
 export default SignalMeta;
