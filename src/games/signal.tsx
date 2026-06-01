@@ -100,6 +100,205 @@ function checkWin(grid: PCell[][], cov: number[][]): boolean {
   );
 }
 
+function solveTowers(grid: PCell[][]): boolean[][] | null {
+  const constraints: { r: number; c: number; req: number; vars: number[] }[] = [];
+  const constraintIndexByCell = Array.from({ length: GS }, () => new Array<number>(GS).fill(-1));
+  for (let r = 0; r < GS; r++) {
+    for (let c = 0; c < GS; c++) {
+      const cell = grid[r][c];
+      if (cell.kind !== "constraint") continue;
+      const req = typeof cell.req === "number" ? cell.req : 0;
+      const idx = constraints.length;
+      constraints.push({ r, c, req, vars: [] });
+      constraintIndexByCell[r][c] = idx;
+    }
+  }
+
+  const vars: { r: number; c: number }[] = [];
+  for (let r = 0; r < GS; r++) {
+    for (let c = 0; c < GS; c++) {
+      if (grid[r][c].kind === "empty") vars.push({ r, c });
+    }
+  }
+
+  const varToConstraints: number[][] = Array.from({ length: vars.length }, () => []);
+  const dirs: [number, number][] = [
+    [-1, 0],
+    [1, 0],
+    [0, -1],
+    [0, 1],
+  ];
+
+  for (let vi = 0; vi < vars.length; vi++) {
+    const { r, c } = vars[vi];
+    for (const [dr, dc] of dirs) {
+      let nr = r + dr;
+      let nc = c + dc;
+      while (nr >= 0 && nr < GS && nc >= 0 && nc < GS) {
+        if (grid[nr][nc].kind === "blocked") break;
+        const ci = constraintIndexByCell[nr][nc];
+        if (ci !== -1) varToConstraints[vi].push(ci);
+        nr += dr;
+        nc += dc;
+      }
+    }
+  }
+
+  for (let vi = 0; vi < vars.length; vi++) {
+    for (const ci of varToConstraints[vi]) constraints[ci].vars.push(vi);
+  }
+
+  const assign = new Int8Array(vars.length).fill(-1);
+  const sum = new Int16Array(constraints.length);
+  const unk = new Int16Array(constraints.length);
+  for (let ci = 0; ci < constraints.length; ci++) {
+    sum[ci] = 0;
+    unk[ci] = constraints[ci].vars.length;
+  }
+
+  const feasible = (ci: number) => {
+    const req = constraints[ci].req;
+    const s = sum[ci];
+    const u = unk[ci];
+    return s <= req && req <= s + u;
+  };
+
+  const setVar = (vi: number, val: 0 | 1, stack: number[]) => {
+    const cur = assign[vi];
+    if (cur !== -1) return cur === val;
+    assign[vi] = val;
+    stack.push(vi);
+    for (const ci of varToConstraints[vi]) {
+      unk[ci]--;
+      if (val === 1) sum[ci]++;
+      if (!feasible(ci)) return false;
+    }
+    return true;
+  };
+
+  const rollback = (stack: number[]) => {
+    for (let i = stack.length - 1; i >= 0; i--) {
+      const vi = stack[i];
+      const val = assign[vi];
+      assign[vi] = -1;
+      for (const ci of varToConstraints[vi]) {
+        unk[ci]++;
+        if (val === 1) sum[ci]--;
+      }
+    }
+  };
+
+  const propagate = (stack: number[]) => {
+    let changed = true;
+    while (changed) {
+      changed = false;
+      for (let ci = 0; ci < constraints.length; ci++) {
+        const req = constraints[ci].req;
+        const s = sum[ci];
+        const u = unk[ci];
+        if (u === 0) continue;
+        if (req === s) {
+          for (const vi of constraints[ci].vars) {
+            if (assign[vi] === -1) {
+              if (!setVar(vi, 0, stack)) return false;
+              changed = true;
+            }
+          }
+        } else if (req === s + u) {
+          for (const vi of constraints[ci].vars) {
+            if (assign[vi] === -1) {
+              if (!setVar(vi, 1, stack)) return false;
+              changed = true;
+            }
+          }
+        }
+      }
+    }
+    return true;
+  };
+
+  const allSatisfied = () => {
+    for (let ci = 0; ci < constraints.length; ci++) {
+      if (sum[ci] !== constraints[ci].req) return false;
+    }
+    return true;
+  };
+
+  const pickVar = () => {
+    let best = -1;
+    let bestDeg = -1;
+    for (let vi = 0; vi < vars.length; vi++) {
+      if (assign[vi] !== -1) continue;
+      const deg = varToConstraints[vi].length;
+      if (deg > bestDeg) {
+        bestDeg = deg;
+        best = vi;
+      }
+    }
+    return best;
+  };
+
+  for (let ci = 0; ci < constraints.length; ci++) {
+    if (!feasible(ci)) return null;
+  }
+
+  let solution: Int8Array | null = null;
+  let solutions = 0;
+  const dfs = () => {
+    if (solutions >= 2) return;
+
+    const stack: number[] = [];
+    if (!propagate(stack)) {
+      rollback(stack);
+      return;
+    }
+
+    if (allSatisfied()) {
+      for (let vi = 0; vi < vars.length; vi++) {
+        if (assign[vi] === -1) {
+          rollback(stack);
+          return;
+        }
+      }
+      solutions++;
+      if (solutions === 1) solution = new Int8Array(assign);
+      rollback(stack);
+      return;
+    }
+
+    const vi = pickVar();
+    if (vi === -1) {
+      rollback(stack);
+      return;
+    }
+
+    {
+      const s2: number[] = [];
+      if (setVar(vi, 1, s2)) dfs();
+      rollback(s2);
+    }
+    {
+      const s2: number[] = [];
+      if (setVar(vi, 0, s2)) dfs();
+      rollback(s2);
+    }
+
+    rollback(stack);
+  };
+
+  dfs();
+  if (!solution || solutions !== 1) return null;
+
+  const towers = makeTowers();
+  for (let vi = 0; vi < vars.length; vi++) {
+    if (solution[vi] === 1) {
+      const { r, c } = vars[vi];
+      towers[r][c] = true;
+    }
+  }
+  return towers;
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    Signal Game — main component
 ───────────────────────────────────────────────────────────────────────────── */
@@ -127,12 +326,14 @@ function SignalGame() {
   const [history, setHistory] = useState<boolean[][][]>([]);
   const [won, setWon] = useState(false);
   const [pulseKey, setPulseKey] = useState("");
+  const [checkStatus, setCheckStatus] = useState<null | { ok: boolean; msg: string }>(null);
 
   const coverage = useMemo(
     () => (puzzle ? computeCoverage(puzzle.grid, towers) : null),
     [puzzle, towers],
   );
   const solved = !!(puzzle && coverage && checkWin(puzzle.grid, coverage));
+  const solutionTowers = useMemo(() => (puzzle ? solveTowers(puzzle.grid) : null), [puzzle]);
 
   // Delay win overlay slightly so the last satisfaction animation can play
   useEffect(() => {
@@ -169,6 +370,7 @@ function SignalGame() {
       next[r][c] = !next[r][c];
       return next;
     });
+    setCheckStatus(null);
     if (placing) {
       const key = `${r}-${c}-${Date.now()}`;
       setPulseKey(key);
@@ -180,11 +382,42 @@ function SignalGame() {
     setHistory([]);
     setTowers(makeTowers());
     setWon(false);
+    setCheckStatus(null);
   };
   const doUndo = () => {
     if (!history.length) return;
     setTowers(history[history.length - 1]);
     setHistory((h) => h.slice(0, -1));
+    setCheckStatus(null);
+  };
+
+  const doCheck = () => {
+    if (!solutionTowers) {
+      setCheckStatus({ ok: false, msg: "This puzzle can’t be checked right now." });
+      return;
+    }
+
+    for (let r = 0; r < GS; r++) {
+      for (let c = 0; c < GS; c++) {
+        if (puzzle.grid[r][c].kind !== "empty") continue;
+        const should = solutionTowers[r][c];
+        const has = towers[r][c];
+        if (has && !should) {
+          setCheckStatus({
+            ok: false,
+            msg: "Not quite — at least one tower is in the wrong place.",
+          });
+          return;
+        }
+      }
+    }
+
+    if (solved) {
+      setCheckStatus({ ok: true, msg: "Correct — all towers are in the right places." });
+      return;
+    }
+
+    setCheckStatus({ ok: true, msg: "So far so good — all placed towers are correct." });
   };
 
   // Progress counters
@@ -199,6 +432,7 @@ function SignalGame() {
   const controls = [
     { label: "Reset", fn: doReset, disabled: false },
     { label: "Undo", fn: doUndo, disabled: history.length === 0 },
+    { label: "Check", fn: doCheck, disabled: false },
   ];
 
   return (
@@ -296,6 +530,19 @@ function SignalGame() {
             </button>
           ))}
         </div>
+        {checkStatus && (
+          <div className="flex justify-center">
+            <div
+              aria-live="polite"
+              className={[
+                "rounded-2xl border-2 border-foreground px-4 py-2 text-sm font-semibold",
+                checkStatus.ok ? "bg-card-mint text-foreground" : "bg-card-coral text-foreground",
+              ].join(" ")}
+            >
+              {checkStatus.msg}
+            </div>
+          </div>
+        )}
 
         {/* ── Win overlay (no "play again" — one daily per day) ────────────── */}
         <WinOverlay

@@ -13,8 +13,8 @@ Auto-loaded by `src/levels/index.ts` (Vite glob). No registry edit needed.
 
 ```jsonc
 {
-  "id": "signal-2026-06-01",   // any unique string
-  "title": "Introduction",     // short title shown above the board
+  "id": "signal-2026-06-01", // any unique string
+  "title": "Introduction", // short title shown above the board
   "hint": "Each number is the exact signal count that cell must receive.",
   "grid": [
     [".", ".", "2", ".", ".", "."],
@@ -22,8 +22,8 @@ Auto-loaded by `src/levels/index.ts` (Vite glob). No registry edit needed.
     [".", ".", ".", ".", ".", "."],
     [".", ".", ".", ".", ".", "."],
     ["1", ".", "2", ".", ".", "."],
-    [".", ".", ".", ".", "1", "."]
-  ]
+    [".", ".", ".", ".", "1", "."],
+  ],
 }
 ```
 
@@ -31,10 +31,10 @@ Auto-loaded by `src/levels/index.ts` (Vite glob). No registry edit needed.
 
 Each row is an array of **6 string tokens** (grid is always 6×6):
 
-| Token | Meaning |
-|-------|---------|
-| `"."` | Empty cell — you can place a tower here. |
-| `"#"` | Blocked cell — signals stop here, no tower can be placed. |
+| Token        | Meaning                                                                           |
+| ------------ | --------------------------------------------------------------------------------- |
+| `"."`        | Empty cell — you can place a tower here.                                          |
+| `"#"`        | Blocked cell — signals stop here, no tower can be placed.                         |
 | `"0"`..`"9"` | Constraint cell — must receive **exactly** this many signals. Beams pass through. |
 
 ## Rules

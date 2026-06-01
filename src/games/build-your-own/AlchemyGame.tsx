@@ -490,9 +490,7 @@ export function AlchemyGame() {
         </div>
 
         {/* Inventory sidebar */}
-        <aside
-          className="rounded-3xl border-2 border-foreground bg-card p-3 lg:max-h-[420px] lg:overflow-y-auto"
-        >
+        <aside className="rounded-3xl border-2 border-foreground bg-card p-3 lg:max-h-[420px] lg:overflow-y-auto">
           <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">
             Discovered elements
           </p>
