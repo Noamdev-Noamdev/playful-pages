@@ -7,7 +7,8 @@ import { getArchiveDates, getLevelByDate, formatDate } from "@/levels";
 // ─── Daily ────────────────────────────────────────────────────────────────────
 
 const DAILY_SLUG = "build-your-own";
-const STORAGE_KEY = "playpile:byo:discovered";
+// Per-day key so progress resets at midnight (local time).
+const STORAGE_PREFIX = "playpile:byo:discovered:";
 
 interface DailyData {
   id: string;
@@ -102,11 +103,20 @@ export function AlchemyGame() {
 
   const totalCount = TOTAL + allDailies.length;
 
-  // ── Discovered set — persisted across days ────────────────────────────────
+  // ── Discovered set — resets every day (key includes today's date) ─────────
+  const todayStorageKey = useMemo(() => `${STORAGE_PREFIX}${formatDate(new Date())}`, []);
   const [discovered, setDiscovered] = useState<Set<string>>(() => {
     if (typeof window === "undefined") return new Set(STARTING_IDS);
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      // Clean up old per-day keys from previous days.
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith(STORAGE_PREFIX) && k !== todayStorageKey) {
+          localStorage.removeItem(k);
+          i--;
+        }
+      }
+      const raw = localStorage.getItem(todayStorageKey);
       if (raw) {
         const arr = JSON.parse(raw) as string[];
         return new Set([...STARTING_IDS, ...arr]);
@@ -120,11 +130,11 @@ export function AlchemyGame() {
   // Persist on every change.
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify([...discovered]));
+      localStorage.setItem(todayStorageKey, JSON.stringify([...discovered]));
     } catch {
       /* ignore */
     }
-  }, [discovered]);
+  }, [discovered, todayStorageKey]);
 
   const [canvasItems, setCanvasItems] = useState<CanvasItem[]>(() =>
     STARTING_ITEMS.map((i) => ({ ...i })),
@@ -420,106 +430,113 @@ export function AlchemyGame() {
         </button>
       </div>
 
-      {/* ── Canvas ─────────────────────────────────────────────────────── */}
-      <div
-        ref={canvasRef}
-        className="relative rounded-3xl border-2 border-foreground bg-card overflow-hidden"
-        style={{ height: CANVAS_H }}
-      >
-        {canvasItems.length === 0 && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
-            <p className="text-4xl">⚗️</p>
-            <p className="text-muted-foreground text-sm font-medium">
-              Click elements below to add them here
-            </p>
-          </div>
-        )}
-
-        {canvasItems.map((item) => {
-          const el = mergedElements[item.elementId];
-          if (!el) return null;
-          return (
-            <div
-              key={item.instanceId}
-              onPointerDown={(e) => onPointerDown(e, item.instanceId)}
-              onPointerMove={onPointerMove}
-              onPointerUp={onPointerUp}
-              onDoubleClick={() => onDoubleClick(item.instanceId)}
-              className={[
-                "absolute flex flex-col items-center justify-center gap-0.5",
-                "border-2 border-foreground rounded-xl bg-card",
-                "cursor-grab active:cursor-grabbing",
-                "hover:shadow-lg transition-shadow",
-                item.anim === "appearing" ? "alc-appearing" : "",
-                item.anim === "shaking" ? "alc-shaking" : "",
-              ].join(" ")}
-              style={{
-                left: item.x,
-                top: item.y,
-                width: ITEM_W,
-                height: ITEM_H,
-                touchAction: "none",
-                zIndex: item.anim === "appearing" ? 50 : 1,
-              }}
-            >
-              <span className="text-3xl leading-none">{el.emoji}</span>
-              <span className="text-[11px] font-semibold text-foreground text-center leading-tight px-1">
-                {el.name}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-
-      <p className="text-xs text-muted-foreground text-center">
-        Drag items together to combine · Double-click to remove from canvas
-      </p>
-
-      {/* ── Inventory ──────────────────────────────────────────────────── */}
-      <div>
-        <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">
-          Discovered elements
-        </p>
-        {[0, 1, 2, 3, 4, 5, 6].map((tier) => {
-          const tierItems = [...discovered]
-            .map((id) => mergedElements[id])
-            .filter((el) => el && el.tier === tier);
-          if (tierItems.length === 0) return null;
-
-          const tierLabels = [
-            "Primordial",
-            "Reactions",
-            "Nature",
-            "Life",
-            "Civilisation",
-            "Technology",
-            "Cosmic",
-          ];
-
-          return (
-            <div key={tier} className="mb-3">
-              <span
-                className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full mb-1.5 ${TIER_COLOURS[tier]}`}
-              >
-                {tierLabels[tier]}
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {tierItems.map((el) => (
-                  <button
-                    key={el.id}
-                    onClick={() => spawn(el.id)}
-                    title={`Add ${el.name} to canvas`}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-foreground bg-card
-                      hover:bg-foreground hover:text-background transition-colors text-xs font-semibold"
-                  >
-                    <span>{el.emoji}</span>
-                    <span>{el.name}</span>
-                  </button>
-                ))}
+      {/* ── Canvas + inventory side-by-side on lg+ ───────────────────────── */}
+      <div className="grid gap-4 lg:grid-cols-[1fr_260px]">
+        {/* Canvas column */}
+        <div className="flex flex-col gap-2 min-w-0">
+          <div
+            ref={canvasRef}
+            className="relative rounded-3xl border-2 border-foreground bg-card overflow-hidden"
+            style={{ height: CANVAS_H }}
+          >
+            {canvasItems.length === 0 && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
+                <p className="text-4xl">⚗️</p>
+                <p className="text-muted-foreground text-sm font-medium">
+                  Click elements to add them here
+                </p>
               </div>
-            </div>
-          );
-        })}
+            )}
+
+            {canvasItems.map((item) => {
+              const el = mergedElements[item.elementId];
+              if (!el) return null;
+              return (
+                <div
+                  key={item.instanceId}
+                  onPointerDown={(e) => onPointerDown(e, item.instanceId)}
+                  onPointerMove={onPointerMove}
+                  onPointerUp={onPointerUp}
+                  onDoubleClick={() => onDoubleClick(item.instanceId)}
+                  className={[
+                    "absolute flex flex-col items-center justify-center gap-0.5",
+                    "border-2 border-foreground rounded-xl bg-card",
+                    "cursor-grab active:cursor-grabbing",
+                    "hover:shadow-lg transition-shadow",
+                    item.anim === "appearing" ? "alc-appearing" : "",
+                    item.anim === "shaking" ? "alc-shaking" : "",
+                  ].join(" ")}
+                  style={{
+                    left: item.x,
+                    top: item.y,
+                    width: ITEM_W,
+                    height: ITEM_H,
+                    touchAction: "none",
+                    zIndex: item.anim === "appearing" ? 50 : 1,
+                  }}
+                >
+                  <span className="text-3xl leading-none">{el.emoji}</span>
+                  <span className="text-[11px] font-semibold text-foreground text-center leading-tight px-1">
+                    {el.name}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          <p className="text-xs text-muted-foreground text-center">
+            Drag items together to combine · Double-click to remove
+          </p>
+        </div>
+
+        {/* Inventory sidebar */}
+        <aside
+          className="rounded-3xl border-2 border-foreground bg-card p-3 lg:max-h-[420px] lg:overflow-y-auto"
+        >
+          <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-2">
+            Discovered elements
+          </p>
+          {[0, 1, 2, 3, 4, 5, 6].map((tier) => {
+            const tierItems = [...discovered]
+              .map((id) => mergedElements[id])
+              .filter((el) => el && el.tier === tier);
+            if (tierItems.length === 0) return null;
+
+            const tierLabels = [
+              "Primordial",
+              "Reactions",
+              "Nature",
+              "Life",
+              "Civilisation",
+              "Technology",
+              "Cosmic",
+            ];
+
+            return (
+              <div key={tier} className="mb-3">
+                <span
+                  className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full mb-1.5 ${TIER_COLOURS[tier]}`}
+                >
+                  {tierLabels[tier]}
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {tierItems.map((el) => (
+                    <button
+                      key={el.id}
+                      onClick={() => spawn(el.id)}
+                      title={`Add ${el.name} to canvas`}
+                      className="flex items-center gap-1.5 px-2 py-1 rounded-lg border border-foreground bg-card
+                        hover:bg-foreground hover:text-background transition-colors text-xs font-semibold"
+                    >
+                      <span>{el.emoji}</span>
+                      <span>{el.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </aside>
       </div>
     </div>
   );
