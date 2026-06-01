@@ -16,6 +16,7 @@ import Futoshiki from "./futoshiki";
 
 // Register every game here — one line per game.
 export const games: Game[] = [
+  Signal,
   RankAnything,
   BuildYourOwn,
   HowBig,
@@ -27,7 +28,6 @@ export const games: Game[] = [
   Tectonic,
   Kakuro,
   Futoshiki,
-  Signal,
 ];
 
 export const originals = games.filter((g) => g.category === "originals");
