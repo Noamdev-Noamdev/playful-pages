@@ -103,11 +103,20 @@ export function AlchemyGame() {
 
   const totalCount = TOTAL + allDailies.length;
 
-  // ── Discovered set — persisted across days ────────────────────────────────
+  // ── Discovered set — resets every day (key includes today's date) ─────────
+  const todayStorageKey = useMemo(() => `${STORAGE_PREFIX}${formatDate(new Date())}`, []);
   const [discovered, setDiscovered] = useState<Set<string>>(() => {
     if (typeof window === "undefined") return new Set(STARTING_IDS);
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      // Clean up old per-day keys from previous days.
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith(STORAGE_PREFIX) && k !== todayStorageKey) {
+          localStorage.removeItem(k);
+          i--;
+        }
+      }
+      const raw = localStorage.getItem(todayStorageKey);
       if (raw) {
         const arr = JSON.parse(raw) as string[];
         return new Set([...STARTING_IDS, ...arr]);
@@ -121,11 +130,11 @@ export function AlchemyGame() {
   // Persist on every change.
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify([...discovered]));
+      localStorage.setItem(todayStorageKey, JSON.stringify([...discovered]));
     } catch {
       /* ignore */
     }
-  }, [discovered]);
+  }, [discovered, todayStorageKey]);
 
   const [canvasItems, setCanvasItems] = useState<CanvasItem[]>(() =>
     STARTING_ITEMS.map((i) => ({ ...i })),
