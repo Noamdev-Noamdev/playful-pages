@@ -2,7 +2,7 @@ import { Radio } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import type { Game } from "./types";
 import { WinOverlay } from "./_WinOverlay";
-import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { getDailyLevel, getLevelByDate } from "@/levels";
 import { DailyBadge } from "@/components/DailyBadge";
 import { markDailyComplete } from "@/lib/dailyLock";
 
