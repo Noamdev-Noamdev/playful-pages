@@ -53,3 +53,62 @@ If no JSON exists for today, the game falls back to a deterministic pick from ex
 ## Archive
 
 Every authored date automatically appears in `/archive/signal` and can be replayed individually.
+
+## Level generator (unique-solution)
+
+This folder also contains a small generator that can create new Signal level JSON files which match the difficulty “profile” of reference levels and guarantees **exactly one** solution.
+
+**How to use**
+
+Generate JSON files for the next 10 days (starting tomorrow, local time):
+
+```bash
+cd playful-pages
+node src/levels/signal/generator.mjs --next 10 --start tomorrow
+```
+
+Generate JSON files for the next 10 days starting today:
+
+```bash
+cd playful-pages
+node src/levels/signal/generator.mjs --next 10 --start today
+```
+
+Generate JSON files for the next 10 days starting from a specific date:
+
+```bash
+cd playful-pages
+node src/levels/signal/generator.mjs --next 10 --start 2026-06-01
+```
+
+Notes:
+
+- The generator writes files into `src/levels/signal/` using the `YYYY-MM-DD.json` filename convention.
+- Existing files are never overwritten; they are skipped.
+
+**Core idea**
+
+- A level is a 6×6 token grid. Towers can be placed on `"."` cells only.
+- Each constraint digit (`"0"`..`"9"`) is the exact number of tower beams that must pass through that cell.
+- The generator works “solution-first”: it randomly places blockers, chooses a hidden tower layout, computes the implied constraint numbers, then selects a subset of those numbers as clues until the puzzle has **exactly one** solution.
+
+**Difficulty parameters extracted from references**
+
+- `blockers`: how many `"#"` tiles exist.
+- `constraints`: how many numeric clue tiles exist.
+- `towers`: how many towers the unique solution contains.
+- `decisions`: how many branching decisions the solver had to make before reaching the unique solution (higher generally means harder).
+- `score`: a simple combined heuristic computed from the above to keep generated levels within the same “band” as the references.
+
+**Validation routine**
+
+- Every candidate grid is checked with a solver that counts solutions up to 2.
+- If it finds multiple solutions, the generator automatically adds more constraint tiles (more clues).
+- If it becomes unsatisfiable or can’t reach uniqueness within the allowed clue budget, it restarts with a new random layout.
+
+**Tests**
+
+- `npm run test` generates 10 levels in-memory and asserts:
+  - JSON schema shape is correct (6×6 grid)
+  - exactly 1 solution exists
+  - generated difficulty metrics remain inside the reference ranges
