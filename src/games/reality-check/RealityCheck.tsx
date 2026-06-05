@@ -258,6 +258,11 @@ export function RealityCheck() {
 
   return (
     <div className="flex flex-col gap-4">
+      {dailyLevel && (
+        <div className="flex justify-center">
+          <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+        </div>
+      )}
       {/* Progress dots */}
       <div className="flex items-center gap-2 justify-between">
         <div className="flex gap-1.5">
