@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-30",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Seikan Tunnel length is smaller than Channel Tunnel length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Seikan Tunnel length: 53.85 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Seikan Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 53.85,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Shanghai Maglev top speed is faster than Category 5 hurricane threshold.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Shanghai Maglev top speed: 431 km/h. Category 5 hurricane threshold: 252 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Shanghai Maglev top speed",
+        "emojiA": "🚄",
+        "valueA": 431,
+        "labelB": "Category 5 hurricane threshold",
+        "emojiB": "🌀",
+        "valueB": 252,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Seikan Tunnel length is shorter than Suez Canal length.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Seikan Tunnel length: 53.85 km. Suez Canal length: 193 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Seikan Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 53.85,
+        "labelB": "Suez Canal length",
+        "emojiB": "🚢",
+        "valueB": 193,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer bits in a byte than squares on a chessboard.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 8 bits vs 64 squares.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "bits in a byte",
+        "emojiA": "💾",
+        "countA": 8,
+        "realA": "8 bits",
+        "labelB": "squares on a chessboard",
+        "emojiB": "♟️",
+        "countB": 64,
+        "realB": "64 squares"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Penicillin discovered happened before Telephone patented.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Penicillin discovered: 1928. Telephone patented: 1876.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          },
+          {
+            "label": "Telephone patented",
+            "emoji": "📞",
+            "year": 1876,
+            "display": "1876"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -3,72 +3,100 @@
   "claims": [
     {
       "id": "c1",
-      "statement": "An African elephant outweighs a white rhinoceros",
+      "statement": "Great Wall of China length is at least 6× larger than Channel Tunnel length.",
       "answer": true,
       "difficulty": "easy",
       "category": "Size",
-      "explanation": "African elephant up to 6,000 kg vs white rhino up to 2,300 kg.",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Great Wall of China length: 21196 km. Channel Tunnel length: 50.45 km.",
       "viz": {
         "type": "size",
-        "labelA": "White rhino",       "emojiA": "🦏", "valueA": 2300,
-        "labelB": "African elephant",  "emojiB": "🐘", "valueB": 6000,
-        "unit": "kg"
+        "labelA": "Great Wall of China length",
+        "emojiA": "🏯",
+        "valueA": 21196,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
       }
     },
     {
       "id": "c2",
-      "statement": "A cheetah runs faster than a peregrine falcon dives",
+      "statement": "Speed of sound in water is slower than Peregrine falcon dive.",
       "answer": false,
-      "difficulty": "medium",
+      "difficulty": "easy",
       "category": "Speed",
-      "explanation": "Cheetah ~120 km/h; peregrine dive ~390 km/h — the fastest animal motion.",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in water: 5328 km/h. Peregrine falcon dive: 390 km/h.",
       "viz": {
         "type": "bar",
-        "labelA": "Cheetah (sprint)",  "emojiA": "🐆", "valueA": 120,
-        "labelB": "Peregrine (dive)",  "emojiB": "🦅", "valueB": 390,
+        "labelA": "Speed of sound in water",
+        "emojiA": "🌊",
+        "valueA": 5328,
+        "labelB": "Peregrine falcon dive",
+        "emojiB": "🦅",
+        "valueB": 390,
         "unit": "km/h"
       }
     },
     {
       "id": "c3",
-      "statement": "More tourists visit France each year than people live there",
+      "statement": "Seikan Tunnel length is shorter than Great Barrier Reef length.",
       "answer": true,
-      "difficulty": "medium",
-      "category": "Quantity",
-      "explanation": "~90M tourists/year vs ~68M residents.",
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Seikan Tunnel length: 53.85 km. Great Barrier Reef length: 2300 km.",
       "viz": {
-        "type": "quantity",
-        "labelA": "French population", "emojiA": "🇫🇷", "countA": 68, "realA": "~68 million",
-        "labelB": "Annual tourists",   "emojiB": "🧳", "countB": 90, "realB": "~90 million"
+        "type": "bar",
+        "labelA": "Seikan Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 53.85,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
       }
     },
     {
       "id": "c4",
-      "statement": "The fax machine was invented after the telephone",
-      "answer": false,
-      "difficulty": "hard",
-      "category": "History",
-      "explanation": "Fax: 1843 (Alexander Bain). Telephone: 1876 (Bell) — 33 years later.",
+      "statement": "There are fewer strings on a violin than keys on a standard piano.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 4 strings vs 88 keys.",
       "viz": {
-        "type": "time",
-        "events": [
-          { "label": "Fax machine", "emoji": "📠", "year": 1843, "display": "1843" },
-          { "label": "Telephone",   "emoji": "☎️", "year": 1876, "display": "1876" }
-        ]
+        "type": "quantity",
+        "labelA": "strings on a violin",
+        "emojiA": "🎻",
+        "countA": 4,
+        "realA": "4 strings",
+        "labelB": "keys on a standard piano",
+        "emojiB": "🎹",
+        "countB": 88,
+        "realB": "88 keys"
       }
     },
     {
       "id": "c5",
-      "statement": "Neptune is more than 70× farther from the Sun than Mercury is",
-      "answer": true,
-      "difficulty": "hard",
-      "category": "Distance",
-      "explanation": "Mercury ~58M km; Neptune ~4,495M km — 77× farther.",
+      "statement": "Telephone patented happened after First iPhone released.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Telephone patented: 1876. First iPhone released: 2007.",
       "viz": {
-        "type": "bar",
-        "labelA": "Mercury → Sun", "emojiA": "☿",  "valueA": 58,
-        "labelB": "Neptune → Sun", "emojiB": "🔵", "valueB": 4495,
-        "unit": "million km"
+        "type": "time",
+        "events": [
+          {
+            "label": "Telephone patented",
+            "emoji": "📞",
+            "year": 1876,
+            "display": "1876"
+          },
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          }
+        ]
       }
     }
   ]

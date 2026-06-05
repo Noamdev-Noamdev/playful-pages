@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-12",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Burj Khalifa height is at least 4× larger than Challenger Deep depth.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Burj Khalifa height: 828 m. Challenger Deep depth: 10984 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Burj Khalifa height",
+        "emojiA": "🏙️",
+        "valueA": 828,
+        "labelB": "Challenger Deep depth",
+        "emojiB": "🌊",
+        "valueB": 10984,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Category 5 hurricane threshold is faster than Brisk walking.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Category 5 hurricane threshold: 252 km/h. Brisk walking: 5 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Category 5 hurricane threshold",
+        "emojiA": "🌀",
+        "valueA": 252,
+        "labelB": "Brisk walking",
+        "emojiB": "🚶",
+        "valueB": 5,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Lærdal Tunnel length is shorter than Channel Tunnel length.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Lærdal Tunnel length: 24.51 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Lærdal Tunnel length",
+        "emojiA": "🚗",
+        "valueA": 24.51,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer UN member states than bits in a byte.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 193 states vs 8 bits.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "UN member states",
+        "emojiA": "🌐",
+        "countA": 193,
+        "realA": "193 states",
+        "labelB": "bits in a byte",
+        "emojiB": "💾",
+        "countB": 8,
+        "realB": "8 bits"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First iPhone released happened after World Wide Web proposed.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First iPhone released: 2007. World Wide Web proposed: 1989.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          },
+          {
+            "label": "World Wide Web proposed",
+            "emoji": "🕸️",
+            "year": 1989,
+            "display": "1989"
+          }
+        ]
+      }
+    }
+  ]
+}

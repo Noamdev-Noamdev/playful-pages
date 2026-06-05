@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-05",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Kola Superdeep Borehole depth is smaller than CN Tower height.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Kola Superdeep Borehole depth: 12262 m. CN Tower height: 553.3 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Kola Superdeep Borehole depth",
+        "emojiA": "🕳️",
+        "valueA": 12262,
+        "labelB": "CN Tower height",
+        "emojiB": "🗼",
+        "valueB": 553.3,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Category 5 hurricane threshold is faster than Cheetah sprint.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Category 5 hurricane threshold: 252 km/h. Cheetah sprint: 120 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Category 5 hurricane threshold",
+        "emojiA": "🌀",
+        "valueA": 252,
+        "labelB": "Cheetah sprint",
+        "emojiB": "🐆",
+        "valueB": 120,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Panama Canal length is at least 6× longer than Seikan Tunnel length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Panama Canal length: 82 km. Seikan Tunnel length: 53.85 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Seikan Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 53.85,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more known chemical elements than grams in a kilogram.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 118 elements vs 1,000 g.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "known chemical elements",
+        "emojiA": "⚛️",
+        "countA": 118,
+        "realA": "118 elements",
+        "labelB": "grams in a kilogram",
+        "emojiB": "⚖️",
+        "countB": 1000,
+        "realB": "1,000 g"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Penicillin discovered happened before Wikipedia launched.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Penicillin discovered: 1928. Wikipedia launched: 2001.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          },
+          {
+            "label": "Wikipedia launched",
+            "emoji": "📚",
+            "year": 2001,
+            "display": "2001"
+          }
+        ]
+      }
+    }
+  ]
+}

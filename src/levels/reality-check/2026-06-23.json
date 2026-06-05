@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-23",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Channel Tunnel length is at least 5× larger than Appalachian Trail length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Channel Tunnel length: 50.45 km. Appalachian Trail length: 3500 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Appalachian Trail length",
+        "emojiB": "🥾",
+        "valueB": 3500,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in air (~20°C) is slower than Speed of sound in water.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in air (~20°C): 1235 km/h. Speed of sound in water: 5328 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in air (~20°C)",
+        "emojiA": "🌬️",
+        "valueA": 1235,
+        "labelB": "Speed of sound in water",
+        "emojiB": "🌊",
+        "valueB": 5328,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Seikan Tunnel length is longer than Great Barrier Reef length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Seikan Tunnel length: 53.85 km. Great Barrier Reef length: 2300 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Seikan Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 53.85,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer squares on a chessboard than bits in a byte.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 64 squares vs 8 bits.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "squares on a chessboard",
+        "emojiA": "♟️",
+        "countA": 64,
+        "realA": "64 squares",
+        "labelB": "bits in a byte",
+        "emojiB": "💾",
+        "countB": 8,
+        "realB": "8 bits"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "World Wide Web proposed happened before Penicillin discovered.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. World Wide Web proposed: 1989. Penicillin discovered: 1928.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "World Wide Web proposed",
+            "emoji": "🕸️",
+            "year": 1989,
+            "display": "1989"
+          },
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          }
+        ]
+      }
+    }
+  ]
+}

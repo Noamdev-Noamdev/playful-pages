@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-27",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Burj Khalifa height is larger than Challenger Deep depth.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Burj Khalifa height: 828 m. Challenger Deep depth: 10984 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Burj Khalifa height",
+        "emojiA": "🏙️",
+        "valueA": 828,
+        "labelB": "Challenger Deep depth",
+        "emojiB": "🌊",
+        "valueB": 10984,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Cheetah sprint is slower than Elite sprinter top speed (approx.).",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Cheetah sprint: 120 km/h. Elite sprinter top speed (approx.): 45 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Cheetah sprint",
+        "emojiA": "🐆",
+        "valueA": 120,
+        "labelB": "Elite sprinter top speed (approx.)",
+        "emojiB": "🏃",
+        "valueB": 45,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Appalachian Trail length is longer than Suez Canal length.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Appalachian Trail length: 3500 km. Suez Canal length: 193 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Appalachian Trail length",
+        "emojiA": "🥾",
+        "valueA": 3500,
+        "labelB": "Suez Canal length",
+        "emojiB": "🚢",
+        "valueB": 193,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer bits in a byte than keys on a standard piano.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 8 bits vs 88 keys.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "bits in a byte",
+        "emojiA": "💾",
+        "countA": 8,
+        "realA": "8 bits",
+        "labelB": "keys on a standard piano",
+        "emojiB": "🎹",
+        "countB": 88,
+        "realB": "88 keys"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "World Wide Web proposed happened after Telephone patented.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. World Wide Web proposed: 1989. Telephone patented: 1876.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "World Wide Web proposed",
+            "emoji": "🕸️",
+            "year": 1989,
+            "display": "1989"
+          },
+          {
+            "label": "Telephone patented",
+            "emoji": "📞",
+            "year": 1876,
+            "display": "1876"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-20",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Suez Canal length is smaller than Great Barrier Reef length.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Suez Canal length: 193 km. Great Barrier Reef length: 2300 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Suez Canal length",
+        "emojiA": "🚢",
+        "valueA": 193,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Cheetah sprint is faster than Speed of sound in air (~20°C).",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Cheetah sprint: 120 km/h. Speed of sound in air (~20°C): 1235 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Cheetah sprint",
+        "emojiA": "🐆",
+        "valueA": 120,
+        "labelB": "Speed of sound in air (~20°C)",
+        "emojiB": "🌬️",
+        "valueB": 1235,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Great Barrier Reef length is shorter than Appalachian Trail length.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Great Barrier Reef length: 2300 km. Appalachian Trail length: 3500 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Great Barrier Reef length",
+        "emojiA": "🪸",
+        "valueA": 2300,
+        "labelB": "Appalachian Trail length",
+        "emojiB": "🥾",
+        "valueB": 3500,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more bones in an adult human body than keys on a standard piano.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 206 bones vs 88 keys.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "bones in an adult human body",
+        "emojiA": "🦴",
+        "countA": 206,
+        "realA": "206 bones",
+        "labelB": "keys on a standard piano",
+        "emojiB": "🎹",
+        "countB": 88,
+        "realB": "88 keys"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First SMS sent happened after First powered flight.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First SMS sent: 1992. First powered flight: 1903.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First SMS sent",
+            "emoji": "💬",
+            "year": 1992,
+            "display": "1992"
+          },
+          {
+            "label": "First powered flight",
+            "emoji": "🛩️",
+            "year": 1903,
+            "display": "1903"
+          }
+        ]
+      }
+    }
+  ]
+}

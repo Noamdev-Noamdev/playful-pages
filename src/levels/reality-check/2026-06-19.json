@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-19",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Victoria Falls height is at least 6× larger than Kola Superdeep Borehole depth.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Victoria Falls height: 108 m. Kola Superdeep Borehole depth: 12262 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Victoria Falls height",
+        "emojiA": "💧",
+        "valueA": 108,
+        "labelB": "Kola Superdeep Borehole depth",
+        "emojiB": "🕳️",
+        "valueB": 12262,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Shanghai Maglev top speed is slower than Cheetah sprint.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Shanghai Maglev top speed: 431 km/h. Cheetah sprint: 120 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Shanghai Maglev top speed",
+        "emojiA": "🚄",
+        "valueA": 431,
+        "labelB": "Cheetah sprint",
+        "emojiB": "🐆",
+        "valueB": 120,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Panama Canal length is at least 7× longer than Great Barrier Reef length.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Panama Canal length: 82 km. Great Barrier Reef length: 2300 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer grams in a kilogram than bits in a byte.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 1,000 g vs 8 bits.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "grams in a kilogram",
+        "emojiA": "⚖️",
+        "countA": 1000,
+        "realA": "1,000 g",
+        "labelB": "bits in a byte",
+        "emojiB": "💾",
+        "countB": 8,
+        "realB": "8 bits"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First SMS sent happened after Penicillin discovered.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First SMS sent: 1992. Penicillin discovered: 1928.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First SMS sent",
+            "emoji": "💬",
+            "year": 1992,
+            "display": "1992"
+          },
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          }
+        ]
+      }
+    }
+  ]
+}

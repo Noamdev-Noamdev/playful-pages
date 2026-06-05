@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-21",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Panama Canal length is at least 4× larger than Great Wall of China length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Panama Canal length: 82 km. Great Wall of China length: 21196 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Great Wall of China length",
+        "emojiB": "🏯",
+        "valueB": 21196,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Brisk walking is slower than Cheetah sprint.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Brisk walking: 5 km/h. Cheetah sprint: 120 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Brisk walking",
+        "emojiA": "🚶",
+        "valueA": 5,
+        "labelB": "Cheetah sprint",
+        "emojiB": "🐆",
+        "valueB": 120,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Channel Tunnel length is at least 9× longer than Suez Canal length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Channel Tunnel length: 50.45 km. Suez Canal length: 193 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Suez Canal length",
+        "emojiB": "🚢",
+        "valueB": 193,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more strings on a violin than UN member states.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 4 strings vs 193 states.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "strings on a violin",
+        "emojiA": "🎻",
+        "countA": 4,
+        "realA": "4 strings",
+        "labelB": "UN member states",
+        "emojiB": "🌐",
+        "countB": 193,
+        "realB": "193 states"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Telephone patented happened before Barcode first scanned.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Telephone patented: 1876. Barcode first scanned: 1974.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Telephone patented",
+            "emoji": "📞",
+            "year": 1876,
+            "display": "1876"
+          },
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          }
+        ]
+      }
+    }
+  ]
+}

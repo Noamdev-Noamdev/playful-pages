@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-11",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Seikan Tunnel length is at least 6× larger than Appalachian Trail length.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Seikan Tunnel length: 53.85 km. Appalachian Trail length: 3500 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Seikan Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 53.85,
+        "labelB": "Appalachian Trail length",
+        "emojiB": "🥾",
+        "valueB": 3500,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in air (~20°C) is slower than Cheetah sprint.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in air (~20°C): 1235 km/h. Cheetah sprint: 120 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in air (~20°C)",
+        "emojiA": "🌬️",
+        "valueA": 1235,
+        "labelB": "Cheetah sprint",
+        "emojiB": "🐆",
+        "valueB": 120,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Great Barrier Reef length is at least 6× longer than Channel Tunnel length.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Great Barrier Reef length: 2300 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Great Barrier Reef length",
+        "emojiA": "🪸",
+        "valueA": 2300,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more bones in an adult human body than grams in a kilogram.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 206 bones vs 1,000 g.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "bones in an adult human body",
+        "emojiA": "🦴",
+        "countA": 206,
+        "realA": "206 bones",
+        "labelB": "grams in a kilogram",
+        "emojiB": "⚖️",
+        "countB": 1000,
+        "realB": "1,000 g"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First SMS sent happened after Barcode first scanned.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First SMS sent: 1992. Barcode first scanned: 1974.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First SMS sent",
+            "emoji": "💬",
+            "year": 1992,
+            "display": "1992"
+          },
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          }
+        ]
+      }
+    }
+  ]
+}

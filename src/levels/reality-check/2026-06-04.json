@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-04",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Kola Superdeep Borehole depth is smaller than Hyperion tree height.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Kola Superdeep Borehole depth: 12262 m. Hyperion tree height: 115.9 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Kola Superdeep Borehole depth",
+        "emojiA": "🕳️",
+        "valueA": 12262,
+        "labelB": "Hyperion tree height",
+        "emojiB": "🌲",
+        "valueB": 115.9,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Elite sprinter top speed (approx.) is faster than Brisk walking.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Elite sprinter top speed (approx.): 45 km/h. Brisk walking: 5 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Elite sprinter top speed (approx.)",
+        "emojiA": "🏃",
+        "valueA": 45,
+        "labelB": "Brisk walking",
+        "emojiB": "🚶",
+        "valueB": 5,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Channel Tunnel length is at least 6× longer than Great Wall of China length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Channel Tunnel length: 50.45 km. Great Wall of China length: 21196 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Great Wall of China length",
+        "emojiB": "🏯",
+        "valueB": 21196,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer bones in an adult human body than keys on a standard piano.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 206 bones vs 88 keys.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "bones in an adult human body",
+        "emojiA": "🦴",
+        "countA": 206,
+        "realA": "206 bones",
+        "labelB": "keys on a standard piano",
+        "emojiB": "🎹",
+        "countB": 88,
+        "realB": "88 keys"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Penicillin discovered happened before World Wide Web proposed.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Penicillin discovered: 1928. World Wide Web proposed: 1989.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          },
+          {
+            "label": "World Wide Web proposed",
+            "emoji": "🕸️",
+            "year": 1989,
+            "display": "1989"
+          }
+        ]
+      }
+    }
+  ]
+}

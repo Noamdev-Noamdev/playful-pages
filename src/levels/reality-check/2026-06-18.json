@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-18",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Seikan Tunnel length is at least 3× larger than Panama Canal length.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Seikan Tunnel length: 53.85 km. Panama Canal length: 82 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Seikan Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 53.85,
+        "labelB": "Panama Canal length",
+        "emojiB": "🚢",
+        "valueB": 82,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Peregrine falcon dive is faster than Elite sprinter top speed (approx.).",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Peregrine falcon dive: 390 km/h. Elite sprinter top speed (approx.): 45 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Peregrine falcon dive",
+        "emojiA": "🦅",
+        "valueA": 390,
+        "labelB": "Elite sprinter top speed (approx.)",
+        "emojiB": "🏃",
+        "valueB": 45,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Suez Canal length is shorter than Channel Tunnel length.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Suez Canal length: 193 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Suez Canal length",
+        "emojiA": "🚢",
+        "valueA": 193,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more UN member states than squares on a chessboard.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 193 states vs 64 squares.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "UN member states",
+        "emojiA": "🌐",
+        "countA": 193,
+        "realA": "193 states",
+        "labelB": "squares on a chessboard",
+        "emojiB": "♟️",
+        "countB": 64,
+        "realB": "64 squares"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Penicillin discovered happened before Barcode first scanned.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Penicillin discovered: 1928. Barcode first scanned: 1974.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          },
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          }
+        ]
+      }
+    }
+  ]
+}

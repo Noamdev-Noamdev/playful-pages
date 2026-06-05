@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-08",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Hyperion tree height is at least 6× larger than Kola Superdeep Borehole depth.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Hyperion tree height: 115.9 m. Kola Superdeep Borehole depth: 12262 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Hyperion tree height",
+        "emojiA": "🌲",
+        "valueA": 115.9,
+        "labelB": "Kola Superdeep Borehole depth",
+        "emojiB": "🕳️",
+        "valueB": 12262,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in air (~20°C) is slower than Elite sprinter top speed (approx.).",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in air (~20°C): 1235 km/h. Elite sprinter top speed (approx.): 45 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in air (~20°C)",
+        "emojiA": "🌬️",
+        "valueA": 1235,
+        "labelB": "Elite sprinter top speed (approx.)",
+        "emojiB": "🏃",
+        "valueB": 45,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Channel Tunnel length is at least 8× longer than Great Barrier Reef length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Channel Tunnel length: 50.45 km. Great Barrier Reef length: 2300 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more bits in a byte than UN member states.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 8 bits vs 193 states.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "bits in a byte",
+        "emojiA": "💾",
+        "countA": 8,
+        "realA": "8 bits",
+        "labelB": "UN member states",
+        "emojiB": "🌐",
+        "countB": 193,
+        "realB": "193 states"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First iPhone released happened before Barcode first scanned.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First iPhone released: 2007. Barcode first scanned: 1974.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          },
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          }
+        ]
+      }
+    }
+  ]
+}

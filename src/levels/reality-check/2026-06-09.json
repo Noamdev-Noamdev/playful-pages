@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-09",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Panama Canal length is larger than Suez Canal length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Panama Canal length: 82 km. Suez Canal length: 193 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Suez Canal length",
+        "emojiB": "🚢",
+        "valueB": 193,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in air (~20°C) is slower than Brisk walking.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in air (~20°C): 1235 km/h. Brisk walking: 5 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in air (~20°C)",
+        "emojiA": "🌬️",
+        "valueA": 1235,
+        "labelB": "Brisk walking",
+        "emojiB": "🚶",
+        "valueB": 5,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Lærdal Tunnel length is at least 2× longer than Panama Canal length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Lærdal Tunnel length: 24.51 km. Panama Canal length: 82 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Lærdal Tunnel length",
+        "emojiA": "🚗",
+        "valueA": 24.51,
+        "labelB": "Panama Canal length",
+        "emojiB": "🚢",
+        "valueB": 82,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer known chemical elements than bits in a byte.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 118 elements vs 8 bits.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "known chemical elements",
+        "emojiA": "⚛️",
+        "countA": 118,
+        "realA": "118 elements",
+        "labelB": "bits in a byte",
+        "emojiB": "💾",
+        "countB": 8,
+        "realB": "8 bits"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Wikipedia launched happened before Telephone patented.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Wikipedia launched: 2001. Telephone patented: 1876.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Wikipedia launched",
+            "emoji": "📚",
+            "year": 2001,
+            "display": "2001"
+          },
+          {
+            "label": "Telephone patented",
+            "emoji": "📞",
+            "year": 1876,
+            "display": "1876"
+          }
+        ]
+      }
+    }
+  ]
+}

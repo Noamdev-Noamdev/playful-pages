@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-10",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Channel Tunnel length is at least 3× larger than Suez Canal length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Channel Tunnel length: 50.45 km. Suez Canal length: 193 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Suez Canal length",
+        "emojiB": "🚢",
+        "valueB": 193,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Shanghai Maglev top speed is slower than Category 5 hurricane threshold.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Shanghai Maglev top speed: 431 km/h. Category 5 hurricane threshold: 252 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Shanghai Maglev top speed",
+        "emojiA": "🚄",
+        "valueA": 431,
+        "labelB": "Category 5 hurricane threshold",
+        "emojiB": "🌀",
+        "valueB": 252,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Suez Canal length is longer than Great Wall of China length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Suez Canal length: 193 km. Great Wall of China length: 21196 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Suez Canal length",
+        "emojiA": "🚢",
+        "valueA": 193,
+        "labelB": "Great Wall of China length",
+        "emojiB": "🏯",
+        "valueB": 21196,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more known chemical elements than bones in an adult human body.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 118 elements vs 206 bones.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "known chemical elements",
+        "emojiA": "⚛️",
+        "countA": 118,
+        "realA": "118 elements",
+        "labelB": "bones in an adult human body",
+        "emojiB": "🦴",
+        "countB": 206,
+        "realB": "206 bones"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Barcode first scanned happened after First iPhone released.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Barcode first scanned: 1974. First iPhone released: 2007.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          },
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          }
+        ]
+      }
+    }
+  ]
+}

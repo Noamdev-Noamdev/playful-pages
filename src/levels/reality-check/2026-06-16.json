@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-16",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Lake Baikal max depth is larger than Victoria Falls height.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Lake Baikal max depth: 1642 m. Victoria Falls height: 108 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Lake Baikal max depth",
+        "emojiA": "🧊",
+        "valueA": 1642,
+        "labelB": "Victoria Falls height",
+        "emojiB": "💧",
+        "valueB": 108,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Brisk walking is slower than Peregrine falcon dive.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Brisk walking: 5 km/h. Peregrine falcon dive: 390 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Brisk walking",
+        "emojiA": "🚶",
+        "valueA": 5,
+        "labelB": "Peregrine falcon dive",
+        "emojiB": "🦅",
+        "valueB": 390,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Great Wall of China length is at least 3× longer than Suez Canal length.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Great Wall of China length: 21196 km. Suez Canal length: 193 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Great Wall of China length",
+        "emojiA": "🏯",
+        "valueA": 21196,
+        "labelB": "Suez Canal length",
+        "emojiB": "🚢",
+        "valueB": 193,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer strings on a violin than known chemical elements.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 4 strings vs 118 elements.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "strings on a violin",
+        "emojiA": "🎻",
+        "countA": 4,
+        "realA": "4 strings",
+        "labelB": "known chemical elements",
+        "emojiB": "⚛️",
+        "countB": 118,
+        "realB": "118 elements"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Barcode first scanned happened before First iPhone released.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Barcode first scanned: 1974. First iPhone released: 2007.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          },
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          }
+        ]
+      }
+    }
+  ]
+}

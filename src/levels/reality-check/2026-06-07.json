@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-07",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Appalachian Trail length is at least 2× larger than Panama Canal length.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Appalachian Trail length: 3500 km. Panama Canal length: 82 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Appalachian Trail length",
+        "emojiA": "🥾",
+        "valueA": 3500,
+        "labelB": "Panama Canal length",
+        "emojiB": "🚢",
+        "valueB": 82,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in air (~20°C) is slower than Category 5 hurricane threshold.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in air (~20°C): 1235 km/h. Category 5 hurricane threshold: 252 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in air (~20°C)",
+        "emojiA": "🌬️",
+        "valueA": 1235,
+        "labelB": "Category 5 hurricane threshold",
+        "emojiB": "🌀",
+        "valueB": 252,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Suez Canal length is shorter than Great Wall of China length.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Suez Canal length: 193 km. Great Wall of China length: 21196 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Suez Canal length",
+        "emojiA": "🚢",
+        "valueA": 193,
+        "labelB": "Great Wall of China length",
+        "emojiB": "🏯",
+        "valueB": 21196,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer strings on a violin than squares on a chessboard.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 4 strings vs 64 squares.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "strings on a violin",
+        "emojiA": "🎻",
+        "countA": 4,
+        "realA": "4 strings",
+        "labelB": "squares on a chessboard",
+        "emojiB": "♟️",
+        "countB": 64,
+        "realB": "64 squares"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Penicillin discovered happened before First powered flight.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Penicillin discovered: 1928. First powered flight: 1903.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          },
+          {
+            "label": "First powered flight",
+            "emoji": "🛩️",
+            "year": 1903,
+            "display": "1903"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-14",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Channel Tunnel length is at least 5× larger than Lærdal Tunnel length.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Channel Tunnel length: 50.45 km. Lærdal Tunnel length: 24.51 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Lærdal Tunnel length",
+        "emojiB": "🚗",
+        "valueB": 24.51,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in water is faster than Peregrine falcon dive.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in water: 5328 km/h. Peregrine falcon dive: 390 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in water",
+        "emojiA": "🌊",
+        "valueA": 5328,
+        "labelB": "Peregrine falcon dive",
+        "emojiB": "🦅",
+        "valueB": 390,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Suez Canal length is shorter than Panama Canal length.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Suez Canal length: 193 km. Panama Canal length: 82 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Suez Canal length",
+        "emojiA": "🚢",
+        "valueA": 193,
+        "labelB": "Panama Canal length",
+        "emojiB": "🚢",
+        "valueB": 82,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more squares on a chessboard than bones in an adult human body.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 64 squares vs 206 bones.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "squares on a chessboard",
+        "emojiA": "♟️",
+        "countA": 64,
+        "realA": "64 squares",
+        "labelB": "bones in an adult human body",
+        "emojiB": "🦴",
+        "countB": 206,
+        "realB": "206 bones"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Barcode first scanned happened after Telephone patented.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Barcode first scanned: 1974. Telephone patented: 1876.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          },
+          {
+            "label": "Telephone patented",
+            "emoji": "📞",
+            "year": 1876,
+            "display": "1876"
+          }
+        ]
+      }
+    }
+  ]
+}

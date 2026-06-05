@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-24",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Suez Canal length is larger than Great Wall of China length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Suez Canal length: 193 km. Great Wall of China length: 21196 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Suez Canal length",
+        "emojiA": "🚢",
+        "valueA": 193,
+        "labelB": "Great Wall of China length",
+        "emojiB": "🏯",
+        "valueB": 21196,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in air (~20°C) is slower than Peregrine falcon dive.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in air (~20°C): 1235 km/h. Peregrine falcon dive: 390 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in air (~20°C)",
+        "emojiA": "🌬️",
+        "valueA": 1235,
+        "labelB": "Peregrine falcon dive",
+        "emojiB": "🦅",
+        "valueB": 390,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Lærdal Tunnel length is longer than Channel Tunnel length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Lærdal Tunnel length: 24.51 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Lærdal Tunnel length",
+        "emojiA": "🚗",
+        "valueA": 24.51,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more squares on a chessboard than strings on a violin.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 64 squares vs 4 strings.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "squares on a chessboard",
+        "emojiA": "♟️",
+        "countA": 64,
+        "realA": "64 squares",
+        "labelB": "strings on a violin",
+        "emojiB": "🎻",
+        "countB": 4,
+        "realB": "4 strings"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Barcode first scanned happened before First powered flight.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Barcode first scanned: 1974. First powered flight: 1903.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          },
+          {
+            "label": "First powered flight",
+            "emoji": "🛩️",
+            "year": 1903,
+            "display": "1903"
+          }
+        ]
+      }
+    }
+  ]
+}

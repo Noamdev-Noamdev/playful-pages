@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-15",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Hyperion tree height is at least 2× larger than Victoria Falls height.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Hyperion tree height: 115.9 m. Victoria Falls height: 108 m.",
+      "viz": {
+        "type": "size",
+        "labelA": "Hyperion tree height",
+        "emojiA": "🌲",
+        "valueA": 115.9,
+        "labelB": "Victoria Falls height",
+        "emojiB": "💧",
+        "valueB": 108,
+        "unit": "m"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Speed of sound in air (~20°C) is faster than Elite sprinter top speed (approx.).",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Speed of sound in air (~20°C): 1235 km/h. Elite sprinter top speed (approx.): 45 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Speed of sound in air (~20°C)",
+        "emojiA": "🌬️",
+        "valueA": 1235,
+        "labelB": "Elite sprinter top speed (approx.)",
+        "emojiB": "🏃",
+        "valueB": 45,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Panama Canal length is shorter than Great Barrier Reef length.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Panama Canal length: 82 km. Great Barrier Reef length: 2300 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more grams in a kilogram than known chemical elements.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 1,000 g vs 118 elements.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "grams in a kilogram",
+        "emojiA": "⚖️",
+        "countA": 1000,
+        "realA": "1,000 g",
+        "labelB": "known chemical elements",
+        "emojiB": "⚛️",
+        "countB": 118,
+        "realB": "118 elements"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First iPhone released happened before World Wide Web proposed.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First iPhone released: 2007. World Wide Web proposed: 1989.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          },
+          {
+            "label": "World Wide Web proposed",
+            "emoji": "🕸️",
+            "year": 1989,
+            "display": "1989"
+          }
+        ]
+      }
+    }
+  ]
+}

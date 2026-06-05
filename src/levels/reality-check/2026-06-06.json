@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-06",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Channel Tunnel length is at least 3× larger than Panama Canal length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Channel Tunnel length: 50.45 km. Panama Canal length: 82 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Panama Canal length",
+        "emojiB": "🚢",
+        "valueB": 82,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Cheetah sprint is slower than Category 5 hurricane threshold.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Cheetah sprint: 120 km/h. Category 5 hurricane threshold: 252 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Cheetah sprint",
+        "emojiA": "🐆",
+        "valueA": 120,
+        "labelB": "Category 5 hurricane threshold",
+        "emojiB": "🌀",
+        "valueB": 252,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Channel Tunnel length is at least 4× longer than Great Barrier Reef length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Channel Tunnel length: 50.45 km. Great Barrier Reef length: 2300 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer keys on a standard piano than grams in a kilogram.",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 88 keys vs 1,000 g.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "keys on a standard piano",
+        "emojiA": "🎹",
+        "countA": 88,
+        "realA": "88 keys",
+        "labelB": "grams in a kilogram",
+        "emojiB": "⚖️",
+        "countB": 1000,
+        "realB": "1,000 g"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First powered flight happened before First iPhone released.",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First powered flight: 1903. First iPhone released: 2007.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First powered flight",
+            "emoji": "🛩️",
+            "year": 1903,
+            "display": "1903"
+          },
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          }
+        ]
+      }
+    }
+  ]
+}

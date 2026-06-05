@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-25",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Channel Tunnel length is larger than Appalachian Trail length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Channel Tunnel length: 50.45 km. Appalachian Trail length: 3500 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Appalachian Trail length",
+        "emojiB": "🥾",
+        "valueB": 3500,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Cheetah sprint is slower than Peregrine falcon dive.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Cheetah sprint: 120 km/h. Peregrine falcon dive: 390 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Cheetah sprint",
+        "emojiA": "🐆",
+        "valueA": 120,
+        "labelB": "Peregrine falcon dive",
+        "emojiB": "🦅",
+        "valueB": 390,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Panama Canal length is at least 4× longer than Channel Tunnel length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Panama Canal length: 82 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more squares on a chessboard than UN member states.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 64 squares vs 193 states.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "squares on a chessboard",
+        "emojiA": "♟️",
+        "countA": 64,
+        "realA": "64 squares",
+        "labelB": "UN member states",
+        "emojiB": "🌐",
+        "countB": 193,
+        "realB": "193 states"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Barcode first scanned happened before World Wide Web proposed.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Barcode first scanned: 1974. World Wide Web proposed: 1989.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          },
+          {
+            "label": "World Wide Web proposed",
+            "emoji": "🕸️",
+            "year": 1989,
+            "display": "1989"
+          }
+        ]
+      }
+    }
+  ]
+}

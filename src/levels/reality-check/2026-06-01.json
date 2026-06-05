@@ -3,73 +3,100 @@
   "claims": [
     {
       "id": "c1",
-      "statement": "The Eiffel Tower is taller than Mount Fuji",
-      "answer": false,
+      "statement": "Great Wall of China length is larger than Seikan Tunnel length.",
+      "answer": true,
       "difficulty": "easy",
       "category": "Size",
-      "explanation": "Mount Fuji stands 3,776 m tall — over 11× the Eiffel Tower's 330 m.",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Great Wall of China length: 21196 km. Seikan Tunnel length: 53.85 km.",
       "viz": {
         "type": "size",
-        "labelA": "Eiffel Tower", "emojiA": "🗼", "valueA": 330,
-        "labelB": "Mount Fuji",   "emojiB": "🗻", "valueB": 3776,
-        "unit": "m tall"
+        "labelA": "Great Wall of China length",
+        "emojiA": "🏯",
+        "valueA": 21196,
+        "labelB": "Seikan Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 53.85,
+        "unit": "km"
       }
     },
     {
       "id": "c2",
-      "statement": "The ISS travels faster than a rifle bullet",
+      "statement": "Elite sprinter top speed (approx.) is slower than Cheetah sprint.",
       "answer": true,
-      "difficulty": "hard",
+      "difficulty": "easy",
       "category": "Speed",
-      "explanation": "The ISS orbits at ~27,600 km/h — nearly 8× a rifle bullet's ~3,600 km/h.",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Elite sprinter top speed (approx.): 45 km/h. Cheetah sprint: 120 km/h.",
       "viz": {
         "type": "bar",
-        "labelA": "Rifle bullet", "emojiA": "💥", "valueA": 3600,
-        "labelB": "ISS",          "emojiB": "🛸", "valueB": 27600,
+        "labelA": "Elite sprinter top speed (approx.)",
+        "emojiA": "🏃",
+        "valueA": 45,
+        "labelB": "Cheetah sprint",
+        "emojiB": "🐆",
+        "valueB": 120,
         "unit": "km/h"
       }
     },
     {
       "id": "c3",
-      "statement": "There are more trees on Earth than stars in the Milky Way",
-      "answer": true,
-      "difficulty": "hard",
-      "category": "Quantity",
-      "explanation": "Earth has ~3 trillion trees vs the Milky Way's ~300 billion stars.",
+      "statement": "Panama Canal length is at least 2× longer than Appalachian Trail length.",
+      "answer": false,
+      "difficulty": "easy",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Panama Canal length: 82 km. Appalachian Trail length: 3500 km.",
       "viz": {
-        "type": "quantity",
-        "labelA": "Milky Way stars", "emojiA": "⭐", "countA": 300,  "realA": "~300 billion",
-        "labelB": "Trees on Earth",  "emojiB": "🌳", "countB": 3000, "realB": "~3 trillion"
+        "type": "bar",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Appalachian Trail length",
+        "emojiB": "🥾",
+        "valueB": 3500,
+        "unit": "km"
       }
     },
     {
       "id": "c4",
-      "statement": "T-Rex lived closer in time to humans than to Stegosaurus",
+      "statement": "There are fewer bits in a byte than UN member states.",
       "answer": true,
-      "difficulty": "hard",
-      "category": "History",
-      "explanation": "Stegosaurus: ~150M years ago. T-Rex: ~66M. Humans: ~0.3M.",
+      "difficulty": "easy",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 8 bits vs 193 states.",
       "viz": {
-        "type": "time",
-        "events": [
-          { "label": "Stegosaurus", "emoji": "🦕", "year": -150000000, "display": "150M BC" },
-          { "label": "T-Rex",       "emoji": "🦖", "year": -66000000,  "display": "66M BC" },
-          { "label": "Humans",      "emoji": "👤", "year": -300000,    "display": "300K BC" }
-        ]
+        "type": "quantity",
+        "labelA": "bits in a byte",
+        "emojiA": "💾",
+        "countA": 8,
+        "realA": "8 bits",
+        "labelB": "UN member states",
+        "emojiB": "🌐",
+        "countB": 193,
+        "realB": "193 states"
       }
     },
     {
       "id": "c5",
-      "statement": "A polar bear outweighs a grizzly bear",
-      "answer": true,
-      "difficulty": "easy",
-      "category": "Size",
-      "explanation": "Male polar bears ~500 kg vs grizzlies ~270 kg.",
+      "statement": "Barcode first scanned happened before Penicillin discovered.",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Barcode first scanned: 1974. Penicillin discovered: 1928.",
       "viz": {
-        "type": "size",
-        "labelA": "Grizzly bear", "emojiA": "🐻",   "valueA": 270,
-        "labelB": "Polar bear",   "emojiB": "🐻‍❄️", "valueB": 500,
-        "unit": "kg"
+        "type": "time",
+        "events": [
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          },
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          }
+        ]
       }
     }
   ]

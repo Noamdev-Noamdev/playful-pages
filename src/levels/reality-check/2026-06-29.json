@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-29",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Great Barrier Reef length is at least 6× larger than Channel Tunnel length.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Great Barrier Reef length: 2300 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Great Barrier Reef length",
+        "emojiA": "🪸",
+        "valueA": 2300,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Elite sprinter top speed (approx.) is faster than Category 5 hurricane threshold.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Elite sprinter top speed (approx.): 45 km/h. Category 5 hurricane threshold: 252 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Elite sprinter top speed (approx.)",
+        "emojiA": "🏃",
+        "valueA": 45,
+        "labelB": "Category 5 hurricane threshold",
+        "emojiB": "🌀",
+        "valueB": 252,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Panama Canal length is shorter than Appalachian Trail length.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Panama Canal length: 82 km. Appalachian Trail length: 3500 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Panama Canal length",
+        "emojiA": "🚢",
+        "valueA": 82,
+        "labelB": "Appalachian Trail length",
+        "emojiB": "🥾",
+        "valueB": 3500,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are fewer grams in a kilogram than UN member states.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 1,000 g vs 193 states.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "grams in a kilogram",
+        "emojiA": "⚖️",
+        "countA": 1000,
+        "realA": "1,000 g",
+        "labelB": "UN member states",
+        "emojiB": "🌐",
+        "countB": 193,
+        "realB": "193 states"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First iPhone released happened before Penicillin discovered.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First iPhone released: 2007. Penicillin discovered: 1928.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First iPhone released",
+            "emoji": "📱",
+            "year": 2007,
+            "display": "2007"
+          },
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          }
+        ]
+      }
+    }
+  ]
+}

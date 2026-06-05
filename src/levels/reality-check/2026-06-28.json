@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-28",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Great Wall of China length is larger than Channel Tunnel length.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Great Wall of China length: 21196 km. Channel Tunnel length: 50.45 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Great Wall of China length",
+        "emojiA": "🏯",
+        "valueA": 21196,
+        "labelB": "Channel Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 50.45,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Peregrine falcon dive is slower than Elite sprinter top speed (approx.).",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Peregrine falcon dive: 390 km/h. Elite sprinter top speed (approx.): 45 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Peregrine falcon dive",
+        "emojiA": "🦅",
+        "valueA": 390,
+        "labelB": "Elite sprinter top speed (approx.)",
+        "emojiB": "🏃",
+        "valueB": 45,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Appalachian Trail length is shorter than Seikan Tunnel length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Appalachian Trail length: 3500 km. Seikan Tunnel length: 53.85 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Appalachian Trail length",
+        "emojiA": "🥾",
+        "valueA": 3500,
+        "labelB": "Seikan Tunnel length",
+        "emojiB": "🚇",
+        "valueB": 53.85,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more strings on a violin than known chemical elements.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 4 strings vs 118 elements.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "strings on a violin",
+        "emojiA": "🎻",
+        "countA": 4,
+        "realA": "4 strings",
+        "labelB": "known chemical elements",
+        "emojiB": "⚛️",
+        "countB": 118,
+        "realB": "118 elements"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "First powered flight happened after Barcode first scanned.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. First powered flight: 1903. Barcode first scanned: 1974.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "First powered flight",
+            "emoji": "🛩️",
+            "year": 1903,
+            "display": "1903"
+          },
+          {
+            "label": "Barcode first scanned",
+            "emoji": "🏷️",
+            "year": 1974,
+            "display": "1974"
+          }
+        ]
+      }
+    }
+  ]
+}

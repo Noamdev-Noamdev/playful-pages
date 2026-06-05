@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-26",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Seikan Tunnel length is smaller than Great Wall of China length.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Seikan Tunnel length: 53.85 km. Great Wall of China length: 21196 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Seikan Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 53.85,
+        "labelB": "Great Wall of China length",
+        "emojiB": "🏯",
+        "valueB": 21196,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Peregrine falcon dive is slower than Speed of sound in air (~20°C).",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Peregrine falcon dive: 390 km/h. Speed of sound in air (~20°C): 1235 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Peregrine falcon dive",
+        "emojiA": "🦅",
+        "valueA": 390,
+        "labelB": "Speed of sound in air (~20°C)",
+        "emojiB": "🌬️",
+        "valueB": 1235,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Suez Canal length is at least 3× longer than Great Barrier Reef length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Suez Canal length: 193 km. Great Barrier Reef length: 2300 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Suez Canal length",
+        "emojiA": "🚢",
+        "valueA": 193,
+        "labelB": "Great Barrier Reef length",
+        "emojiB": "🪸",
+        "valueB": 2300,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more UN member states than keys on a standard piano.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 193 states vs 88 keys.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "UN member states",
+        "emojiA": "🌐",
+        "countA": 193,
+        "realA": "193 states",
+        "labelB": "keys on a standard piano",
+        "emojiB": "🎹",
+        "countB": 88,
+        "realB": "88 keys"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Penicillin discovered happened after Wikipedia launched.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Penicillin discovered: 1928. Wikipedia launched: 2001.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Penicillin discovered",
+            "emoji": "💊",
+            "year": 1928,
+            "display": "1928"
+          },
+          {
+            "label": "Wikipedia launched",
+            "emoji": "📚",
+            "year": 2001,
+            "display": "2001"
+          }
+        ]
+      }
+    }
+  ]
+}

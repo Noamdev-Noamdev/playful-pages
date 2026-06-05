@@ -1,0 +1,103 @@
+{
+  "id": "rc-2026-06-22",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "Channel Tunnel length is larger than Suez Canal length.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Size",
+      "explanation": "Sources: USGS/NOAA/CTBUH/UNESCO and other references. Channel Tunnel length: 50.45 km. Suez Canal length: 193 km.",
+      "viz": {
+        "type": "size",
+        "labelA": "Channel Tunnel length",
+        "emojiA": "🚇",
+        "valueA": 50.45,
+        "labelB": "Suez Canal length",
+        "emojiB": "🚢",
+        "valueB": 193,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Cheetah sprint is faster than Peregrine falcon dive.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Speed",
+      "explanation": "Sources: NOAA/engineering references (values rounded). Cheetah sprint: 120 km/h. Peregrine falcon dive: 390 km/h.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Cheetah sprint",
+        "emojiA": "🐆",
+        "valueA": 120,
+        "labelB": "Peregrine falcon dive",
+        "emojiB": "🦅",
+        "valueB": 390,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Great Wall of China length is longer than Lærdal Tunnel length.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Sources: UNESCO/Britannica/national agencies (values rounded). Great Wall of China length: 21196 km. Lærdal Tunnel length: 24.51 km.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Great Wall of China length",
+        "emojiA": "🏯",
+        "valueA": 21196,
+        "labelB": "Lærdal Tunnel length",
+        "emojiB": "🚗",
+        "valueB": 24.51,
+        "unit": "km"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "There are more keys on a standard piano than grams in a kilogram.",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "Quantity",
+      "explanation": "Sources: standards & reference values. 88 keys vs 1,000 g.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "keys on a standard piano",
+        "emojiA": "🎹",
+        "countA": 88,
+        "realA": "88 keys",
+        "labelB": "grams in a kilogram",
+        "emojiB": "⚖️",
+        "countB": 1000,
+        "realB": "1,000 g"
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Wikipedia launched happened after World Wide Web proposed.",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Sources: widely documented dates. Wikipedia launched: 2001. World Wide Web proposed: 1989.",
+      "viz": {
+        "type": "time",
+        "events": [
+          {
+            "label": "Wikipedia launched",
+            "emoji": "📚",
+            "year": 2001,
+            "display": "2001"
+          },
+          {
+            "label": "World Wide Web proposed",
+            "emoji": "🕸️",
+            "year": 1989,
+            "display": "1989"
+          }
+        ]
+      }
+    }
+  ]
+}
