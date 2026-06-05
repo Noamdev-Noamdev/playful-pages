@@ -237,13 +237,15 @@ export function RealityCheck() {
           >
             {copied ? "Copied! ✓" : "📋 Share"}
           </button>
-          <button
-            onClick={handleRestart}
-            className="flex-1 py-3 rounded-2xl bg-foreground text-background font-bold text-sm
-              hover:opacity-90 active:scale-95 transition-all shadow-md"
-          >
-            Play again →
-          </button>
+          {!isTodaysDaily && (
+            <button
+              onClick={handleRestart}
+              className="flex-1 py-3 rounded-2xl bg-foreground text-background font-bold text-sm
+                hover:opacity-90 active:scale-95 transition-all shadow-md"
+            >
+              Play again →
+            </button>
+          )}
         </div>
       </div>
     );
