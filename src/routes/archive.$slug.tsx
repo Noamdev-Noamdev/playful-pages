@@ -20,9 +20,9 @@ export const Route = createFileRoute("/archive/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.title} — Archive` },
-          { name: "description", content: `Play every past daily ${loaderData.title} puzzle.` },
-        ]
+        { title: `${loaderData.title} — Archive` },
+        { name: "description", content: `Play every past daily ${loaderData.title} puzzle.` },
+      ]
       : [],
   }),
   notFoundComponent: () => (
@@ -240,11 +240,10 @@ function ArchiveForGame() {
                   return (
                     <div
                       key={i}
-                      className={`${base} ${
-                        isToday
+                      className={`${base} ${isToday
                           ? "border-foreground bg-foreground text-background"
                           : "border-dashed border-muted-foreground/40 bg-background text-muted-foreground"
-                      }`}
+                        }`}
                       aria-disabled
                     >
                       <span className="font-display text-base font-black leading-none">
