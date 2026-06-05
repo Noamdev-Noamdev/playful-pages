@@ -178,6 +178,11 @@ export function RealityCheck() {
 
     return (
       <div className="flex flex-col gap-4">
+        {dailyLevel && (
+          <div className="flex justify-center">
+            <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+          </div>
+        )}
         {/* Score */}
         <div className="rounded-3xl border-2 border-foreground bg-card p-7 text-center">
           <p className="text-5xl font-black text-foreground">
