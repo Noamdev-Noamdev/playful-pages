@@ -10,6 +10,7 @@ const RealityCheckGame: Game = {
   color: "lilac",
   category: "originals",
   Component: RealityCheck,
+  dailySlug: "reality-check",
 };
 
 export default RealityCheckGame;

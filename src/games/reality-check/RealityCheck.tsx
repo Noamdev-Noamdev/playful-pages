@@ -1,6 +1,39 @@
-import { useState, useCallback } from "react";
-import { pickClaims } from "./claims";
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { CLAIMS } from "./claims";
 import { SizeViz, BarViz, QuantityViz, TimeViz } from "./Visualizations";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
+
+const DAILY_SLUG = "reality-check";
+
+interface DailyLevelData {
+  id: string;
+  claims: Claim[];
+}
+
+/** FNV-1a hash → non-negative int. */
+function hashKey(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/** Deterministic seeded pick of N claims from the built-in pool. */
+function seededPick(seed: string, n: number): Claim[] {
+  const arr = [...CLAIMS];
+  let h = hashKey(seed);
+  // Fisher–Yates with LCG seeded by hash
+  for (let i = arr.length - 1; i > 0; i--) {
+    h = (Math.imul(h, 1664525) + 1013904223) >>> 0;
+    const j = h % (i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, n);
+}
 import type { Claim, Phase, RoundResult } from "./types";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -44,7 +77,26 @@ function ClaimViz({ claim, animated }: { claim: Claim; animated: boolean }) {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function RealityCheck() {
-  const [claims] = useState<Claim[]>(() => pickClaims(ROUNDS));
+  // Read ?date= for archive playback; else today's daily.
+  const dateParam = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("date");
+  }, []);
+
+  const dailyLevel = useMemo(() => {
+    return dateParam
+      ? getLevelByDate<DailyLevelData>(DAILY_SLUG, dateParam)
+      : getDailyLevel<DailyLevelData>(DAILY_SLUG);
+  }, [dateParam]);
+
+  const isTodaysDaily = !dateParam;
+  const todayKey = formatDate(new Date());
+
+  const [claims] = useState<Claim[]>(() => {
+    if (dailyLevel?.data?.claims?.length) return dailyLevel.data.claims;
+    return seededPick(dateParam ?? todayKey, ROUNDS);
+  });
+
   const [round, setRound] = useState(0);
   const [phase, setPhase] = useState<Phase>("playing");
   const [choice, setChoice] = useState<boolean | null>(null);
@@ -54,6 +106,13 @@ export function RealityCheck() {
 
   const claim = claims[round];
   const isCorrect = choice === claim?.answer;
+
+  // Lock today's daily once finished.
+  useEffect(() => {
+    if (phase === "done" && isTodaysDaily) {
+      markDailyComplete(DAILY_SLUG);
+    }
+  }, [phase, isTodaysDaily]);
 
   // ── Handle TRUE / FALSE tap ───────────────────────────────────────────────
 
@@ -119,6 +178,11 @@ export function RealityCheck() {
 
     return (
       <div className="flex flex-col gap-4">
+        {dailyLevel && (
+          <div className="flex justify-center">
+            <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+          </div>
+        )}
         {/* Score */}
         <div className="rounded-3xl border-2 border-foreground bg-card p-7 text-center">
           <p className="text-5xl font-black text-foreground">
@@ -173,13 +237,15 @@ export function RealityCheck() {
           >
             {copied ? "Copied! ✓" : "📋 Share"}
           </button>
-          <button
-            onClick={handleRestart}
-            className="flex-1 py-3 rounded-2xl bg-foreground text-background font-bold text-sm
-              hover:opacity-90 active:scale-95 transition-all shadow-md"
-          >
-            Play again →
-          </button>
+          {!isTodaysDaily && (
+            <button
+              onClick={handleRestart}
+              className="flex-1 py-3 rounded-2xl bg-foreground text-background font-bold text-sm
+                hover:opacity-90 active:scale-95 transition-all shadow-md"
+            >
+              Play again →
+            </button>
+          )}
         </div>
       </div>
     );
@@ -192,6 +258,11 @@ export function RealityCheck() {
 
   return (
     <div className="flex flex-col gap-4">
+      {dailyLevel && (
+        <div className="flex justify-center">
+          <DailyBadge dayNumber={dailyLevel.dayNumber} date={dailyLevel.date} />
+        </div>
+      )}
       {/* Progress dots */}
       <div className="flex items-center gap-2 justify-between">
         <div className="flex gap-1.5">

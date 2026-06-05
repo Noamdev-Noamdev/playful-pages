@@ -1,0 +1,75 @@
+{
+  "id": "rc-2026-06-02",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "A blue whale is heavier than a fully loaded Boeing 747",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Blue whale ~150 t; loaded 747 ~412 t — nearly 3× heavier.",
+      "viz": {
+        "type": "size",
+        "labelA": "Blue whale", "emojiA": "🐋",  "valueA": 150000,
+        "labelB": "Boeing 747", "emojiB": "✈️", "valueB": 412000,
+        "unit": "kg"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "Sound travels faster through water than through air",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "343 m/s in air vs 1,480 m/s in water — over 4× faster.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Sound in air",   "emojiA": "🌬️", "valueA": 343,
+        "labelB": "Sound in water", "emojiB": "🌊",  "valueB": 1480,
+        "unit": "m/s"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "Sharks kill more people per year than bees do",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "Sharks: ~10/year. Bees & wasps: ~50+/year.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "Shark fatalities/yr",   "emojiA": "🦈", "countA": 10, "realA": "~10/year",
+        "labelB": "Bee/wasp fatalities/yr","emojiB": "🐝", "countB": 50, "realB": "~50+/year"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "The Roman Colosseum is older than the Great Wall of China",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "History",
+      "explanation": "Colosseum: 80 AD. Great Wall main build: 221 BC — over 300 years earlier.",
+      "viz": {
+        "type": "time",
+        "events": [
+          { "label": "Great Wall begins",     "emoji": "🏯",  "year": -221, "display": "221 BC" },
+          { "label": "Colosseum completed",   "emoji": "🏛️", "year": 80,   "display": "80 AD" }
+        ]
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Mount Everest is taller than the Mariana Trench is deep",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Size",
+      "explanation": "Everest: 8,849 m. Mariana Trench: 11,034 m — over 2 km deeper.",
+      "viz": {
+        "type": "size",
+        "labelA": "Mount Everest",  "emojiA": "⛰️", "valueA": 8849,
+        "labelB": "Mariana Trench", "emojiB": "🌊",  "valueB": 11034,
+        "unit": "m"
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id": "rc-2026-06-03",
+  "claims": [
+    {
+      "id": "c1",
+      "statement": "An African elephant outweighs a white rhinoceros",
+      "answer": true,
+      "difficulty": "easy",
+      "category": "Size",
+      "explanation": "African elephant up to 6,000 kg vs white rhino up to 2,300 kg.",
+      "viz": {
+        "type": "size",
+        "labelA": "White rhino",       "emojiA": "🦏", "valueA": 2300,
+        "labelB": "African elephant",  "emojiB": "🐘", "valueB": 6000,
+        "unit": "kg"
+      }
+    },
+    {
+      "id": "c2",
+      "statement": "A cheetah runs faster than a peregrine falcon dives",
+      "answer": false,
+      "difficulty": "medium",
+      "category": "Speed",
+      "explanation": "Cheetah ~120 km/h; peregrine dive ~390 km/h — the fastest animal motion.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Cheetah (sprint)",  "emojiA": "🐆", "valueA": 120,
+        "labelB": "Peregrine (dive)",  "emojiB": "🦅", "valueB": 390,
+        "unit": "km/h"
+      }
+    },
+    {
+      "id": "c3",
+      "statement": "More tourists visit France each year than people live there",
+      "answer": true,
+      "difficulty": "medium",
+      "category": "Quantity",
+      "explanation": "~90M tourists/year vs ~68M residents.",
+      "viz": {
+        "type": "quantity",
+        "labelA": "French population", "emojiA": "🇫🇷", "countA": 68, "realA": "~68 million",
+        "labelB": "Annual tourists",   "emojiB": "🧳", "countB": 90, "realB": "~90 million"
+      }
+    },
+    {
+      "id": "c4",
+      "statement": "The fax machine was invented after the telephone",
+      "answer": false,
+      "difficulty": "hard",
+      "category": "History",
+      "explanation": "Fax: 1843 (Alexander Bain). Telephone: 1876 (Bell) — 33 years later.",
+      "viz": {
+        "type": "time",
+        "events": [
+          { "label": "Fax machine", "emoji": "📠", "year": 1843, "display": "1843" },
+          { "label": "Telephone",   "emoji": "☎️", "year": 1876, "display": "1876" }
+        ]
+      }
+    },
+    {
+      "id": "c5",
+      "statement": "Neptune is more than 70× farther from the Sun than Mercury is",
+      "answer": true,
+      "difficulty": "hard",
+      "category": "Distance",
+      "explanation": "Mercury ~58M km; Neptune ~4,495M km — 77× farther.",
+      "viz": {
+        "type": "bar",
+        "labelA": "Mercury → Sun", "emojiA": "☿",  "valueA": 58,
+        "labelB": "Neptune → Sun", "emojiB": "🔵", "valueB": 4495,
+        "unit": "million km"
+      }
+    }
+  ]
+}
