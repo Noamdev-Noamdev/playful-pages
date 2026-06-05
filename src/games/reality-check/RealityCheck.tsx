@@ -1,6 +1,39 @@
-import { useState, useCallback } from "react";
-import { pickClaims } from "./claims";
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { CLAIMS } from "./claims";
 import { SizeViz, BarViz, QuantityViz, TimeViz } from "./Visualizations";
+import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
+import { DailyBadge } from "@/components/DailyBadge";
+import { markDailyComplete } from "@/lib/dailyLock";
+
+const DAILY_SLUG = "reality-check";
+
+interface DailyLevelData {
+  id: string;
+  claims: Claim[];
+}
+
+/** FNV-1a hash → non-negative int. */
+function hashKey(s: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/** Deterministic seeded pick of N claims from the built-in pool. */
+function seededPick(seed: string, n: number): Claim[] {
+  const arr = [...CLAIMS];
+  let h = hashKey(seed);
+  // Fisher–Yates with LCG seeded by hash
+  for (let i = arr.length - 1; i > 0; i--) {
+    h = (Math.imul(h, 1664525) + 1013904223) >>> 0;
+    const j = h % (i + 1);
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, n);
+}
 import type { Claim, Phase, RoundResult } from "./types";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
