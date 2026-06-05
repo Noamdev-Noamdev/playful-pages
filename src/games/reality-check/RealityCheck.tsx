@@ -77,7 +77,26 @@ function ClaimViz({ claim, animated }: { claim: Claim; animated: boolean }) {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function RealityCheck() {
-  const [claims] = useState<Claim[]>(() => pickClaims(ROUNDS));
+  // Read ?date= for archive playback; else today's daily.
+  const dateParam = useMemo(() => {
+    if (typeof window === "undefined") return null;
+    return new URLSearchParams(window.location.search).get("date");
+  }, []);
+
+  const dailyLevel = useMemo(() => {
+    return dateParam
+      ? getLevelByDate<DailyLevelData>(DAILY_SLUG, dateParam)
+      : getDailyLevel<DailyLevelData>(DAILY_SLUG);
+  }, [dateParam]);
+
+  const isTodaysDaily = !dateParam;
+  const todayKey = formatDate(new Date());
+
+  const [claims] = useState<Claim[]>(() => {
+    if (dailyLevel?.data?.claims?.length) return dailyLevel.data.claims;
+    return seededPick(dateParam ?? todayKey, ROUNDS);
+  });
+
   const [round, setRound] = useState(0);
   const [phase, setPhase] = useState<Phase>("playing");
   const [choice, setChoice] = useState<boolean | null>(null);
@@ -87,6 +106,13 @@ export function RealityCheck() {
 
   const claim = claims[round];
   const isCorrect = choice === claim?.answer;
+
+  // Lock today's daily once finished.
+  useEffect(() => {
+    if (phase === "done" && isTodaysDaily) {
+      markDailyComplete(DAILY_SLUG);
+    }
+  }, [phase, isTodaysDaily]);
 
   // ── Handle TRUE / FALSE tap ───────────────────────────────────────────────
 
