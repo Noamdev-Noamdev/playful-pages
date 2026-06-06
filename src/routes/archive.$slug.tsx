@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Lock } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { getGame } from "@/games";
 import { getArchiveDates, formatDate } from "@/levels";
@@ -230,8 +230,9 @@ function ArchiveForGame() {
                         <span className="font-display text-base font-black leading-none">
                           {cell.dayOfMonth}
                         </span>
-                        <span className="mt-0.5 text-[9px] font-bold uppercase tracking-wider opacity-70">
-                          🔒 #{cell.dayNumber}
+                        <span className="mt-0.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider opacity-70">
+                          <Lock className="h-3 w-3" aria-hidden="true" />
+                          #{cell.dayNumber}
                         </span>
                       </div>
                     );

@@ -1,4 +1,4 @@
-import { Calculator } from "lucide-react";
+import { Calculator, X } from "lucide-react";
 import type { Game } from "./types";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { WinOverlay } from "./_WinOverlay";
@@ -464,10 +464,11 @@ function KakuroGame() {
         ))}
         <button
           onClick={() => inputNumber(null)}
+          aria-label="Clear cell"
           className="w-9 h-9 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200
             text-slate-400 font-bold transition-colors"
         >
-          ✕
+          <X className="h-4 w-4 mx-auto" aria-hidden="true" />
         </button>
       </div>
 

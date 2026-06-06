@@ -1,4 +1,21 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
+import type { LucideIcon } from "lucide-react";
+import {
+  Antenna,
+  ArrowRight,
+  CalendarDays,
+  Check,
+  CircleHelp,
+  Clipboard,
+  Flame,
+  Hash,
+  Meh,
+  Ruler,
+  Target,
+  ThumbsUp,
+  Wind,
+  X,
+} from "lucide-react";
 import { CLAIMS } from "./claims";
 import { SizeViz, BarViz, QuantityViz, TimeViz } from "./Visualizations";
 import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
@@ -47,12 +64,12 @@ const DIFF_STYLE: Record<string, string> = {
   hard: "bg-red-100     text-red-700",
 };
 
-const CAT_EMOJI: Record<string, string> = {
-  Size: "📏",
-  Speed: "💨",
-  Distance: "📡",
-  Quantity: "🔢",
-  History: "📅",
+const CAT_ICON: Record<string, LucideIcon> = {
+  Size: Ruler,
+  Speed: Wind,
+  Distance: Antenna,
+  Quantity: Hash,
+  History: CalendarDays,
 };
 
 // ─── Share text ───────────────────────────────────────────────────────────────
@@ -60,7 +77,7 @@ const CAT_EMOJI: Record<string, string> = {
 function buildShare(results: RoundResult[]): string {
   const emojis = results.map((r) => (r.correct ? "🟩" : "🟥")).join("");
   const score = results.filter((r) => r.correct).length;
-  return `Reality Check ✅❌\n${emojis}\nScore: ${score}/${ROUNDS}`;
+  return `Reality Check\n${emojis}\nScore: ${score}/${ROUNDS}`;
 }
 
 // ─── Visualization dispatcher ─────────────────────────────────────────────────
@@ -175,6 +192,16 @@ export function RealityCheck() {
   if (phase === "done") {
     const score = results.filter((r) => r.correct).length;
     const pct = Math.round((score / ROUNDS) * 100);
+    const reaction =
+      pct === 100
+        ? { Icon: Target, text: "Perfectly calibrated mind!" }
+        : pct >= 80
+          ? { Icon: Flame, text: "Your instincts are sharp!" }
+          : pct >= 60
+            ? { Icon: ThumbsUp, text: "Solid! The world is surprising." }
+            : pct >= 40
+              ? { Icon: CircleHelp, text: "Reality is stranger than it seems." }
+              : { Icon: Meh, text: "The universe has a lot to teach you!" };
 
     return (
       <div className="flex flex-col gap-4">
@@ -188,21 +215,21 @@ export function RealityCheck() {
           <p className="text-5xl font-black text-foreground">
             {score} / {ROUNDS}
           </p>
-          <p className="text-muted-foreground text-sm mt-1">
-            {pct === 100
-              ? "🎯 Perfectly calibrated mind!"
-              : pct >= 80
-                ? "🔥 Your instincts are sharp!"
-                : pct >= 60
-                  ? "👍 Solid! The world is surprising."
-                  : pct >= 40
-                    ? "🤔 Reality is stranger than it seems."
-                    : "😬 The universe has a lot to teach you!"}
+          <p className="text-muted-foreground text-sm mt-1 inline-flex items-center justify-center gap-2">
+            <reaction.Icon className="h-4 w-4" aria-hidden="true" />
+            {reaction.text}
           </p>
-          {/* Emoji row */}
-          <p className="text-2xl mt-3 tracking-widest">
-            {results.map((r) => (r.correct ? "🟩" : "🟥")).join("")}
-          </p>
+          <div className="mt-3 flex justify-center gap-1.5" aria-label="Results">
+            {results.map((r, i) => (
+              <span
+                key={i}
+                className={[
+                  "h-4 w-4 rounded-sm border border-foreground",
+                  r.correct ? "bg-emerald-500" : "bg-red-500",
+                ].join(" ")}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Per-round breakdown */}
@@ -214,7 +241,15 @@ export function RealityCheck() {
                 key={r.claimId}
                 className="rounded-2xl border border-foreground bg-card px-4 py-3 flex items-start gap-3"
               >
-                <span className="text-xl shrink-0 mt-0.5">{r.correct ? "✅" : "❌"}</span>
+                <span
+                  className={`shrink-0 mt-0.5 ${r.correct ? "text-emerald-600" : "text-red-500"}`}
+                >
+                  {r.correct ? (
+                    <Check className="h-5 w-5" aria-hidden="true" />
+                  ) : (
+                    <X className="h-5 w-5" aria-hidden="true" />
+                  )}
+                </span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-bold text-foreground leading-snug">{c.statement}</p>
                   <p className="text-[11px] text-muted-foreground mt-0.5">
@@ -233,17 +268,28 @@ export function RealityCheck() {
           <button
             onClick={handleShare}
             className="flex-1 py-3 rounded-2xl border-2 border-foreground font-bold text-sm
-              hover:bg-foreground hover:text-background transition-colors"
+              hover:bg-foreground hover:text-background transition-colors inline-flex items-center justify-center gap-2"
           >
-            {copied ? "Copied! ✓" : "📋 Share"}
+            {copied ? (
+              <>
+                <Check className="h-4 w-4" aria-hidden="true" />
+                Copied
+              </>
+            ) : (
+              <>
+                <Clipboard className="h-4 w-4" aria-hidden="true" />
+                Share
+              </>
+            )}
           </button>
           {!isTodaysDaily && (
             <button
               onClick={handleRestart}
               className="flex-1 py-3 rounded-2xl bg-foreground text-background font-bold text-sm
-                hover:opacity-90 active:scale-95 transition-all shadow-md"
+                hover:opacity-90 active:scale-95 transition-all shadow-md inline-flex items-center justify-center gap-2"
             >
-              Play again →
+              Play again
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </button>
           )}
         </div>
@@ -255,6 +301,7 @@ export function RealityCheck() {
 
   const isRevealed = phase === "revealed";
   const isRevealing = phase === "revealing";
+  const CategoryIcon = CAT_ICON[claim.category] ?? CircleHelp;
 
   return (
     <div className="flex flex-col gap-4">
@@ -275,8 +322,9 @@ export function RealityCheck() {
           ))}
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="text-xs text-muted-foreground">
-            {CAT_EMOJI[claim.category] ?? "❓"} {claim.category}
+          <span className="text-xs text-muted-foreground inline-flex items-center gap-1.5">
+            <CategoryIcon className="h-4 w-4" aria-hidden="true" />
+            {claim.category}
           </span>
           <span
             className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${DIFF_STYLE[claim.difficulty]}`}
@@ -300,7 +348,10 @@ export function RealityCheck() {
               text-emerald-700 font-black text-xl hover:bg-emerald-100
               active:scale-95 transition-all shadow-sm"
           >
-            ✓ TRUE
+            <span className="inline-flex items-center justify-center gap-2">
+              <Check className="h-5 w-5" aria-hidden="true" />
+              TRUE
+            </span>
           </button>
           <button
             onClick={() => handleChoice(false)}
@@ -308,7 +359,10 @@ export function RealityCheck() {
               text-red-600 font-black text-xl hover:bg-red-100
               active:scale-95 transition-all shadow-sm"
           >
-            ✗ FALSE
+            <span className="inline-flex items-center justify-center gap-2">
+              <X className="h-5 w-5" aria-hidden="true" />
+              FALSE
+            </span>
           </button>
         </div>
       )}
@@ -316,7 +370,10 @@ export function RealityCheck() {
       {/* Tension pause */}
       {isRevealing && (
         <div className="flex items-center justify-center py-8">
-          <p className="text-4xl animate-pulse">🤔</p>
+          <CircleHelp
+            className="h-10 w-10 animate-pulse text-muted-foreground"
+            aria-hidden="true"
+          />
         </div>
       )}
 
@@ -328,7 +385,13 @@ export function RealityCheck() {
             className={`rounded-2xl border-2 px-5 py-4 flex items-center gap-3
             ${isCorrect ? "border-emerald-500 bg-emerald-50" : "border-red-400   bg-red-50"}`}
           >
-            <span className="text-3xl">{isCorrect ? "✅" : "❌"}</span>
+            <span className={isCorrect ? "text-emerald-600" : "text-red-500"}>
+              {isCorrect ? (
+                <Check className="h-8 w-8" aria-hidden="true" />
+              ) : (
+                <X className="h-8 w-8" aria-hidden="true" />
+              )}
+            </span>
             <div className="flex-1">
               <p
                 className={`font-black text-base ${isCorrect ? "text-emerald-700" : "text-red-600"}`}
@@ -352,30 +415,36 @@ export function RealityCheck() {
           {/* Your choice indicator */}
           <div className="flex gap-3">
             <div
-              className={`flex-1 rounded-2xl border-2 px-3 py-2.5 text-center
-              ${
+              className={[
+                "flex-1 rounded-2xl border-2 px-3 py-2.5 text-center",
                 choice === true
                   ? isCorrect
                     ? "border-emerald-500 bg-emerald-50"
                     : "border-red-400 bg-red-50"
-                  : "border-foreground/20 bg-card opacity-50"
-              }`}
+                  : "border-foreground/20 bg-card opacity-50",
+              ].join(" ")}
             >
               <p className="text-xs text-muted-foreground">You said</p>
-              <p className="font-black text-sm text-foreground">✓ TRUE</p>
+              <p className="font-black text-sm text-foreground inline-flex items-center justify-center gap-1.5">
+                <Check className="h-4 w-4" aria-hidden="true" />
+                TRUE
+              </p>
             </div>
             <div
-              className={`flex-1 rounded-2xl border-2 px-3 py-2.5 text-center
-              ${
+              className={[
+                "flex-1 rounded-2xl border-2 px-3 py-2.5 text-center",
                 choice === false
                   ? isCorrect
                     ? "border-emerald-500 bg-emerald-50"
                     : "border-red-400 bg-red-50"
-                  : "border-foreground/20 bg-card opacity-50"
-              }`}
+                  : "border-foreground/20 bg-card opacity-50",
+              ].join(" ")}
             >
               <p className="text-xs text-muted-foreground">You said</p>
-              <p className="font-black text-sm text-foreground">✗ FALSE</p>
+              <p className="font-black text-sm text-foreground inline-flex items-center justify-center gap-1.5">
+                <X className="h-4 w-4" aria-hidden="true" />
+                FALSE
+              </p>
             </div>
           </div>
 
@@ -383,9 +452,10 @@ export function RealityCheck() {
           <button
             onClick={handleNext}
             className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base
-              hover:opacity-90 active:scale-95 transition-all shadow-md"
+              hover:opacity-90 active:scale-95 transition-all shadow-md inline-flex items-center justify-center gap-2"
           >
-            {round + 1 >= ROUNDS ? "See final score →" : "Next claim →"}
+            {round + 1 >= ROUNDS ? "See final score" : "Next claim"}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </button>
         </>
       )}

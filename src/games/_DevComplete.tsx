@@ -1,3 +1,5 @@
+import { Wrench } from "lucide-react";
+
 /**
  * Developer-only "Complete" button that instantly wins the current game.
  *
@@ -11,10 +13,11 @@ export function DevComplete({ onComplete }: { onComplete: () => void }) {
     <button
       onClick={onComplete}
       className="px-3 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 border border-rose-200
-        text-rose-600 font-semibold text-xs transition-colors"
+        text-rose-600 font-semibold text-xs transition-colors inline-flex items-center gap-2"
       title="Developer shortcut — instantly complete this puzzle"
     >
-      🛠 Complete
+      <Wrench className="h-4 w-4" aria-hidden="true" />
+      Complete
     </button>
   );
 }

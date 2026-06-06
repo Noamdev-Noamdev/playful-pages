@@ -2,6 +2,18 @@ import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import { WinOverlay } from "../_WinOverlay";
 import { getRandomPuzzle } from "./puzzles";
 import type { Puzzle, PuzzleItem } from "./types";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  CircleHelp,
+  Clipboard,
+  Flame,
+  Hand,
+  Target,
+  ThumbsUp,
+  X,
+} from "lucide-react";
 import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
 import { DailyBadge } from "@/components/DailyBadge";
 import { markDailyComplete } from "@/lib/dailyLock";
@@ -234,7 +246,7 @@ export function RankGame() {
           setWon(false);
           reset(puzzle.id);
         }}
-        message="Perfect score! 🎯"
+        message="Perfect score!"
         sub="Every item in exactly the right place."
         archiveSlug={dailyLevel ? DAILY_SLUG : undefined}
       />
@@ -354,7 +366,15 @@ export function RankGame() {
 
               {/* Result badge */}
               {result !== null && (
-                <span className="shrink-0 text-lg">{result === "correct" ? "✅" : "❌"}</span>
+                <span
+                  className={`shrink-0 ${result === "correct" ? "text-emerald-600" : "text-red-500"}`}
+                >
+                  {result === "correct" ? (
+                    <Check className="h-5 w-5" aria-hidden="true" />
+                  ) : (
+                    <X className="h-5 w-5" aria-hidden="true" />
+                  )}
+                </span>
               )}
             </div>
           );
@@ -368,7 +388,10 @@ export function RankGame() {
           className="mt-2 px-10 py-3 rounded-2xl bg-foreground text-background font-bold text-base
             hover:opacity-90 active:scale-95 transition-all shadow-md"
         >
-          Check ✓
+          <span className="inline-flex items-center justify-center gap-2">
+            <Check className="h-5 w-5" aria-hidden="true" />
+            Check
+          </span>
         </button>
       )}
 
@@ -380,14 +403,23 @@ export function RankGame() {
             <p className="text-4xl font-black text-foreground">
               {score} / {puzzle.items.length}
             </p>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground mt-1 inline-flex items-center justify-center gap-2">
+              {score === puzzle.items.length ? (
+                <Target className="h-4 w-4" aria-hidden="true" />
+              ) : score >= puzzle.items.length - 1 ? (
+                <Flame className="h-4 w-4" aria-hidden="true" />
+              ) : score >= Math.ceil(puzzle.items.length / 2) ? (
+                <ThumbsUp className="h-4 w-4" aria-hidden="true" />
+              ) : (
+                <CircleHelp className="h-4 w-4" aria-hidden="true" />
+              )}
               {score === puzzle.items.length
-                ? "🎯 Perfect — you nailed every one!"
+                ? "Perfect — you nailed every one!"
                 : score >= puzzle.items.length - 1
-                  ? "🔥 So close — nearly perfect!"
+                  ? "So close — nearly perfect!"
                   : score >= Math.ceil(puzzle.items.length / 2)
-                    ? "👍 Decent intuition!"
-                    : "🤔 Trickier than it looks, right?"}
+                    ? "Decent intuition!"
+                    : "Trickier than it looks, right?"}
             </p>
 
             {/* Share row */}
@@ -397,7 +429,19 @@ export function RankGame() {
                 className="px-4 py-2 rounded-xl border-2 border-foreground text-sm font-semibold
                   bg-background hover:bg-foreground hover:text-background transition-colors"
               >
-                {copied ? "Copied! ✓" : "📋 Share result"}
+                <span className="inline-flex items-center justify-center gap-2">
+                  {copied ? (
+                    <>
+                      <Check className="h-4 w-4" aria-hidden="true" />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Clipboard className="h-4 w-4" aria-hidden="true" />
+                      Share result
+                    </>
+                  )}
+                </span>
               </button>
             </div>
           </div>
@@ -409,11 +453,17 @@ export function RankGame() {
               className="px-10 py-3 rounded-2xl bg-foreground text-background font-bold text-base
                 hover:opacity-90 active:scale-95 transition-all shadow-md w-full"
             >
-              Next puzzle →
+              <span className="inline-flex items-center justify-center gap-2">
+                Next puzzle
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </span>
             </button>
           ) : isTodaysDaily ? (
             <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center w-full">
-              <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
+              <p className="font-display text-xl font-black inline-flex items-center justify-center gap-2">
+                <Hand className="h-5 w-5" aria-hidden="true" />
+                See you tomorrow!
+              </p>
               <p className="text-sm text-muted-foreground mt-1">
                 A new puzzle drops at midnight. Want more? Try the archive.
               </p>
@@ -424,7 +474,10 @@ export function RankGame() {
               className="px-10 py-3 rounded-2xl bg-foreground text-background font-bold text-base
                 hover:opacity-90 active:scale-95 transition-all shadow-md w-full text-center"
             >
-              ← Back to archive
+              <span className="inline-flex items-center justify-center gap-2">
+                <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+                Back to archive
+              </span>
             </a>
           )}
         </div>

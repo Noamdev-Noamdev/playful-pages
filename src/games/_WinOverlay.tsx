@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { ArrowRight, PartyPopper, Sparkles } from "lucide-react";
 
 // ─── Confetti ─────────────────────────────────────────────────────────────────
 
@@ -161,14 +162,14 @@ export function WinOverlay({
         {/* Emoji */}
         <div
           style={{
-            fontSize: "3.25rem",
             lineHeight: 1,
             marginBottom: "0.85rem",
             display: "inline-block",
             animation: "_wc_bob 1.9s ease-in-out infinite",
+            color: "#0f172a",
           }}
         >
-          🎉
+          <PartyPopper size={48} strokeWidth={1.75} aria-hidden="true" />
         </div>
 
         {/* Heading */}
@@ -194,7 +195,10 @@ export function WinOverlay({
             params={{ slug: archiveSlug }}
             className="_wc_btn"
             style={{
-              display: "inline-block",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.55rem",
               background: "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)",
               color: "white",
               border: "none",
@@ -208,14 +212,18 @@ export function WinOverlay({
               textDecoration: "none",
             }}
           >
-            Go to archive →
+            <span>Go to archive</span>
+            <ArrowRight size={18} aria-hidden="true" />
           </Link>
         ) : (
           <button
             className="_wc_btn"
             onClick={onPlayAgain}
             style={{
-              display: "inline-block",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.55rem",
               background: "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)",
               color: "white",
               border: "none",
@@ -228,7 +236,8 @@ export function WinOverlay({
               letterSpacing: "-0.01em",
             }}
           >
-            Play Again ✨
+            <span>Play Again</span>
+            <Sparkles size={18} aria-hidden="true" />
           </button>
         )}
 

@@ -1,4 +1,4 @@
-import { Grid3x3 } from "lucide-react";
+import { Grid3x3, X } from "lucide-react";
 import type { Game } from "./types";
 import { useState, useCallback, useEffect } from "react";
 import { WinOverlay } from "./_WinOverlay";
@@ -417,9 +417,10 @@ function TectonicGame() {
         ))}
         <button
           onClick={() => inputNumber(null)}
+          aria-label="Clear cell"
           className="w-10 h-10 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 text-base font-bold transition-colors"
         >
-          ✕
+          <X className="h-5 w-5 mx-auto" aria-hidden="true" />
         </button>
       </div>
 

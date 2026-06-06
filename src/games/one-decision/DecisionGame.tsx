@@ -3,6 +3,8 @@ import { SCENARIOS } from "./scenarios";
 import { CityScene } from "./CityScene";
 import { EnergyScene } from "./EnergyScene";
 import type { Scenario, Choice, Phase, GameState, SimStats } from "./types";
+import type { LucideIcon } from "lucide-react";
+import { ArrowRight, Coins, Leaf, Pin, Users } from "lucide-react";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -18,12 +20,17 @@ function statColor(v: number): string {
   return "#dc2626";
 }
 
-function statLabel(key: string): string {
-  return (
-    { population: "👥 Population", economy: "💰 Economy", environment: "🌿 Environment" }[key] ??
-    key
-  );
-}
+const STAT_META: Record<
+  string,
+  {
+    Icon: LucideIcon;
+    label: string;
+  }
+> = {
+  population: { Icon: Users, label: "Population" },
+  economy: { Icon: Coins, label: "Economy" },
+  environment: { Icon: Leaf, label: "Environment" },
+};
 
 // ─── Scene dispatcher — add new scenarios here ───────────────────────────────
 // To add a new scenario: create a new XxxScene.tsx, import it below,
@@ -131,14 +138,14 @@ export function DecisionGame() {
           setGameState((prev) =>
             prev
               ? {
-                  ...prev,
-                  progress: 100,
-                  stats: {
-                    population: ch.endStats.population,
-                    economy: ch.endStats.economy,
-                    environment: ch.endStats.environment,
-                  },
-                }
+                ...prev,
+                progress: 100,
+                stats: {
+                  population: ch.endStats.population,
+                  economy: ch.endStats.economy,
+                  environment: ch.endStats.environment,
+                },
+              }
               : prev,
           );
           setTimeout(() => setPhase("done"), 600);
@@ -156,14 +163,14 @@ export function DecisionGame() {
     setGameState((prev) =>
       prev
         ? {
-            ...prev,
-            progress: 100,
-            stats: {
-              population: choice.endStats.population,
-              economy: choice.endStats.economy,
-              environment: choice.endStats.environment,
-            },
-          }
+          ...prev,
+          progress: 100,
+          stats: {
+            population: choice.endStats.population,
+            economy: choice.endStats.economy,
+            environment: choice.endStats.environment,
+          },
+        }
         : prev,
     );
     setToast(null);
@@ -215,10 +222,9 @@ export function DecisionGame() {
                 key={s.id}
                 onClick={() => setScenarioIdx(i)}
                 className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-colors
-                  ${
-                    i === scenarioIdx
-                      ? "bg-foreground text-background border-foreground"
-                      : "bg-card text-muted-foreground border-foreground/30 hover:border-foreground"
+                  ${i === scenarioIdx
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-card text-muted-foreground border-foreground/30 hover:border-foreground"
                   }`}
               >
                 {s.question.split(" ").slice(0, 3).join(" ")}…
@@ -302,7 +308,7 @@ export function DecisionGame() {
           flex items-start gap-3 shadow-lg animate-pulse"
           style={{ animation: "none" }}
         >
-          <span className="text-xl shrink-0 mt-0.5">📌</span>
+          <Pin className="h-5 w-5 shrink-0 mt-0.5 text-muted-foreground" aria-hidden />
           <div>
             <p className="text-xs font-black text-foreground">{toast.title}</p>
             <p className="text-[11px] text-muted-foreground leading-snug">{toast.desc}</p>
@@ -314,10 +320,15 @@ export function DecisionGame() {
       <div className="rounded-2xl border-2 border-foreground bg-card px-4 py-4 flex flex-col gap-3">
         {(["population", "economy", "environment"] as const).map((key) => {
           const v = Math.round(gameState.stats[key]);
+          const meta = STAT_META[key];
+          const StatIcon = meta?.Icon;
           return (
             <div key={key}>
               <div className="flex justify-between items-center mb-1">
-                <span className="text-xs font-bold text-foreground">{statLabel(key)}</span>
+                <span className="text-xs font-bold text-foreground inline-flex items-center gap-1.5">
+                  {StatIcon && <StatIcon className="h-4 w-4" aria-hidden />}
+                  {meta?.label ?? key}
+                </span>
                 <span className="text-xs font-semibold text-muted-foreground">{statVal(v)}</span>
               </div>
               <div className="h-2.5 rounded-full bg-muted overflow-hidden border border-foreground/20">
@@ -339,7 +350,10 @@ export function DecisionGame() {
             className="flex-1 py-2.5 rounded-xl border-2 border-foreground bg-card
               text-sm font-semibold text-foreground hover:bg-foreground hover:text-background transition-colors"
           >
-            Skip to result →
+            <span className="inline-flex items-center justify-center gap-2">
+              Skip to result
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </span>
           </button>
         </div>
       )}
@@ -356,13 +370,14 @@ export function DecisionGame() {
           <div className="grid grid-cols-3 gap-2">
             {(["population", "economy", "environment"] as const).map((key) => {
               const v = Math.round(gameState.stats[key]);
+              const meta = STAT_META[key];
               return (
                 <div
                   key={key}
                   className="rounded-xl border border-foreground/30 bg-muted px-2 py-2 text-center"
                 >
                   <p className="text-[10px] text-muted-foreground font-semibold mb-0.5">
-                    {statLabel(key).split(" ")[0]}
+                    {meta?.label ?? key}
                   </p>
                   <p className="text-sm font-black" style={{ color: statColor(v) }}>
                     {statVal(v)}
@@ -386,7 +401,10 @@ export function DecisionGame() {
               className="flex-1 py-2.5 rounded-xl bg-foreground text-background
                 text-sm font-semibold hover:opacity-90 transition-opacity"
             >
-              Next scenario →
+              <span className="inline-flex items-center justify-center gap-2">
+                Next scenario
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
             </button>
           </div>
         </div>

@@ -1,5 +1,18 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
+import type { LucideIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CircleHelp,
+  Flame,
+  Hand,
+  Lightbulb,
+  Meh,
+  Sparkles,
+  Target,
+  ThumbsUp,
+} from "lucide-react";
 import { pickRounds } from "./comparisons";
 import type { Comparison, Phase, RoundResult } from "./types";
 import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
@@ -64,11 +77,19 @@ function scoreColor(s: number): string {
 
 /** Score label */
 function scoreLabel(s: number): string {
-  if (s === 100) return "Perfect! 🎯";
-  if (s >= 85) return "Very close! 🔥";
-  if (s >= 60) return "Pretty good 👍";
-  if (s >= 35) return "Off a bit 🤔";
-  return "Way off! 😬";
+  if (s === 100) return "Perfect!";
+  if (s >= 85) return "Very close!";
+  if (s >= 60) return "Pretty good";
+  if (s >= 35) return "Off a bit";
+  return "Way off!";
+}
+
+function scoreIcon(s: number): LucideIcon {
+  if (s === 100) return Target;
+  if (s >= 85) return Flame;
+  if (s >= 60) return ThumbsUp;
+  if (s >= 35) return CircleHelp;
+  return Meh;
 }
 
 // ─── Diff badge ───────────────────────────────────────────────────────────────
@@ -183,6 +204,14 @@ export function ScaleGame() {
   if (phase === "done") {
     const total = results.reduce((s, r) => s + r.score, 0);
     const pct = Math.round((total / (ROUNDS_PER_GAME * 100)) * 100);
+    const doneReaction =
+      pct >= 90
+        ? { Icon: Target, text: "Extraordinary spatial intuition!" }
+        : pct >= 70
+          ? { Icon: Flame, text: "Really impressive!" }
+          : pct >= 50
+            ? { Icon: ThumbsUp, text: "Solid effort!" }
+            : { Icon: CircleHelp, text: "The universe is stranger than it seems!" };
 
     return (
       <div className="flex flex-col gap-5">
@@ -190,14 +219,9 @@ export function ScaleGame() {
           <p className="text-5xl font-black text-foreground">
             {total} / {ROUNDS_PER_GAME * 100}
           </p>
-          <p className="text-muted-foreground text-sm mt-1">
-            {pct >= 90
-              ? "🎯 Extraordinary spatial intuition!"
-              : pct >= 70
-                ? "🔥 Really impressive!"
-                : pct >= 50
-                  ? "👍 Solid effort!"
-                  : "🤔 The universe is stranger than it seems!"}
+          <p className="text-muted-foreground text-sm mt-1 inline-flex items-center justify-center gap-2">
+            <doneReaction.Icon className="h-4 w-4" aria-hidden="true" />
+            {doneReaction.text}
           </p>
         </div>
 
@@ -234,7 +258,10 @@ export function ScaleGame() {
 
         {isTodaysDaily ? (
           <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center">
-            <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
+            <p className="font-display text-xl font-black inline-flex items-center justify-center gap-2">
+              <Hand className="h-5 w-5" aria-hidden="true" />
+              See you tomorrow!
+            </p>
             <p className="text-sm text-muted-foreground mt-1">
               A new puzzle drops at midnight. Want more? Try the archive.
             </p>
@@ -246,7 +273,10 @@ export function ScaleGame() {
             className="block w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base text-center
               hover:opacity-90 active:scale-95 transition-all shadow-md"
           >
-            ← Back to archive
+            <span className="inline-flex items-center justify-center gap-2">
+              <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+              Back to archive
+            </span>
           </Link>
         )}
       </div>
@@ -258,6 +288,8 @@ export function ScaleGame() {
   const currentResult = results[results.length - 1];
   const isRevealed = phase === "revealed";
   const isRevealing = phase === "revealing";
+  const currentScoreIcon = currentResult ? scoreIcon(currentResult.score) : null;
+  const CurrentScoreIcon = currentScoreIcon ?? CircleHelp;
 
   return (
     <div className="flex flex-col gap-5">
@@ -358,6 +390,7 @@ export function ScaleGame() {
           </div>
           <input
             type="range"
+            aria-label="Estimate ratio"
             min={1}
             max={200}
             value={sliderVal}
@@ -377,7 +410,10 @@ export function ScaleGame() {
           {/* Score */}
           <div className="flex items-center justify-between">
             <p className="font-black text-lg" style={{ color: scoreColor(currentResult.score) }}>
-              {scoreLabel(currentResult.score)}
+              <span className="inline-flex items-center gap-2">
+                <CurrentScoreIcon className="h-5 w-5" aria-hidden="true" />
+                {scoreLabel(currentResult.score)}
+              </span>
             </p>
             <p className="text-2xl font-black" style={{ color: scoreColor(currentResult.score) }}>
               +{currentResult.score}
@@ -414,7 +450,10 @@ export function ScaleGame() {
           </div>
 
           {/* Fact */}
-          <p className="text-xs text-muted-foreground leading-relaxed italic">💡 {comp.fact}</p>
+          <p className="text-xs text-muted-foreground leading-relaxed italic inline-flex items-start gap-2">
+            <Lightbulb className="h-4 w-4 mt-0.5" aria-hidden="true" />
+            <span>{comp.fact}</span>
+          </p>
         </div>
       )}
 
@@ -425,11 +464,18 @@ export function ScaleGame() {
           className="w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base
             hover:opacity-90 active:scale-95 transition-all shadow-md"
         >
-          {isRevealed
-            ? roundIdx + 1 >= ROUNDS_PER_GAME
-              ? "See final score →"
-              : `Next comparison →`
-            : "Reveal ✨"}
+          <span className="inline-flex items-center justify-center gap-2">
+            {isRevealed
+              ? roundIdx + 1 >= ROUNDS_PER_GAME
+                ? "See final score"
+                : "Next comparison"
+              : "Reveal"}
+            {isRevealed ? (
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <Sparkles className="h-5 w-5" aria-hidden="true" />
+            )}
+          </span>
         </button>
       )}
     </div>

@@ -12,6 +12,18 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
+import {
+  ArrowDown,
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  CircleHelp,
+  Flame,
+  Hand,
+  Target,
+  ThumbsUp,
+  X,
+} from "lucide-react";
 import { TIMELINES, sortedEvents } from "./timelines";
 import type { Timeline, TimelineEvent, Phase, SlotResult } from "./types";
 import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
@@ -137,8 +149,9 @@ function EventCard({
           className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-foreground
             text-background text-[9px] font-black flex items-center justify-center
             hover:opacity-80 transition-opacity z-10"
+          aria-label="Remove"
         >
-          ✕
+          <X className="h-3 w-3" aria-hidden="true" />
         </button>
       )}
     </div>
@@ -195,17 +208,15 @@ function TimelineSlot({
       className={`flex flex-col items-center gap-1 transition-all ${compact ? "min-w-[88px]" : "min-w-[110px]"}`}
     >
       <div
-        className={`
-        rounded-2xl border-2 flex items-center justify-center transition-colors
-        ${compact ? "w-[84px] min-h-[76px]" : "w-[108px] min-h-[88px]"}
-        ${
+        className={[
+          "rounded-2xl border-2 flex items-center justify-center transition-colors",
+          compact ? "w-[84px] min-h-[76px]" : "w-[108px] min-h-[88px]",
           placedEvent
             ? "border-transparent"
             : isOver
               ? "border-foreground bg-foreground/10"
-              : "border-dashed border-foreground/30 bg-card/60"
-        }
-      `}
+              : "border-dashed border-foreground/30 bg-card/60",
+        ].join(" ")}
       >
         {placedEvent ? (
           <DraggableCard
@@ -479,7 +490,18 @@ export function TimelineGame() {
         {/* Timeline */}
         <div className="rounded-3xl border-2 border-foreground bg-card p-4 overflow-x-auto">
           <p className="text-xs text-muted-foreground text-center mb-3">
-            {isRevealed ? "Correct order ↓" : "← earliest · latest →"}
+            {isRevealed ? (
+              <span className="inline-flex items-center justify-center gap-1.5">
+                Correct order
+                <ArrowDown className="h-4 w-4" aria-hidden="true" />
+              </span>
+            ) : (
+              <span className="inline-flex items-center justify-center gap-2">
+                <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                <span>earliest · latest</span>
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </span>
+            )}
           </p>
 
           <div
@@ -528,7 +550,11 @@ export function TimelineGame() {
         {/* Hint */}
         {phase === "playing" && (
           <p className="text-xs text-muted-foreground text-center">
-            Drag events into slots · ✕ to return a card · fill all {SLOT_COUNT} slots then Check
+            <span className="inline-flex items-center justify-center gap-1.5">
+              Drag events into slots ·
+              <X className="h-4 w-4" aria-hidden="true" /> to return a card · fill all {SLOT_COUNT}{" "}
+              slots then Check
+            </span>
           </p>
         )}
 
@@ -540,13 +566,24 @@ export function TimelineGame() {
                 {totalScore} / {maxScore}
               </p>
               <p className="text-sm font-semibold text-muted-foreground">
-                {pct >= 90
-                  ? "🎯 Incredible!"
-                  : pct >= 70
-                    ? "🔥 Sharp memory!"
-                    : pct >= 50
-                      ? "👍 Decent!"
-                      : "🤔 History is trickier than it looks!"}
+                <span className="inline-flex items-center gap-2">
+                  {pct >= 90 ? (
+                    <Target className="h-4 w-4" aria-hidden="true" />
+                  ) : pct >= 70 ? (
+                    <Flame className="h-4 w-4" aria-hidden="true" />
+                  ) : pct >= 50 ? (
+                    <ThumbsUp className="h-4 w-4" aria-hidden="true" />
+                  ) : (
+                    <CircleHelp className="h-4 w-4" aria-hidden="true" />
+                  )}
+                  {pct >= 90
+                    ? "Incredible!"
+                    : pct >= 70
+                      ? "Sharp memory!"
+                      : pct >= 50
+                        ? "Decent!"
+                        : "History is trickier than it looks!"}
+                </span>
               </p>
             </div>
             <div className="h-2 rounded-full bg-muted overflow-hidden border border-foreground">
@@ -584,23 +621,31 @@ export function TimelineGame() {
           <button
             onClick={handleCheck}
             disabled={!allPlaced}
-            className={`w-full py-3 rounded-2xl font-bold text-base transition-all shadow-md
-              ${
-                allPlaced
-                  ? "bg-foreground text-background hover:opacity-90 active:scale-95"
-                  : "bg-foreground/20 text-foreground/40 cursor-not-allowed"
-              }`}
+            className={[
+              "w-full py-3 rounded-2xl font-bold text-base transition-all shadow-md",
+              allPlaced
+                ? "bg-foreground text-background hover:opacity-90 active:scale-95"
+                : "bg-foreground/20 text-foreground/40 cursor-not-allowed",
+            ].join(" ")}
           >
-            {allPlaced
-              ? "Check Timeline ✓"
-              : `Place all ${holding.length} remaining event${holding.length !== 1 ? "s" : ""} first`}
+            {allPlaced ? (
+              <span className="inline-flex items-center justify-center gap-2">
+                <Check className="h-5 w-5" aria-hidden="true" />
+                Check Timeline
+              </span>
+            ) : (
+              `Place all ${holding.length} remaining event${holding.length !== 1 ? "s" : ""} first`
+            )}
           </button>
         )}
 
         {isRevealed &&
           (isTodaysDaily ? (
             <div className="rounded-2xl border-2 border-foreground bg-card-yellow px-6 py-5 text-center">
-              <p className="font-display text-xl font-black">See you tomorrow! 👋</p>
+              <p className="font-display text-xl font-black inline-flex items-center justify-center gap-2">
+                <Hand className="h-5 w-5" aria-hidden="true" />
+                See you tomorrow!
+              </p>
               <p className="text-sm text-muted-foreground mt-1">
                 A new puzzle drops at midnight. Want more? Try the archive.
               </p>
@@ -612,7 +657,10 @@ export function TimelineGame() {
               className="block w-full py-3 rounded-2xl bg-foreground text-background font-bold text-base text-center
                 hover:opacity-90 active:scale-95 transition-all shadow-md"
             >
-              ← Back to archive
+              <span className="inline-flex items-center justify-center gap-2">
+                <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+                Back to archive
+              </span>
             </Link>
           ))}
       </div>

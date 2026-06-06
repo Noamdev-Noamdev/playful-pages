@@ -1,4 +1,4 @@
-import { Hash } from "lucide-react";
+import { Hash, Pencil, X } from "lucide-react";
 import type { Game } from "./types";
 import { useState, useCallback, useEffect } from "react";
 import { WinOverlay } from "./_WinOverlay";
@@ -144,7 +144,8 @@ function SudokuGame() {
         setNotes((prev) => {
           const next = prev.map((row) => row.map((cell) => [new Set(cell[0])]));
           const s = next[r][c][0];
-          s.has(num) ? s.delete(num) : s.add(num);
+          if (s.has(num)) s.delete(num);
+          else s.add(num);
           return next;
         });
         return;
@@ -300,7 +301,10 @@ function SudokuGame() {
           onClick={() => setNoteMode((v) => !v)}
           className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors border ${noteMode ? "bg-amber-400 border-amber-500 text-amber-900" : "bg-white border-slate-200 text-slate-500 hover:bg-slate-50"}`}
         >
-          ✏️ Notes {noteMode ? "ON" : "OFF"}
+          <span className="inline-flex items-center gap-2">
+            <Pencil className="h-4 w-4" aria-hidden="true" />
+            Notes {noteMode ? "ON" : "OFF"}
+          </span>
         </button>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
           <button
@@ -313,9 +317,10 @@ function SudokuGame() {
         ))}
         <button
           onClick={() => inputNumber(null)}
+          aria-label="Clear cell"
           className="w-9 h-9 rounded-lg bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-400 text-base font-bold transition-colors"
         >
-          ✕
+          <X className="h-4 w-4 mx-auto" aria-hidden="true" />
         </button>
       </div>
 

@@ -1,4 +1,5 @@
 import type { GameState } from "./types";
+import { AlertTriangle } from "lucide-react";
 
 function lerp(a: number, b: number, t: number) {
   return a + (b - a) * Math.min(1, Math.max(0, t));
@@ -271,9 +272,16 @@ function NuclearScene({ progress }: { progress: number }) {
           />
           {/* Warning symbol during incident */}
           {incidentT > 0.1 && recoveryT < 0.3 && (
-            <text x="152" y={198 - 30 * domeH} fontSize="18" fill="#fbbf24" opacity={incidentT}>
-              ⚠️
-            </text>
+            <AlertTriangle
+              x={152}
+              y={198 - 30 * domeH - 16}
+              width={18}
+              height={18}
+              opacity={incidentT}
+              strokeWidth={2}
+              style={{ color: "#fbbf24" }}
+              aria-hidden
+            />
           )}
         </g>
       )}

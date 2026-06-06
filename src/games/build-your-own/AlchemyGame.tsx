@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import { toast } from "sonner";
+import { FlaskConical, Lightbulb, Sparkles } from "lucide-react";
 import { ELEMENTS, COMBINATIONS, TOTAL, combineKey } from "./elements";
 import type { CanvasItem, DragState, Element } from "./types";
 import { getArchiveDates, getLevelByDate, formatDate } from "@/levels";
@@ -159,7 +160,8 @@ export function AlchemyGame() {
     }
     if (discovered.size >= totalCount && totalCount > 0 && !allFoundRef.current) {
       allFoundRef.current = true;
-      toast.success("All elements discovered! 🌌", {
+      toast.success("All elements discovered!", {
+        icon: <Sparkles className="h-4 w-4" aria-hidden />,
         description: "You've built the entire universe.",
       });
     }
@@ -382,7 +384,10 @@ export function AlchemyGame() {
           </div>
           {showHint && (
             <p className="text-sm text-foreground italic leading-snug">
-              💡 {todaysTarget.data.hint}
+              <span className="inline-flex items-start gap-2">
+                <Lightbulb className="h-4 w-4 mt-0.5" aria-hidden />
+                <span>{todaysTarget.data.hint}</span>
+              </span>
             </p>
           )}
         </div>
@@ -441,7 +446,7 @@ export function AlchemyGame() {
           >
             {canvasItems.length === 0 && (
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
-                <p className="text-4xl">⚗️</p>
+                <FlaskConical className="h-10 w-10 text-muted-foreground" aria-hidden />
                 <p className="text-muted-foreground text-sm font-medium">
                   Click elements to add them here
                 </p>
