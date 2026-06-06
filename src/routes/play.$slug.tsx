@@ -6,6 +6,7 @@ import { getGame } from "@/games";
 import { UnderConstruction } from "@/games/_UnderConstruction";
 import { DailyLocked } from "@/games/_DailyLocked";
 import { hasCompletedToday } from "@/lib/dailyLock";
+import { isDevMode } from "@/lib/devMode";
 
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
@@ -70,11 +71,11 @@ function PlayPage() {
   // Daily lock: only applies when playing today's daily (no ?date param).
   // Re-checked on focus so finishing a puzzle then returning shows the lock.
   const [locked, setLocked] = useState<boolean>(
-    () => !!game?.dailySlug && !date && hasCompletedToday(game.slug),
+    () => !!game?.dailySlug && !date && !isDevMode() && hasCompletedToday(game.slug),
   );
   useEffect(() => {
     if (!game?.dailySlug || date) return;
-    const check = () => setLocked(hasCompletedToday(game.slug));
+    const check = () => setLocked(!isDevMode() && hasCompletedToday(game.slug));
     check();
     window.addEventListener("focus", check);
     return () => window.removeEventListener("focus", check);
