@@ -327,6 +327,7 @@ function SignalGame() {
   const [won, setWon] = useState(false);
   const [pulseKey, setPulseKey] = useState("");
   const [checkStatus, setCheckStatus] = useState<null | { ok: boolean; msg: string }>(null);
+  const [showHelp, setShowHelp] = useState(false);
 
   const coverage = useMemo(
     () => (puzzle ? computeCoverage(puzzle.grid, towers) : null),
