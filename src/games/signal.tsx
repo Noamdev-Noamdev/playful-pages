@@ -1,4 +1,4 @@
-import { Radio } from "lucide-react";
+import { Radio, HelpCircle, X } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import type { Game } from "./types";
 import { WinOverlay } from "./_WinOverlay";
