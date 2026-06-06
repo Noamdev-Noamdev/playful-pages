@@ -457,14 +457,67 @@ function SignalGame() {
         )}
 
         {/* ── Puzzle header ────────────────────────────────────────────────── */}
-        <div className="text-center">
+        <div className="relative text-center">
           <p className="font-display text-2xl font-extrabold leading-tight text-foreground">
             {puzzle.title}
           </p>
           <p className="mx-auto max-w-sm text-sm leading-relaxed text-muted-foreground">
             {puzzle.hint}
           </p>
+          <button
+            type="button"
+            onClick={() => setShowHelp(true)}
+            aria-label="How to play"
+            className="absolute right-0 top-0 inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-foreground bg-card text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] active:translate-y-0 active:shadow-none"
+          >
+            <HelpCircle className="h-5 w-5" />
+          </button>
         </div>
+
+        {showHelp && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4"
+            onClick={() => setShowHelp(false)}
+          >
+            <div
+              className="relative w-full max-w-md rounded-3xl border-2 border-foreground bg-card p-6 shadow-[6px_6px_0_0_var(--foreground)]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setShowHelp(false)}
+                aria-label="Close"
+                className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-foreground bg-background text-foreground hover:-translate-y-0.5 hover:shadow-[2px_2px_0_0_var(--foreground)] transition-all"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <h2 className="font-display text-2xl font-black text-foreground">How to Play</h2>
+              <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground">
+                <p>Place signal towers on empty tiles.</p>
+                <p>
+                  Each tower sends signals up, down, left, and right until the signal hits a wall
+                  or reaches the edge of the board.
+                </p>
+                <div>
+                  <p>Numbered tiles show how many signals they need. For example:</p>
+                  <ul className="mt-2 ml-4 list-disc space-y-1">
+                    <li><span className="font-bold">1</span> = must be reached by exactly 1 tower</li>
+                    <li><span className="font-bold">2</span> = must be reached by exactly 2 towers</li>
+                    <li><span className="font-bold">3</span> = must be reached by exactly 3 towers</li>
+                  </ul>
+                </div>
+                <p>
+                  Your goal is to place towers so that every numbered tile receives exactly the
+                  required number of signals.
+                </p>
+                <p className="rounded-xl border-2 border-foreground bg-card-yellow p-3 font-semibold">
+                  Tip: A single tower can affect many tiles at once, so every placement matters.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
 
         {/* ── Progress ─────────────────────────────────────────────────────── */}
         <div className="flex items-center justify-center gap-3">
