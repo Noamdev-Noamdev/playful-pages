@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
 import { getGame } from "@/games";
 import { getArchiveDates, formatDate } from "@/levels";
+import { isDevMode } from "@/lib/devMode";
 
 export const Route = createFileRoute("/archive/$slug")({
   component: ArchiveForGame,
@@ -193,7 +194,7 @@ function ArchiveForGame() {
                   const isToday = cell.date === todayKey;
                   const isFuture = cell.date > todayKey;
                   const hasLevel = cell.dayNumber !== undefined;
-                  const isPlayable = hasLevel && !isFuture;
+                  const isPlayable = hasLevel && (!isFuture || isDevMode());
 
                   const base =
                     "relative aspect-square rounded-xl border-2 flex flex-col items-center justify-center transition-transform";
