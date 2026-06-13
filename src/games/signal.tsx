@@ -1,4 +1,4 @@
-import { Radio, HelpCircle, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, HelpCircle, Play, Radio, RotateCcw, X } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 import type { Game } from "./types";
 import { WinOverlay } from "./_WinOverlay";
@@ -34,6 +34,32 @@ interface RawPuzzle {
 }
 
 const GS = 6; // grid size
+const TUTORIAL_SIZE = 4;
+const TUTORIAL_GRID: PCell[][] = [
+  [{ kind: "empty" }, { kind: "blocked" }, { kind: "empty" }, { kind: "constraint", req: 1 }],
+  [{ kind: "empty" }, { kind: "empty" }, { kind: "blocked" }, { kind: "empty" }],
+  [{ kind: "blocked" }, { kind: "empty" }, { kind: "constraint", req: 2 }, { kind: "empty" }],
+  [{ kind: "empty" }, { kind: "empty" }, { kind: "blocked" }, { kind: "empty" }],
+];
+
+const TUTORIAL_STEPS = [
+  {
+    title: "Step 1: Place a tower",
+    body: "Click the pulsing empty tile. Towers can only go on empty spaces.",
+  },
+  {
+    title: "Step 2: Follow the signal",
+    body: "Signal travels up, down, left, and right. Blue tiles are being reached, and walls stop the beam immediately.",
+  },
+  {
+    title: "Step 3: Match the numbers",
+    body: "Click the second pulsing tile. The center 2 must see exactly two towers, while the 1 only needs one.",
+  },
+  {
+    title: "Step 4: Read the board",
+    body: "Green numbers are satisfied. In the full puzzle, every numbered tile must end in the correct state at the same time.",
+  },
+] as const;
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Parse JSON token grid → PCell grid
@@ -63,14 +89,19 @@ function parsePuzzle(raw: RawPuzzle): Puzzle {
    Core logic
 ───────────────────────────────────────────────────────────────────────────── */
 
+function makeTowersForSize(size: number): boolean[][] {
+  return Array.from({ length: size }, () => new Array<boolean>(size).fill(false));
+}
+
 function makeTowers(): boolean[][] {
-  return Array.from({ length: GS }, () => new Array<boolean>(GS).fill(false));
+  return makeTowersForSize(GS);
 }
 
 function computeCoverage(grid: PCell[][], towers: boolean[][]): number[][] {
-  const cov = Array.from({ length: GS }, () => new Array<number>(GS).fill(0));
-  for (let r = 0; r < GS; r++) {
-    for (let c = 0; c < GS; c++) {
+  const size = grid.length;
+  const cov = Array.from({ length: size }, () => new Array<number>(size).fill(0));
+  for (let r = 0; r < size; r++) {
+    for (let c = 0; c < size; c++) {
       if (!towers[r][c]) continue;
       for (const [dr, dc] of [
         [-1, 0],
@@ -80,7 +111,7 @@ function computeCoverage(grid: PCell[][], towers: boolean[][]): number[][] {
       ] as [number, number][]) {
         let nr = r + dr,
           nc = c + dc;
-        while (nr >= 0 && nr < GS && nc >= 0 && nc < GS) {
+        while (nr >= 0 && nr < size && nc >= 0 && nc < size) {
           if (grid[nr][nc].kind === "blocked") break;
           cov[nr][nc]++;
           nr += dr;
@@ -328,6 +359,11 @@ function SignalGame() {
   const [pulseKey, setPulseKey] = useState("");
   const [checkStatus, setCheckStatus] = useState<null | { ok: boolean; msg: string }>(null);
   const [showHelp, setShowHelp] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [tutorialStep, setTutorialStep] = useState(0);
+  const [tutorialTowers, setTutorialTowers] = useState<boolean[][]>(() =>
+    makeTowersForSize(TUTORIAL_SIZE),
+  );
 
   const coverage = useMemo(
     () => (puzzle ? computeCoverage(puzzle.grid, towers) : null),
@@ -335,6 +371,19 @@ function SignalGame() {
   );
   const solved = !!(puzzle && coverage && checkWin(puzzle.grid, coverage));
   const solutionTowers = useMemo(() => (puzzle ? solveTowers(puzzle.grid) : null), [puzzle]);
+  const tutorialCoverage = useMemo(
+    () => computeCoverage(TUTORIAL_GRID, tutorialTowers),
+    [tutorialTowers],
+  );
+  const firstTutorialTower = tutorialTowers[2][1];
+  const secondTutorialTower = tutorialTowers[2][3];
+  const tutorialCanAdvance =
+    (tutorialStep === 0 && firstTutorialTower) ||
+    tutorialStep === 1 ||
+    (tutorialStep === 2 && secondTutorialTower) ||
+    tutorialStep === 3;
+  const tutorialHighlight =
+    tutorialStep === 0 ? "2-1" : tutorialStep === 2 && !secondTutorialTower ? "2-3" : "";
 
   // Delay win overlay slightly so the last satisfaction animation can play
   useEffect(() => {
@@ -350,6 +399,14 @@ function SignalGame() {
       markDailyComplete(DAILY_SLUG);
     }
   }, [won, isTodaysDaily]);
+
+  useEffect(() => {
+    if (!showHelp) {
+      setShowTutorial(false);
+      setTutorialStep(0);
+      setTutorialTowers(makeTowersForSize(TUTORIAL_SIZE));
+    }
+  }, [showHelp]);
 
   if (!puzzle || !coverage) {
     return (
@@ -436,6 +493,35 @@ function SignalGame() {
     { label: "Check", fn: doCheck, disabled: false },
   ];
 
+  const resetTutorial = () => {
+    setTutorialStep(0);
+    setTutorialTowers(makeTowersForSize(TUTORIAL_SIZE));
+  };
+
+  const startTutorial = () => {
+    resetTutorial();
+    setShowTutorial(true);
+  };
+
+  const handleTutorialClick = (r: number, c: number) => {
+    if (TUTORIAL_GRID[r][c].kind !== "empty") return;
+    if (tutorialStep === 0 && r === 2 && c === 1) {
+      setTutorialTowers((prev) => {
+        const next = prev.map((row) => [...row]);
+        next[r][c] = true;
+        return next;
+      });
+      return;
+    }
+    if (tutorialStep === 2 && firstTutorialTower && r === 2 && c === 3) {
+      setTutorialTowers((prev) => {
+        const next = prev.map((row) => [...row]);
+        next[r][c] = true;
+        return next;
+      });
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -492,33 +578,136 @@ function SignalGame() {
                 <X className="h-4 w-4" />
               </button>
               <h2 className="font-display text-2xl font-black text-foreground">How to Play</h2>
-              <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground">
-                <p>Place signal towers on empty tiles.</p>
-                <p>
-                  Each tower sends signals up, down, left, and right until the signal hits a wall
-                  or reaches the edge of the board.
-                </p>
-                <div>
-                  <p>Numbered tiles show how many signals they need. For example:</p>
-                  <ul className="mt-2 ml-4 list-disc space-y-1">
-                    <li><span className="font-bold">1</span> = must be reached by exactly 1 tower</li>
-                    <li><span className="font-bold">2</span> = must be reached by exactly 2 towers</li>
-                    <li><span className="font-bold">3</span> = must be reached by exactly 3 towers</li>
-                  </ul>
+              {!showTutorial ? (
+                <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground">
+                  <p>Place signal towers on empty tiles.</p>
+                  <p>
+                    Each tower sends signals up, down, left, and right until the signal hits a wall
+                    or reaches the edge of the board.
+                  </p>
+                  <div>
+                    <p>Numbered tiles show how many signals they need. For example:</p>
+                    <ul className="ml-4 mt-2 list-disc space-y-1">
+                      <li>
+                        <span className="font-bold">1</span> = must be reached by exactly 1 tower
+                      </li>
+                      <li>
+                        <span className="font-bold">2</span> = must be reached by exactly 2 towers
+                      </li>
+                      <li>
+                        <span className="font-bold">3</span> = must be reached by exactly 3 towers
+                      </li>
+                    </ul>
+                  </div>
+                  <p>
+                    Your goal is to place towers so that every numbered tile receives exactly the
+                    required number of signals.
+                  </p>
+                  <p className="rounded-xl border-2 border-foreground bg-card-yellow p-3 font-semibold">
+                    Tip: A single tower can affect many tiles at once, so every placement matters.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={startTutorial}
+                    className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-4 py-2 font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                  >
+                    <Play className="h-4 w-4" aria-hidden="true" />
+                    Play tutorial
+                  </button>
                 </div>
-                <p>
-                  Your goal is to place towers so that every numbered tile receives exactly the
-                  required number of signals.
-                </p>
-                <p className="rounded-xl border-2 border-foreground bg-card-yellow p-3 font-semibold">
-                  Tip: A single tower can affect many tiles at once, so every placement matters.
-                </p>
-              </div>
+              ) : (
+                <div className="mt-4 space-y-4">
+                  <div className="flex items-start justify-between gap-3 rounded-2xl border-2 border-foreground bg-background p-3">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                        {TUTORIAL_STEPS[tutorialStep].title}
+                      </p>
+                      <p className="mt-1 text-sm leading-relaxed text-foreground">
+                        {TUTORIAL_STEPS[tutorialStep].body}
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full border border-foreground px-2 py-0.5 text-xs font-bold text-muted-foreground">
+                      {tutorialStep + 1}/{TUTORIAL_STEPS.length}
+                    </span>
+                  </div>
+
+                  <div className="rounded-2xl border-2 border-foreground bg-card p-4">
+                    <div className="mx-auto grid max-w-[224px] grid-cols-4 gap-[5px]">
+                      {TUTORIAL_GRID.map((row, r) =>
+                        row.map((cell, c) => (
+                          <GridCell
+                            key={`tutorial-${r}-${c}`}
+                            cell={cell}
+                            hasTower={tutorialTowers[r][c]}
+                            cov={tutorialCoverage[r][c]}
+                            pulsing={tutorialHighlight === `${r}-${c}`}
+                            highlighted={tutorialHighlight === `${r}-${c}`}
+                            onClick={() => handleTutorialClick(r, c)}
+                          />
+                        )),
+                      )}
+                    </div>
+
+                    <div className="mt-4 grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
+                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
+                        Empty cells are where towers can go.
+                      </div>
+                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
+                        Dark tiles are walls that block the beam.
+                      </div>
+                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
+                        Blue cells are being reached by signal right now.
+                      </div>
+                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
+                        Green numbered tiles are currently satisfied.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowTutorial(false)}
+                      className="rounded-xl border-2 border-foreground bg-background px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                    >
+                      Back to text
+                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={resetTutorial}
+                        className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-background px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                      >
+                        <RotateCcw className="h-4 w-4" aria-hidden="true" />
+                        Restart
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTutorialStep((step) => Math.max(0, step - 1))}
+                        disabled={tutorialStep === 0}
+                        className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-background px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                      >
+                        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                        Back
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setTutorialStep((step) => Math.min(TUTORIAL_STEPS.length - 1, step + 1))
+                        }
+                        disabled={!tutorialCanAdvance || tutorialStep === TUTORIAL_STEPS.length - 1}
+                        className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                      >
+                        Next
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
-
-
         {/* ── Progress ─────────────────────────────────────────────────────── */}
         <div className="flex items-center justify-center gap-3">
           <span className="text-xs font-semibold text-muted-foreground">
@@ -528,15 +717,7 @@ function SignalGame() {
 
         {/* ── Game board ───────────────────────────────────────────────────── */}
         <div className="rounded-3xl border-2 border-foreground bg-card p-4 sm:p-6">
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${GS}, 1fr)`,
-              gap: 5,
-              maxWidth: 352,
-              margin: "0 auto",
-            }}
-          >
+          <div className="mx-auto grid max-w-[352px] grid-cols-6 gap-[5px]">
             {puzzle.grid.map((row, r) =>
               row.map((cell, c) => (
                 <GridCell
@@ -623,10 +804,11 @@ interface GridCellProps {
   hasTower: boolean;
   cov: number;
   pulsing: boolean;
+  highlighted?: boolean;
   onClick: () => void;
 }
 
-function GridCell({ cell, hasTower, cov, pulsing, onClick }: GridCellProps) {
+function GridCell({ cell, hasTower, cov, pulsing, highlighted = false, onClick }: GridCellProps) {
   const { kind, req } = cell;
 
   const satisfied = kind === "constraint" && cov === req;
@@ -645,6 +827,7 @@ function GridCell({ cell, hasTower, cov, pulsing, onClick }: GridCellProps) {
     satisfied ? "bg-card-mint border-foreground" : "",
     over ? "bg-card-coral border-foreground" : "",
     partial ? "bg-card-yellow border-foreground" : "",
+    highlighted ? "ring-2 ring-foreground ring-offset-2 ring-offset-card" : "",
   ]
     .filter(Boolean)
     .join(" ");
