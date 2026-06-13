@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import { WinOverlay } from "../_WinOverlay";
 import { getRandomPuzzle } from "./puzzles";
 import type { Puzzle, PuzzleItem } from "./types";
+import { PromptIcon } from "@/lib/PromptIcon";
 import {
   ArrowLeft,
   ArrowRight,
@@ -259,7 +260,7 @@ export function RankGame() {
           </div>
         )}
         <h2 className="text-2xl font-extrabold tracking-tight text-foreground flex items-center justify-center gap-2">
-          <span>{puzzle.promptEmoji}</span>
+          <PromptIcon emoji={puzzle.promptEmoji} size={26} strokeWidth={2.25} />
           <span>{puzzle.prompt}</span>
         </h2>
         <p className="text-sm text-muted-foreground font-medium">{puzzle.metric}</p>
