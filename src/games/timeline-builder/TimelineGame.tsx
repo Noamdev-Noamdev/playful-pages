@@ -465,7 +465,7 @@ export function TimelineGame() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">{timeline.themeEmoji}</span>
+            <PromptIcon emoji={timeline.themeEmoji} size={26} strokeWidth={2.25} />
             <div>
               <p className="font-black text-foreground text-base leading-tight">{timeline.theme}</p>
               <p className="text-xs text-muted-foreground">{timeline.prompt}</p>
