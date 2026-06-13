@@ -25,6 +25,7 @@ import {
   X,
 } from "lucide-react";
 import { TIMELINES, sortedEvents } from "./timelines";
+import { PromptIcon } from "@/lib/PromptIcon";
 import type { Timeline, TimelineEvent, Phase, SlotResult } from "./types";
 import { getDailyLevel, getLevelByDate, formatDate } from "@/levels";
 import { DailyBadge } from "@/components/DailyBadge";

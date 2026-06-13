@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useMemo, useEffect } from "react";
 import { WinOverlay } from "../_WinOverlay";
 import { getRandomPuzzle } from "./puzzles";
 import type { Puzzle, PuzzleItem } from "./types";
+import { PromptIcon } from "@/lib/PromptIcon";
 import {
   ArrowLeft,
   ArrowRight,
