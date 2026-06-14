@@ -25,14 +25,22 @@ export const Route = createFileRoute("/play/$slug")({
       description: game.description,
     };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.title} — playpile` },
-          { name: "description", content: loaderData.description },
-        ]
-      : [],
-  }),
+  head: ({ loaderData, params }) => {
+    if (!loaderData) return { meta: [] };
+    const url = `https://playpilegames.lovable.app/play/${params.slug}`;
+    const title = `${loaderData.title} — Playpile`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: loaderData.description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: loaderData.description },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+    };
+  },
   notFoundComponent: () => (
     <div className="min-h-screen bg-background">
       <SiteNav showTabs={false} />

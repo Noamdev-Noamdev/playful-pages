@@ -18,14 +18,23 @@ export const Route = createFileRoute("/archive/$slug")({
       dailySlug: game.dailySlug,
     };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-        { title: `${loaderData.title} — Archive` },
-        { name: "description", content: `Play every past daily ${loaderData.title} puzzle.` },
-      ]
-      : [],
-  }),
+  head: ({ loaderData, params }) => {
+    if (!loaderData) return { meta: [] };
+    const url = `https://playpilegames.lovable.app/archive/${params.slug}`;
+    const title = `${loaderData.title} Archive — Playpile`;
+    const description = `Play every past daily ${loaderData.title} puzzle. Browse the full archive of daily ${loaderData.title} levels.`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+      ],
+      links: [{ rel: "canonical", href: url }],
+    };
+  },
   notFoundComponent: () => (
     <div className="min-h-screen bg-background">
       <SiteNav showTabs={false} />
