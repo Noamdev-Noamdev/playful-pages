@@ -1,0 +1,34 @@
+# Playpile
+
+> A pile of playful, original web experiments and classic logic puzzles — sudoku, tectonic, kakuro, futoshiki, and hand-built daily games.
+
+Playpile is a small collection of browser games. It mixes original
+daily games (rank anything, signal, timeline builder, reality check,
+how big, one decision) with freshly-painted classic logic puzzles
+(sudoku, tectonic, kakuro, futoshiki). Each game has its own daily
+puzzle and an archive of past days.
+
+## Pages
+
+- [Home](/): Browse all games — originals and classics.
+
+## Games
+
+- [Signal](/play/signal): Original daily game.
+- [Rank Anything](/play/rank-anything): Drag items into the right order.
+- [Build Your Own](/play/build-your-own): Build a daily creation.
+- [How Big](/play/how-big): Estimate sizes and scales.
+- [Timeline Builder](/play/timeline-builder): Place events on a timeline.
+- [Reality Check](/play/reality-check): Guess what's real.
+- [One Decision](/play/one-decision): One choice, lots of consequences.
+- [Mix Morph](/play/mix-morph): Blend things into new things.
+- [Sudoku](/play/sudoku): Classic 9×9 number puzzle.
+- [Tectonic](/play/tectonic): Region-based number logic puzzle.
+- [Kakuro](/play/kakuro): Crossword-style number sums.
+- [Futoshiki](/play/futoshiki): Inequality-based latin square.
+
+## Archives
+
+- [Signal archive](/archive/signal): Past daily Signal puzzles.
+- [Sudoku archive](/archive/sudoku): Past daily Sudoku puzzles.
+- [Tectonic archive](/archive/tectonic): Past daily Tectonic puzzles.

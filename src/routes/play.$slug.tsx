@@ -37,8 +37,25 @@ export const Route = createFileRoute("/play/$slug")({
         { property: "og:description", content: loaderData.description },
         { property: "og:url", content: url },
         { property: "og:type", content: "website" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: loaderData.description },
       ],
       links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: loaderData.title,
+            description: loaderData.description,
+            applicationCategory: "Game",
+            operatingSystem: "Web",
+            url,
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        },
+      ],
     };
   },
   notFoundComponent: () => (
@@ -51,9 +68,10 @@ export const Route = createFileRoute("/play/$slug")({
         </p>
         <Link
           to="/"
+          aria-label="Back to the Playpile home page"
           className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card-yellow px-5 py-2 font-semibold transition-transform hover:-translate-y-0.5"
         >
-          <ArrowLeft className="h-4 w-4" /> Back home
+          <ArrowLeft className="h-4 w-4" /> Back to all games
         </Link>
       </div>
     </div>
