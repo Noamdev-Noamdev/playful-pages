@@ -54,6 +54,7 @@ export function PlayCard({
     <Link
       to="/play/$slug"
       params={{ slug }}
+      aria-label={`Play ${title} — ${description}`}
       className="group relative block rounded-3xl border-2 border-foreground bg-card p-5 transition-all duration-200 hover:-translate-y-1 hover:rotate-[-0.5deg] hover:shadow-[6px_6px_0_0_var(--foreground)] sm:p-6"
     >
       <div
