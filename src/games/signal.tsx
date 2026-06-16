@@ -503,6 +503,11 @@ function SignalGame() {
     setShowTutorial(true);
   };
 
+  const completeTutorial = () => {
+    setShowTutorial(false);
+    setShowHelp(false);
+  };
+
   const handleTutorialClick = (r: number, c: number) => {
     if (TUTORIAL_GRID[r][c].kind !== "empty") return;
     if (tutorialStep === 0 && r === 2 && c === 1) {
@@ -690,17 +695,27 @@ function SignalGame() {
                         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                         Back
                       </button>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setTutorialStep((step) => Math.min(TUTORIAL_STEPS.length - 1, step + 1))
-                        }
-                        disabled={!tutorialCanAdvance || tutorialStep === TUTORIAL_STEPS.length - 1}
-                        className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
-                      >
-                        Next
-                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                      </button>
+                      {tutorialStep === TUTORIAL_STEPS.length - 1 ? (
+                        <button
+                          type="button"
+                          onClick={completeTutorial}
+                          className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                        >
+                          Complete tutorial
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setTutorialStep((step) => Math.min(TUTORIAL_STEPS.length - 1, step + 1))
+                          }
+                          disabled={!tutorialCanAdvance}
+                          className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                        >
+                          Next
+                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
