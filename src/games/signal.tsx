@@ -648,20 +648,6 @@ function SignalGame() {
                       )}
                     </div>
 
-                    <div className="mt-4 grid gap-2 text-xs text-muted-foreground sm:grid-cols-2">
-                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
-                        Empty cells are where towers can go.
-                      </div>
-                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
-                        Dark tiles are walls that block the beam.
-                      </div>
-                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
-                        Blue cells are being reached by signal right now.
-                      </div>
-                      <div className="rounded-xl border border-foreground/20 bg-background px-3 py-2">
-                        Green numbered tiles are currently satisfied.
-                      </div>
-                    </div>
                   </div>
 
                   <div className="flex flex-wrap items-center justify-between gap-2">
