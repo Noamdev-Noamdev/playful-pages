@@ -111,6 +111,9 @@ function PlayPage() {
 
   const Icon = game.icon;
   const GameComponent = game.Component;
+  const showSignalInlineBackToToday = !!date && game.slug === "signal";
+  const showSharedBackToToday = !!date && !!game.dailySlug && !showSignalInlineBackToToday;
+  const todayHref = `/play/${game.slug}`;
 
   return (
     <div className="min-h-screen bg-background">
@@ -137,37 +140,57 @@ function PlayPage() {
             </div>
           </div>
 
-          {game.dailySlug && (
-            <Link
-              to="/archive/$slug"
-              params={{ slug: game.slug }}
-              className="hidden shrink-0 items-center gap-2 self-center rounded-full border-2 border-foreground bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 sm:inline-flex"
-            >
-              <CalendarDays className="h-4 w-4" /> Archive
-            </Link>
-          )}
+          <div className="hidden shrink-0 flex-col items-end gap-2 self-center sm:flex">
+            {game.dailySlug && (
+              <Link
+                to="/archive/$slug"
+                params={{ slug: game.slug }}
+                className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5"
+              >
+                <CalendarDays className="h-4 w-4" /> Archive
+              </Link>
+            )}
+          </div>
         </div>
 
         <p className="mt-6 max-w-xl text-lg text-muted-foreground">{game.description}</p>
 
         {game.dailySlug && (
-          <Link
-            to="/archive/$slug"
-            params={{ slug: game.slug }}
-            className="mt-4 inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 sm:hidden"
-          >
-            <CalendarDays className="h-4 w-4" /> Archive
-          </Link>
+          <div className="mt-4 flex flex-wrap items-center gap-2 sm:hidden">
+            {game.dailySlug && (
+              <Link
+                to="/archive/$slug"
+                params={{ slug: game.slug }}
+                className="inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5"
+              >
+                <CalendarDays className="h-4 w-4" /> Archive
+              </Link>
+            )}
+          </div>
         )}
 
-        <div className="mt-12">
-          {game.underConstruction ? (
-            <UnderConstruction name={game.title} />
-          ) : locked ? (
-            <DailyLocked slug={game.slug} title={game.title} />
-          ) : (
-            <GameComponent />
+        <div className="relative mt-12">
+          {showSharedBackToToday && (
+            <a
+              href={todayHref}
+              aria-label="Back to today"
+              className="absolute left-0 top-0 inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-foreground bg-background text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] active:translate-y-0 active:shadow-none sm:h-8 sm:w-auto sm:gap-1.5 sm:px-3"
+            >
+              <ArrowLeft className="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
+              <span className="hidden text-[11px] font-black uppercase tracking-wide sm:inline">
+                Back to today
+              </span>
+            </a>
           )}
+          <div className={showSharedBackToToday ? "pt-12 sm:pt-10" : ""}>
+            {game.underConstruction ? (
+              <UnderConstruction name={game.title} />
+            ) : locked ? (
+              <DailyLocked slug={game.slug} title={game.title} />
+            ) : (
+              <GameComponent />
+            )}
+          </div>
         </div>
       </main>
     </div>

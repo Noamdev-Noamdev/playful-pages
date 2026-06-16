@@ -548,7 +548,19 @@ function SignalGame() {
         )}
 
         {/* ── Puzzle header ────────────────────────────────────────────────── */}
-        <div className="relative text-center">
+        <div className="relative px-12 text-center sm:px-28">
+          {!isTodaysDaily && (
+            <a
+              href={`/play/${DAILY_SLUG}`}
+              aria-label="Back to today"
+              className="absolute left-0 top-0 inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-foreground bg-background text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] active:translate-y-0 active:shadow-none sm:h-8 sm:w-auto sm:gap-1.5 sm:px-3"
+            >
+              <ArrowLeft className="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
+              <span className="hidden text-[11px] font-black uppercase tracking-wide sm:inline">
+                Back to today
+              </span>
+            </a>
+          )}
           <p className="font-display text-2xl font-extrabold leading-tight text-foreground">
             {puzzle.title}
           </p>
@@ -652,7 +664,6 @@ function SignalGame() {
                         )),
                       )}
                     </div>
-
                   </div>
 
                   <div className="flex flex-wrap items-center justify-between gap-2">
