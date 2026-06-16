@@ -25,31 +25,28 @@ function NotFoundComponent() {
   );
 }
 
+const SITE_TITLE = "Playpile — Daily Games and Logic Puzzles";
+const SITE_DESCRIPTION =
+  "Playpile is a hand-built pile of original daily games and classic logic puzzles — sudoku, tectonic, kakuro, futoshiki, and more. A fresh puzzle every day.";
+const OG_IMAGE =
+  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png";
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Playpile" },
-      { name: "description", content: "Hand-built games everyday" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Playpile" },
-      { property: "og:description", content: "Hand-built games everyday" },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
+      { property: "og:site_name", content: "Playpile" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Playpile" },
-      { name: "twitter:description", content: "Hand-built games everyday" },
-      {
-        property: "og:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png",
-      },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESCRIPTION },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -61,6 +58,27 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Playpile",
+          url: "https://playpilegames.lovable.app/",
+          description: SITE_DESCRIPTION,
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Playpile",
+          url: "https://playpilegames.lovable.app/",
+        }),
       },
     ],
   }),
