@@ -111,8 +111,8 @@ function PlayPage() {
 
   const Icon = game.icon;
   const GameComponent = game.Component;
-  const showSignalInlineBackToToday = !!date && game.slug === "signal";
-  const showSharedBackToToday = !!date && !!game.dailySlug && !showSignalInlineBackToToday;
+  const showInlineBackToToday = !!date && ["signal", "region-cut"].includes(game.slug);
+  const showSharedBackToToday = !!date && !!game.dailySlug && !showInlineBackToToday;
   const todayHref = `/play/${game.slug}`;
 
   return (

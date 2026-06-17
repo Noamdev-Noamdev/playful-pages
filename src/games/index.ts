@@ -13,17 +13,18 @@ import Sudoku from "./sudoku";
 import Tectonic from "./tectonic";
 import Kakuro from "./kakuro";
 import Futoshiki from "./futoshiki";
+import RegionCut from "./region-cut";
 
 // Register every game here — one line per game.
 export const games: Game[] = [
   Signal,
+  RegionCut,
   RankAnything,
   BuildYourOwn,
   HowBig,
   TimelineBuilder,
   RealityCheck,
   OneDecision,
-  MixMorph,
   Sudoku,
   Tectonic,
   Kakuro,
