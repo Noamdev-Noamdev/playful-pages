@@ -6,6 +6,8 @@ import {
   HelpCircle,
   X,
   ArrowLeft,
+  ArrowRight,
+  Play,
 } from "lucide-react";
 import { useState, useMemo, useCallback, useEffect, useRef } from "react";
 import type { Game } from "./types";
@@ -19,7 +21,7 @@ import {
   computeRegionSums,
   getRegionStates,
   checkWin,
-  checkAgainstSolution,
+  checkAgainstSolutions,
 } from "./region-cut/logic";
 import type { RawRegionCutPuzzle } from "./region-cut/puzzles";
 import { parsePuzzle } from "./region-cut/puzzles";
@@ -30,6 +32,35 @@ const DAILY_SLUG = "region-cut";
 const ROWS = 6;
 const COLS = 6;
 const CELL = 52; // px per cell
+const TUTORIAL_ROWS = 2;
+const TUTORIAL_COLS = 3;
+const TUTORIAL_CELL = 52;
+
+const TUTORIAL_GRID = [
+  [1, 2, 1],
+  [2, 1, 2],
+];
+const TUTORIAL_TARGET = 3;
+const TUTORIAL_FIRST_DIVIDER = [borderKey(0, 0, 0, 1), borderKey(1, 0, 1, 1)];
+const TUTORIAL_SECOND_DIVIDER = [borderKey(0, 1, 0, 2), borderKey(1, 1, 1, 2)];
+const TUTORIAL_STEPS = [
+  {
+    title: "Step 1: Draw your first cut",
+    body: "Drag down the pulsing gap to place a border. Borders split the board into separate regions.",
+  },
+  {
+    title: "Step 2: Read the sums",
+    body: "Each region shows its current total.",
+  },
+  {
+    title: "Step 3: Finish the split",
+    body: "Draw the second glowing border to break the remaining cells into another target-sized region.",
+  },
+  {
+    title: "Step 4: Match every region",
+    body: "When every region hits the target sum, the whole puzzle is solved. That is the goal on the full board too.",
+  },
+] as const;
 
 // Pastel palette aligned with the main Playpile card colors
 const REGION_COLORS = [
@@ -54,12 +85,12 @@ interface EdgeInfo {
   dir: "h" | "v"; // h = horizontal (between rows), v = vertical (between cols)
 }
 
-function getAllEdges(): EdgeInfo[] {
+function getAllEdges(rows: number, cols: number): EdgeInfo[] {
   const edges: EdgeInfo[] = [];
-  for (let r = 0; r < ROWS; r++) {
-    for (let c = 0; c < COLS; c++) {
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
       // Right neighbor
-      if (c < COLS - 1) {
+      if (c < cols - 1) {
         edges.push({
           key: borderKey(r, c, r, c + 1),
           r1: r,
@@ -70,7 +101,7 @@ function getAllEdges(): EdgeInfo[] {
         });
       }
       // Bottom neighbor
-      if (r < ROWS - 1) {
+      if (r < rows - 1) {
         edges.push({
           key: borderKey(r, c, r + 1, c),
           r1: r,
@@ -84,8 +115,8 @@ function getAllEdges(): EdgeInfo[] {
   }
   return edges;
 }
-
-const ALL_EDGES = getAllEdges();
+const ALL_EDGES = getAllEdges(ROWS, COLS);
+const TUTORIAL_EDGES = getAllEdges(TUTORIAL_ROWS, TUTORIAL_COLS);
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -115,10 +146,14 @@ function RegionCutGame() {
   const [won, setWon] = useState(false);
   const [checkStatus, setCheckStatus] = useState<null | { ok: boolean; msg: string }>(null);
   const [showHelp, setShowHelp] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(false);
+  const [tutorialStep, setTutorialStep] = useState(0);
+  const [tutorialBorders, setTutorialBorders] = useState<Set<string>>(() => new Set());
 
   // Drag state
   const [isDragging, setIsDragging] = useState(false);
   const dragModeRef = useRef<"add" | "remove">("add");
+  const [tutorialIsDragging, setTutorialIsDragging] = useState(false);
 
   // ── Derived state ───────────────────────────────────────────────────────
   const { regionMap, regions } = useMemo(() => {
@@ -131,10 +166,37 @@ function RegionCutGame() {
     return getRegionStates(regions, puzzle.targetSum);
   }, [puzzle, regions]);
 
+  const { regionMap: tutorialRegionMap, regions: tutorialRegions } = useMemo(() => {
+    return computeRegions(TUTORIAL_ROWS, TUTORIAL_COLS, tutorialBorders);
+  }, [tutorialBorders]);
+
+  const tutorialRegionStates = useMemo(() => {
+    computeRegionSums(TUTORIAL_GRID, tutorialRegions);
+    return getRegionStates(tutorialRegions, TUTORIAL_TARGET);
+  }, [tutorialRegions]);
+
   const solved = useMemo(() => {
     if (!puzzle) return false;
     return checkWin(regions, puzzle.targetSum);
   }, [puzzle, regions]);
+
+  const firstTutorialDividerDone = TUTORIAL_FIRST_DIVIDER.every((edge) =>
+    tutorialBorders.has(edge),
+  );
+  const secondTutorialDividerDone = TUTORIAL_SECOND_DIVIDER.every((edge) =>
+    tutorialBorders.has(edge),
+  );
+  const tutorialCanAdvance =
+    (tutorialStep === 0 && firstTutorialDividerDone) ||
+    tutorialStep === 1 ||
+    (tutorialStep === 2 && secondTutorialDividerDone) ||
+    tutorialStep === 3;
+  const tutorialHighlightedEdges =
+    tutorialStep === 0 && !firstTutorialDividerDone
+      ? new Set(TUTORIAL_FIRST_DIVIDER)
+      : tutorialStep === 2 && !secondTutorialDividerDone
+        ? new Set(TUTORIAL_SECOND_DIVIDER)
+        : new Set<string>();
 
   // Delay win overlay
   useEffect(() => {
@@ -200,6 +262,21 @@ function RegionCutGame() {
     return () => window.removeEventListener("pointerup", handlePointerUp);
   }, []);
 
+  useEffect(() => {
+    const handlePointerUp = () => setTutorialIsDragging(false);
+    window.addEventListener("pointerup", handlePointerUp);
+    return () => window.removeEventListener("pointerup", handlePointerUp);
+  }, []);
+
+  useEffect(() => {
+    if (!showHelp) {
+      setShowTutorial(false);
+      setTutorialStep(0);
+      setTutorialBorders(new Set());
+      setTutorialIsDragging(false);
+    }
+  }, [showHelp]);
+
   // ── Controls ───────────────────────────────────────────────────────────
   const doReset = useCallback(() => {
     setHistory([]);
@@ -217,9 +294,9 @@ function RegionCutGame() {
 
   const doCheck = useCallback(() => {
     if (!puzzle) return;
-    const result = checkAgainstSolution(borders, puzzle.solutionBorders);
+    const result = checkAgainstSolutions(borders, puzzle.validSolutionBorders);
 
-    if (result.wrong.length > 0) {
+    if (!result.compatible) {
       setCheckStatus({
         ok: false,
         msg: "Not quite — at least one border is in the wrong place.",
@@ -227,7 +304,7 @@ function RegionCutGame() {
       return;
     }
 
-    if (result.missing.length === 0) {
+    if (result.exact) {
       setCheckStatus({ ok: true, msg: "Perfect — all borders are correct!" });
       return;
     }
@@ -237,6 +314,57 @@ function RegionCutGame() {
       msg: "So far so good — all placed borders are correct.",
     });
   }, [puzzle, borders]);
+
+  const resetTutorial = useCallback(() => {
+    setTutorialStep(0);
+    setTutorialBorders(new Set());
+    setTutorialIsDragging(false);
+  }, []);
+
+  const startTutorial = useCallback(() => {
+    resetTutorial();
+    setShowTutorial(true);
+  }, [resetTutorial]);
+
+  const completeTutorial = useCallback(() => {
+    setShowTutorial(false);
+    setShowHelp(false);
+  }, []);
+
+  const tutorialStepAllowedEdges = useMemo(() => {
+    return tutorialStep === 0
+      ? TUTORIAL_FIRST_DIVIDER
+      : tutorialStep === 2
+        ? TUTORIAL_SECOND_DIVIDER
+        : [];
+  }, [tutorialStep]);
+
+  const handleTutorialEdgePointerDown = useCallback(
+    (edgeKey: string) => {
+      if (!tutorialStepAllowedEdges.includes(edgeKey)) return;
+      setTutorialIsDragging(true);
+      setTutorialBorders((prev) => {
+        if (prev.has(edgeKey)) return prev;
+        const next = new Set(prev);
+        next.add(edgeKey);
+        return next;
+      });
+    },
+    [tutorialStepAllowedEdges],
+  );
+
+  const handleTutorialEdgePointerEnter = useCallback(
+    (edgeKey: string) => {
+      if (!tutorialIsDragging || !tutorialStepAllowedEdges.includes(edgeKey)) return;
+      setTutorialBorders((prev) => {
+        if (prev.has(edgeKey)) return prev;
+        const next = new Set(prev);
+        next.add(edgeKey);
+        return next;
+      });
+    },
+    [tutorialIsDragging, tutorialStepAllowedEdges],
+  );
 
   // ── Render ─────────────────────────────────────────────────────────────
   if (!puzzle) {
@@ -354,34 +482,301 @@ function RegionCutGame() {
                 <X className="h-4 w-4" />
               </button>
               <h2 className="font-display text-2xl font-black text-foreground">How to Play</h2>
-              <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground">
-                <p>
-                  Draw borders between cells to divide the grid into <strong>regions</strong>.
-                </p>
-                <p>
-                  Each region must be a connected group of cells whose numbers add up to the{" "}
-                  <strong>target sum</strong>.
-                </p>
-                <div>
-                  <p>Controls:</p>
-                  <ul className="ml-4 mt-2 list-disc space-y-1">
-                    <li>
-                      <strong>Click</strong> between two cells to place or remove a border
-                    </li>
-                    <li>
-                      <strong>Click and drag</strong> to draw or erase multiple borders at once
-                    </li>
-                  </ul>
+              {!showTutorial ? (
+                <div className="mt-3 space-y-3 text-sm leading-relaxed text-foreground">
+                  <p>Draw borders between cells to divide the grid into regions.</p>
+                  <p>
+                    Every region must stay connected and add up to exactly the target sum shown
+                    above the board.
+                  </p>
+                  <div>
+                    <p>Controls:</p>
+                    <ul className="ml-4 mt-2 list-disc space-y-1">
+                      <li>
+                        <span className="font-bold">Click</span> between two cells to place or
+                        remove a border
+                      </li>
+                      <li>
+                        <span className="font-bold">Click and drag</span> to draw several borders in
+                        one motion
+                      </li>
+                    </ul>
+                  </div>
+                  <p>
+                    Each region shows its current total. Green regions are correct, gray regions
+                    need more work, and red regions have gone over the target.
+                  </p>
+                  <p className="rounded-xl border-2 border-foreground bg-card-yellow p-3 font-semibold">
+                    Tip: Use Check any time to confirm whether your placed borders are correct so
+                    far.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={startTutorial}
+                    className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-4 py-2 font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                  >
+                    <Play className="h-4 w-4" aria-hidden="true" />
+                    Play tutorial
+                  </button>
                 </div>
-                <p>
-                  Regions show their current sum. When a region matches the target, it glows{" "}
-                  <span className="font-bold text-emerald-600">green</span>.
-                </p>
-                <p className="rounded-xl border-2 border-foreground bg-card-yellow p-3 font-semibold">
-                  Tip: Use the Check button to verify your progress — it will tell you if any placed
-                  borders are wrong.
-                </p>
-              </div>
+              ) : (
+                <div className="mt-4 space-y-4">
+                  <div className="flex items-start justify-between gap-3 rounded-2xl border-2 border-foreground bg-background p-3">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                        {TUTORIAL_STEPS[tutorialStep].title}
+                      </p>
+                      <p className="mt-1 text-sm leading-relaxed text-foreground">
+                        {TUTORIAL_STEPS[tutorialStep].body}
+                      </p>
+                    </div>
+                    <span className="shrink-0 rounded-full border border-foreground px-2 py-0.5 text-xs font-bold text-muted-foreground">
+                      {tutorialStep + 1}/{TUTORIAL_STEPS.length}
+                    </span>
+                  </div>
+
+                  <div className="rounded-2xl border-2 border-foreground bg-card p-4">
+                    <div
+                      className="relative mx-auto select-none"
+                      style={{
+                        width: TUTORIAL_COLS * TUTORIAL_CELL,
+                        height: TUTORIAL_ROWS * TUTORIAL_CELL,
+                      }}
+                    >
+                      {Array.from({ length: TUTORIAL_ROWS }, (_, r) =>
+                        Array.from({ length: TUTORIAL_COLS }, (_, c) => {
+                          const regionId = tutorialRegionMap[r][c];
+                          const state = tutorialRegionStates.get(regionId);
+                          const bgColor = REGION_COLORS[regionId % REGION_COLORS.length];
+
+                          let overlayColor = "transparent";
+                          if (state === "valid") overlayColor = "rgba(52, 211, 153, 0.15)";
+                          else if (state === "over") overlayColor = "rgba(239, 68, 68, 0.1)";
+
+                          return (
+                            <div
+                              key={`tutorial-cell-${r}-${c}`}
+                              className={[
+                                "absolute z-0 flex items-center justify-center border border-foreground/10",
+                                state === "valid" ? "rc-valid-glow" : "",
+                              ].join(" ")}
+                              style={{
+                                left: c * TUTORIAL_CELL,
+                                top: r * TUTORIAL_CELL,
+                                width: TUTORIAL_CELL,
+                                height: TUTORIAL_CELL,
+                                backgroundColor: bgColor,
+                                transition: "background-color 0.3s ease",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  inset: 0,
+                                  backgroundColor: overlayColor,
+                                  transition: "background-color 0.4s ease",
+                                  pointerEvents: "none",
+                                }}
+                              />
+                              <span className="relative z-[1] text-lg font-black text-foreground">
+                                {TUTORIAL_GRID[r][c]}
+                              </span>
+                            </div>
+                          );
+                        }),
+                      )}
+
+                      {Array.from({ length: TUTORIAL_ROWS - 1 }, (_, r) => (
+                        <div
+                          key={`tutorial-hline-${r}`}
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            top: (r + 1) * TUTORIAL_CELL,
+                            width: TUTORIAL_COLS * TUTORIAL_CELL,
+                            height: 1,
+                            backgroundColor: "rgba(148, 163, 184, 0.25)",
+                            zIndex: 1,
+                            pointerEvents: "none",
+                          }}
+                        />
+                      ))}
+                      {Array.from({ length: TUTORIAL_COLS - 1 }, (_, c) => (
+                        <div
+                          key={`tutorial-vline-${c}`}
+                          style={{
+                            position: "absolute",
+                            left: (c + 1) * TUTORIAL_CELL,
+                            top: 0,
+                            width: 1,
+                            height: TUTORIAL_ROWS * TUTORIAL_CELL,
+                            backgroundColor: "rgba(148, 163, 184, 0.25)",
+                            zIndex: 1,
+                            pointerEvents: "none",
+                          }}
+                        />
+                      ))}
+
+                      {TUTORIAL_EDGES.map((edge) => {
+                        if (!tutorialBorders.has(edge.key)) return null;
+                        const isH = edge.dir === "h";
+                        return (
+                          <div
+                            key={`tutorial-border-${edge.key}`}
+                            className="rounded-full shadow-[1px_1px_0_0_var(--foreground)]"
+                            style={{
+                              position: "absolute",
+                              left: isH
+                                ? Math.min(edge.c1, edge.c2) * TUTORIAL_CELL
+                                : (edge.c1 + 1) * TUTORIAL_CELL - 2,
+                              top: isH
+                                ? (edge.r1 + 1) * TUTORIAL_CELL - 2
+                                : Math.min(edge.r1, edge.r2) * TUTORIAL_CELL,
+                              width: isH ? TUTORIAL_CELL : 4,
+                              height: isH ? 4 : TUTORIAL_CELL,
+                              backgroundColor: "#1e293b",
+                              borderRadius: 2,
+                              zIndex: 3,
+                              pointerEvents: "none",
+                            }}
+                          />
+                        );
+                      })}
+
+                      {TUTORIAL_EDGES.map((edge) => {
+                        const isH = edge.dir === "h";
+                        const hitSize = 16;
+                        const highlighted = tutorialHighlightedEdges.has(edge.key);
+                        return (
+                          <div
+                            key={`tutorial-hit-${edge.key}`}
+                            className={[
+                              "rc-edge-zone",
+                              highlighted ? "animate-pulse bg-card-sky/50" : "",
+                            ].join(" ")}
+                            style={{
+                              position: "absolute",
+                              left: isH
+                                ? Math.min(edge.c1, edge.c2) * TUTORIAL_CELL
+                                : (edge.c1 + 1) * TUTORIAL_CELL - hitSize / 2,
+                              top: isH
+                                ? (edge.r1 + 1) * TUTORIAL_CELL - hitSize / 2
+                                : Math.min(edge.r1, edge.r2) * TUTORIAL_CELL,
+                              width: isH ? TUTORIAL_CELL : hitSize,
+                              height: isH ? hitSize : TUTORIAL_CELL,
+                              zIndex: 5,
+                              touchAction: "none",
+                              borderRadius: 2,
+                              boxShadow: highlighted ? "0 0 0 2px rgba(30, 41, 59, 0.25)" : "none",
+                            }}
+                            onPointerDown={(e) => {
+                              e.preventDefault();
+                              handleTutorialEdgePointerDown(edge.key);
+                            }}
+                            onPointerEnter={() => handleTutorialEdgePointerEnter(edge.key)}
+                          />
+                        );
+                      })}
+
+                      {tutorialRegions.map((region) => {
+                        if (region.cells.length === 0) return null;
+
+                        let sumR = 0;
+                        let sumC = 0;
+                        for (const [r, c] of region.cells) {
+                          sumR += r;
+                          sumC += c;
+                        }
+
+                        const centR = sumR / region.cells.length;
+                        const centC = sumC / region.cells.length;
+                        const state = tutorialRegionStates.get(region.id);
+                        const color =
+                          state === "valid" ? "#059669" : state === "over" ? "#dc2626" : "#64748b";
+
+                        return (
+                          <div
+                            key={`tutorial-label-${region.id}`}
+                            className="pointer-events-none absolute z-[4] whitespace-nowrap rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold tracking-[0.02em] shadow-sm"
+                            style={{
+                              left: (centC + 0.5) * TUTORIAL_CELL,
+                              top: (centR + 0.5) * TUTORIAL_CELL,
+                              transform: "translate(-50%, -50%)",
+                              color,
+                              backgroundColor: "rgba(255, 255, 255, 0.88)",
+                              border: `1px solid ${state === "valid" ? "rgba(5, 150, 105, 0.3)" : state === "over" ? "rgba(220, 38, 38, 0.3)" : "rgba(148, 163, 184, 0.3)"}`,
+                              transition: "color 0.3s ease, border-color 0.3s ease",
+                            }}
+                          >
+                            {region.sum}
+                            <span style={{ opacity: 0.5 }}> / {TUTORIAL_TARGET}</span>
+                          </div>
+                        );
+                      })}
+
+                      <div
+                        style={{
+                          position: "absolute",
+                          inset: -2,
+                          border: "3px solid #1e293b",
+                          pointerEvents: "none",
+                          zIndex: 6,
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setShowTutorial(false)}
+                      className="rounded-xl border-2 border-foreground bg-background px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                    >
+                      Back to text
+                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={resetTutorial}
+                        className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-background px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                      >
+                        <RotateCcw className="h-4 w-4" aria-hidden="true" />
+                        Restart
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTutorialStep((step) => Math.max(0, step - 1))}
+                        disabled={tutorialStep === 0}
+                        className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-background px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                      >
+                        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+                        Back
+                      </button>
+                      {tutorialStep === TUTORIAL_STEPS.length - 1 ? (
+                        <button
+                          type="button"
+                          onClick={completeTutorial}
+                          className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)]"
+                        >
+                          Complete tutorial
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setTutorialStep((step) => Math.min(TUTORIAL_STEPS.length - 1, step + 1))
+                          }
+                          disabled={!tutorialCanAdvance}
+                          className="inline-flex items-center gap-2 rounded-xl border-2 border-foreground bg-card-sky px-3 py-2 text-sm font-bold text-foreground transition-all hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--foreground)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+                        >
+                          Next
+                          <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -660,7 +1055,7 @@ const RegionCut: Game = {
   title: "Region Cut",
   description: "Draw borders to split the grid into regions that each hit the target sum.",
   icon: Grid2x2Check,
-  color: "sky",
+  color: "peach",
   category: "originals",
   Component: RegionCutGame,
   dailySlug: "region-cut",

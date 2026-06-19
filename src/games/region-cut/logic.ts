@@ -1,12 +1,7 @@
 // ─── Region Cut — Pure game logic ──────────────────────────────────────────
 
 /** Canonical key for a border between two adjacent cells. Always sorted. */
-export function borderKey(
-  r1: number,
-  c1: number,
-  r2: number,
-  c2: number,
-): string {
+export function borderKey(r1: number, c1: number, r2: number, c2: number): string {
   if (r1 < r2 || (r1 === r2 && c1 < c2)) return `${r1},${c1}-${r2},${c2}`;
   return `${r2},${c2}-${r1},${c1}`;
 }
@@ -27,9 +22,7 @@ export function computeRegions(
   cols: number,
   borders: Set<string>,
 ): { regionMap: number[][]; regions: RegionInfo[] } {
-  const regionMap: number[][] = Array.from({ length: rows }, () =>
-    new Array(cols).fill(-1),
-  );
+  const regionMap: number[][] = Array.from({ length: rows }, () => new Array(cols).fill(-1));
   const regions: RegionInfo[] = [];
   let regionId = 0;
 
@@ -77,10 +70,7 @@ export function computeRegions(
 }
 
 /** Compute region sums given a grid of numbers and region info. */
-export function computeRegionSums(
-  grid: number[][],
-  regions: RegionInfo[],
-): void {
+export function computeRegionSums(grid: number[][], regions: RegionInfo[]): void {
   for (const region of regions) {
     let sum = 0;
     for (const [r, c] of region.cells) {
@@ -107,10 +97,7 @@ export function getRegionStates(
 }
 
 /** Check if the puzzle is solved: every region sums to targetSum. */
-export function checkWin(
-  regions: RegionInfo[],
-  targetSum: number,
-): boolean {
+export function checkWin(regions: RegionInfo[], targetSum: number): boolean {
   if (regions.length === 0) return false;
   return regions.every((r) => r.sum === targetSum);
 }
@@ -139,4 +126,56 @@ export function checkAgainstSolution(
   }
 
   return { correct, wrong, missing };
+}
+
+export function checkAgainstSolutions(
+  currentBorders: Set<string>,
+  solutionBordersList: Set<string>[],
+): { correct: string[]; wrong: string[]; missing: string[]; exact: boolean; compatible: boolean } {
+  if (solutionBordersList.length === 0) {
+    return {
+      correct: [],
+      wrong: Array.from(currentBorders),
+      missing: [],
+      exact: false,
+      compatible: false,
+    };
+  }
+
+  const comparisons = solutionBordersList.map((solutionBorders) =>
+    checkAgainstSolution(currentBorders, solutionBorders),
+  );
+
+  const exactMatch = comparisons.find(
+    (comparison) => comparison.wrong.length === 0 && comparison.missing.length === 0,
+  );
+  if (exactMatch) {
+    return {
+      ...exactMatch,
+      exact: true,
+      compatible: true,
+    };
+  }
+
+  const partialMatch = comparisons
+    .filter((comparison) => comparison.wrong.length === 0)
+    .sort((a, b) => a.missing.length - b.missing.length)[0];
+
+  if (partialMatch) {
+    return {
+      ...partialMatch,
+      exact: false,
+      compatible: true,
+    };
+  }
+
+  const closestMismatch = comparisons.sort(
+    (a, b) => a.wrong.length - b.wrong.length || a.missing.length - b.missing.length,
+  )[0];
+
+  return {
+    ...closestMismatch,
+    exact: false,
+    compatible: false,
+  };
 }

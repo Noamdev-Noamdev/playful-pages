@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "node --test src/levels/signal/generator.test.mjs"
+    "test": "node --test src/levels/signal/generator.test.mjs src/levels/region-cut/generator.test.mjs"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
