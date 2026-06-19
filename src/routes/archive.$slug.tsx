@@ -20,7 +20,7 @@ export const Route = createFileRoute("/archive/$slug")({
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [] };
-    const url = `https://playpilegames.lovable.app/archive/${params.slug}`;
+    const url = `https://playpile.org/archive/${params.slug}`;
     const title = `${loaderData.title} Archive — Playpile`;
     const description = `Play every past daily ${loaderData.title} puzzle. Browse the full archive of daily ${loaderData.title} levels.`;
     return {

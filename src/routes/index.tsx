@@ -7,7 +7,7 @@ import { originals, classics, games } from "@/games";
 const HOME_TITLE = "Playpile — Daily Games and Logic Puzzles";
 const HOME_DESCRIPTION =
   "A pile of playful, original web experiments and classic logic puzzles — sudoku, tectonic, kakuro, futoshiki, and a new daily game every day.";
-const HOME_URL = "https://playpilegames.lovable.app/";
+const HOME_URL = "https://playpile.org/";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
               "@type": "Game",
               name: g.title,
               description: g.description,
-              url: `https://playpilegames.lovable.app/play/${g.slug}`,
+              url: `https://playpile.org/play/${g.slug}`,
             })),
         }),
       },

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { games } from "@/games";
 
-const BASE_URL = "https://playpilegames.lovable.app";
+const BASE_URL = "https://playpile.org";
 
 interface SitemapEntry {
   path: string;

@@ -27,7 +27,7 @@ export const Route = createFileRoute("/play/$slug")({
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [] };
-    const url = `https://playpilegames.lovable.app/play/${params.slug}`;
+    const url = `https://playpile.org/play/${params.slug}`;
     const title = `${loaderData.title} — Playpile`;
     return {
       meta: [
