@@ -28,8 +28,7 @@ function NotFoundComponent() {
 const SITE_TITLE = "Playpile — Daily Games and Logic Puzzles";
 const SITE_DESCRIPTION =
   "Playpile is a hand-built pile of original daily games and classic logic puzzles — sudoku, tectonic, kakuro, futoshiki, and more. A fresh puzzle every day.";
-const OG_IMAGE =
-  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d6934e1f-c76f-49b6-b9a7-19019f35f63c/id-preview-b9249398--79472cc5-8e2e-4e4e-a06b-aaa604bdb78b.lovable.app-1779208954681.png";
+const OG_IMAGE = "https://playpilegames.lovable.app/og-image.jpg";
 
 export const Route = createRootRoute({
   head: () => ({
