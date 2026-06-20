@@ -139,14 +139,7 @@ interface PromptIconProps {
 export function PromptIcon({ emoji, size = 24, className, strokeWidth = 2 }: PromptIconProps) {
   const Icon = EMOJI_TO_ICON[emoji];
   if (Icon) {
-    return (
-      <Icon
-        size={size}
-        strokeWidth={strokeWidth}
-        className={className}
-        aria-hidden="true"
-      />
-    );
+    return <Icon size={size} strokeWidth={strokeWidth} className={className} aria-hidden="true" />;
   }
   return (
     <span className={className} aria-hidden="true">

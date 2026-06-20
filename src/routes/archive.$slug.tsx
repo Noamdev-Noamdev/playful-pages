@@ -240,8 +240,7 @@ function ArchiveForGame() {
                           {cell.dayOfMonth}
                         </span>
                         <span className="mt-0.5 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider opacity-70">
-                          <Lock className="h-3 w-3" aria-hidden="true" />
-                          #{cell.dayNumber}
+                          <Lock className="h-3 w-3" aria-hidden="true" />#{cell.dayNumber}
                         </span>
                       </div>
                     );
@@ -251,10 +250,11 @@ function ArchiveForGame() {
                   return (
                     <div
                       key={i}
-                      className={`${base} ${isToday
+                      className={`${base} ${
+                        isToday
                           ? "border-foreground bg-foreground text-background"
                           : "border-dashed border-muted-foreground/40 bg-background text-muted-foreground"
-                        }`}
+                      }`}
                       aria-disabled
                     >
                       <span className="font-display text-base font-black leading-none">

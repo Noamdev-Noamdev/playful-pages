@@ -138,14 +138,14 @@ export function DecisionGame() {
           setGameState((prev) =>
             prev
               ? {
-                ...prev,
-                progress: 100,
-                stats: {
-                  population: ch.endStats.population,
-                  economy: ch.endStats.economy,
-                  environment: ch.endStats.environment,
-                },
-              }
+                  ...prev,
+                  progress: 100,
+                  stats: {
+                    population: ch.endStats.population,
+                    economy: ch.endStats.economy,
+                    environment: ch.endStats.environment,
+                  },
+                }
               : prev,
           );
           setTimeout(() => setPhase("done"), 600);
@@ -163,14 +163,14 @@ export function DecisionGame() {
     setGameState((prev) =>
       prev
         ? {
-          ...prev,
-          progress: 100,
-          stats: {
-            population: choice.endStats.population,
-            economy: choice.endStats.economy,
-            environment: choice.endStats.environment,
-          },
-        }
+            ...prev,
+            progress: 100,
+            stats: {
+              population: choice.endStats.population,
+              economy: choice.endStats.economy,
+              environment: choice.endStats.environment,
+            },
+          }
         : prev,
     );
     setToast(null);
@@ -222,9 +222,10 @@ export function DecisionGame() {
                 key={s.id}
                 onClick={() => setScenarioIdx(i)}
                 className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-colors
-                  ${i === scenarioIdx
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-card text-muted-foreground border-foreground/30 hover:border-foreground"
+                  ${
+                    i === scenarioIdx
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-card text-muted-foreground border-foreground/30 hover:border-foreground"
                   }`}
               >
                 {s.question.split(" ").slice(0, 3).join(" ")}…

@@ -23,6 +23,7 @@ import {
   checkWin,
   checkAgainstSolutions,
 } from "./region-cut/logic";
+import type { RegionInfo, RegionState } from "./region-cut/logic";
 import type { RawRegionCutPuzzle } from "./region-cut/puzzles";
 import { parsePuzzle } from "./region-cut/puzzles";
 
@@ -62,17 +63,36 @@ const TUTORIAL_STEPS = [
   },
 ] as const;
 
-// Pastel palette aligned with the main Playpile card colors
-const REGION_COLORS = [
-  "var(--card-sky)",
-  "var(--card-yellow)",
-  "var(--card-mint)",
-  "var(--card-lilac)",
-  "var(--card-peach)",
-  "var(--card-sky)",
-  "var(--card-yellow)",
-  "var(--card-mint)",
-];
+const REGION_UNPROCESSED_COLOR = "var(--card-sky)";
+const REGION_VALID_COLOR = "#86efac";
+const REGION_INVALID_COLOR = "#fca5a5";
+
+function getRegionFillColor(state: RegionState | undefined) {
+  if (state === "valid") return REGION_VALID_COLOR;
+  if (state === "invalid") return REGION_INVALID_COLOR;
+  return REGION_UNPROCESSED_COLOR;
+}
+
+function getRegionLabelTone(state: RegionState | undefined) {
+  if (state === "valid") {
+    return {
+      color: "#166534",
+      borderColor: "rgba(22, 101, 52, 0.25)",
+    };
+  }
+
+  if (state === "invalid") {
+    return {
+      color: "#b91c1c",
+      borderColor: "rgba(185, 28, 28, 0.25)",
+    };
+  }
+
+  return {
+    color: "#1d4ed8",
+    borderColor: "rgba(29, 78, 216, 0.25)",
+  };
+}
 
 // ─── Edge Hit Zones ──────────────────────────────────────────────────────────
 
@@ -117,6 +137,97 @@ function getAllEdges(rows: number, cols: number): EdgeInfo[] {
 }
 const ALL_EDGES = getAllEdges(ROWS, COLS);
 const TUTORIAL_EDGES = getAllEdges(TUTORIAL_ROWS, TUTORIAL_COLS);
+
+// ─── Label Positioning Logic ────────────────────────────────────────────────
+
+function computeRegionLabelPositions(
+  regions: RegionInfo[],
+  regionMap: number[][],
+  rows: number,
+  cols: number,
+) {
+  const positions = new Map<number, { pr: number; pc: number }>();
+  const claimed = new Set<string>();
+
+  const sortedRegions = [...regions].sort((a, b) => {
+    if (a.cells.length !== b.cells.length) return a.cells.length - b.cells.length;
+    return a.id - b.id;
+  });
+
+  for (const region of sortedRegions) {
+    if (region.cells.length === 0) continue;
+
+    let sumR = 0,
+      sumC = 0;
+    for (const [r, c] of region.cells) {
+      sumR += r;
+      sumC += c;
+    }
+    const exactCentR = sumR / region.cells.length + 0.5;
+    const exactCentC = sumC / region.cells.length + 0.5;
+
+    const candidates: { hr: number; hc: number; pr: number; pc: number; score: number }[] = [];
+
+    for (let hr = 0; hr <= 2 * rows; hr++) {
+      for (let hc = 0; hc <= 2 * cols; hc++) {
+        if (hr % 2 !== 0 && hc % 2 !== 0) continue; // Cell center
+
+        let cellsInRegion = 0;
+        const adjacentCells: [number, number][] = [];
+
+        if (hr % 2 === 0 && hc % 2 === 0) {
+          adjacentCells.push(
+            [hr / 2 - 1, hc / 2 - 1],
+            [hr / 2 - 1, hc / 2],
+            [hr / 2, hc / 2 - 1],
+            [hr / 2, hc / 2],
+          );
+        } else if (hr % 2 === 0) {
+          const c = Math.floor(hc / 2);
+          adjacentCells.push([hr / 2 - 1, c], [hr / 2, c]);
+        } else {
+          const r = Math.floor(hr / 2);
+          adjacentCells.push([r, hc / 2 - 1], [r, hc / 2]);
+        }
+
+        let validAdj = 0;
+        for (const [ar, ac] of adjacentCells) {
+          if (ar >= 0 && ar < rows && ac >= 0 && ac < cols) {
+            validAdj++;
+            if (regionMap[ar][ac] === region.id) {
+              cellsInRegion++;
+            }
+          }
+        }
+
+        if (cellsInRegion > 0) {
+          const pr = hr / 2;
+          const pc = hc / 2;
+          const distSq = Math.pow(pr - exactCentR, 2) + Math.pow(pc - exactCentC, 2);
+          const isOuterBorder = hr === 0 || hr === 2 * rows || hc === 0 || hc === 2 * cols;
+
+          let score = distSq;
+          if (cellsInRegion < validAdj) score += 10;
+          if (isOuterBorder) score += 5;
+          if (claimed.has(`${hr},${hc}`)) score += 100;
+
+          score += hr * 0.001 + hc * 0.0001;
+
+          candidates.push({ hr, hc, pr, pc, score });
+        }
+      }
+    }
+
+    candidates.sort((a, b) => a.score - b.score);
+    if (candidates.length > 0) {
+      const best = candidates[0];
+      positions.set(region.id, { pr: best.pr, pc: best.pc });
+      claimed.add(`${best.hr},${best.hc}`);
+    }
+  }
+
+  return positions;
+}
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -174,6 +285,19 @@ function RegionCutGame() {
     computeRegionSums(TUTORIAL_GRID, tutorialRegions);
     return getRegionStates(tutorialRegions, TUTORIAL_TARGET);
   }, [tutorialRegions]);
+
+  const regionLabelPositions = useMemo(() => {
+    return computeRegionLabelPositions(regions, regionMap, ROWS, COLS);
+  }, [regions, regionMap]);
+
+  const tutorialLabelPositions = useMemo(() => {
+    return computeRegionLabelPositions(
+      tutorialRegions,
+      tutorialRegionMap,
+      TUTORIAL_ROWS,
+      TUTORIAL_COLS,
+    );
+  }, [tutorialRegions, tutorialRegionMap]);
 
   const solved = useMemo(() => {
     if (!puzzle) return false;
@@ -396,13 +520,6 @@ function RegionCutGame() {
   return (
     <>
       <style>{`
-        @keyframes rc-glow {
-          0%, 100% { box-shadow: 0 0 8px 2px rgba(52, 211, 153, 0.3); }
-          50%      { box-shadow: 0 0 16px 4px rgba(52, 211, 153, 0.5); }
-        }
-        .rc-valid-glow {
-          animation: rc-glow 2s ease-in-out infinite;
-        }
         @keyframes rc-border-in {
           0%   { opacity: 0; }
           100% { opacity: 1; }
@@ -503,8 +620,8 @@ function RegionCutGame() {
                     </ul>
                   </div>
                   <p>
-                    Each region shows its current total. Green regions are correct, gray regions
-                    need more work, and red regions have gone over the target.
+                    Each region shows its current total. Green regions are correct, blue regions
+                    still need to be split, and red regions cannot reach the target anymore.
                   </p>
                   <p className="rounded-xl border-2 border-foreground bg-card-yellow p-3 font-semibold">
                     Tip: Use Check any time to confirm whether your placed borders are correct so
@@ -547,19 +664,12 @@ function RegionCutGame() {
                         Array.from({ length: TUTORIAL_COLS }, (_, c) => {
                           const regionId = tutorialRegionMap[r][c];
                           const state = tutorialRegionStates.get(regionId);
-                          const bgColor = REGION_COLORS[regionId % REGION_COLORS.length];
-
-                          let overlayColor = "transparent";
-                          if (state === "valid") overlayColor = "rgba(52, 211, 153, 0.15)";
-                          else if (state === "over") overlayColor = "rgba(239, 68, 68, 0.1)";
+                          const bgColor = getRegionFillColor(state);
 
                           return (
                             <div
                               key={`tutorial-cell-${r}-${c}`}
-                              className={[
-                                "absolute z-0 flex items-center justify-center border border-foreground/10",
-                                state === "valid" ? "rc-valid-glow" : "",
-                              ].join(" ")}
+                              className="absolute z-0 flex items-center justify-center border border-foreground/10"
                               style={{
                                 left: c * TUTORIAL_CELL,
                                 top: r * TUTORIAL_CELL,
@@ -569,15 +679,6 @@ function RegionCutGame() {
                                 transition: "background-color 0.3s ease",
                               }}
                             >
-                              <div
-                                style={{
-                                  position: "absolute",
-                                  inset: 0,
-                                  backgroundColor: overlayColor,
-                                  transition: "background-color 0.4s ease",
-                                  pointerEvents: "none",
-                                }}
-                              />
                               <span className="relative z-[1] text-lg font-black text-foreground">
                                 {TUTORIAL_GRID[r][c]}
                               </span>
@@ -681,30 +782,23 @@ function RegionCutGame() {
                       {tutorialRegions.map((region) => {
                         if (region.cells.length === 0) return null;
 
-                        let sumR = 0;
-                        let sumC = 0;
-                        for (const [r, c] of region.cells) {
-                          sumR += r;
-                          sumC += c;
-                        }
+                        const pos = tutorialLabelPositions.get(region.id);
+                        if (!pos) return null;
 
-                        const centR = sumR / region.cells.length;
-                        const centC = sumC / region.cells.length;
                         const state = tutorialRegionStates.get(region.id);
-                        const color =
-                          state === "valid" ? "#059669" : state === "over" ? "#dc2626" : "#64748b";
+                        const { color, borderColor } = getRegionLabelTone(state);
 
                         return (
                           <div
                             key={`tutorial-label-${region.id}`}
                             className="pointer-events-none absolute z-[4] whitespace-nowrap rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold tracking-[0.02em] shadow-sm"
                             style={{
-                              left: (centC + 0.5) * TUTORIAL_CELL,
-                              top: (centR + 0.5) * TUTORIAL_CELL,
+                              left: pos.pc * TUTORIAL_CELL,
+                              top: pos.pr * TUTORIAL_CELL,
                               transform: "translate(-50%, -50%)",
                               color,
                               backgroundColor: "rgba(255, 255, 255, 0.88)",
-                              border: `1px solid ${state === "valid" ? "rgba(5, 150, 105, 0.3)" : state === "over" ? "rgba(220, 38, 38, 0.3)" : "rgba(148, 163, 184, 0.3)"}`,
+                              border: `1px solid ${borderColor}`,
                               transition: "color 0.3s ease, border-color 0.3s ease",
                             }}
                           >
@@ -800,19 +894,12 @@ function RegionCutGame() {
               Array.from({ length: COLS }, (_, c) => {
                 const regionId = regionMap[r][c];
                 const state = regionStates.get(regionId);
-                const bgColor = REGION_COLORS[regionId % REGION_COLORS.length];
-
-                let overlayColor = "transparent";
-                if (state === "valid") overlayColor = "rgba(52, 211, 153, 0.15)";
-                else if (state === "over") overlayColor = "rgba(239, 68, 68, 0.1)";
+                const bgColor = getRegionFillColor(state);
 
                 return (
                   <div
                     key={`cell-${r}-${c}`}
-                    className={[
-                      "absolute z-0 flex items-center justify-center border border-foreground/10",
-                      state === "valid" ? "rc-valid-glow" : "",
-                    ].join(" ")}
+                    className="absolute z-0 flex items-center justify-center border border-foreground/10"
                     style={{
                       left: c * CELL,
                       top: r * CELL,
@@ -822,16 +909,6 @@ function RegionCutGame() {
                       transition: "background-color 0.3s ease",
                     }}
                   >
-                    {/* Overlay for valid/over state */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        backgroundColor: overlayColor,
-                        transition: "background-color 0.4s ease",
-                        pointerEvents: "none",
-                      }}
-                    />
                     {/* Cell number */}
                     <span className="relative z-[1] text-lg font-black text-foreground sm:text-xl">
                       {puzzle.grid[r][c]}
@@ -928,22 +1005,15 @@ function RegionCutGame() {
               );
             })}
 
-            {/* Region sum labels — one per region, positioned at centroid */}
+            {/* Region sum labels — one per region, positioned on wall spaces */}
             {regions.map((region) => {
               if (region.cells.length === 0) return null;
-              // Find centroid
-              let sumR = 0,
-                sumC = 0;
-              for (const [r, c] of region.cells) {
-                sumR += r;
-                sumC += c;
-              }
-              const centR = sumR / region.cells.length;
-              const centC = sumC / region.cells.length;
+
+              const pos = regionLabelPositions.get(region.id);
+              if (!pos) return null;
 
               const state = regionStates.get(region.id);
-              const color =
-                state === "valid" ? "#059669" : state === "over" ? "#dc2626" : "#64748b";
+              const { color, borderColor } = getRegionLabelTone(state);
 
               // Only show label for regions with 2+ cells (otherwise too cramped)
               if (region.cells.length < 2 && regions.length > 9) return null;
@@ -953,12 +1023,12 @@ function RegionCutGame() {
                   key={`label-${region.id}`}
                   className="pointer-events-none absolute z-[4] whitespace-nowrap rounded-md border px-1.5 py-0.5 text-[10px] font-extrabold tracking-[0.02em] shadow-sm"
                   style={{
-                    left: (centC + 0.5) * CELL,
-                    top: (centR + 0.5) * CELL,
+                    left: pos.pc * CELL,
+                    top: pos.pr * CELL,
                     transform: "translate(-50%, -50%)",
                     color,
                     backgroundColor: "rgba(255, 255, 255, 0.85)",
-                    border: `1px solid ${state === "valid" ? "rgba(5, 150, 105, 0.3)" : state === "over" ? "rgba(220, 38, 38, 0.3)" : "rgba(148, 163, 184, 0.3)"}`,
+                    border: `1px solid ${borderColor}`,
                     transition: "color 0.3s ease, border-color 0.3s ease",
                   }}
                 >
@@ -986,12 +1056,22 @@ function RegionCutGame() {
               drag to draw borders
             </span>
             <span className="inline-flex items-center gap-2">
-              <span className="inline-block h-3.5 w-3.5 border-2 border-foreground bg-card-mint" />
+              <span className="inline-block h-3.5 w-3.5 border-2 border-foreground bg-card-sky" />
+              unprocessed region
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <span
+                className="inline-block h-3.5 w-3.5 border-2 border-foreground"
+                style={{ backgroundColor: REGION_VALID_COLOR }}
+              />
               valid region
             </span>
             <span className="inline-flex items-center gap-2">
-              <span className="inline-block h-3.5 w-3.5 border-2 border-foreground bg-card-coral" />
-              over target
+              <span
+                className="inline-block h-3.5 w-3.5 border-2 border-foreground"
+                style={{ backgroundColor: REGION_INVALID_COLOR }}
+              />
+              invalid region
             </span>
           </div>
         </div>

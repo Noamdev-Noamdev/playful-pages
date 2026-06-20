@@ -80,7 +80,7 @@ export function computeRegionSums(grid: number[][], regions: RegionInfo[]): void
   }
 }
 
-export type RegionState = "valid" | "under" | "over";
+export type RegionState = "valid" | "invalid" | "unprocessed";
 
 /** Determine the state of each region relative to the target sum. */
 export function getRegionStates(
@@ -90,8 +90,8 @@ export function getRegionStates(
   const states = new Map<number, RegionState>();
   for (const region of regions) {
     if (region.sum === targetSum) states.set(region.id, "valid");
-    else if (region.sum < targetSum) states.set(region.id, "under");
-    else states.set(region.id, "over");
+    else if (region.sum < targetSum) states.set(region.id, "invalid");
+    else states.set(region.id, "unprocessed");
   }
   return states;
 }

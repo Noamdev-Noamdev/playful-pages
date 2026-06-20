@@ -7,7 +7,7 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-    nitro: {
-        preset: "cloudflare_pages" // Dit activeert de Pages-koppeling
-    }
+  nitro: {
+    preset: "cloudflare_pages", // Dit activeert de Pages-koppeling
+  },
 });
