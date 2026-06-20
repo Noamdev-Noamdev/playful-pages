@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlaySlugRouteImport } from './routes/play.$slug'
 import { Route as ArchiveSlugRouteImport } from './routes/archive.$slug'
@@ -17,6 +19,16 @@ import { Route as ArchiveSlugRouteImport } from './routes/archive.$slug'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +49,16 @@ const ArchiveSlugRoute = ArchiveSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/legal': typeof LegalRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/legal': typeof LegalRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/play/$slug': typeof PlaySlugRoute
@@ -50,20 +66,43 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/legal': typeof LegalRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/archive/$slug' | '/play/$slug'
+  fullPaths:
+    | '/'
+    | '/legal'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/archive/$slug'
+    | '/play/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/archive/$slug' | '/play/$slug'
-  id: '__root__' | '/' | '/sitemap.xml' | '/archive/$slug' | '/play/$slug'
+  to:
+    | '/'
+    | '/legal'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/archive/$slug'
+    | '/play/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/legal'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/archive/$slug'
+    | '/play/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LegalRoute: typeof LegalRoute
+  PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ArchiveSlugRoute: typeof ArchiveSlugRoute
   PlaySlugRoute: typeof PlaySlugRoute
@@ -76,6 +115,20 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,6 +157,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LegalRoute: LegalRoute,
+  PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ArchiveSlugRoute: ArchiveSlugRoute,
   PlaySlugRoute: PlaySlugRoute,

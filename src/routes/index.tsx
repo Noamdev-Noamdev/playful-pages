@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav, type Tab } from "@/components/SiteNav";
+import Footer from "@/components/Footer";
 import { PlayCard } from "@/components/PlayCard";
 import { originals, classics, games } from "@/games";
 
@@ -100,9 +101,7 @@ function Index() {
           ))}
         </div>
 
-        <footer className="mt-20 border-t-2 border-foreground pt-6 text-sm text-muted-foreground">
-          Made with curiosity. Best enjoyed slowly.
-        </footer>
+        <Footer />
       </main>
     </div>
   );
