@@ -94,6 +94,48 @@ function getRegionLabelTone(state: RegionState | undefined) {
   };
 }
 
+function getStarterBorders(puzzle: ReturnType<typeof parsePuzzle> | null): Set<string> {
+  if (!puzzle) return new Set();
+
+  const solutionBorders = puzzle.validSolutionBorders[0] ?? puzzle.solutionBorders;
+  if (solutionBorders.size === 0) return new Set();
+
+  const { regionMap, regions } = computeRegions(ROWS, COLS, solutionBorders);
+  computeRegionSums(puzzle.grid, regions);
+
+  const starterRegion = [...regions].sort((a, b) => {
+    if (a.cells.length !== b.cells.length) return a.cells.length - b.cells.length;
+
+    const [aRow, aCol] =
+      a.cells.slice().sort(([ar, ac], [br, bc]) => ar - br || ac - bc)[0] ?? [ROWS, COLS];
+    const [bRow, bCol] =
+      b.cells.slice().sort(([ar, ac], [br, bc]) => ar - br || ac - bc)[0] ?? [ROWS, COLS];
+
+    return aRow - bRow || aCol - bCol || a.id - b.id;
+  })[0];
+
+  if (!starterRegion) return new Set();
+
+  const starterBorders = new Set<string>();
+
+  for (const [r, c] of starterRegion.cells) {
+    const neighbors: [number, number][] = [
+      [r - 1, c],
+      [r + 1, c],
+      [r, c - 1],
+      [r, c + 1],
+    ];
+
+    for (const [nr, nc] of neighbors) {
+      if (nr < 0 || nr >= ROWS || nc < 0 || nc >= COLS) continue;
+      if (regionMap[nr][nc] === starterRegion.id) continue;
+      starterBorders.add(borderKey(r, c, nr, nc));
+    }
+  }
+
+  return starterBorders;
+}
+
 // ─── Edge Hit Zones ──────────────────────────────────────────────────────────
 
 interface EdgeInfo {
@@ -250,6 +292,7 @@ function RegionCutGame() {
     if (!dailyLevel?.data) return null;
     return parsePuzzle(dailyLevel.data);
   }, [dailyLevel]);
+  const starterBorders = useMemo(() => getStarterBorders(puzzle), [puzzle]);
 
   // ── Game state ──────────────────────────────────────────────────────────
   const [borders, setBorders] = useState<Set<string>>(() => new Set());
@@ -337,10 +380,17 @@ function RegionCutGame() {
     }
   }, [won, isTodaysDaily]);
 
+  useEffect(() => {
+    setBorders(new Set(starterBorders));
+    setHistory([]);
+    setWon(false);
+    setCheckStatus(null);
+  }, [starterBorders]);
+
   // ── Edge toggle logic ──────────────────────────────────────────────────
   const toggleEdge = useCallback(
     (edgeKey: string, mode?: "add" | "remove") => {
-      if (won) return;
+      if (won || starterBorders.has(edgeKey)) return;
       setBorders((prev) => {
         const next = new Set(prev);
         const shouldAdd = mode ? mode === "add" : !prev.has(edgeKey);
@@ -353,7 +403,7 @@ function RegionCutGame() {
       });
       setCheckStatus(null);
     },
-    [won],
+    [starterBorders, won],
   );
 
   const pushHistory = useCallback(() => {
@@ -362,14 +412,14 @@ function RegionCutGame() {
 
   const handleEdgePointerDown = useCallback(
     (edgeKey: string) => {
-      if (won) return;
+      if (won || starterBorders.has(edgeKey)) return;
       pushHistory();
       const mode = borders.has(edgeKey) ? "remove" : "add";
       dragModeRef.current = mode;
       setIsDragging(true);
       toggleEdge(edgeKey, mode);
     },
-    [won, borders, pushHistory, toggleEdge],
+    [won, starterBorders, borders, pushHistory, toggleEdge],
   );
 
   const handleEdgePointerEnter = useCallback(
@@ -404,10 +454,10 @@ function RegionCutGame() {
   // ── Controls ───────────────────────────────────────────────────────────
   const doReset = useCallback(() => {
     setHistory([]);
-    setBorders(new Set());
+    setBorders(new Set(starterBorders));
     setWon(false);
     setCheckStatus(null);
-  }, []);
+  }, [starterBorders]);
 
   const doUndo = useCallback(() => {
     if (!history.length) return;
@@ -978,10 +1028,11 @@ function RegionCutGame() {
             {ALL_EDGES.map((edge) => {
               const isH = edge.dir === "h";
               const hitSize = 16;
+              const isLocked = starterBorders.has(edge.key);
               return (
                 <div
                   key={`hit-${edge.key}`}
-                  className="rc-edge-zone"
+                  className={isLocked ? undefined : "rc-edge-zone"}
                   style={{
                     position: "absolute",
                     left: isH
@@ -995,9 +1046,11 @@ function RegionCutGame() {
                     zIndex: 5,
                     touchAction: "none",
                     borderRadius: 2,
+                    cursor: isLocked ? "default" : undefined,
                   }}
                   onPointerDown={(e) => {
                     e.preventDefault();
+                    if (isLocked) return;
                     handleEdgePointerDown(edge.key);
                   }}
                   onPointerEnter={() => handleEdgePointerEnter(edge.key)}
