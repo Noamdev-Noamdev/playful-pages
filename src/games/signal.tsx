@@ -408,6 +408,14 @@ function SignalGame() {
     }
   }, [showHelp]);
 
+  useEffect(() => {
+    const hasShown = localStorage.getItem(`playpile:help-shown:${DAILY_SLUG}`);
+    if (!hasShown) {
+      setShowHelp(true);
+      localStorage.setItem(`playpile:help-shown:${DAILY_SLUG}`, "true");
+    }
+  }, []);
+
   if (!puzzle || !coverage) {
     return (
       <div className="rounded-3xl border-2 border-foreground bg-card p-8 text-center">

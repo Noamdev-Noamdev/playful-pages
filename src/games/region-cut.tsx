@@ -451,6 +451,14 @@ function RegionCutGame() {
     }
   }, [showHelp]);
 
+  useEffect(() => {
+    const hasShown = localStorage.getItem(`playpile:help-shown:${DAILY_SLUG}`);
+    if (!hasShown) {
+      setShowHelp(true);
+      localStorage.setItem(`playpile:help-shown:${DAILY_SLUG}`, "true");
+    }
+  }, []);
+
   // ── Controls ───────────────────────────────────────────────────────────
   const doReset = useCallback(() => {
     setHistory([]);
