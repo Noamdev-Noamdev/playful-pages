@@ -2,11 +2,15 @@ import { useState, useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
+import { ArchiveGateOverlay } from "@/components/ArchiveGateOverlay";
+import { UpgradeModal } from "@/components/UpgradeModal";
 import { getGame } from "@/games";
 import { UnderConstruction } from "@/games/_UnderConstruction";
 import { DailyLocked } from "@/games/_DailyLocked";
 import { hasCompletedToday } from "@/lib/dailyLock";
 import { isDevMode } from "@/lib/devMode";
+import { useAuth } from "@/hooks/useAuth";
+import { isLevelFree } from "@/levels";
 
 export const Route = createFileRoute("/play/$slug")({
   component: PlayPage,
@@ -93,6 +97,17 @@ function PlayPage() {
   const { slug } = Route.useLoaderData();
   const { date } = Route.useSearch();
   const game = getGame(slug);
+  const { user, upgradeToPremium } = useAuth();
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
+  const isPremium = user?.tier === "premium";
+
+  // Check if this specific dated level is gated for free users
+  const isGated =
+    !!date &&
+    !!game?.dailySlug &&
+    !isPremium &&
+    !isDevMode() &&
+    !isLevelFree(game.dailySlug, date);
 
   // Daily lock: only applies when playing today's daily (no ?date param).
   // Re-checked on focus so finishing a puzzle then returning shows the lock.
@@ -185,6 +200,12 @@ function PlayPage() {
           <div className={showSharedBackToToday ? "pt-12 sm:pt-10" : ""}>
             {game.underConstruction ? (
               <UnderConstruction name={game.title} />
+            ) : isGated ? (
+              <ArchiveGateOverlay
+                gameTitle={game.title}
+                gameSlug={game.slug}
+                onUpgrade={() => setUpgradeOpen(true)}
+              />
             ) : locked ? (
               <DailyLocked slug={game.slug} title={game.title} />
             ) : (
@@ -193,6 +214,15 @@ function PlayPage() {
           </div>
         </div>
       </main>
+
+      <UpgradeModal
+        open={upgradeOpen}
+        onOpenChange={setUpgradeOpen}
+        onUpgrade={() => {
+          upgradeToPremium();
+          setUpgradeOpen(false);
+        }}
+      />
     </div>
   );
 }

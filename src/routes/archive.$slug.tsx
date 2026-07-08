@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Lock } from "lucide-react";
+import { ArrowLeft, Lock, Crown } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
+import { UpgradeModal } from "@/components/UpgradeModal";
 import { getGame } from "@/games";
-import { getArchiveDates, formatDate } from "@/levels";
+import { getArchiveDates, getFreeDates, formatDate } from "@/levels";
+import { useAuth } from "@/hooks/useAuth";
 import { isDevMode } from "@/lib/devMode";
 
 export const Route = createFileRoute("/archive/$slug")({
@@ -112,9 +115,13 @@ function buildMonthGrid(
 
 function ArchiveForGame() {
   const { slug, title, description, color, dailySlug } = Route.useLoaderData();
+  const { user, upgradeToPremium } = useAuth();
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
+  const isPremium = user?.tier === "premium";
   const todayKey = formatDate(new Date());
   const dates = getArchiveDates(dailySlug);
   const dateMap = new Map(dates.map((d) => [d.date, d.dayNumber]));
+  const freeDates = getFreeDates(dailySlug);
 
   // Group archive dates by (year, month) so we render a calendar per month
   // that actually has at least one level.
@@ -172,6 +179,15 @@ function ArchiveForGame() {
             <span className="inline-block h-3 w-3 rounded-sm border-2 border-foreground bg-foreground" />
             Today
           </span>
+          {!isPremium && (
+            <span className="flex items-center gap-1.5">
+              <span
+                className="inline-block h-3 w-3 rounded-sm border-2 border-foreground"
+                style={{ background: "linear-gradient(135deg, oklch(0.85 0.15 85), oklch(0.80 0.14 55))" }}
+              />
+              Premium
+            </span>
+          )}
           <span className="flex items-center gap-1.5">
             <span className="inline-block h-3 w-3 rounded-sm border-2 border-dashed border-muted-foreground bg-background" />
             No puzzle
@@ -203,12 +219,14 @@ function ArchiveForGame() {
                   const isToday = cell.date === todayKey;
                   const isFuture = cell.date > todayKey;
                   const hasLevel = cell.dayNumber !== undefined;
-                  const isPlayable = hasLevel && (!isFuture || isDevMode());
+                  const isFree = freeDates.has(cell.date);
+                  const canPlay = hasLevel && (!isFuture || isDevMode()) && (isPremium || isFree || isDevMode());
+                  const isPremiumLocked = hasLevel && !isFuture && !isFree && !isPremium && !isDevMode();
 
                   const base =
                     "relative aspect-square rounded-xl border-2 flex flex-col items-center justify-center transition-transform";
 
-                  if (isPlayable) {
+                  if (canPlay) {
                     return (
                       <Link
                         key={i}
@@ -224,6 +242,29 @@ function ArchiveForGame() {
                           #{cell.dayNumber}
                         </span>
                       </Link>
+                    );
+                  }
+
+                  {/* Premium-locked level: clickable but opens upgrade modal */}
+                  if (isPremiumLocked) {
+                    return (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setUpgradeOpen(true)}
+                        className={`${base} cursor-pointer border-foreground hover:-translate-y-0.5`}
+                        style={{
+                          background: "linear-gradient(135deg, oklch(0.85 0.15 85 / 60%), oklch(0.80 0.14 55 / 60%))",
+                        }}
+                        title="Premium — Upgrade to unlock"
+                      >
+                        <span className="font-display text-base font-black leading-none">
+                          {cell.dayOfMonth}
+                        </span>
+                        <span className="mt-0.5 inline-flex items-center gap-0.5 text-[9px] font-bold uppercase tracking-wider opacity-70">
+                          <Crown className="h-2.5 w-2.5" />
+                        </span>
+                      </button>
                     );
                   }
 
@@ -273,6 +314,15 @@ function ArchiveForGame() {
           ))}
         </div>
       </main>
+
+      <UpgradeModal
+        open={upgradeOpen}
+        onOpenChange={setUpgradeOpen}
+        onUpgrade={() => {
+          upgradeToPremium();
+          setUpgradeOpen(false);
+        }}
+      />
     </div>
   );
 }

@@ -131,4 +131,42 @@ export function listArchiveSlugs(): string[] {
   return Object.keys(archives).filter((s) => archives[s].length > 0);
 }
 
+/**
+ * Check if a specific dated level is within the last N authored levels
+ * (i.e. playable for free users). Defaults to last 7 levels.
+ */
+export function isLevelFree(slug: string, date: string, freeCount = 7): boolean {
+  const archive = archives[slug];
+  if (!archive || archive.length === 0) return true;
+
+  const todayKey = formatDate(new Date());
+  // Only consider levels that have been published (date <= today)
+  const publishedDates = archive
+    .filter((e) => e.date <= todayKey)
+    .map((e) => e.date);
+
+  if (publishedDates.length === 0) return true;
+
+  const cutoffIndex = Math.max(0, publishedDates.length - freeCount);
+  const freeDates = new Set(publishedDates.slice(cutoffIndex));
+  return freeDates.has(date);
+}
+
+/**
+ * Get the set of dates that are free (last N levels) for a game.
+ * Returns a Set of YYYY-MM-DD strings.
+ */
+export function getFreeDates(slug: string, freeCount = 7): Set<string> {
+  const archive = archives[slug];
+  if (!archive || archive.length === 0) return new Set();
+
+  const todayKey = formatDate(new Date());
+  const publishedDates = archive
+    .filter((e) => e.date <= todayKey)
+    .map((e) => e.date);
+
+  const cutoffIndex = Math.max(0, publishedDates.length - freeCount);
+  return new Set(publishedDates.slice(cutoffIndex));
+}
+
 export type { LevelEntry } from "./types";
