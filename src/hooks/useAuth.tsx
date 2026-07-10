@@ -86,7 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUp = async (email: string, password: string): Promise<{ error?: string }> => {
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -94,6 +94,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       },
     });
     if (error) return { error: error.message };
+    if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+      return { error: "An account with this email already exists. Please sign in instead." };
+    }
     return {};
   };
 
@@ -102,9 +105,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       email,
       options: {
         emailRedirectTo: getAuthRedirectUrl(),
+        shouldCreateUser: false,
       },
     });
-    if (error) return { error: error.message };
+    if (error) {
+      if (error.message === "Signups not allowed for otp") {
+        return { error: "No account exists for this email. Please sign up first." };
+      }
+      return { error: error.message };
+    }
     return {};
   };
 
