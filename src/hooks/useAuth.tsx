@@ -47,6 +47,12 @@ function getAuthRedirectUrl() {
   return typeof window === "undefined" ? undefined : window.location.origin;
 }
 
+function getGoogleRedirectUrl() {
+  return typeof window === "undefined"
+    ? undefined
+    : new URL("/auth/callback", window.location.origin).toString();
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
@@ -121,7 +127,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: getAuthRedirectUrl(),
+        redirectTo: getGoogleRedirectUrl(),
       },
     });
     if (error) return { error: error.message };
