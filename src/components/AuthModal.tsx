@@ -148,12 +148,12 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-md overflow-hidden rounded-3xl border-2 border-foreground p-0 sm:rounded-3xl">
+      <DialogContent className="max-h-[calc(100vh-1rem)] w-[calc(100%-1rem)] max-w-md overflow-y-auto rounded-3xl border-2 border-foreground p-0 sm:max-h-[min(90vh,48rem)] sm:w-full sm:rounded-3xl">
         {/* Decorative colored strip */}
         <div className="h-2 bg-card-yellow" />
 
-        <DialogHeader className="px-6 pb-2 pt-6 text-center sm:text-center">
-          <DialogTitle className="font-display text-center text-2xl font-black">
+        <DialogHeader className="px-4 pb-2 pt-5 text-center sm:px-6 sm:pt-6 sm:text-center">
+          <DialogTitle className="font-display text-center text-xl font-black sm:text-2xl">
             {title}
           </DialogTitle>
           <DialogDescription className="text-center text-sm text-muted-foreground">
@@ -161,15 +161,15 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="px-6">
+        <div className="px-4 sm:px-6">
           {/* ── Google OAuth ── */}
           <button
             type="button"
             onClick={handleGoogleSignIn}
-            className="flex w-full items-center justify-center gap-3 rounded-xl border-2 border-foreground bg-card px-4 py-3 text-sm font-semibold transition-transform hover:-translate-y-0.5"
+            className="flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border-2 border-foreground bg-card px-4 py-3 text-sm font-semibold leading-tight transition-transform hover:-translate-y-0.5"
           >
             <GoogleIcon />
-            Continue with Google
+            <span className="text-center">Continue with Google</span>
           </button>
 
           {/* ── Divider ── */}
@@ -185,7 +185,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-card-mint">
                 <Mail className="h-6 w-6 text-foreground" strokeWidth={2.5} />
               </div>
-              <p className="text-sm font-medium text-foreground">
+              <p className="break-words text-sm font-medium text-foreground">
                 {mode === "signup" ? (
                   "Account created! Check your email to confirm your account."
                 ) : (
@@ -242,7 +242,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full rounded-xl border-2 border-foreground bg-foreground px-4 py-3 text-sm font-bold text-background transition-transform hover:-translate-y-0.5 disabled:opacity-50"
+                className="min-h-12 w-full rounded-xl border-2 border-foreground bg-foreground px-4 py-3 text-sm font-bold text-background transition-transform hover:-translate-y-0.5 disabled:opacity-50"
               >
                 {submitting ? submittingLabel : submitLabel}
               </button>
@@ -251,13 +251,13 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
         </div>
 
         {/* ── Mode switching links ── */}
-        <div className="px-6 pb-6 pt-2">
+        <div className="px-4 pb-5 pt-3 sm:px-6 sm:pb-6 sm:pt-2">
           {mode === "signin" && (
             <div className="flex flex-col items-center gap-1.5">
               <button
                 type="button"
                 onClick={() => switchMode("signup")}
-                className="text-sm text-muted-foreground"
+                className="text-center text-sm leading-relaxed text-muted-foreground"
               >
                 Don&apos;t have an account?{" "}
                 <span className="font-bold text-foreground underline">Sign up</span>
@@ -265,7 +265,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
               <button
                 type="button"
                 onClick={() => switchMode("magic")}
-                className="text-sm text-muted-foreground"
+                className="text-center text-sm leading-relaxed text-muted-foreground"
               >
                 <span className="font-bold text-foreground underline">Sign in with magic link</span>
               </button>
@@ -277,7 +277,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
               <button
                 type="button"
                 onClick={() => switchMode("signin")}
-                className="text-sm text-muted-foreground"
+                className="text-center text-sm leading-relaxed text-muted-foreground"
               >
                 Already have an account?{" "}
                 <span className="font-bold text-foreground underline">Sign in</span>
@@ -290,7 +290,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
               <button
                 type="button"
                 onClick={() => switchMode("signin")}
-                className="text-sm text-muted-foreground"
+                className="text-center text-sm leading-relaxed text-muted-foreground"
               >
                 <span className="font-bold text-foreground underline">Sign in with password</span>
               </button>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Crown, User, LogOut, ChevronDown } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import { UpgradeModal } from "@/components/UpgradeModal";
+import { ChevronDown, Crown, LogOut, Sparkles, User } from "lucide-react";
 import { AuthModal } from "@/components/AuthModal";
+import { UpgradeModal } from "@/components/UpgradeModal";
+import { useAuth } from "@/hooks/useAuth";
 
 export type Tab = "originals" | "classics";
 
@@ -25,6 +25,7 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
   ];
 
   const isPremium = user?.tier === "premium";
+  const menuButtonClassName = isPremium ? "bg-card-yellow" : "bg-card";
 
   return (
     <>
@@ -44,16 +45,16 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
             <nav className="flex items-center gap-1 rounded-full border-2 border-foreground bg-card p-1">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
+                const tabClassName = isActive
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground";
+
                 return (
                   <button
                     key={tab.id}
                     type="button"
                     onClick={() => onTabChange?.(tab.id)}
-                    className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${
-                      isActive
-                        ? "bg-foreground text-background"
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
+                    className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-colors ${tabClassName}`}
                     aria-pressed={isActive}
                   >
                     {tab.label}
@@ -63,26 +64,23 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
             </nav>
           )}
 
-          {/* User actions area */}
           <div className="flex items-center gap-2">
             {!user ? (
-              /* Not logged in — show login + upgrade */
               <>
                 <button
                   type="button"
                   onClick={() => setAuthOpen(true)}
-                  className="hidden items-center gap-1.5 rounded-full border-2 border-foreground bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 sm:inline-flex"
+                  className="inline-flex items-center gap-1.5 rounded-full border-2 border-foreground bg-card px-3 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 sm:px-4"
                 >
                   <User className="h-3.5 w-3.5" />
-                  Sign in
+                  <span className="hidden sm:inline">Sign in</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setUpgradeOpen(true)}
                   className="inline-flex items-center gap-1.5 rounded-full border-2 border-foreground px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5"
                   style={{
-                    background:
-                      "linear-gradient(135deg, oklch(0.85 0.15 85), oklch(0.80 0.14 55))",
+                    background: "linear-gradient(135deg, oklch(0.85 0.15 85), oklch(0.80 0.14 55))",
                   }}
                 >
                   <Crown className="h-3.5 w-3.5" />
@@ -90,17 +88,13 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
                 </button>
               </>
             ) : (
-              /* Logged in — show user menu */
               <div className="relative">
                 <button
                   type="button"
                   onClick={() => setMenuOpen((prev) => !prev)}
-                  className={`inline-flex items-center gap-2 rounded-full border-2 border-foreground px-3 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 ${
-                    isPremium ? "bg-card-yellow" : "bg-card"
-                  }`}
+                  className={`inline-flex items-center gap-2 rounded-full border-2 border-foreground px-3 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5 ${menuButtonClassName}`}
                 >
-                  {isPremium && <Crown className="h-3.5 w-3.5" />}
-                  {!isPremium && <User className="h-3.5 w-3.5" />}
+                  {isPremium ? <Crown className="h-3.5 w-3.5" /> : <User className="h-3.5 w-3.5" />}
                   <span className="hidden max-w-[120px] truncate sm:inline">
                     {user.email.split("@")[0]}
                   </span>
@@ -109,11 +103,7 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
 
                 {menuOpen && (
                   <>
-                    {/* Click-away overlay */}
-                    <div
-                      className="fixed inset-0 z-40"
-                      onClick={() => setMenuOpen(false)}
-                    />
+                    <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />
                     <div className="absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-2xl border-2 border-foreground bg-card shadow-[4px_4px_0_0_var(--foreground)]">
                       <div className="border-b border-border px-4 py-3">
                         <p className="text-sm font-bold">{user.email}</p>
