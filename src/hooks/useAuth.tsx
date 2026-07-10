@@ -28,11 +28,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
  * doesn't exist yet (e.g. trigger hasn't fired yet or table isn't created).
  */
 async function fetchTier(userId: string): Promise<UserTier> {
-  const { data, error } = await supabase
-    .from("profiles")
-    .select("tier")
-    .eq("id", userId)
-    .single();
+  const { data, error } = await supabase.from("profiles").select("tier").eq("id", userId).single();
 
   if (error || !data) return "free";
   return (data.tier as UserTier) ?? "free";
@@ -45,6 +41,10 @@ function buildProfile(user: User, tier: UserTier): UserProfile {
     email: user.email ?? "",
     tier,
   };
+}
+
+function getAuthRedirectUrl() {
+  return typeof window === "undefined" ? undefined : window.location.origin;
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -79,28 +79,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, [loadProfile]);
 
-  const signIn = async (
-    email: string,
-    password: string,
-  ): Promise<{ error?: string }> => {
+  const signIn = async (email: string, password: string): Promise<{ error?: string }> => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) return { error: error.message };
     return {};
   };
 
-  const signUp = async (
-    email: string,
-    password: string,
-  ): Promise<{ error?: string }> => {
-    const { error } = await supabase.auth.signUp({ email, password });
+  const signUp = async (email: string, password: string): Promise<{ error?: string }> => {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: getAuthRedirectUrl(),
+      },
+    });
     if (error) return { error: error.message };
     return {};
   };
 
-  const signInWithMagicLink = async (
-    email: string,
-  ): Promise<{ error?: string }> => {
-    const { error } = await supabase.auth.signInWithOtp({ email });
+  const signInWithMagicLink = async (email: string): Promise<{ error?: string }> => {
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: getAuthRedirectUrl(),
+      },
+    });
     if (error) return { error: error.message };
     return {};
   };
@@ -109,7 +112,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin,
+        redirectTo: getAuthRedirectUrl(),
       },
     });
     if (error) return { error: error.message };
@@ -128,10 +131,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!session?.user) return;
 
     // Update the profiles table
-    await supabase
-      .from("profiles")
-      .update({ tier: "premium" })
-      .eq("id", session.user.id);
+    await supabase.from("profiles").update({ tier: "premium" }).eq("id", session.user.id);
 
     // Update local state immediately
     setUser((prev) => (prev ? { ...prev, tier: "premium" } : null));
