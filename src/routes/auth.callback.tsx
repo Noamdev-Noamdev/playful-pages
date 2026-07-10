@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { supabase } from "@/lib/supabase";
 
-export const Route = createFileRoute("/auth/callback" as never)({
+export const Route = createFileRoute("/auth/callback")({
   component: AuthCallbackPage,
 });
 

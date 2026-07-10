@@ -14,6 +14,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlaySlugRouteImport } from './routes/play.$slug'
+import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ArchiveSlugRouteImport } from './routes/archive.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -41,6 +42,11 @@ const PlaySlugRoute = PlaySlugRouteImport.update({
   path: '/play/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthCallbackRoute = AuthCallbackRouteImport.update({
+  id: '/auth/callback',
+  path: '/auth/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ArchiveSlugRoute = ArchiveSlugRouteImport.update({
   id: '/archive/$slug',
   path: '/archive/$slug',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/archive/$slug': typeof ArchiveSlugRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/archive/$slug': typeof ArchiveSlugRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/archive/$slug': typeof ArchiveSlugRoute
+  '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/archive/$slug'
+    | '/auth/callback'
     | '/play/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/archive/$slug'
+    | '/auth/callback'
     | '/play/$slug'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/archive/$slug'
+    | '/auth/callback'
     | '/play/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ArchiveSlugRoute: typeof ArchiveSlugRoute
+  AuthCallbackRoute: typeof AuthCallbackRoute
   PlaySlugRoute: typeof PlaySlugRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/callback': {
+      id: '/auth/callback'
+      path: '/auth/callback'
+      fullPath: '/auth/callback'
+      preLoaderRoute: typeof AuthCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/archive/$slug': {
       id: '/archive/$slug'
       path: '/archive/$slug'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ArchiveSlugRoute: ArchiveSlugRoute,
+  AuthCallbackRoute: AuthCallbackRoute,
   PlaySlugRoute: PlaySlugRoute,
 }
 export const routeTree = rootRouteImport
