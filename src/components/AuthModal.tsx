@@ -45,6 +45,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
   const [mode, setMode] = useState<AuthMode>("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [magicSent, setMagicSent] = useState(false);
@@ -53,6 +54,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setMode("signin");
     setEmail("");
     setPassword("");
+    setConfirmPassword("");
     setError(null);
     setSubmitting(false);
     setMagicSent(false);
@@ -62,6 +64,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
     setMode(newMode);
     setError(null);
     setPassword("");
+    setConfirmPassword("");
     setMagicSent(false);
   }
 
@@ -74,8 +77,14 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    setSubmitting(true);
     setError(null);
+
+    if (mode === "signup" && password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    setSubmitting(true);
 
     try {
       let result: { error?: string };
@@ -129,18 +138,10 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
         : "We'll email you a link to sign in — no password needed";
 
   const submitLabel =
-    mode === "signin"
-      ? "Sign in"
-      : mode === "signup"
-        ? "Create account"
-        : "Send magic link";
+    mode === "signin" ? "Sign in" : mode === "signup" ? "Create account" : "Send magic link";
 
   const submittingLabel =
-    mode === "signin"
-      ? "Signing in..."
-      : mode === "signup"
-        ? "Creating account..."
-        : "Sending...";
+    mode === "signin" ? "Signing in..." : mode === "signup" ? "Creating account..." : "Sending...";
 
   const inputClassName =
     "w-full rounded-xl border-2 border-foreground bg-background px-4 py-3 text-sm font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring";
@@ -174,9 +175,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
           {/* ── Divider ── */}
           <div className="flex items-center gap-3 py-4">
             <div className="h-px flex-1 bg-border" />
-            <span className="text-xs uppercase tracking-wider text-muted-foreground">
-              or
-            </span>
+            <span className="text-xs uppercase tracking-wider text-muted-foreground">or</span>
             <div className="h-px flex-1 bg-border" />
           </div>
 
@@ -192,8 +191,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
                 ) : (
                   <>
                     Check your email! We sent a magic link to{" "}
-                    <span className="font-bold">{email}</span>. Click the link
-                    to sign in.
+                    <span className="font-bold">{email}</span>. Click the link to sign in.
                   </>
                 )}
               </p>
@@ -219,9 +217,19 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className={inputClassName}
-                  autoComplete={
-                    mode === "signin" ? "current-password" : "new-password"
-                  }
+                  autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                />
+              )}
+
+              {mode === "signup" && (
+                <input
+                  type="password"
+                  placeholder="Confirm password"
+                  required
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className={inputClassName}
+                  autoComplete="new-password"
                 />
               )}
 
@@ -252,18 +260,14 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
                 className="text-sm text-muted-foreground"
               >
                 Don&apos;t have an account?{" "}
-                <span className="font-bold text-foreground underline">
-                  Sign up
-                </span>
+                <span className="font-bold text-foreground underline">Sign up</span>
               </button>
               <button
                 type="button"
                 onClick={() => switchMode("magic")}
                 className="text-sm text-muted-foreground"
               >
-                <span className="font-bold text-foreground underline">
-                  Sign in with magic link
-                </span>
+                <span className="font-bold text-foreground underline">Sign in with magic link</span>
               </button>
             </div>
           )}
@@ -276,9 +280,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
                 className="text-sm text-muted-foreground"
               >
                 Already have an account?{" "}
-                <span className="font-bold text-foreground underline">
-                  Sign in
-                </span>
+                <span className="font-bold text-foreground underline">Sign in</span>
               </button>
             </div>
           )}
@@ -290,9 +292,7 @@ export function AuthModal({ open, onOpenChange }: AuthModalProps) {
                 onClick={() => switchMode("signin")}
                 className="text-sm text-muted-foreground"
               >
-                <span className="font-bold text-foreground underline">
-                  Sign in with password
-                </span>
+                <span className="font-bold text-foreground underline">Sign in with password</span>
               </button>
             </div>
           )}
