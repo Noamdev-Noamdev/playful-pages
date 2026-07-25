@@ -161,8 +161,8 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
       <UpgradeModal
         open={upgradeOpen}
         onOpenChange={setUpgradeOpen}
-        onUpgrade={() => {
-          upgradeToPremium();
+        onUpgrade={async () => {
+          await upgradeToPremium();
           setUpgradeOpen(false);
         }}
       />

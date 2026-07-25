@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SuccessRouteImport } from './routes/success'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as LegalRouteImport } from './routes/legal'
@@ -17,6 +18,11 @@ import { Route as PlaySlugRouteImport } from './routes/play.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ArchiveSlugRouteImport } from './routes/archive.$slug'
 
+const SuccessRoute = SuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/legal': typeof LegalRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/success': typeof SuccessRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/legal': typeof LegalRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/success': typeof SuccessRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/legal': typeof LegalRoute
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/success': typeof SuccessRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/privacy'
     | '/sitemap.xml'
+    | '/success'
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/privacy'
     | '/sitemap.xml'
+    | '/success'
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/privacy'
     | '/sitemap.xml'
+    | '/success'
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   LegalRoute: typeof LegalRoute
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  SuccessRoute: typeof SuccessRoute
   ArchiveSlugRoute: typeof ArchiveSlugRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   PlaySlugRoute: typeof PlaySlugRoute
@@ -123,6 +136,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/success': {
+      id: '/success'
+      path: '/success'
+      fullPath: '/success'
+      preLoaderRoute: typeof SuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegalRoute: LegalRoute,
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  SuccessRoute: SuccessRoute,
   ArchiveSlugRoute: ArchiveSlugRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   PlaySlugRoute: PlaySlugRoute,

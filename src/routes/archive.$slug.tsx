@@ -318,8 +318,8 @@ function ArchiveForGame() {
       <UpgradeModal
         open={upgradeOpen}
         onOpenChange={setUpgradeOpen}
-        onUpgrade={() => {
-          upgradeToPremium();
+        onUpgrade={async () => {
+          await upgradeToPremium();
           setUpgradeOpen(false);
         }}
       />

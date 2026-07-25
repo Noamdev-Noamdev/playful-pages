@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -5,12 +6,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Check, Crown, Lock, Sparkles, X } from "lucide-react";
+import { Check, Crown, Lock, Sparkles, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 interface UpgradeModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onUpgrade: () => void;
+  onUpgrade: () => Promise<void>;
 }
 
 const freeFeatures = [
@@ -30,6 +32,17 @@ const premiumFeatures = [
 ];
 
 export function UpgradeModal({ open, onOpenChange, onUpgrade }: UpgradeModalProps) {
+  const [loading, setLoading] = useState(false);
+
+  async function handleUpgrade() {
+    setLoading(true);
+    try {
+      await onUpgrade();
+    } catch (err: any) {
+      toast.error(err?.message || "Something went wrong. Please try again.");
+      setLoading(false);
+    }
+  }
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl gap-0 overflow-hidden rounded-3xl border-2 border-foreground p-0 sm:rounded-3xl">
@@ -152,8 +165,9 @@ export function UpgradeModal({ open, onOpenChange, onUpgrade }: UpgradeModalProp
               <div className="mt-auto pt-6">
                 <button
                   type="button"
-                  onClick={onUpgrade}
-                  className="group w-full rounded-full border-2 border-foreground px-5 py-2.5 font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_var(--foreground)]"
+                  onClick={handleUpgrade}
+                  disabled={loading}
+                  className="group w-full rounded-full border-2 border-foreground px-5 py-2.5 font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_var(--foreground)] disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                   style={{
                     background:
                       "linear-gradient(135deg, oklch(0.88 0.17 85), oklch(0.82 0.16 60))",
@@ -161,11 +175,23 @@ export function UpgradeModal({ open, onOpenChange, onUpgrade }: UpgradeModalProp
                   }}
                 >
                   <span className="flex items-center justify-center gap-2">
-                    <Sparkles
-                      className="h-4 w-4 transition-transform duration-200 group-hover:rotate-12"
-                      strokeWidth={2.5}
-                    />
-                    Upgrade Now
+                    {loading ? (
+                      <>
+                        <Loader2
+                          className="h-4 w-4 animate-spin"
+                          strokeWidth={2.5}
+                        />
+                        Redirecting to checkout...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles
+                          className="h-4 w-4 transition-transform duration-200 group-hover:rotate-12"
+                          strokeWidth={2.5}
+                        />
+                        Upgrade Now
+                      </>
+                    )}
                   </span>
                 </button>
               </div>

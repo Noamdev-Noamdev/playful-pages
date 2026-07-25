@@ -19,6 +19,7 @@ interface AuthContextType {
   signInWithGoogle: () => Promise<{ error?: string }>;
   logout: () => Promise<void>;
   upgradeToPremium: () => Promise<void>;
+  refreshTier: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -145,11 +146,39 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = await supabase.auth.getSession();
     if (!session?.user) return;
 
-    // Update the profiles table
-    await supabase.from("profiles").update({ tier: "premium" }).eq("id", session.user.id);
+    // Call our server API to create a Stripe Checkout session
+    const res = await fetch("/api/create-checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: session.user.id,
+        userEmail: session.user.email,
+      }),
+    });
 
-    // Update local state immediately
-    setUser((prev) => (prev ? { ...prev, tier: "premium" } : null));
+    const data = await res.json();
+
+    if (data.url) {
+      // Redirect to Stripe Checkout
+      window.location.href = data.url;
+    } else {
+      console.error("[upgradeToPremium] Failed:", data.error);
+      throw new Error(data.error || "Failed to create checkout session");
+    }
+  };
+
+  /**
+   * Re-fetch the user's tier from the database.
+   * Called after returning from Stripe to pick up webhook-applied changes.
+   */
+  const refreshTier = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    if (!session?.user) return;
+
+    const tier = await fetchTier(session.user.id);
+    setUser((prev) => (prev ? { ...prev, tier } : null));
   };
 
   return (
@@ -163,6 +192,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signInWithGoogle,
         logout,
         upgradeToPremium,
+        refreshTier,
       }}
     >
       {children}
