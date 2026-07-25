@@ -144,7 +144,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const {
       data: { session },
     } = await supabase.auth.getSession();
-    if (!session?.user) return;
+    if (!session?.user) {
+      throw new Error("Please sign in or create an account first to upgrade.");
+    }
 
     // Call our server API to create a Stripe Checkout session
     const res = await fetch("/api/create-checkout", {
