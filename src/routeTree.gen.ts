@@ -17,6 +17,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PlaySlugRouteImport } from './routes/play.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ArchiveSlugRouteImport } from './routes/archive.$slug'
+import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
+import { Route as ApiCreateCheckoutRouteImport } from './routes/api/create-checkout'
 
 const SuccessRoute = SuccessRouteImport.update({
   id: '/success',
@@ -58,6 +60,16 @@ const ArchiveSlugRoute = ArchiveSlugRouteImport.update({
   path: '/archive/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiStripeWebhookRoute = ApiStripeWebhookRouteImport.update({
+  id: '/api/stripe-webhook',
+  path: '/api/stripe-webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCreateCheckoutRoute = ApiCreateCheckoutRouteImport.update({
+  id: '/api/create-checkout',
+  path: '/api/create-checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -65,6 +77,8 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success': typeof SuccessRoute
+  '/api/create-checkout': typeof ApiCreateCheckoutRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
@@ -75,6 +89,8 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success': typeof SuccessRoute
+  '/api/create-checkout': typeof ApiCreateCheckoutRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
@@ -86,6 +102,8 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success': typeof SuccessRoute
+  '/api/create-checkout': typeof ApiCreateCheckoutRoute
+  '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
@@ -98,6 +116,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/success'
+    | '/api/create-checkout'
+    | '/api/stripe-webhook'
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
@@ -108,6 +128,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/success'
+    | '/api/create-checkout'
+    | '/api/stripe-webhook'
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
@@ -118,6 +140,8 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/success'
+    | '/api/create-checkout'
+    | '/api/stripe-webhook'
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
@@ -129,6 +153,8 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SuccessRoute: typeof SuccessRoute
+  ApiCreateCheckoutRoute: typeof ApiCreateCheckoutRoute
+  ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   ArchiveSlugRoute: typeof ArchiveSlugRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   PlaySlugRoute: typeof PlaySlugRoute
@@ -192,6 +218,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArchiveSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/stripe-webhook': {
+      id: '/api/stripe-webhook'
+      path: '/api/stripe-webhook'
+      fullPath: '/api/stripe-webhook'
+      preLoaderRoute: typeof ApiStripeWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/create-checkout': {
+      id: '/api/create-checkout'
+      path: '/api/create-checkout'
+      fullPath: '/api/create-checkout'
+      preLoaderRoute: typeof ApiCreateCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -201,6 +241,8 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SuccessRoute: SuccessRoute,
+  ApiCreateCheckoutRoute: ApiCreateCheckoutRoute,
+  ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   ArchiveSlugRoute: ArchiveSlugRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   PlaySlugRoute: PlaySlugRoute,
