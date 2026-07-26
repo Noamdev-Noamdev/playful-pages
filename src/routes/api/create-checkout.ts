@@ -1,19 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import Stripe from "stripe";
-import { createSupabaseAdmin } from "@/lib/supabase-admin";
+
+function getEnv(request: any, context?: any): Record<string, string | undefined> {
+  return {
+    ...((globalThis as any).process?.env ?? {}),
+    ...(context?.cloudflare?.env ?? {}),
+    ...(request?.env ?? {}),
+  };
+}
 
 export const Route = createFileRoute("/api/create-checkout")({
   server: {
     handlers: {
-      POST: async ({ request }) => {
-        // Access env from multiple possible sources for Cloudflare Pages compatibility
-        const env = (globalThis as any).process?.env ?? {};
+      POST: async ({ request, context }: { request: Request; context?: any }) => {
+        const env = getEnv(request, context);
 
         const stripeSecretKey = env.STRIPE_SECRET_KEY;
         const priceId = env.STRIPE_PRICE_ID;
 
         if (!stripeSecretKey || !priceId) {
+          console.error("[create-checkout] Missing STRIPE_SECRET_KEY or STRIPE_PRICE_ID");
           return new Response(
             JSON.stringify({ error: "Stripe is not configured on the server" }),
             { status: 500, headers: { "Content-Type": "application/json" } },

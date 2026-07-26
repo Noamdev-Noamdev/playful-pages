@@ -3,11 +3,19 @@ import type {} from "@tanstack/react-start";
 import Stripe from "stripe";
 import { createSupabaseAdmin } from "@/lib/supabase-admin";
 
+function getEnv(request: any, context?: any): Record<string, string | undefined> {
+  return {
+    ...((globalThis as any).process?.env ?? {}),
+    ...(context?.cloudflare?.env ?? {}),
+    ...(request?.env ?? {}),
+  };
+}
+
 export const Route = createFileRoute("/api/stripe-webhook")({
   server: {
     handlers: {
-      POST: async ({ request }) => {
-        const env = (globalThis as any).process?.env ?? {};
+      POST: async ({ request, context }: { request: Request; context?: any }) => {
+        const env = getEnv(request, context);
 
         const stripeSecretKey = env.STRIPE_SECRET_KEY;
         const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
@@ -29,7 +37,12 @@ export const Route = createFileRoute("/api/stripe-webhook")({
         let stripeEvent: Stripe.Event;
 
         try {
-          stripeEvent = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+          // In Cloudflare Workers / Edge runtimes, constructEventAsync must be used
+          stripeEvent = await stripe.webhooks.constructEventAsync(
+            rawBody,
+            signature,
+            webhookSecret,
+          );
         } catch (err: any) {
           console.error("[stripe-webhook] Signature verification failed:", err.message);
           return new Response(`Webhook signature verification failed: ${err.message}`, {
