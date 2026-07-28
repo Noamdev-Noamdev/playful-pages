@@ -38,14 +38,16 @@ export function UpgradeModal({ open, onOpenChange, onUpgrade }: UpgradeModalProp
     setLoading(true);
     try {
       await onUpgrade();
-    } catch (err: any) {
-      toast.error(err?.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      toast.error(message);
       setLoading(false);
     }
   }
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl gap-0 overflow-hidden rounded-3xl border-2 border-foreground p-0 sm:rounded-3xl">
+      <DialogContent className="max-h-[calc(100vh-2rem)] max-w-2xl gap-0 overflow-x-hidden overflow-y-auto rounded-3xl border-2 border-foreground p-0 sm:rounded-3xl">
         <DialogHeader className="px-6 pt-6 text-center sm:text-center">
           <DialogTitle className="font-display text-2xl font-black tracking-tight sm:text-3xl">
             Unlock the full experience
@@ -76,7 +78,9 @@ export function UpgradeModal({ open, onOpenChange, onUpgrade }: UpgradeModalProp
                   ) : (
                     <Lock className="h-4 w-4 shrink-0 text-muted-foreground/50" strokeWidth={2.5} />
                   )}
-                  <span className={feature.included ? "text-foreground" : "text-muted-foreground/60"}>
+                  <span
+                    className={feature.included ? "text-foreground" : "text-muted-foreground/60"}
+                  >
                     {feature.text}
                   </span>
                 </li>
@@ -169,18 +173,14 @@ export function UpgradeModal({ open, onOpenChange, onUpgrade }: UpgradeModalProp
                   disabled={loading}
                   className="group w-full rounded-full border-2 border-foreground px-5 py-2.5 font-bold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_var(--foreground)] disabled:opacity-70 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                   style={{
-                    background:
-                      "linear-gradient(135deg, oklch(0.88 0.17 85), oklch(0.82 0.16 60))",
+                    background: "linear-gradient(135deg, oklch(0.88 0.17 85), oklch(0.82 0.16 60))",
                     color: "oklch(0.2 0.04 60)",
                   }}
                 >
                   <span className="flex items-center justify-center gap-2">
                     {loading ? (
                       <>
-                        <Loader2
-                          className="h-4 w-4 animate-spin"
-                          strokeWidth={2.5}
-                        />
+                        <Loader2 className="h-4 w-4 animate-spin" strokeWidth={2.5} />
                         Redirecting to checkout...
                       </>
                     ) : (
