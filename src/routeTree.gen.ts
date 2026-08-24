@@ -20,6 +20,10 @@ import { Route as ArchiveSlugRouteImport } from './routes/archive.$slug'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
 import { Route as ApiCreateCheckoutRouteImport } from './routes/api/create-checkout'
 import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
+import { Route as ApiAnalyticsQueryRouteImport } from './routes/api/analytics/query'
+import { Route as ApiAnalyticsExportRouteImport } from './routes/api/analytics/export'
+import { Route as ApiAnalyticsCollectRouteImport } from './routes/api/analytics/collect'
+import { Route as ApiAnalyticsCleanupRouteImport } from './routes/api/analytics/cleanup'
 
 const SuccessRoute = SuccessRouteImport.update({
   id: '/success',
@@ -76,6 +80,26 @@ const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
   path: '/admin/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAnalyticsQueryRoute = ApiAnalyticsQueryRouteImport.update({
+  id: '/api/analytics/query',
+  path: '/api/analytics/query',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAnalyticsExportRoute = ApiAnalyticsExportRouteImport.update({
+  id: '/api/analytics/export',
+  path: '/api/analytics/export',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAnalyticsCollectRoute = ApiAnalyticsCollectRouteImport.update({
+  id: '/api/analytics/collect',
+  path: '/api/analytics/collect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAnalyticsCleanupRoute = ApiAnalyticsCleanupRouteImport.update({
+  id: '/api/analytics/cleanup',
+  path: '/api/analytics/cleanup',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +113,10 @@ export interface FileRoutesByFullPath {
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
+  '/api/analytics/cleanup': typeof ApiAnalyticsCleanupRoute
+  '/api/analytics/collect': typeof ApiAnalyticsCollectRoute
+  '/api/analytics/export': typeof ApiAnalyticsExportRoute
+  '/api/analytics/query': typeof ApiAnalyticsQueryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +130,10 @@ export interface FileRoutesByTo {
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
+  '/api/analytics/cleanup': typeof ApiAnalyticsCleanupRoute
+  '/api/analytics/collect': typeof ApiAnalyticsCollectRoute
+  '/api/analytics/export': typeof ApiAnalyticsExportRoute
+  '/api/analytics/query': typeof ApiAnalyticsQueryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +148,10 @@ export interface FileRoutesById {
   '/archive/$slug': typeof ArchiveSlugRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/play/$slug': typeof PlaySlugRoute
+  '/api/analytics/cleanup': typeof ApiAnalyticsCleanupRoute
+  '/api/analytics/collect': typeof ApiAnalyticsCollectRoute
+  '/api/analytics/export': typeof ApiAnalyticsExportRoute
+  '/api/analytics/query': typeof ApiAnalyticsQueryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +167,10 @@ export interface FileRouteTypes {
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
+    | '/api/analytics/cleanup'
+    | '/api/analytics/collect'
+    | '/api/analytics/export'
+    | '/api/analytics/query'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +184,10 @@ export interface FileRouteTypes {
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
+    | '/api/analytics/cleanup'
+    | '/api/analytics/collect'
+    | '/api/analytics/export'
+    | '/api/analytics/query'
   id:
     | '__root__'
     | '/'
@@ -157,6 +201,10 @@ export interface FileRouteTypes {
     | '/archive/$slug'
     | '/auth/callback'
     | '/play/$slug'
+    | '/api/analytics/cleanup'
+    | '/api/analytics/collect'
+    | '/api/analytics/export'
+    | '/api/analytics/query'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +219,10 @@ export interface RootRouteChildren {
   ArchiveSlugRoute: typeof ArchiveSlugRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   PlaySlugRoute: typeof PlaySlugRoute
+  ApiAnalyticsCleanupRoute: typeof ApiAnalyticsCleanupRoute
+  ApiAnalyticsCollectRoute: typeof ApiAnalyticsCollectRoute
+  ApiAnalyticsExportRoute: typeof ApiAnalyticsExportRoute
+  ApiAnalyticsQueryRoute: typeof ApiAnalyticsQueryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +304,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/analytics/query': {
+      id: '/api/analytics/query'
+      path: '/api/analytics/query'
+      fullPath: '/api/analytics/query'
+      preLoaderRoute: typeof ApiAnalyticsQueryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/analytics/export': {
+      id: '/api/analytics/export'
+      path: '/api/analytics/export'
+      fullPath: '/api/analytics/export'
+      preLoaderRoute: typeof ApiAnalyticsExportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/analytics/collect': {
+      id: '/api/analytics/collect'
+      path: '/api/analytics/collect'
+      fullPath: '/api/analytics/collect'
+      preLoaderRoute: typeof ApiAnalyticsCollectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/analytics/cleanup': {
+      id: '/api/analytics/cleanup'
+      path: '/api/analytics/cleanup'
+      fullPath: '/api/analytics/cleanup'
+      preLoaderRoute: typeof ApiAnalyticsCleanupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +347,10 @@ const rootRouteChildren: RootRouteChildren = {
   ArchiveSlugRoute: ArchiveSlugRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   PlaySlugRoute: PlaySlugRoute,
+  ApiAnalyticsCleanupRoute: ApiAnalyticsCleanupRoute,
+  ApiAnalyticsCollectRoute: ApiAnalyticsCollectRoute,
+  ApiAnalyticsExportRoute: ApiAnalyticsExportRoute,
+  ApiAnalyticsQueryRoute: ApiAnalyticsQueryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
