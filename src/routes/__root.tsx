@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/hooks/useAuth";
@@ -101,7 +102,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
           }}
         />
         */}
-        <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+
       </head>
       <body>
         {children}
@@ -113,6 +114,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  useEffect(() => {
+    import("@/lib/analytics-tracker").then(({ initTracker }) => initTracker());
+  }, []);
+
   return (
     <AuthProvider>
       <Outlet />

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Crown, LogOut, Sparkles, User } from "lucide-react";
+import { ChevronDown, Crown, LogOut, Sparkles, User, BarChart3 } from "lucide-react";
 import { AuthModal } from "@/components/AuthModal";
 import { UpgradeModal } from "@/components/UpgradeModal";
 import { useAuth } from "@/hooks/useAuth";
@@ -134,6 +134,17 @@ export function SiteNav({ activeTab, onTabChange, showTabs = true }: SiteNavProp
                           <Crown className="h-4 w-4" />
                           Upgrade to Premium
                         </button>
+                      )}
+
+                      {user.isAdmin && (
+                        <Link
+                          to="/admin/analytics"
+                          onClick={() => setMenuOpen(false)}
+                          className="flex w-full items-center gap-2 px-4 py-3 text-left text-sm font-semibold transition-colors hover:bg-muted"
+                        >
+                          <BarChart3 className="h-4 w-4" />
+                          Analytics
+                        </Link>
                       )}
 
                       <button

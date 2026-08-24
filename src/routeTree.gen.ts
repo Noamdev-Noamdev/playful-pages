@@ -19,6 +19,7 @@ import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as ArchiveSlugRouteImport } from './routes/archive.$slug'
 import { Route as ApiStripeWebhookRouteImport } from './routes/api/stripe-webhook'
 import { Route as ApiCreateCheckoutRouteImport } from './routes/api/create-checkout'
+import { Route as AdminAnalyticsRouteImport } from './routes/admin/analytics'
 
 const SuccessRoute = SuccessRouteImport.update({
   id: '/success',
@@ -70,6 +71,11 @@ const ApiCreateCheckoutRoute = ApiCreateCheckoutRouteImport.update({
   path: '/api/create-checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAnalyticsRoute = AdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success': typeof SuccessRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/archive/$slug': typeof ArchiveSlugRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success': typeof SuccessRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/archive/$slug': typeof ArchiveSlugRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/success': typeof SuccessRoute
+  '/admin/analytics': typeof AdminAnalyticsRoute
   '/api/create-checkout': typeof ApiCreateCheckoutRoute
   '/api/stripe-webhook': typeof ApiStripeWebhookRoute
   '/archive/$slug': typeof ArchiveSlugRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/success'
+    | '/admin/analytics'
     | '/api/create-checkout'
     | '/api/stripe-webhook'
     | '/archive/$slug'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/success'
+    | '/admin/analytics'
     | '/api/create-checkout'
     | '/api/stripe-webhook'
     | '/archive/$slug'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/sitemap.xml'
     | '/success'
+    | '/admin/analytics'
     | '/api/create-checkout'
     | '/api/stripe-webhook'
     | '/archive/$slug'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SuccessRoute: typeof SuccessRoute
+  AdminAnalyticsRoute: typeof AdminAnalyticsRoute
   ApiCreateCheckoutRoute: typeof ApiCreateCheckoutRoute
   ApiStripeWebhookRoute: typeof ApiStripeWebhookRoute
   ArchiveSlugRoute: typeof ArchiveSlugRoute
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiCreateCheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/analytics': {
+      id: '/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SuccessRoute: SuccessRoute,
+  AdminAnalyticsRoute: AdminAnalyticsRoute,
   ApiCreateCheckoutRoute: ApiCreateCheckoutRoute,
   ApiStripeWebhookRoute: ApiStripeWebhookRoute,
   ArchiveSlugRoute: ArchiveSlugRoute,
