@@ -11,8 +11,11 @@ export const Route = createFileRoute("/api/analytics/query")({
           try {
             await verifyAdmin(request, context);
           } catch (e: any) {
-            if (e.message === "401") return new Response("Unauthorized", { status: 401 });
-            if (e.message === "403") return new Response("Forbidden", { status: 403 });
+            const msg = (e?.message ?? "401") as string;
+            if (msg.startsWith("401"))
+              return new Response(msg, { status: 401, headers: { "Content-Type": "text/plain" } });
+            if (msg.startsWith("403"))
+              return new Response(msg, { status: 403, headers: { "Content-Type": "text/plain" } });
             throw e;
           }
 
