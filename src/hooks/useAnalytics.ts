@@ -103,11 +103,20 @@ export function useAnalyticsQuery<T>(
       });
 
       if (!res.ok) {
-        throw new Error("Failed to fetch analytics data");
+        let errorMsg = "Failed to fetch analytics data";
+        try {
+          const body = await res.json();
+          if (body?.error) errorMsg = body.error;
+        } catch {
+          // ignore json parse error
+        }
+        throw new Error(errorMsg);
       }
       return res.json();
     },
     refetchInterval: options?.refetchInterval,
+    throwOnError: false,
+    retry: 1,
   });
 }
 

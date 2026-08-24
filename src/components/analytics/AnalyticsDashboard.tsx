@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Users, Eye, MousePointerClick, Clock, Download } from "lucide-react";
+import { ArrowLeft, Users, Eye, MousePointerClick, Clock, Download, AlertTriangle, Database } from "lucide-react";
 import { format, subDays } from "date-fns";
 import {
   AreaChart,
@@ -18,21 +18,41 @@ import { AnalyticsTable, Column } from "./AnalyticsTable";
 import { DeviceChart } from "./DeviceChart";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
 
 function formatTime(seconds: number) {
+  if (!seconds || isNaN(seconds) || seconds < 0) return "0m 0s";
   const m = Math.floor(seconds / 60);
   const s = Math.floor(seconds % 60);
   return `${m}m ${s}s`;
 }
 
+function safeNumber(val: any): string {
+  if (val == null || isNaN(Number(val))) return "0";
+  return new Intl.NumberFormat().format(Number(val));
+}
+
+function safeDate(dateStr: any, pattern: string): string {
+  if (!dateStr) return "";
+  try {
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) return String(dateStr);
+    return format(d, pattern);
+  } catch {
+    return String(dateStr);
+  }
+}
+
 function getCountryFlag(countryCode: string) {
-  if (!countryCode || countryCode.length !== 2) return "🌐";
-  const codePoints = countryCode
-    .toUpperCase()
-    .split("")
-    .map((char) => 127397 + char.charCodeAt(0));
-  return String.fromCodePoint(...codePoints);
+  if (!countryCode || typeof countryCode !== "string" || countryCode.length !== 2) return "🌐";
+  try {
+    const codePoints = countryCode
+      .toUpperCase()
+      .split("")
+      .map((char) => 127397 + char.charCodeAt(0));
+    return String.fromCodePoint(...codePoints);
+  } catch {
+    return "🌐";
+  }
 }
 
 export function AnalyticsDashboard() {
@@ -45,18 +65,18 @@ export function AnalyticsDashboard() {
 
   const refetchInterval = autoRefresh ? 30000 : undefined;
 
-  const { data: summary, isLoading: isLoadingSummary } = useAnalyticsQuery<any>(
+  const { data: summary, isLoading: isLoadingSummary, error: summaryError } = useAnalyticsQuery<any>(
     "summary",
     dateRange,
     { refetchInterval },
   );
-  const { data: timeseries, isLoading: isLoadingTimeseries } = useAnalyticsQuery<any>(
+  const { data: timeseries, isLoading: isLoadingTimeseries, error: timeseriesError } = useAnalyticsQuery<any>(
     "timeseries",
     dateRange,
     { refetchInterval },
   );
 
-  const { data: tabData, isLoading: isLoadingTabData } = useAnalyticsQuery<any>(
+  const { data: tabData, isLoading: isLoadingTabData, error: tabError } = useAnalyticsQuery<any>(
     activeTab as any,
     dateRange,
     { refetchInterval },
@@ -72,21 +92,25 @@ export function AnalyticsDashboard() {
     }
   };
 
+  const currentError = summaryError || timeseriesError || tabError;
+  const isDbMissing = (currentError as Error)?.message?.toLowerCase().includes("database error") ||
+                      (currentError as Error)?.message?.toLowerCase().includes("500");
+
   const pagesColumns: Column<any>[] = [
-    { key: "path", label: "Path", sortable: true },
+    { key: "path", label: "Path", sortable: true, format: (v) => v || "/" },
     {
       key: "visitors",
       label: "Visitors",
       sortable: true,
       align: "right",
-      format: (v) => v.toLocaleString(),
+      format: (v) => safeNumber(v),
     },
     {
       key: "pageviews",
       label: "Pageviews",
       sortable: true,
       align: "right",
-      format: (v) => v.toLocaleString(),
+      format: (v) => safeNumber(v),
     },
     {
       key: "avgTime",
@@ -98,27 +122,30 @@ export function AnalyticsDashboard() {
   ];
 
   const referrersColumns: Column<any>[] = [
-    { key: "domain", label: "Domain", sortable: true },
+    { key: "domain", label: "Domain", sortable: true, format: (v) => v || "Direct / None" },
     {
       key: "visitors",
       label: "Visitors",
       sortable: true,
       align: "right",
-      format: (v) => v.toLocaleString(),
+      format: (v) => safeNumber(v),
     },
     {
       key: "percentage",
       label: "% of Total",
       sortable: true,
       align: "right",
-      format: (v) => (
-        <div className="flex items-center justify-end gap-2">
-          <span className="w-10 text-right">{v}%</span>
-          <div className="w-16 h-2 bg-foreground/10 rounded-full overflow-hidden">
-            <div className="h-full bg-foreground" style={{ width: `${v}%` }} />
+      format: (v) => {
+        const pct = Math.min(100, Math.max(0, Number(v) || 0));
+        return (
+          <div className="flex items-center justify-end gap-2">
+            <span className="w-12 text-right font-mono">{pct.toFixed(1)}%</span>
+            <div className="w-16 h-2 bg-foreground/10 rounded-full overflow-hidden">
+              <div className="h-full bg-foreground" style={{ width: `${pct}%` }} />
+            </div>
           </div>
-        </div>
-      ),
+        );
+      },
     },
   ];
 
@@ -129,7 +156,7 @@ export function AnalyticsDashboard() {
       sortable: true,
       format: (v) => (
         <div className="flex items-center gap-2">
-          <span className="text-xl">{getCountryFlag(v)}</span> {v}
+          <span className="text-xl">{getCountryFlag(v)}</span> {v || "Unknown"}
         </div>
       ),
     },
@@ -138,33 +165,36 @@ export function AnalyticsDashboard() {
       label: "Visitors",
       sortable: true,
       align: "right",
-      format: (v) => v.toLocaleString(),
+      format: (v) => safeNumber(v),
     },
     {
       key: "percentage",
       label: "% of Total",
       sortable: true,
       align: "right",
-      format: (v) => (
-        <div className="flex items-center justify-end gap-2">
-          <span className="w-10 text-right">{v}%</span>
-          <div className="w-16 h-2 bg-foreground/10 rounded-full overflow-hidden">
-            <div className="h-full bg-foreground" style={{ width: `${v}%` }} />
+      format: (v) => {
+        const pct = Math.min(100, Math.max(0, Number(v) || 0));
+        return (
+          <div className="flex items-center justify-end gap-2">
+            <span className="w-12 text-right font-mono">{pct.toFixed(1)}%</span>
+            <div className="w-16 h-2 bg-foreground/10 rounded-full overflow-hidden">
+              <div className="h-full bg-foreground" style={{ width: `${pct}%` }} />
+            </div>
           </div>
-        </div>
-      ),
+        );
+      },
     },
   ];
 
   const citiesColumns: Column<any>[] = [
-    { key: "city", label: "City", sortable: true },
-    { key: "country", label: "Country", sortable: true },
+    { key: "city", label: "City", sortable: true, format: (v) => v || "Unknown" },
+    { key: "country", label: "Country", sortable: true, format: (v) => v || "Unknown" },
     {
       key: "visitors",
       label: "Visitors",
       sortable: true,
       align: "right",
-      format: (v) => v.toLocaleString(),
+      format: (v) => safeNumber(v),
     },
   ];
 
@@ -203,13 +233,43 @@ export function AnalyticsDashboard() {
           </div>
         </div>
 
+        {/* Database Migration Alert if tables aren't created yet */}
+        {isDbMissing && (
+          <div className="border-2 border-foreground rounded-2xl p-5 bg-card-yellow shadow-[4px_4px_0_0_var(--foreground)]">
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-background rounded-xl border-2 border-foreground">
+                <Database className="w-6 h-6 text-foreground" />
+              </div>
+              <div>
+                <h3 className="text-lg font-display font-bold text-foreground flex items-center gap-2">
+                  Database Table Setup Needed
+                </h3>
+                <p className="mt-1 text-sm font-medium text-foreground/90">
+                  The analytics table standard query failed (likely because the <code className="bg-background/60 px-1.5 py-0.5 rounded border border-foreground font-mono text-xs">analytics_events</code> table has not been created in Supabase yet).
+                </p>
+                <p className="mt-2 text-xs font-bold text-foreground">
+                  Solution: Open the Supabase SQL Editor for your project and execute the SQL script in <code className="bg-background/60 px-1.5 py-0.5 rounded border border-foreground font-mono">analytics-schema.sql</code>.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* General Error Notice */}
+        {currentError && !isDbMissing && (
+          <div className="border-2 border-foreground rounded-2xl p-4 bg-destructive/10 text-destructive shadow-[4px_4px_0_0_var(--foreground)] flex items-center gap-3">
+            <AlertTriangle className="w-5 h-5 flex-shrink-0" />
+            <p className="text-sm font-bold">
+              {(currentError as Error).message || "Failed to load some analytics data."}
+            </p>
+          </div>
+        )}
+
         {/* Summary Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <StatCard
             title="Visitors"
-            value={
-              summary?.visitors != null ? new Intl.NumberFormat().format(summary.visitors) : "-"
-            }
+            value={safeNumber(summary?.visitors)}
             icon={<Users className="w-5 h-5" />}
             trend={summary?.visitorsTrend}
             color="bg-card-pink"
@@ -217,9 +277,7 @@ export function AnalyticsDashboard() {
           />
           <StatCard
             title="Pageviews"
-            value={
-              summary?.pageviews != null ? new Intl.NumberFormat().format(summary.pageviews) : "-"
-            }
+            value={safeNumber(summary?.pageviews)}
             icon={<Eye className="w-5 h-5" />}
             trend={summary?.pageviewsTrend}
             color="bg-card-yellow"
@@ -227,7 +285,7 @@ export function AnalyticsDashboard() {
           />
           <StatCard
             title="Bounce Rate"
-            value={summary?.bounceRate != null ? `${summary.bounceRate.toFixed(1)}%` : "-"}
+            value={summary?.bounceRate != null ? `${Number(summary.bounceRate).toFixed(1)}%` : "0.0%"}
             icon={<MousePointerClick className="w-5 h-5" />}
             trend={summary?.bounceRateTrend}
             trendInverted
@@ -236,9 +294,7 @@ export function AnalyticsDashboard() {
           />
           <StatCard
             title="Avg Duration"
-            value={
-              summary?.avgSessionDuration != null ? formatTime(summary.avgSessionDuration) : "-"
-            }
+            value={formatTime(summary?.avgSessionDuration)}
             icon={<Clock className="w-5 h-5" />}
             trend={summary?.durationTrend}
             color="bg-card-sky"
@@ -252,7 +308,7 @@ export function AnalyticsDashboard() {
           <div className="h-[350px] w-full">
             {isLoadingTimeseries ? (
               <div className="w-full h-full animate-pulse bg-foreground/5 rounded-2xl"></div>
-            ) : timeseries && timeseries.length > 0 ? (
+            ) : timeseries && Array.isArray(timeseries) && timeseries.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={timeseries} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                   <defs>
@@ -272,7 +328,7 @@ export function AnalyticsDashboard() {
                   />
                   <XAxis
                     dataKey="date"
-                    tickFormatter={(tick) => format(new Date(tick), "MMM d")}
+                    tickFormatter={(tick) => safeDate(tick, "MMM d")}
                     axisLine={false}
                     tickLine={false}
                     tick={{ fill: "currentColor", fontSize: 12, fontWeight: 500 }}
@@ -291,7 +347,7 @@ export function AnalyticsDashboard() {
                       boxShadow: "4px 4px 0 0 var(--color-foreground)",
                       fontWeight: "bold",
                     }}
-                    labelFormatter={(label) => format(new Date(label as string), "MMM d, yyyy")}
+                    labelFormatter={(label) => safeDate(label, "MMM d, yyyy")}
                   />
                   <Area
                     type="monotone"
@@ -312,8 +368,9 @@ export function AnalyticsDashboard() {
                 </AreaChart>
               </ResponsiveContainer>
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground font-medium">
-                No timeseries data available
+              <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground font-medium gap-2">
+                <p className="font-bold text-base">No traffic data for this period</p>
+                <p className="text-xs">Data will populate automatically as users visit pages on your site.</p>
               </div>
             )}
           </div>
@@ -341,7 +398,7 @@ export function AnalyticsDashboard() {
             <TabsContent value="pages" className="mt-0 focus-visible:outline-none">
               <AnalyticsTable
                 columns={pagesColumns}
-                data={tabData || []}
+                data={Array.isArray(tabData) ? tabData : []}
                 loading={isLoadingTabData}
               />
             </TabsContent>
@@ -349,7 +406,7 @@ export function AnalyticsDashboard() {
             <TabsContent value="referrers" className="mt-0 focus-visible:outline-none">
               <AnalyticsTable
                 columns={referrersColumns}
-                data={tabData || []}
+                data={Array.isArray(tabData) ? tabData : []}
                 loading={isLoadingTabData}
               />
             </TabsContent>
@@ -357,7 +414,7 @@ export function AnalyticsDashboard() {
             <TabsContent value="countries" className="mt-0 focus-visible:outline-none">
               <AnalyticsTable
                 columns={countriesColumns}
-                data={tabData || []}
+                data={Array.isArray(tabData) ? tabData : []}
                 loading={isLoadingTabData}
               />
             </TabsContent>
@@ -365,40 +422,40 @@ export function AnalyticsDashboard() {
             <TabsContent value="cities" className="mt-0 focus-visible:outline-none">
               <AnalyticsTable
                 columns={citiesColumns}
-                data={tabData || []}
+                data={Array.isArray(tabData) ? tabData : []}
                 loading={isLoadingTabData}
               />
             </TabsContent>
 
             <TabsContent value="devices" className="mt-0 focus-visible:outline-none">
               <DeviceChart
-                data={(tabData || []).map((d: any) => ({
-                  name: d.deviceType,
-                  visitors: d.visitors,
-                  percentage: Math.round(d.percentage * 10) / 10,
-                }))}
+                data={Array.isArray(tabData) ? tabData.map((d: any) => ({
+                  name: d?.deviceType || "desktop",
+                  visitors: Number(d?.visitors) || 0,
+                  percentage: Math.round((Number(d?.percentage) || 0) * 10) / 10,
+                })) : []}
                 loading={isLoadingTabData}
               />
             </TabsContent>
 
             <TabsContent value="browsers" className="mt-0 focus-visible:outline-none">
               <DeviceChart
-                data={(tabData || []).map((d: any) => ({
-                  name: d.browser,
-                  visitors: d.visitors,
-                  percentage: Math.round(d.percentage * 10) / 10,
-                }))}
+                data={Array.isArray(tabData) ? tabData.map((d: any) => ({
+                  name: d?.browser || "Other",
+                  visitors: Number(d?.visitors) || 0,
+                  percentage: Math.round((Number(d?.percentage) || 0) * 10) / 10,
+                })) : []}
                 loading={isLoadingTabData}
               />
             </TabsContent>
 
             <TabsContent value="os" className="mt-0 focus-visible:outline-none">
               <DeviceChart
-                data={(tabData || []).map((d: any) => ({
-                  name: d.os,
-                  visitors: d.visitors,
-                  percentage: Math.round(d.percentage * 10) / 10,
-                }))}
+                data={Array.isArray(tabData) ? tabData.map((d: any) => ({
+                  name: d?.os || "Other",
+                  visitors: Number(d?.visitors) || 0,
+                  percentage: Math.round((Number(d?.percentage) || 0) * 10) / 10,
+                })) : []}
                 loading={isLoadingTabData}
               />
             </TabsContent>

@@ -29,14 +29,18 @@ export function AnalyticsTable<T extends Record<string, any>>({
   );
   const [currentPage, setCurrentPage] = useState(1);
 
+  const safeData = Array.isArray(data) ? data : [];
+
   const sortedData = React.useMemo(() => {
-    if (!sortConfig) return data;
-    return [...data].sort((a, b) => {
-      if (a[sortConfig.key] < b[sortConfig.key]) return sortConfig.direction === "asc" ? -1 : 1;
-      if (a[sortConfig.key] > b[sortConfig.key]) return sortConfig.direction === "asc" ? 1 : -1;
+    if (!sortConfig || !safeData.length) return safeData;
+    return [...safeData].sort((a, b) => {
+      const valA = a[sortConfig.key] ?? "";
+      const valB = b[sortConfig.key] ?? "";
+      if (valA < valB) return sortConfig.direction === "asc" ? -1 : 1;
+      if (valA > valB) return sortConfig.direction === "asc" ? 1 : -1;
       return 0;
     });
-  }, [data, sortConfig]);
+  }, [safeData, sortConfig]);
 
   const totalPages = Math.ceil(sortedData.length / pageSize) || 1;
   const paginatedData = sortedData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
@@ -127,7 +131,11 @@ export function AnalyticsTable<T extends Record<string, any>>({
                           col.align === "right" ? "text-right" : "text-left",
                         )}
                       >
-                        {col.format ? col.format(row[col.key], row) : String(row[col.key])}
+                        {col.format
+                          ? col.format(row[col.key], row)
+                          : row[col.key] != null
+                          ? String(row[col.key])
+                          : "-"}
                       </td>
                     ))}
                   </tr>
@@ -138,11 +146,11 @@ export function AnalyticsTable<T extends Record<string, any>>({
         </div>
       </div>
 
-      {!loading && data.length > 0 && (
+      {!loading && safeData.length > 0 && (
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-2">
           <div className="text-sm font-semibold text-muted-foreground">
             Showing {(currentPage - 1) * pageSize + 1} to{" "}
-            {Math.min(currentPage * pageSize, data.length)} of {data.length} entries
+            {Math.min(currentPage * pageSize, safeData.length)} of {safeData.length} entries
           </div>
           <div className="flex gap-2">
             <Button

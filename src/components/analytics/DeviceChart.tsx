@@ -18,6 +18,8 @@ const defaultColors = [
 ];
 
 export function DeviceChart({ data, loading, colorMap = {} }: DeviceChartProps) {
+  const safeData = Array.isArray(data) ? data : [];
+
   if (loading) {
     return (
       <div className="w-full h-[400px] border-2 border-foreground rounded-2xl p-6 shadow-[4px_4px_0_0_var(--foreground)] bg-background flex flex-col gap-4">
@@ -31,7 +33,7 @@ export function DeviceChart({ data, loading, colorMap = {} }: DeviceChartProps) 
     );
   }
 
-  if (!data || data.length === 0) {
+  if (safeData.length === 0) {
     return (
       <div className="w-full h-[400px] border-2 border-foreground rounded-2xl shadow-[4px_4px_0_0_var(--foreground)] bg-background flex items-center justify-center">
         <p className="text-muted-foreground font-medium text-lg">No data available</p>
@@ -44,9 +46,9 @@ export function DeviceChart({ data, loading, colorMap = {} }: DeviceChartProps) 
       const rowData = payload[0].payload;
       return (
         <div className="bg-background border-2 border-foreground p-3 rounded-xl shadow-[4px_4px_0_0_var(--foreground)] font-medium">
-          <p className="text-sm font-bold mb-1">{rowData.name}</p>
-          <p className="text-sm">Visitors: {rowData.visitors.toLocaleString()}</p>
-          <p className="text-sm text-muted-foreground">{rowData.percentage}%</p>
+          <p className="text-sm font-bold mb-1">{rowData?.name || "Unknown"}</p>
+          <p className="text-sm">Visitors: {(rowData?.visitors || 0).toLocaleString()}</p>
+          <p className="text-sm text-muted-foreground">{rowData?.percentage || 0}%</p>
         </div>
       );
     }
@@ -56,7 +58,7 @@ export function DeviceChart({ data, loading, colorMap = {} }: DeviceChartProps) 
   return (
     <div className="w-full h-[400px] border-2 border-foreground rounded-2xl p-4 sm:p-6 shadow-[4px_4px_0_0_var(--foreground)] bg-background">
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={data} layout="vertical" margin={{ top: 0, right: 30, left: 0, bottom: 0 }}>
+        <BarChart data={safeData} layout="vertical" margin={{ top: 0, right: 30, left: 0, bottom: 0 }}>
           <XAxis type="number" hide />
           <YAxis
             dataKey="name"
@@ -76,17 +78,20 @@ export function DeviceChart({ data, loading, colorMap = {} }: DeviceChartProps) 
             barSize={32}
             label={{
               position: "right",
-              formatter: (val: number, entry: any) =>
-                `${val.toLocaleString()} (${entry.payload.percentage}%)`,
+              formatter: (val: any, entry: any) => {
+                const count = Number(val) || 0;
+                const pct = entry?.payload?.percentage ?? 0;
+                return `${count.toLocaleString()} (${pct}%)`;
+              },
               fill: "currentColor",
               fontSize: 14,
               fontWeight: 600,
             }}
           >
-            {data.map((entry, index) => (
+            {safeData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={colorMap[entry.name] || defaultColors[index % defaultColors.length]}
+                fill={colorMap[entry?.name] || defaultColors[index % defaultColors.length]}
               />
             ))}
           </Bar>

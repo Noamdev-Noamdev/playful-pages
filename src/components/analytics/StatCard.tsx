@@ -21,8 +21,11 @@ export function StatCard({
   color,
   loading,
 }: StatCardProps) {
-  const isPositiveTrend = trend !== undefined && trend > 0;
-  const isNegativeTrend = trend !== undefined && trend < 0;
+  const numericTrend = Number(trend);
+  const isValidTrend = trend !== undefined && trend !== null && !isNaN(numericTrend) && numericTrend !== 0;
+
+  const isPositiveTrend = isValidTrend && numericTrend > 0;
+  const isNegativeTrend = isValidTrend && numericTrend < 0;
 
   let trendIsGood = isPositiveTrend;
   if (trendInverted) {
@@ -49,7 +52,7 @@ export function StatCard({
         <div className="mt-2 flex items-end justify-between">
           <div className="text-3xl font-display font-bold">{value}</div>
 
-          {trend !== undefined && (
+          {isValidTrend && (
             <div
               className={cn(
                 "flex items-center font-bold text-sm px-2 py-1 rounded-full border-2",
@@ -58,12 +61,12 @@ export function StatCard({
                   : "bg-red-100 text-red-700 border-red-700/20",
               )}
             >
-              {trend > 0 ? (
+              {numericTrend > 0 ? (
                 <ArrowUpRight className="w-4 h-4 mr-1" />
-              ) : trend < 0 ? (
+              ) : (
                 <ArrowDownRight className="w-4 h-4 mr-1" />
-              ) : null}
-              {Math.abs(trend)}%
+              )}
+              {Math.abs(numericTrend).toFixed(1)}%
             </div>
           )}
         </div>
