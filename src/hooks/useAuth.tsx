@@ -8,6 +8,7 @@ export interface UserProfile {
   id: string;
   email: string;
   tier: UserTier;
+  isAdmin: boolean;
 }
 
 interface AuthContextType {
@@ -24,23 +25,37 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-/**
- * Fetch the tier from the profiles table. Falls back to "free" if the row
- * doesn't exist yet (e.g. trigger hasn't fired yet or table isn't created).
- */
-async function fetchTier(userId: string): Promise<UserTier> {
-  const { data, error } = await supabase.from("profiles").select("tier").eq("id", userId).single();
-
-  if (error || !data) return "free";
-  return (data.tier as UserTier) ?? "free";
+interface FetchProfileResult {
+  tier: UserTier;
+  isAdmin: boolean;
 }
 
-/** Build a UserProfile from a Supabase User + tier. */
-function buildProfile(user: User, tier: UserTier): UserProfile {
+/**
+ * Fetch the tier and admin flag from the profiles table.
+ * Falls back to tier="free" / isAdmin=false if the row doesn't exist yet
+ * (e.g. trigger hasn't fired yet or table/columns aren't created).
+ */
+async function fetchProfile(userId: string): Promise<FetchProfileResult> {
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("tier, is_admin")
+    .eq("id", userId)
+    .single();
+
+  if (error || !data) return { tier: "free", isAdmin: false };
+  return {
+    tier: (data.tier as UserTier) ?? "free",
+    isAdmin: data.is_admin === true,
+  };
+}
+
+/** Build a UserProfile from a Supabase User + profile fields. */
+function buildProfile(user: User, profile: FetchProfileResult): UserProfile {
   return {
     id: user.id,
     email: user.email ?? "",
-    tier,
+    tier: profile.tier,
+    isAdmin: profile.isAdmin,
   };
 }
 
@@ -65,8 +80,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
       return;
     }
-    const tier = await fetchTier(session.user.id);
-    setUser(buildProfile(session.user, tier));
+    const profile = await fetchProfile(session.user.id);
+    setUser(buildProfile(session.user, profile));
     setLoading(false);
   }, []);
 
@@ -170,7 +185,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   /**
-   * Re-fetch the user's tier from the database.
+   * Re-fetch the user's profile from the database.
    * Called after returning from Stripe to pick up webhook-applied changes.
    */
   const refreshTier = async () => {
@@ -179,8 +194,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = await supabase.auth.getSession();
     if (!session?.user) return;
 
-    const tier = await fetchTier(session.user.id);
-    setUser((prev) => (prev ? { ...prev, tier } : null));
+    const profile = await fetchProfile(session.user.id);
+    setUser((prev) => (prev ? { ...prev, ...profile } : null));
   };
 
   return (
