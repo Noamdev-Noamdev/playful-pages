@@ -1,4 +1,5 @@
 import { createSupabaseAdmin } from "./supabase-admin";
+import { createClient } from "@supabase/supabase-js";
 
 export function getEnv(request: Request, context?: any): Record<string, string | undefined> {
   return {
@@ -77,28 +78,47 @@ export async function verifyAdmin(request: Request, context?: any): Promise<{ us
 
   const token = authHeader.substring(7);
   const env = getEnv(request, context);
-  const supabase = createSupabaseAdmin(env);
+  const supabaseUrl = env.SUPABASE_URL ?? env.VITE_SUPABASE_URL;
 
-  const {
-    data: { user },
-    error: authError,
-  } = await supabase.auth.getUser(token);
-
-  if (authError || !user) {
+  if (!supabaseUrl) {
+    console.error("[verifyAdmin] Missing SUPABASE_URL / VITE_SUPABASE_URL in env");
     throw new Error("401");
   }
+
+  let userId: string | null = null;
+  try {
+    const userRes = await fetch(`${supabaseUrl.replace(/\/$/, "")}/auth/v1/user`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        apikey: env.SUPABASE_ANON_KEY ?? env.VITE_SUPABASE_ANON_KEY ?? "",
+      },
+    });
+    if (userRes.ok) {
+      const body = await userRes.json();
+      userId = body?.id ?? null;
+    }
+  } catch (e) {
+    console.error("[verifyAdmin] fetch auth/v1/user failed:", e);
+  }
+
+  if (!userId) {
+    throw new Error("401");
+  }
+
+  const supabase = createSupabaseAdmin(env);
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("is_admin")
-    .eq("id", user.id)
+    .eq("id", userId)
     .single();
 
   if (profileError || !profile?.is_admin) {
     throw new Error("403");
   }
 
-  return { userId: user.id };
+  return { userId };
 }
 
 export async function getSessionId(visitorId: string, timestamp: Date): Promise<string> {
