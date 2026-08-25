@@ -77,6 +77,20 @@ export interface OsData {
   percentage: number;
 }
 
+async function getValidToken(): Promise<string | undefined> {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session?.access_token) {
+    return session.access_token;
+  }
+
+  // Fallback: try refreshing the session if token is missing/expired
+  const { data: refreshData } = await supabase.auth.refreshSession();
+  return refreshData.session?.access_token;
+}
+
 export function useAnalyticsQuery<T>(
   metric: AnalyticsMetric,
   dateRange: DateRange,
@@ -85,10 +99,7 @@ export function useAnalyticsQuery<T>(
   return useQuery<T>({
     queryKey: ["analytics", metric, dateRange],
     queryFn: async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      const token = session?.access_token;
+      const token = await getValidToken();
 
       const params = new URLSearchParams({
         metric,
@@ -103,12 +114,13 @@ export function useAnalyticsQuery<T>(
       });
 
       if (!res.ok) {
-        let errorMsg = "Failed to fetch analytics data";
+        let errorMsg = `Error ${res.status}: Failed to fetch analytics data`;
         try {
           const body = await res.json();
           if (body?.error) errorMsg = body.error;
         } catch {
-          // ignore json parse error
+          const text = await res.text().catch(() => "");
+          if (text) errorMsg = text;
         }
         throw new Error(errorMsg);
       }
@@ -122,10 +134,7 @@ export function useAnalyticsQuery<T>(
 
 export function useAnalyticsExport(dateRange: DateRange) {
   return async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    const token = session?.access_token;
+    const token = await getValidToken();
 
     const params = new URLSearchParams({
       from: dateRange.from,
