@@ -78,17 +78,39 @@ export interface OsData {
 }
 
 async function getValidToken(): Promise<string | undefined> {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+  try {
+    // First try the cached session
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-  if (session?.access_token) {
-    return session.access_token;
+    if (session?.access_token) {
+      // Check if token is close to expiry (within 60 seconds)
+      const expiresAt = session.expires_at;
+      const now = Math.floor(Date.now() / 1000);
+      if (expiresAt && expiresAt - now < 60) {
+        console.log("[analytics] Token expiring soon, refreshing...");
+        const { data: refreshData } = await supabase.auth.refreshSession();
+        if (refreshData.session?.access_token) {
+          return refreshData.session.access_token;
+        }
+      }
+      return session.access_token;
+    }
+
+    // No cached session — try refreshing
+    console.log("[analytics] No cached session, attempting refresh...");
+    const { data: refreshData, error: refreshError } =
+      await supabase.auth.refreshSession();
+    if (refreshError) {
+      console.error("[analytics] Session refresh failed:", refreshError.message);
+      return undefined;
+    }
+    return refreshData.session?.access_token;
+  } catch (err) {
+    console.error("[analytics] getValidToken error:", err);
+    return undefined;
   }
-
-  // Fallback: try refreshing the session if token is missing/expired
-  const { data: refreshData } = await supabase.auth.refreshSession();
-  return refreshData.session?.access_token;
 }
 
 export function useAnalyticsQuery<T>(
@@ -101,6 +123,12 @@ export function useAnalyticsQuery<T>(
     queryFn: async () => {
       const token = await getValidToken();
 
+      if (!token) {
+        throw new Error(
+          "Not authenticated. Please sign out and sign back in.",
+        );
+      }
+
       const params = new URLSearchParams({
         metric,
         from: dateRange.from,
@@ -109,18 +137,27 @@ export function useAnalyticsQuery<T>(
 
       const res = await fetch(`/api/analytics/query?${params.toString()}`, {
         headers: {
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          Authorization: `Bearer ${token}`,
         },
       });
 
       if (!res.ok) {
-        let errorMsg = `Error ${res.status}: Failed to fetch analytics data`;
-        try {
-          const body = await res.json();
-          if (body?.error) errorMsg = body.error;
-        } catch {
-          const text = await res.text().catch(() => "");
-          if (text) errorMsg = text;
+        // Read the response body as text first (can only be consumed once)
+        const responseText = await res.text();
+        let errorMsg: string;
+
+        if (res.status === 401) {
+          errorMsg = "Session expired. Please sign out and sign back in.";
+        } else if (res.status === 403) {
+          errorMsg = "Access denied. Your account does not have admin privileges.";
+        } else {
+          // Try to parse as JSON for structured error
+          try {
+            const body = JSON.parse(responseText);
+            errorMsg = body?.error || `Error ${res.status}: ${responseText}`;
+          } catch {
+            errorMsg = `Error ${res.status}: ${responseText || "Failed to fetch analytics data"}`;
+          }
         }
         throw new Error(errorMsg);
       }
@@ -128,7 +165,18 @@ export function useAnalyticsQuery<T>(
     },
     refetchInterval: options?.refetchInterval,
     throwOnError: false,
-    retry: 1,
+    retry: (failureCount, error) => {
+      // Don't retry auth errors
+      if (
+        error?.message?.includes("401") ||
+        error?.message?.includes("403") ||
+        error?.message?.includes("Not authenticated") ||
+        error?.message?.includes("Session expired")
+      ) {
+        return false;
+      }
+      return failureCount < 1;
+    },
   });
 }
 
