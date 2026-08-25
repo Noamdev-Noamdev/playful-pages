@@ -54,8 +54,8 @@ export const Route = createFileRoute("/api/analytics/query")({
           const { data: events, error } = await supabase
             .from("analytics_events")
             .select("*")
-            .gte("created_at", from)
-            .lte("created_at", to);
+            .gte("created_at", fromIso)
+            .lte("created_at", toIso);
 
           if (error) {
             console.error("[analytics] Supabase error:", error);

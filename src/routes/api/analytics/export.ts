@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type {} from "@tanstack/react-start";
+import type { } from "@tanstack/react-start";
 import { createSupabaseAdmin } from "@/lib/supabase-admin";
 import { getEnv, verifyAdmin } from "@/lib/server-analytics";
 
@@ -32,14 +32,25 @@ export const Route = createFileRoute("/api/analytics/export")({
             to = new Date().toISOString();
           }
 
+          function toStartOfDayIso(s: string): string {
+            if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return `${s}T00:00:00.000Z`;
+            return s;
+          }
+          function toEndOfDayIso(s: string): string {
+            if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return `${s}T23:59:59.999Z`;
+            return s;
+          }
+          const fromIso = toStartOfDayIso(from);
+          const toIso = toEndOfDayIso(to);
+
           const env = getEnv(request, context);
           const supabase = createSupabaseAdmin(env);
 
           const { data: events, error } = await supabase
             .from("analytics_events")
             .select("*")
-            .gte("created_at", from)
-            .lte("created_at", to)
+            .gte("created_at", fromIso)
+            .lte("created_at", toIso)
             .order("created_at", { ascending: true });
 
           if (error) {
