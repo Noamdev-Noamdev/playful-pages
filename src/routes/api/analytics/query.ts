@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import type {} from "@tanstack/react-start";
+import type { } from "@tanstack/react-start";
 import { createSupabaseAdmin } from "@/lib/supabase-admin";
 import { getEnv, verifyAdmin } from "@/lib/server-analytics";
 
@@ -32,6 +32,21 @@ export const Route = createFileRoute("/api/analytics/query")({
           if (!to) {
             to = new Date().toISOString();
           }
+
+          // Normalize from/to to ISO strings:
+          // - If passed as bare YYYY-MM-DD, expand to start-of-day / end-of-day
+          //   (otherwise lte("created_at", "2026-08-25") misses the whole day
+          //    because Postgres coerces it to 2026-08-25 00:00:00 UTC)
+          function toStartOfDayIso(s: string): string {
+            if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return `${s}T00:00:00.000Z`;
+            return s;
+          }
+          function toEndOfDayIso(s: string): string {
+            if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return `${s}T23:59:59.999Z`;
+            return s;
+          }
+          const fromIso = toStartOfDayIso(from);
+          const toIso = toEndOfDayIso(to);
 
           const env = getEnv(request, context);
           const supabase = createSupabaseAdmin(env);
@@ -73,8 +88,8 @@ export const Route = createFileRoute("/api/analytics/query")({
               }
 
               // Calculate previous period for trend comparison
-              const fromDate = new Date(from);
-              const toDate = new Date(to);
+              const fromDate = new Date(fromIso);
+              const toDate = new Date(toIso);
               const periodMs = toDate.getTime() - fromDate.getTime();
               const prevFrom = new Date(fromDate.getTime() - periodMs).toISOString();
               const prevTo = fromDate.toISOString();
@@ -147,6 +162,25 @@ export const Route = createFileRoute("/api/analytics/query")({
                 d.visitors.add(e.visitor_id);
                 d.pageviews++;
               });
+
+              // Backfill missing days with zeros so recharts Area renders a
+              // continuous filled area instead of isolated dots.
+              function formatYmd(d: Date): string {
+                const y = d.getUTCFullYear();
+                const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+                const day = String(d.getUTCDate()).padStart(2, "0");
+                return `${y}-${m}-${day}`;
+              }
+              const start = new Date(fromIso);
+              const end = new Date(toIso);
+              const cursor = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
+              const endUtc = Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate());
+              while (cursor.getTime() <= endUtc) {
+                const key = formatYmd(cursor);
+                if (!daily.has(key)) daily.set(key, { visitors: new Set(), pageviews: 0 });
+                cursor.setUTCDate(cursor.getUTCDate() + 1);
+              }
+
               const result = Array.from(daily.entries())
                 .map(([date, data]) => ({
                   date,

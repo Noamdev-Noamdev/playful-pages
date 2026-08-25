@@ -1,7 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Users, Eye, MousePointerClick, Clock, Download, AlertTriangle, Database } from "lucide-react";
-import { format, subDays } from "date-fns";
+import {
+  ArrowLeft,
+  Users,
+  Eye,
+  MousePointerClick,
+  Clock,
+  Download,
+  AlertTriangle,
+  Database,
+  RefreshCw,
+} from "lucide-react";
+import { format } from "date-fns";
 import {
   AreaChart,
   Area,
@@ -11,6 +21,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useQueryClient } from "@tanstack/react-query";
 import { useAnalyticsQuery, useAnalyticsExport } from "@/hooks/useAnalytics";
 import { StatCard } from "./StatCard";
 import { DateRangePicker } from "./DateRangePicker";
@@ -56,33 +67,28 @@ function getCountryFlag(countryCode: string) {
 }
 
 export function AnalyticsDashboard() {
+  const queryClient = useQueryClient();
   const today = format(new Date(), "yyyy-MM-dd");
-  const thirtyDaysAgo = format(subDays(new Date(), 30), "yyyy-MM-dd");
 
-  const [dateRange, setDateRange] = useState({ from: thirtyDaysAgo, to: today });
-  const [autoRefresh, setAutoRefresh] = useState(false);
+  const [dateRange, setDateRange] = useState({ from: today, to: today });
+  const [autoRefresh, setAutoRefresh] = useState(true);
   const [activeTab, setActiveTab] = useState("pages");
 
-  const refetchInterval = autoRefresh ? 30000 : undefined;
+  const refetchInterval = autoRefresh ? 10000 : undefined;
 
-  const { data: summary, isLoading: isLoadingSummary, error: summaryError } = useAnalyticsQuery<any>(
-    "summary",
-    dateRange,
-    { refetchInterval },
-  );
-  const { data: timeseries, isLoading: isLoadingTimeseries, error: timeseriesError } = useAnalyticsQuery<any>(
-    "timeseries",
-    dateRange,
-    { refetchInterval },
-  );
+  const summaryQuery = useAnalyticsQuery<any>("summary", dateRange, { refetchInterval });
+  const timeseriesQuery = useAnalyticsQuery<any>("timeseries", dateRange, { refetchInterval });
+  const tabQuery = useAnalyticsQuery<any>(activeTab as any, dateRange, { refetchInterval });
 
-  const { data: tabData, isLoading: isLoadingTabData, error: tabError } = useAnalyticsQuery<any>(
-    activeTab as any,
-    dateRange,
-    { refetchInterval },
-  );
+  const { data: summary, isLoading: isLoadingSummary, error: summaryError } = summaryQuery;
+  const { data: timeseries, isLoading: isLoadingTimeseries, error: timeseriesError } = timeseriesQuery;
+  const { data: tabData, isLoading: isLoadingTabData, error: tabError } = tabQuery;
 
   const exportData = useAnalyticsExport(dateRange);
+
+  const refreshAll = () => {
+    void queryClient.invalidateQueries({ queryKey: ["analytics"] });
+  };
 
   const handleExport = async () => {
     try {
@@ -93,8 +99,9 @@ export function AnalyticsDashboard() {
   };
 
   const currentError = summaryError || timeseriesError || tabError;
+  const isFetching = summaryQuery.isFetching || timeseriesQuery.isFetching || tabQuery.isFetching;
   const isDbMissing = (currentError as Error)?.message?.toLowerCase().includes("database error") ||
-                      (currentError as Error)?.message?.toLowerCase().includes("500");
+    (currentError as Error)?.message?.toLowerCase().includes("500");
 
   const pagesColumns: Column<any>[] = [
     { key: "path", label: "Path", sortable: true, format: (v) => v || "/" },
@@ -213,6 +220,15 @@ export function AnalyticsDashboard() {
 
           <div className="flex flex-wrap items-center gap-3">
             <DateRangePicker dateRange={dateRange} onChange={setDateRange} />
+            <Button
+              onClick={refreshAll}
+              variant="outline"
+              className="border-2 border-foreground rounded-xl shadow-[2px_2px_0_0_var(--foreground)] hover:-translate-y-0.5 hover:shadow-[4px_4px_0_0_var(--foreground)] transition-all font-bold"
+              disabled={isFetching}
+            >
+              <RefreshCw className={`w-4 h-4 mr-2 ${isFetching ? "animate-spin" : ""}`} />
+              {isFetching ? "Refreshing..." : "Refresh now"}
+            </Button>
             <Button
               onClick={handleExport}
               variant="outline"

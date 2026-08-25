@@ -120,8 +120,8 @@ function RootComponent() {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
-            refetchOnWindowFocus: false,
+            staleTime: 0,
+            refetchOnWindowFocus: true,
           },
         },
       }),

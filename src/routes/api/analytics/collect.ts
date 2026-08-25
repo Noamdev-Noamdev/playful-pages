@@ -40,10 +40,19 @@ export const Route = createFileRoute("/api/analytics/collect")({
 
           const userAgent = request.headers.get("user-agent") || "";
 
-          const cf = (context as any)?.cloudflare?.cf || {};
-          const country = cf.country || "";
-          const city = cf.city || "";
-          const region = cf.regionCode || "";
+          const cf =
+            (request as any)?.cf ||
+            (context as any)?.cloudflare?.cf ||
+            (context as any)?.cf ||
+            {};
+
+          const country =
+            cf.country ||
+            request.headers.get("cf-ipcountry") ||
+            request.headers.get("x-country") ||
+            "";
+          const city = cf.city || request.headers.get("cf-ipcity") || "";
+          const region = cf.regionCode || cf.region || request.headers.get("cf-region-code") || "";
 
           let pagePath = "";
           let hostname = "";
