@@ -7,7 +7,7 @@ import { createClient } from "@supabase/supabase-js";
  */
 export function createSupabaseAdmin(env: Record<string, string | undefined>) {
   const url = env.SUPABASE_URL ?? env.VITE_SUPABASE_URL;
-  const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY;
+  const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY ?? env.VITE_SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !serviceKey) {
     throw new Error(
